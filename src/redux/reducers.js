@@ -18,6 +18,22 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         question: action.payload,
       };
+
+    case "GET_QUESTIONS_BY_NAME":
+      return {
+        ...state,
+        questions: action.payload,
+      };
+
+    case "ORDER_BY_DATE":
+      const sortByDate = state.questions.slice();
+
+      sortByDate.sort((a, b) => b.date - a.date);
+
+      return {
+        ...state,
+        questions: sortByDate,
+      };
     default:
       return state;
   }

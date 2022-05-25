@@ -146,7 +146,6 @@ export default function BarLeft(props) {
       >
         <Toolbar />
         {props.children}
-        {/* <Questions /> */}
       </Box>
     </Box>
   );

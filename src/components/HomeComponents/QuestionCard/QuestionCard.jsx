@@ -74,6 +74,7 @@ export const QuestionCard = ({ question }) => {
                 >
                   {question.title}
                 </Link>
+                <h6 style={{ marginTop: "0" }}>{question.date.toString()}</h6>
               </Typography>
               <Typography
                 variant="body2"

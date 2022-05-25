@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import { QuestionCard } from "../QuestionCard/QuestionCard";
 import { useDispatch, useSelector } from "react-redux";
-import { getQuestions } from "../../../redux/actions";
+import { getQuestions, orderByDate } from "../../../redux/actions";
 
 const CardQuestionContainer = styled.div`
   color: pink;
@@ -43,11 +43,15 @@ export const Questions = () => {
     loadQuestions();
   }, [dispatch]);
 
+  const orderByDateHandler = () => {
+    dispatch(orderByDate());
+  };
+
   return (
     <div>
       <CardQuestionContainer>
         <div className="CardQuestionTitle">
-          <Button>Nuevas</Button>
+          <Button onClick={orderByDateHandler}>Nuevas</Button>
           <Button>Mas Visitas</Button>
           <Button>Mejores Calificadas</Button>
         </div>
