@@ -1,7 +1,9 @@
 import styled from "@emotion/styled";
-import React from "react";
-import Button from '@mui/material/Button';
+import React, { useEffect, useState } from "react";
+import Button from "@mui/material/Button";
 import { QuestionCard } from "../QuestionCard/QuestionCard";
+import { useDispatch, useSelector } from "react-redux";
+import { getQuestions } from "../../../redux/actions";
 
 const CardQuestionContainer = styled.div`
   color: pink;
@@ -25,7 +27,7 @@ const CardQuestion = styled.div`
   background-color: #392e57;
 `;
 
-const posts = [
+/* const posts = [
   {
     id: 1,
     id_user: 8,
@@ -36,8 +38,8 @@ const posts = [
     comments: [],
     category: "M1",
     tags: ["JavaScript", "Closures", "Lógica"],
-    answerQty : 4,
-    user_name: "Juan Fakeface"
+    answerQty: 4,
+    user_name: "Juan Fakeface",
   },
   {
     id: 2,
@@ -48,9 +50,9 @@ const posts = [
     rating: 63.52,
     comments: [],
     category: "M3",
-    tags: ["Backend","Promesas", "Async-Await"],
-    answerQty : 1,
-    user_name: "Juan Fakeface"
+    tags: ["Backend", "Promesas", "Async-Await"],
+    answerQty: 1,
+    user_name: "Juan Fakeface",
   },
   {
     id: 3,
@@ -61,9 +63,9 @@ const posts = [
     rating: 3.48,
     comments: [],
     category: "M4",
-    tags: ["psql","Backend", "Sequelize"],
-    answerQty : 5,
-    user_name: "Juan Fakeface"
+    tags: ["psql", "Backend", "Sequelize"],
+    answerQty: 5,
+    user_name: "Juan Fakeface",
   },
   {
     id: 4,
@@ -73,9 +75,9 @@ const posts = [
     rating: 14.89,
     comments: [],
     category: "M2",
-    tags: ["Redux","Frontend", "Reducer"],
-    answerQty : 8,
-    user_name: "Juan Fakeface"
+    tags: ["Redux", "Frontend", "Reducer"],
+    answerQty: 8,
+    user_name: "Juan Fakeface",
   },
   {
     id: 5,
@@ -85,9 +87,9 @@ const posts = [
     rating: 38.39,
     comments: [],
     category: "M3",
-    tags: ["Middleware","Backend", "Router"],
-    answerQty : 3,
-    user_name: "Juan Fakeface"
+    tags: ["Middleware", "Backend", "Router"],
+    answerQty: 3,
+    user_name: "Juan Fakeface",
   },
   {
     id: 6,
@@ -98,30 +100,48 @@ const posts = [
     rating: 25.72,
     comments: [],
     category: "M1",
-    tags: ["JavaScript","Recursivo", "Fundamentos"],
-    answerQty : 2,
-    user_name: "Juan Fakeface"
+    tags: ["JavaScript", "Recursivo", "Fundamentos"],
+    answerQty: 2,
+    user_name: "Juan Fakeface",
   },
-];
+]; */
 
 export const Questions = () => {
- 
+  const dispatch = useDispatch();
+  const [loading, setLoadin] = useState(false);
+  const questions = useSelector((state) => state.questions);
+  console.log(questions);
+
+  useEffect(() => {
+    const loadQuestions = async () => {
+      setLoadin(true);
+      await dispatch(getQuestions());
+      setLoadin(false);
+    };
+
+    loadQuestions();
+  }, [dispatch]);
+
   return (
     <div>
- 
       <CardQuestionContainer>
         <div className="CardQuestionTitle">
           <Button>Nuevas</Button>
           <Button>Mas Visitas</Button>
           <Button>Mejores Calificadas</Button>
         </div>
-        <CardQuestion >
-          {posts.map((posts) => (
-            <QuestionCard post={ posts }/>
-          ))}
+        <CardQuestion>
+          <div className="seperator">
+            {loading ? (
+              <h4>Loading Questions...</h4>
+            ) : (
+              questions.map((question, index) => (
+                <QuestionCard question={question} key={index} />
+              ))
+            )}
+          </div>
         </CardQuestion>
       </CardQuestionContainer>
- 
     </div>
   );
 };
