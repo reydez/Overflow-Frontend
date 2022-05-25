@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 import React from "react";
 import QuestionCard from "../QuestionCard/QuestionCard";
+import Button from '@mui/material/Button';
+
 
 const CardQuestionContainer = styled.div`
   color: pink;
@@ -21,7 +23,7 @@ const CardQuestionContainer = styled.div`
 
 const CardQuestion = styled.div`
   margin-top: 25px;
-  height: 500px;
+  
   width: 100%;
   background-color: #392e57;
   /* border: 1px solid cyan; */
@@ -212,7 +214,7 @@ const posts = [
     message: "Maecenas rhoncus aliquam lacus.",
     rating: 36.4,
     comments: [],
-    tags: [],
+    tags: ["react", "redux", "javascript"],
   },
   {
     id: 20,
@@ -227,20 +229,25 @@ const posts = [
 ];
 
 export const Questions = () => {
+
+ 
+
   return (
     <div>
+ 
       <CardQuestionContainer>
         <div className="CardQuestionTitle">
-          <span>Nuevas</span>
-          <span>Mas Visitados</span>
-          <span>Mejores Calificadas</span>
+          <Button>Nuevas</Button>
+          <Button>Mas Visitas</Button>
+          <Button>Mejores Calificadas</Button>
         </div>
         <CardQuestion>
-          {posts.map((post) => (
-            <QuestionCard post={post} />
+          {posts.map((posts  ) => (
+            <QuestionCard post={posts}/>
           ))}
         </CardQuestion>
       </CardQuestionContainer>
+ 
     </div>
   );
 };
