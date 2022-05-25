@@ -7,11 +7,12 @@ import Toolbar from "@mui/material/Toolbar";
 import drawer from "../../../Controllers/constante.js";
 import { IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Questions } from "../Questions/Questions";
 import Avatar from "../Avatars/Avatars.jsx";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchBar from "../SearchBar/SearchBar.jsx";
+import { Questions } from "../Questions/Questions.jsx";
+
 /* aqui va el componente de lisandro search  */
 
 const drawerWidth = 240;
@@ -144,7 +145,8 @@ export default function BarLeft(props) {
         }}
       >
         <Toolbar />
-        <Questions />
+        {props.children}
+        {/* <Questions /> */}
       </Box>
     </Box>
   );

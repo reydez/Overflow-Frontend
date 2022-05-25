@@ -3,6 +3,7 @@ import Home from "./views/Home";
 import CreateQuestion from "./views/CreateQuestion";
 import LandingPage from "./views/LandingPage";
 import VisualizeQuestion from "./views/VisualizeQuestion";
+import BarLeft from "./components/HomeComponents/BarLeft/BarLeft";
 
 function App() {
   return (
@@ -12,10 +13,14 @@ function App() {
           <Home />
         </Route>
         <Route path="/visualize-question/:questionId">
-          <VisualizeQuestion />
+          <BarLeft>
+            <VisualizeQuestion />
+          </BarLeft>
         </Route>
         <Route path="/create-question">
-          <CreateQuestion />
+          <BarLeft>
+            <CreateQuestion />
+          </BarLeft>
         </Route>
         <Route path="/">
           <LandingPage />
