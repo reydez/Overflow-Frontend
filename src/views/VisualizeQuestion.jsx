@@ -23,6 +23,7 @@ export default function VisualizeQuestion() {
     <div>
       <h2>{question.title}</h2>
       <h4>{question.message}</h4>
+      {loading && <h3>Loading Question Details...</h3>}
       {question.comments?.length > 0 ? (
         question.comments.map((comment, index) => (
           <div key={index}>

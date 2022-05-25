@@ -52,6 +52,7 @@ const questions = [
         name: "Konklux",
       },
     ],
+    date: new Date("2022-06-28"),
   },
   {
     id: 19,
@@ -98,6 +99,7 @@ const questions = [
         name: "Bigtax",
       },
     ],
+    date: new Date("2019-06-28"),
   },
   {
     id: 9,
@@ -138,6 +140,7 @@ const questions = [
         name: "Fixflex",
       },
     ],
+    date: new Date("2021-06-28"),
   },
   {
     id: 6,
@@ -177,6 +180,7 @@ const questions = [
         name: "Fixflex",
       },
     ],
+    date: new Date("2018-06-28"),
   },
   {
     id: 13,
@@ -212,6 +216,7 @@ const questions = [
         name: "Stim",
       },
     ],
+    date: new Date("2019-06-28"),
   },
   {
     id: 17,
@@ -235,6 +240,7 @@ const questions = [
         name: "Zaam-Dox",
       },
     ],
+    date: new Date("2015-06-28"),
   },
   {
     id: 20,
@@ -282,6 +288,7 @@ const questions = [
         name: "Stim",
       },
     ],
+    date: new Date("2022-06-28"),
   },
   {
     id: 12,
@@ -326,6 +333,7 @@ const questions = [
         name: "Veribet",
       },
     ],
+    date: new Date("2019-06-28"),
   },
   {
     id: 18,
@@ -366,6 +374,7 @@ const questions = [
         name: "Fixflex",
       },
     ],
+    date: new Date("2011-06-28"),
   },
 ];
 
@@ -385,4 +394,22 @@ export const getQuestionDetails = (id) => async (dispatch) => {
   } catch (error) {
     console.log(error);
   }
+};
+
+export const getQuestionsByName = (name) => async (dispatch) => {
+  try {
+    const questionsByName = questions.filter((question) =>
+      question.title.includes(name)
+    );
+
+    dispatch({ type: "GET_QUESTIONS_BY_NAME", payload: questionsByName });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const orderByDate = () => {
+  return {
+    type: "ORDER_BY_DATE",
+  };
 };
