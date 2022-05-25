@@ -11,6 +11,7 @@ import { Questions } from "../Questions/Questions";
 import Avatar from "../Avatars/Avatars.jsx";
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
+import SearchBar from "../SearchBar/SearchBar.jsx";
 /* aqui va el componente de lisandro search  */
 
 const drawerWidth = 240;
@@ -89,6 +90,7 @@ export default function BarLeft(props) {
             <MenuIcon />
           </IconButton>
           <Avatar />
+          <SearchBar />
           {/* aqui el componente a renderizar de search */}
         </Toolbar>
       </AppBar>
