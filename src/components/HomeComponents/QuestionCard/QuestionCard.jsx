@@ -10,9 +10,9 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { Link } from "react-router-dom";
 
 export const QuestionCard = ({ question }) => {
-  var year = question.date.getUTCFullYear();
+  /* var year = question.date.getUTCFullYear();
   var month = question.date.getUTCMonth() + 1;
-  var day = question.date.getUTCDate();
+  var day = question.date.getUTCDate(); */
 
   const getAvatarBgColor = ({ category }) =>
     ({
@@ -78,7 +78,7 @@ export const QuestionCard = ({ question }) => {
                 >
                   {question.title}
                 </Link>
-                <h6 style={{ marginTop: "0" }}>{`${year}/${month}/${day}`}</h6>
+                <h6 style={{ marginTop: "0" }}>{`${question.createdAt}`}</h6>
               </Typography>
               <Typography
                 variant="body2"

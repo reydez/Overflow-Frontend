@@ -8,7 +8,6 @@ import {
   orderByDate,
 } from "../../../redux/actions/questionsActions";
 import PaginationComponent from "../../paginationComponents/PaginationComponent";
-/* import ReactPaginate from "react-paginate"; */
 
 const CardQuestionContainer = styled.div`
   color: pink;
@@ -79,6 +78,7 @@ export const Questions = () => {
           pageCount={pageCount}
           onPageChange={handlePageClick}
         />
+
         {loading ? (
           <h4>Loading Questions...</h4>
         ) : (

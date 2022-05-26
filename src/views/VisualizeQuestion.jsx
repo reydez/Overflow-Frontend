@@ -27,7 +27,10 @@ export default function VisualizeQuestion() {
       {question.comments?.length > 0 ? (
         question.comments.map((comment, index) => (
           <div key={index}>
-            <p>User id: {comment.id_user}</p>
+            <p>
+              User name:{" "}
+              {`${question.user.first_name} ${question.user.last_name}`}
+            </p>
             <p>User comment: {comment.message}</p>
           </div>
         ))
