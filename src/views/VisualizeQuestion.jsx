@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getQuestionDetails } from "../redux/actions";
+import { getQuestionDetails } from "../redux/actions/questionsActions";
 
 export default function VisualizeQuestion() {
   const { questionId } = useParams();
   const dispatch = useDispatch();
-  const question = useSelector((state) => state.question);
+  const question = useSelector((state) => state.questionsReducer.question);
   const [loading, setLoadin] = useState(false);
 
   useEffect(() => {

@@ -10,6 +10,10 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { Link } from "react-router-dom";
 
 export const QuestionCard = ({ question }) => {
+  var year = question.date.getUTCFullYear();
+  var month = question.date.getUTCMonth() + 1;
+  var day = question.date.getUTCDate();
+
   const getAvatarBgColor = ({ category }) =>
     ({
       M1: "#FBC02D",
@@ -74,7 +78,7 @@ export const QuestionCard = ({ question }) => {
                 >
                   {question.title}
                 </Link>
-                <h6 style={{ marginTop: "0" }}>{question.date.toString()}</h6>
+                <h6 style={{ marginTop: "0" }}>{`${year}/${month}/${day}`}</h6>
               </Typography>
               <Typography
                 variant="body2"
@@ -104,7 +108,7 @@ export const QuestionCard = ({ question }) => {
 
           <Grid item>
             <Typography variant="subtitle1" component="div" color="pink">
-              Carita :)
+              Carita Feliz :)
             </Typography>
             <Typography variant="body2" color="white">
               {question.id_user}

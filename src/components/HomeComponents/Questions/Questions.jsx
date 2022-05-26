@@ -3,7 +3,10 @@ import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import { QuestionCard } from "../QuestionCard/QuestionCard";
 import { useDispatch, useSelector } from "react-redux";
-import { getQuestions, orderByDate } from "../../../redux/actions/questionsActions";
+import {
+  getQuestions,
+  orderByDate,
+} from "../../../redux/actions/questionsActions";
 
 const CardQuestionContainer = styled.div`
   color: pink;
@@ -30,8 +33,7 @@ const CardQuestion = styled.div`
 export const Questions = () => {
   const dispatch = useDispatch();
   const [loading, setLoadin] = useState(false);
-  const questions = useSelector((state) => state.questions);
-  console.log(questions);
+  const questions = useSelector((state) => state.questionsReducer.questions);
 
   useEffect(() => {
     const loadQuestions = async () => {

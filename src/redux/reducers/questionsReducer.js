@@ -4,7 +4,7 @@ const initialState = {
   question: {},
 };
 
-const rootReducer = (state = initialState, action) => {
+const questionsReducer = (state = initialState, action) => {
   switch (action.type) {
     case "GET_QUESTIONS":
       return {
@@ -39,4 +39,4 @@ const rootReducer = (state = initialState, action) => {
   }
 };
 
-export default rootReducer;
+export default questionsReducer;
