@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import { QuestionCard } from "../QuestionCard/QuestionCard";
 import { useDispatch, useSelector } from "react-redux";
-import { getQuestions, orderByDate } from "../../../redux/actions";
+import { getQuestions, orderByDate } from "../../../redux/actions/questionsActions";
 
 const CardQuestionContainer = styled.div`
   color: pink;
