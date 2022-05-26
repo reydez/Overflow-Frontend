@@ -6,7 +6,7 @@ import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import Button from "@mui/material/Button";
 import Swal from "sweetalert2";
-import { getQuestionsByName } from "../../../redux/actions";
+import { getQuestionsByName } from "../../../redux/actions/questionsActions";
 import { useDispatch } from "react-redux";
 
 const Search = styled("div")(({ theme }) => ({
@@ -63,10 +63,10 @@ export default function SearchBar() {
 
     !palabraBuscada
       ? Swal.fire(
-          "¿Búsqueda vacía?",
-          "Por favor decinos que estás buscando...",
-          "question"
-        )
+        "¿Búsqueda vacía?",
+        "Por favor decinos que estás buscando...",
+        "question"
+      )
       : dispatch(getQuestionsByName(palabraBuscada));
     /* setPalabraBuscada(e.target.value); */
     setPalabraBuscada("");
@@ -76,10 +76,10 @@ export default function SearchBar() {
     if (e.charCode === 13) {
       !palabraBuscada
         ? Swal.fire(
-            "¿Búsqueda vacía?",
-            "Por favor decinos que estás buscando...",
-            "question"
-          )
+          "¿Búsqueda vacía?",
+          "Por favor decinos que estás buscando...",
+          "question"
+        )
         : dispatch(getQuestionsByName(palabraBuscada));
       setPalabraBuscada(e.target.value);
       setPalabraBuscada("");
