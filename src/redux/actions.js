@@ -4,9 +4,9 @@ const questions = [
   {
     id: 15,
     id_user: 1,
-    title: "Epic Pharma, LLC",
+    title: "JavaScript me da un error por consola que dice ”undefined”",
     message:
-      "Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.",
+      "I have 3 radio buttons in wich im trying to alert value of radio buttons by assigning iit to a variable...",
     rating: 65.26,
     comments: [
       {
@@ -45,19 +45,21 @@ const questions = [
     tags: [
       {
         id: 1,
-        name: "Stringtough",
+        name: "JavaScript",
       },
       {
         id: 2,
         name: "Konklux",
       },
     ],
+    date: new Date("2022-06-28"),
+    category: "M2"
   },
   {
     id: 19,
     id_user: 2,
-    title: "DAVA Pharmaceuticals, Inc.",
-    message: "Maecenas rhoncus aliquam lacus.",
+    title: "Ejemplos de Mixins en Sequelize",
+    message: "Me podrían dar algunos ejemplos de los Mixins en Sequelize, en las lectures vimos algunos pero no me quedaron claro...",
     rating: 36.4,
     comments: [
       {
@@ -98,11 +100,13 @@ const questions = [
         name: "Bigtax",
       },
     ],
+    date: new Date("2019-06-28"),
+    category: "M1"
   },
   {
     id: 9,
     id_user: 2,
-    title: "KTAIGA CO., LTD.",
+    title: "Ayuda con useSelector",
     message:
       "Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy.",
     rating: 55.96,
@@ -138,11 +142,13 @@ const questions = [
         name: "Fixflex",
       },
     ],
+    date: new Date("2021-06-28"),
+    category: "M3"
   },
   {
     id: 6,
     id_user: 3,
-    title: "ARSOA USA INC.",
+    title: "Listas Enlazadas",
     message:
       "Proin risus. Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",
     rating: 25.72,
@@ -177,6 +183,8 @@ const questions = [
         name: "Fixflex",
       },
     ],
+    date: new Date("2018-06-28"),
+    category: "M1"
   },
   {
     id: 13,
@@ -212,6 +220,8 @@ const questions = [
         name: "Stim",
       },
     ],
+    date: new Date("2019-06-28"),
+    category: "M4"
   },
   {
     id: 17,
@@ -235,6 +245,8 @@ const questions = [
         name: "Zaam-Dox",
       },
     ],
+    date: new Date("2015-06-28"),
+    category: "M3"
   },
   {
     id: 20,
@@ -282,6 +294,8 @@ const questions = [
         name: "Stim",
       },
     ],
+    date: new Date("2022-06-28"),
+    category: "M2"
   },
   {
     id: 12,
@@ -326,6 +340,8 @@ const questions = [
         name: "Veribet",
       },
     ],
+    date: new Date("2019-06-28"),
+    category: "M4"
   },
   {
     id: 18,
@@ -366,6 +382,8 @@ const questions = [
         name: "Fixflex",
       },
     ],
+    date: new Date("2011-06-28"),
+    category: "M3"
   },
 ];
 
@@ -385,4 +403,22 @@ export const getQuestionDetails = (id) => async (dispatch) => {
   } catch (error) {
     console.log(error);
   }
+};
+
+export const getQuestionsByName = (name) => async (dispatch) => {
+  try {
+    const questionsByName = questions.filter((question) =>
+      question.title.includes(name)
+    );
+
+    dispatch({ type: "GET_QUESTIONS_BY_NAME", payload: questionsByName });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const orderByDate = () => {
+  return {
+    type: "ORDER_BY_DATE",
+  };
 };

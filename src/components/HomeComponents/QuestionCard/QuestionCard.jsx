@@ -10,12 +10,14 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { Link } from "react-router-dom";
 
 export const QuestionCard = ({ question }) => {
+
   const getAvatarBgColor = ({ category }) =>
     ({
       M1: "#FBC02D",
       M2: "#43A047",
       M3: "#D81B60",
     }[category] || "#42A5F5");
+
 
   const handleClick = () => {
     console.info("Clickeaste el tag...");
@@ -24,6 +26,8 @@ export const QuestionCard = ({ question }) => {
   const linkStyle = {
     margin: "0",
     color: "white",
+    textDecoration: "none",
+
   };
 
   return (
@@ -41,21 +45,31 @@ export const QuestionCard = ({ question }) => {
           <Avatar
             sx={{
               bgcolor: getAvatarBgColor(question),
-              fontSize: ".8rem",
+              fontSize: "1rem",
               color: "#392e57",
               marginBottom: "10px",
             }}
             aria-label="recipe"
           >
             {/* {" "} */}
-            {question.rating}
+            {/* {question.rating} */}
+            {question.category}
           </Avatar>
           <Stack direction="row" spacing={0.5}>
-            <CheckCircleIcon sx={{ color: "green" }} />{" "}
-            {/* // Verde sobre violeta MUY polémico */}
-            <Typography sx={{ color: "green", fontSize: "18px" }}>
-              <span>{question.answerQty}</span>
-            </Typography>
+            {question.comments.length > 0
+              ? <><CheckCircleIcon sx={{ color: "green" }} />
+                  <Typography sx={{ color: "green", fontSize: "18px" }}>
+                    <span>{question.comments.length}</span>
+                    <p style={{ marginLeft: "-30px", marginTop: 0, fontSize: '9px', color:'green' }}>Respuestas</p>
+                  </Typography>
+                </>
+              : <><CheckCircleIcon sx={{ color: "red" }} />
+                  <Typography sx={{ color: "red", fontSize: "18px" }}>
+                    <span>{question.comments.length}</span>
+                    <p style={{ marginLeft: "-30px", marginTop: 0, fontSize: '9px', color:'red' }}>Respuestas</p>
+                  </Typography>
+                </>
+            }
           </Stack>
         </Grid>
 
@@ -74,12 +88,9 @@ export const QuestionCard = ({ question }) => {
                 >
                   {question.title}
                 </Link>
+                <h6 style={{ marginTop: "0", fontSize: '9px', color:'#A8A3B5'}}>{question.date.toDateString()}</h6>
               </Typography>
-              <Typography
-                variant="body2"
-                color="#A8A3B5"
-                sx={{ fontSize: "14px", width: "75%" }}
-              >
+              <Typography variant="body2" sx={{ fontSize: "14px", width: "75%", color:"#A8A3B5", marginTop:'-15px' }} >
                 {question.message}
               </Typography>
             </Grid>
