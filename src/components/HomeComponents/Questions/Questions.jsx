@@ -78,17 +78,15 @@ export const Questions = () => {
           pageCount={pageCount}
           onPageChange={handlePageClick}
         />
-
-        {loading ? (
-          <h4>Loading Questions...</h4>
-        ) : (
-          currentItems.map((question, index) => (
-            <CardQuestion key={index}>
-              <QuestionCard question={question} />
-            </CardQuestion>
-          ))
-        )}
-
+        <CardQuestion>
+          {loading ? (
+            <h4>Loading Questions...</h4>
+          ) : (
+            currentItems.map((question, index) => (
+              <QuestionCard question={question} key={index} />
+            ))
+          )}
+        </CardQuestion>
         <PaginationComponent
           pageCount={pageCount}
           onPageChange={handlePageClick}
