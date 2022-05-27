@@ -9,10 +9,27 @@ import {
 } from "../../../redux/actions/questionsActions";
 import PaginationComponent from "../../paginationComponents/PaginationComponent";
 
+import { Chip, Stack } from "@mui/material";
+import { Box } from "@mui/system";
+
+const MainContainer = styled.div`
+width: 100%;
+display: flex;
+`
+
+const SideBar = styled.div`
+background-color: #392e57;
+height: 60px;
+margin-left: 30px;
+width:15%;
+`
+
+
+
 const CardQuestionContainer = styled.div`
   color: pink;
   height: 60px;
-  width: 70%;
+  width: 80%;
   background-color: #392e57;
   margin-left: 30px;
   margin-bottom: 10px;
@@ -66,6 +83,72 @@ export const Questions = () => {
     dispatch(orderByDate());
   };
 
+
+  const handleClickChip = () => {
+    console.log('Identifica el chip para filtrado...');
+  }
+  // Sacar el hardcodeo y traerlo de la API
+  const allTags = [
+    "JavaScript",
+    "CSS",
+    "AJAX",
+    "DOM",
+    "Webpack",
+    "React",
+    "Redux",
+    "Thunk",
+    "NodeJS",
+    "Express",
+    "Testing",
+    "SQL",
+    "Sequelize",
+  ];
+
+  return (
+    <div>
+      <MainContainer>
+        <CardQuestionContainer>
+          <div className="CardQuestionTitle">
+            <Button onClick={orderByDateHandler}>Nuevas</Button>
+            <Button>Mas Visitas</Button>
+            <Button>Mejores Calificadas</Button>
+          </div>
+          <PaginationComponent
+            pageCount={pageCount}
+            onPageChange={handlePageClick}
+          />
+          <CardQuestion>
+            {loading ? (
+              <h4>Loading Questions...</h4>
+            ) : (
+              currentItems.map((question, index) => (
+                <QuestionCard question={question} key={index} />
+              ))
+            )}
+          </CardQuestion>
+          <PaginationComponent
+            pageCount={pageCount}
+            onPageChange={handlePageClick}
+          />
+        </CardQuestionContainer>
+        <SideBar>
+          <CounterSideBar>
+            <div className="nums"></div>
+            <p>Respuestas Online</p>
+            <h4>TAGS MAS USADOS</h4>
+          </CounterSideBar>
+            <Stack direction="column" spacing={2} sx={{  width:'fit-content', marginTop:'30px'  }}>
+              {allTags.map((tag) => (
+                <Chip
+                  label={<Box sx={{ color: "white" }}>{tag}</Box>}
+                  variant="outlined"
+                  onClick={ handleClickChip }
+                />
+              ))}
+              </Stack>
+        </SideBar>
+      </MainContainer>
+
   return (
     <div>
       <CardQuestionContainer>
@@ -92,6 +175,78 @@ export const Questions = () => {
           onPageChange={handlePageClick}
         />
       </CardQuestionContainer>
+
     </div>
   );
 };
+
+
+const CounterSideBar = styled.div`
+p{
+  color: #a8a3b5;
+  text-align: center;
+}
+H4{
+  color: white;
+  text-align: center;
+  }
+/*COUNTER              CHEQUAR ESTE PROPERTY*/
+@property --num {
+  syntax: '<integer>';
+  inherits: false;
+  initial-value: 0;
+}
+.nums {
+  position: relative;
+  display: flex;
+  padding-top: 5px;
+  margin: 0 auto;
+  text-align: center;
+  animation-name: counter;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  counter-reset: num var(--num);
+  /* margin-bottom: 25px; */
+}
+
+.nums::before {
+  width: 2em;
+  font: 400 2.5em system-ui;
+  content: counter(num);
+  color: #a8a3b5;
+  display: flex;
+  margin: 0 auto;
+  text-align: center;
+  text-align: center;
+  text-decoration: none;
+  /* cursor: pointer; */
+  transition-duration: 0.4s;
+  margin: 0 auto;
+}
+
+.nums::after {
+  position: absolute;
+  /* content: 'Preguntas'; */
+  color: #a8a3b5;
+  font-weight: 400;
+  text-align: center;
+  padding-left: 28px;
+  /* /* margin-left: 2px; */
+  margin-top: 30px; 
+  font-size: 1.3em;
+  max-width: 100px;
+  top: 80%;
+  transform: translateY(-50%);
+}
+
+@keyframes counter {
+  from {
+    --num: 0;
+  }
+  to {
+    --num: 327;
+  }
+}
+`
+
