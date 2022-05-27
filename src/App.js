@@ -4,7 +4,6 @@ import CreateQuestion from "./views/CreateQuestion";
 import LandingPage from "./views/LandingPage";
 import VisualizeQuestion from "./views/VisualizeQuestion";
 import BarLeft from "./components/HomeComponents/BarLeft/BarLeft";
-import FormularioPosteo from "./components/HomeComponents/Forms/FormularioPosteo";
 
 function App() {
   return (
@@ -25,9 +24,7 @@ function App() {
             <CreateQuestion />
           </BarLeft>
         </Route>
-        <Route path="/postMaker">
-          <FormularioPosteo />
-        </Route>
+
         <Route path="/">
           <LandingPage />
         </Route>
