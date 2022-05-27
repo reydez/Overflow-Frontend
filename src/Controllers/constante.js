@@ -1,4 +1,5 @@
 import {
+  Button,
   Divider,
   List,
   ListItem,
@@ -9,13 +10,15 @@ import {
 } from "@mui/material";
 import MailIcon from "@mui/icons-material/Mail";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
+import { Link } from "react-router-dom";
 
 const drawer = (
   <div>
     <Toolbar />
     <Divider />
     <List>
-      {["Home", "Categorías", "Comunidad"].map((text, index) => (
+        {/* , "Comunidad" */}
+      {[<Link to="/questions"><Button>Home</Button></Link>, <Link to="/"><Button>Categorías</Button></Link>].map((text, index) => (
         <ListItem
           key={text}
           disablePadding
@@ -31,23 +34,23 @@ const drawer = (
       ))}
     </List>
     <Divider />
-    <List>
+    {/* <List> */}
       {/*  */}
-      {["Mi Perfil", "Mis Favoritos"].map((text, index) => (
+   {/*    {["Mi Perfil", "Mis Favoritos"].map((text, index) => (
         <ListItem
           key={text}
           disablePadding
           sx={{ color: "rgba(168, 163, 181, 1)" }}
-        >
-          <ListItemButton>
+        > */}
+       {/*    <ListItemButton>
             <ListItemIcon sx={{ color: "rgba(168, 163, 181, 1)" }}>
               {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} a */}
-            </ListItemIcon>
+           {/*  </ListItemIcon>
             <ListItemText primary={text} />
           </ListItemButton>
         </ListItem>
       ))}
-    </List>
+    </List>  */}
   </div>
 );
 

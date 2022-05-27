@@ -28,7 +28,12 @@ const questionsReducer = (state = initialState, action) => {
     case "ORDER_BY_DATE":
       const sortByDate = state.questions.slice();
 
-      sortByDate.sort((a, b) => b.date - a.date);
+      sortByDate.sort((a, b) => {
+        const date1 = new Date(a.createdAt.split("T")[0]);
+        const date2 = new Date(b.createdAt.split("T")[0]);
+
+        return date2 - date1;
+      });
 
       return {
         ...state,

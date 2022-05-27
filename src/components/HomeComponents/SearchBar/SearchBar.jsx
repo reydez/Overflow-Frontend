@@ -60,28 +60,28 @@ export default function SearchBar() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
-    !palabraBuscada
+    /* !palabraBuscada
       ? Swal.fire(
-        "¿Búsqueda vacía?",
-        "Por favor decinos que estás buscando...",
-        "question"
-      )
-      : dispatch(getQuestionsByName(palabraBuscada));
-    /* setPalabraBuscada(e.target.value); */
+          "¿Búsqueda vacía?",
+          "Por favor decinos que estás buscando...",
+          "question"
+        )
+      :  */ dispatch(getQuestionsByName(palabraBuscada));
+
     setPalabraBuscada("");
   };
 
   const onKeyPress = (e) => {
     if (e.charCode === 13) {
-      !palabraBuscada
+      /* !palabraBuscada
         ? Swal.fire(
-          "¿Búsqueda vacía?",
-          "Por favor decinos que estás buscando...",
-          "question"
-        )
-        : dispatch(getQuestionsByName(palabraBuscada));
-      setPalabraBuscada(e.target.value);
+            "¿Búsqueda vacía?",
+            "Por favor decinos que estás buscando...",
+            "question"
+          )
+        : */
+      dispatch(getQuestionsByName(palabraBuscada));
+      /* setPalabraBuscada(e.target.value); */
       setPalabraBuscada("");
     }
   };
