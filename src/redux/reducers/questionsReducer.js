@@ -4,7 +4,7 @@ const initialState = {
   question: {},
 };
 
-const rootReducer = (state = initialState, action) => {
+const questionsReducer = (state = initialState, action) => {
   switch (action.type) {
     case "GET_QUESTIONS":
       return {
@@ -28,7 +28,12 @@ const rootReducer = (state = initialState, action) => {
     case "ORDER_BY_DATE":
       const sortByDate = state.questions.slice();
 
-      sortByDate.sort((a, b) => b.date - a.date);
+      sortByDate.sort((a, b) => {
+        const date1 = new Date(a.createdAt.split("T")[0]);
+        const date2 = new Date(b.createdAt.split("T")[0]);
+
+        return date2 - date1;
+      });
 
       return {
         ...state,
@@ -39,4 +44,4 @@ const rootReducer = (state = initialState, action) => {
   }
 };
 
-export default rootReducer;
+export default questionsReducer;
