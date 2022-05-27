@@ -12,7 +12,7 @@ import PaginationComponent from "../../paginationComponents/PaginationComponent"
 const CardQuestionContainer = styled.div`
   color: pink;
   height: 60px;
-  width: 70%;
+  width: 80%;
   background-color: #392e57;
   margin-left: 30px;
   margin-bottom: 10px;
@@ -95,3 +95,4 @@ export const Questions = () => {
     </div>
   );
 };
+
