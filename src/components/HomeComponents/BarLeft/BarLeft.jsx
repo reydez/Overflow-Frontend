@@ -76,7 +76,7 @@ export default function BarLeft(props) {
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
-          backgroundColor: "#301b70",
+         backgroundColor: "#301b70",
         }}
       >
         <Toolbar>
