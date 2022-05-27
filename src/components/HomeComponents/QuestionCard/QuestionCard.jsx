@@ -14,13 +14,15 @@ export const QuestionCard = ({ question }) => {
   /* var year = question.date.getUTCFullYear();
   var month = question.date.getUTCMonth() + 1;
   var day = question.date.getUTCDate(); */
-  
+
+
   // const getAvatarBgColor = ({ category }) =>
   //   ({
   //     M1: "#FBC02D",
   //     M2: "#43A047",
   //     M3: "#D81B60",
   //   }[category] || "#42A5F5");
+
 
   const handleClick = () => {
     console.info("Msg por consola tag clickeado (para filtrar)");
@@ -90,7 +92,9 @@ export const QuestionCard = ({ question }) => {
                 >
                   {question.title}
                 </Link>
+
                 <h6 style={{ marginTop: "0", fontSize: '10px', color:'#A8A3B5' }}>{`${question.createdAt}`}</h6>
+
               </Typography>
               <Typography variant="body2" sx={{ fontSize: "14px", letterSpacing: 0.5, width: "75%", color:"#A8A3B5", marginTop:'-15px' }} >
                 {question.message}

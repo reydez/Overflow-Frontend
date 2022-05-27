@@ -8,6 +8,7 @@ import {
   orderByDate,
 } from "../../../redux/actions/questionsActions";
 import PaginationComponent from "../../paginationComponents/PaginationComponent";
+
 import { Chip, Stack } from "@mui/material";
 import { Box } from "@mui/system";
 
@@ -22,6 +23,8 @@ height: 60px;
 margin-left: 30px;
 width:15%;
 `
+
+
 
 const CardQuestionContainer = styled.div`
   color: pink;
@@ -79,6 +82,7 @@ export const Questions = () => {
   const orderByDateHandler = () => {
     dispatch(orderByDate());
   };
+
 
   const handleClickChip = () => {
     console.log('Identifica el chip para filtrado...');
@@ -144,6 +148,34 @@ export const Questions = () => {
               </Stack>
         </SideBar>
       </MainContainer>
+
+  return (
+    <div>
+      <CardQuestionContainer>
+        <div className="CardQuestionTitle">
+          <Button onClick={orderByDateHandler}>Nuevas</Button>
+          <Button>Mas Visitas</Button>
+          <Button>Mejores Calificadas</Button>
+        </div>
+        <PaginationComponent
+          pageCount={pageCount}
+          onPageChange={handlePageClick}
+        />
+        <CardQuestion>
+          {loading ? (
+            <h4>Loading Questions...</h4>
+          ) : (
+            currentItems.map((question, index) => (
+              <QuestionCard question={question} key={index} />
+            ))
+          )}
+        </CardQuestion>
+        <PaginationComponent
+          pageCount={pageCount}
+          onPageChange={handlePageClick}
+        />
+      </CardQuestionContainer>
+
     </div>
   );
 };
