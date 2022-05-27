@@ -122,41 +122,11 @@ export const Questions = () => {
               currentItems.map((question, index) => (
                 <QuestionCard question={question} key={index} />
               ))
-            )}
-<<<<<<< HEAD
-          </div>
-        </CardQuestion>
-      </CardQuestionContainer>
-  
-=======
-          </CardQuestion>
-          <PaginationComponent
-            pageCount={pageCount}
-            onPageChange={handlePageClick}
-          />
-        </CardQuestionContainer>
-        <SideBar>
-          <CounterSideBar>
-            <div className="nums"></div>
-            <p>Respuestas Online</p>
-            <h4>TAGS MAS USADOS</h4>
-          </CounterSideBar>
-          <Stack
-            direction="column"
-            spacing={2}
-            sx={{ width: "fit-content", marginTop: "30px" }}
-          >
-            {allTags.map((tag) => (
-              <Chip
-                label={<Box sx={{ color: "white" }}>{tag}</Box>}
-                variant="outlined"
-                onClick={handleClickChip}
-              />
-            ))}
-          </Stack>
-        </SideBar>
-      </MainContainer>
->>>>>>> 12c88c797456550245567c2ccf753fdc7aec33e8
+              )}
+              </CardQuestion>
+            </CardQuestionContainer>
+          
+          </MainContainer>
     </div>
   );
 };
