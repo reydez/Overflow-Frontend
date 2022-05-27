@@ -5,6 +5,7 @@ import LandingPage from "./views/LandingPage";
 import VisualizeQuestion from "./views/VisualizeQuestion";
 import BarLeft from "./components/HomeComponents/BarLeft/BarLeft";
 
+
 function App() {
   return (
     <>
@@ -26,6 +27,8 @@ function App() {
           <LandingPage />
         </Route>
       </Switch>
+     
+   
     </>
   );
 }

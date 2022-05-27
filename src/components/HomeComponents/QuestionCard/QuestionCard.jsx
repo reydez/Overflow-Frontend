@@ -9,6 +9,7 @@ import Avatar from "@mui/material/Avatar";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { Link } from "react-router-dom";
 
+
 export const QuestionCard = ({ question }) => {
   const getAvatarBgColor = ({ category }) =>
     ({
@@ -113,5 +114,6 @@ export const QuestionCard = ({ question }) => {
         </Grid>
       </Grid>
     </Paper>
+   
   );
 };

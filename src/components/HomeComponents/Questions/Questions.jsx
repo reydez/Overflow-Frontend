@@ -5,6 +5,7 @@ import { QuestionCard } from "../QuestionCard/QuestionCard";
 import { useDispatch, useSelector } from "react-redux";
 import { getQuestions, orderByDate } from "../../../redux/actions";
 
+
 const CardQuestionContainer = styled.div`
   color: pink;
   height: 60px;
@@ -67,6 +68,7 @@ export const Questions = () => {
           </div>
         </CardQuestion>
       </CardQuestionContainer>
+  
     </div>
   );
 };
