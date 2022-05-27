@@ -1,14 +1,13 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import Button from '@mui/material/Button';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import AboutUsConst from '../../../Controllers/AboutConstante';
-import { ListItemIcon } from '@mui/material';
-
+import * as React from "react";
+import Box from "@mui/material/Box";
+import SwipeableDrawer from "@mui/material/SwipeableDrawer";
+import Button from "@mui/material/Button";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
+import AboutUsConst from "../../../Controllers/AboutConstante";
+import { ListItemIcon } from "@mui/material";
 
 export default function About() {
   const [state, setState] = React.useState({
@@ -18,8 +17,8 @@ export default function About() {
   const toggleDrawer = (anchor, open) => (event) => {
     if (
       event &&
-      event.type === 'keydown' &&
-      (event.key === 'Tab' || event.key === 'Shift')
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
     ) {
       return;
     }
@@ -29,20 +28,19 @@ export default function About() {
 
   const list = (anchor) => (
     <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {AboutUsConst.map(({text, icon}, index) => (
-            <ListItem component="h5">
-                <spam>
-                  <ListItemIcon>
-                    {icon}
-                  </ListItemIcon>
-                </spam>{text}
-              </ListItem>
+        {AboutUsConst.map(({ text, icon }, index) => (
+          <ListItem component="h5">
+            <spam>
+              <ListItemIcon>{icon}</ListItemIcon>
+            </spam>
+            {text}
+          </ListItem>
         ))}
       </List>
     </Box>
@@ -50,7 +48,7 @@ export default function About() {
 
   return (
     <div>
-      {['left'].map((anchor) => (
+      {["left"].map((anchor) => (
         <React.Fragment key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
           <SwipeableDrawer
