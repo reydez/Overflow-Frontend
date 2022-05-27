@@ -24,6 +24,7 @@ export const QuestionCard = ({ question }) => {
   //   }[category] || "#42A5F5");
 
 
+
   const handleClick = () => {
     console.info("Msg por consola tag clickeado (para filtrar)");
   };
