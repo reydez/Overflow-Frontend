@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getQuestionDetails } from "../redux/actions";
+import { getQuestionDetails } from "../redux/actions/questionsActions";
 
 
 export default function VisualizeQuestion() {
   const { questionId } = useParams();
   const dispatch = useDispatch();
-  const question = useSelector((state) => state.question);
+  const question = useSelector((state) => state.questionsReducer.question);
   const [loading, setLoadin] = useState(false);
 
   useEffect(() => {
@@ -28,7 +28,10 @@ export default function VisualizeQuestion() {
       {question.comments?.length > 0 ? (
         question.comments.map((comment, index) => (
           <div key={index}>
-            <p>User id: {comment.id_user}</p>
+            <p>
+              User name:{" "}
+              {`${question.user.first_name} ${question.user.last_name}`}
+            </p>
             <p>User comment: {comment.message}</p>
           </div>
         ))

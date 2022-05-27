@@ -13,16 +13,19 @@ function App() {
         <Route path="/questions">
           <Home />
         </Route>
+
         <Route path="/visualize-question/:questionId">
           <BarLeft>
             <VisualizeQuestion />
           </BarLeft>
         </Route>
+
         <Route path="/create-question">
           <BarLeft>
             <CreateQuestion />
           </BarLeft>
         </Route>
+
         <Route path="/">
           <LandingPage />
         </Route>
