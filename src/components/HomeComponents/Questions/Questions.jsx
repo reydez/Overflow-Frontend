@@ -3,7 +3,11 @@ import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import { QuestionCard } from "../QuestionCard/QuestionCard";
 import { useDispatch, useSelector } from "react-redux";
-import { getQuestions, orderByDate } from "../../../redux/actions/questionsActions";
+import {
+  getQuestions,
+  orderByDate,
+} from "../../../redux/actions/questionsActions";
+import PaginationComponent from "../../paginationComponents/PaginationComponent";
 
 const CardQuestionContainer = styled.div`
   color: pink;
@@ -30,8 +34,11 @@ const CardQuestion = styled.div`
 export const Questions = () => {
   const dispatch = useDispatch();
   const [loading, setLoadin] = useState(false);
-  const questions = useSelector((state) => state.questions);
-  console.log(questions);
+  const questions = useSelector((state) => state.questionsReducer.questions);
+  const [currentItems, setCurrentItems] = useState([]);
+  const [pageCount, setPageCount] = useState(0);
+  const [itemOffset, setItemOffset] = useState(0);
+  const itemsPerPage = 5;
 
   useEffect(() => {
     const loadQuestions = async () => {
@@ -42,6 +49,18 @@ export const Questions = () => {
 
     loadQuestions();
   }, [dispatch]);
+
+  useEffect(() => {
+    const endOffset = itemOffset + itemsPerPage;
+    setCurrentItems(questions.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(questions.length / itemsPerPage));
+  }, [itemOffset, itemsPerPage, questions]);
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % questions.length;
+    setItemOffset(newOffset);
+    window.scroll(0, 0);
+  };
 
   const orderByDateHandler = () => {
     dispatch(orderByDate());
@@ -55,17 +74,23 @@ export const Questions = () => {
           <Button>Mas Visitas</Button>
           <Button>Mejores Calificadas</Button>
         </div>
+        <PaginationComponent
+          pageCount={pageCount}
+          onPageChange={handlePageClick}
+        />
         <CardQuestion>
-          <div className="seperator">
-            {loading ? (
-              <h4>Loading Questions...</h4>
-            ) : (
-              questions.map((question, index) => (
-                <QuestionCard question={question} key={index} />
-              ))
-            )}
-          </div>
+          {loading ? (
+            <h4>Loading Questions...</h4>
+          ) : (
+            currentItems.map((question, index) => (
+              <QuestionCard question={question} key={index} />
+            ))
+          )}
         </CardQuestion>
+        <PaginationComponent
+          pageCount={pageCount}
+          onPageChange={handlePageClick}
+        />
       </CardQuestionContainer>
     </div>
   );
