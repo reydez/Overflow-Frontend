@@ -24,7 +24,6 @@ const SideBar = styled.div`
   width: 15%;
 `;
 
-
 const CardQuestionContainer = styled.div`
   color: pink;
   height: 60px;
@@ -122,11 +121,14 @@ export const Questions = () => {
               currentItems.map((question, index) => (
                 <QuestionCard question={question} key={index} />
               ))
-              )}
-              </CardQuestion>
-            </CardQuestionContainer>
-          
-          </MainContainer>
+            )}
+          </CardQuestion>
+          <PaginationComponent
+            pageCount={pageCount}
+            onPageChange={handlePageClick}
+          />
+        </CardQuestionContainer>
+      </MainContainer>
     </div>
   );
 };
