@@ -14,14 +14,15 @@ export const QuestionCard = ({ question }) => {
   /* var year = question.date.getUTCFullYear();
   var month = question.date.getUTCMonth() + 1;
   var day = question.date.getUTCDate(); */
-
-
+<
+  
   // const getAvatarBgColor = ({ category }) =>
   //   ({
   //     M1: "#FBC02D",
   //     M2: "#43A047",
   //     M3: "#D81B60",
   //   }[category] || "#42A5F5");
+
 
 
   const handleClick = () => {

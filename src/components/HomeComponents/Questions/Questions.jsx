@@ -181,7 +181,6 @@ export const Questions = () => {
 };
 
 
-
 const CounterSideBar = styled.div`
 p{
   color: #a8a3b5;
@@ -250,3 +249,4 @@ H4{
   }
 }
 `
+
