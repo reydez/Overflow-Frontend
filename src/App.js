@@ -10,7 +10,6 @@ function App() {
   return (
     <>
       <Switch>
-
         <Route path="/questions">
           <Home />
         </Route>
@@ -26,16 +25,12 @@ function App() {
             <CreateQuestion />
           </BarLeft>
         </Route>
-
         <Route path="/postMaker">
           <FormularioPosteo />
         </Route>
-
         <Route path="/">
           <LandingPage />
         </Route>
-
-
       </Switch>
     </>
   );
