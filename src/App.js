@@ -4,6 +4,8 @@ import CreateQuestion from "./views/CreateQuestion";
 import LandingPage from "./views/LandingPage";
 import VisualizeQuestion from "./views/VisualizeQuestion";
 import BarLeft from "./components/HomeComponents/BarLeft/BarLeft";
+import PostFormMui from "./components/HomeComponents/FormWithMUI/PostFormMui";
+
 
 function App() {
   return (
@@ -20,9 +22,10 @@ function App() {
         </Route>
 
         <Route path="/create-question">
-          <BarLeft>
-            <CreateQuestion />
-          </BarLeft>
+          {/* <BarLeft> */}
+          <PostFormMui />
+          {/* <CreateQuestion /> */}
+          {/* </BarLeft> */}
         </Route>
 
         <Route path="/">

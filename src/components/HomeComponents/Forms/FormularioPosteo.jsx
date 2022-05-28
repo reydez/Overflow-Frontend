@@ -1,20 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
+
+import { getTags } from '../../../redux/actions/tags'
+import { getModules } from '../../../redux/actions/module'
+
 import FormInput from "./formInput/FormInput";
 import "./formularioPosteo.css";
 
+import { useDispatch } from "react-redux";
+
 const FormularioPosteo = () => {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getTags());
+    dispatch(getModules());
+  })
+
   const [values, setValues] = useState({
     title: "",
-    question: "",
-    code: "",
     description: "",
-    module: "",
-    tag: "",
+    code: "",
+    module: [],
+    tag: []
   });
 
   const inputs = [
     {
-      id: 1,
+      id: 12,
       name: "title",
       type: "text",
       placeholder: "Title",
@@ -23,51 +36,23 @@ const FormularioPosteo = () => {
       required: true,
     },
     {
-      id: 2,
-      name: "question",
-      type: "text",
-      placeholder: "Question",
-      errorMessage: "Where is the question?",
-      label: "Question",
-      required: true,
-    },
-    {
-      id: 3,
+      id: 22,
       name: "code",
       type: "text",
-      placeholder: "Code",
+      placeholder: "code",
       errorMessage: "We need some code to understand your problem",
-      label: "Code",
+      label: "code",
       required: true,
     },
     {
-      id: 4,
+      id: 32,
       name: "description",
       type: "text",
       placeholder: "Description",
-      errorMessage: "We need more data about your problem...",
+      errorMessage: "Maybe you can be more specific, could you tell us something about your problem?",
       label: "Description",
       required: true,
-    },
-    {
-      id: 5,
-      name: "module",
-      type: "text",
-      placeholder: "Module",
-      errorMessage:
-        "Well, we need information about the module of this question",
-      label: "Module",
-      required: true,
-    },
-    {
-      id: 6,
-      name: "tag",
-      type: "text",
-      placeholder: "Tag",
-      errorMessage: "Tell us about what technology you need help with",
-      label: "Tag",
-      required: true,
-    },
+    }
   ];
 
   const handleSubmit = (e) => {
@@ -75,10 +60,12 @@ const FormularioPosteo = () => {
   };
 
   const onChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
+    setValues({
+      ...values,
+      [e.target.name]: e.target.value
+    });
   };
 
-  console.log(values);
 
   return (
     <div className="form-post">
