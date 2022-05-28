@@ -10,7 +10,6 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import DoDisturbOnIcon from "@mui/icons-material/DoDisturbOn";
 import { Link } from "react-router-dom";
 
-
 export const QuestionCard = ({ question }) => {
   /* var year = question.date.getUTCFullYear();
   var month = question.date.getUTCMonth() + 1;
@@ -51,8 +50,7 @@ export const QuestionCard = ({ question }) => {
             }}
             aria-label="recipe"
           >
-            {/* {question.rating} */}
-            {"M1"}
+            {question.module?.name}
           </Avatar>
           <Stack direction="row" spacing={0.5}>
             {question.comments.length > 0 ? (
@@ -154,6 +152,5 @@ export const QuestionCard = ({ question }) => {
         </Grid>
       </Grid>
     </Paper>
-   
   );
 };
