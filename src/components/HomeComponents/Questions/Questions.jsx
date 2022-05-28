@@ -128,26 +128,6 @@ export const Questions = () => {
             onPageChange={handlePageClick}
           />
         </CardQuestionContainer>
-        <SideBar>
-          <CounterSideBar>
-            <div className="nums"></div>
-            <p>Respuestas Online</p>
-            <h4>TAGS MAS USADOS</h4>
-          </CounterSideBar>
-          <Stack
-            direction="column"
-            spacing={2}
-            sx={{ width: "fit-content", marginTop: "30px" }}
-          >
-            {allTags.map((tag) => (
-              <Chip
-                label={<Box sx={{ color: "white" }}>{tag}</Box>}
-                variant="outlined"
-                onClick={handleClickChip}
-              />
-            ))}
-          </Stack>
-        </SideBar>
       </MainContainer>
     </div>
   );

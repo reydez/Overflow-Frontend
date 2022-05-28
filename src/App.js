@@ -7,6 +7,7 @@ import BarLeft from "./components/HomeComponents/BarLeft/BarLeft";
 import PostFormMui from "./components/HomeComponents/FormWithMUI/PostFormMui";
 
 
+
 function App() {
   return (
     <>
@@ -32,6 +33,8 @@ function App() {
           <LandingPage />
         </Route>
       </Switch>
+     
+   
     </>
   );
 }

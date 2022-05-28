@@ -10,6 +10,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import DoDisturbOnIcon from "@mui/icons-material/DoDisturbOn";
 import { Link } from "react-router-dom";
 
+
 export const QuestionCard = ({ question }) => {
   /* var year = question.date.getUTCFullYear();
   var month = question.date.getUTCMonth() + 1;
@@ -153,5 +154,6 @@ export const QuestionCard = ({ question }) => {
         </Grid>
       </Grid>
     </Paper>
+   
   );
 };
