@@ -13,7 +13,7 @@ export default function Avatars() {
 
   return (
 
-    <Stack direction="row" spacing={2}>
+    <Stack direction="row" spacing={2} sx={{ display:'inline' }}>
       <ButtonGroup
         variant="container"
         arial-label="container button group"
@@ -53,8 +53,9 @@ export default function Avatars() {
           </Avatar>
         </Button>
 
+
       </ButtonGroup>
-      <Button disableRipple >Hacer una pregunta</Button>
+      {/* <Button disableRipple >Hacer una pregunta</Button> */}
     </Stack>
   );
 }
