@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getQuestions,
   orderByDate,
+  orderByModule,
 } from "../../../redux/actions/questionsActions";
 import PaginationComponent from "../../paginationComponents/PaginationComponent";
 
@@ -83,6 +84,13 @@ export const Questions = () => {
     dispatch(orderByDate());
   };
 
+  const handleOrderByModule = (e) => {
+    dispatch(orderByModule(e.target.innerText));
+    const newOffset = (0 * itemsPerPage) % questions.length;
+    setItemOffset(newOffset);
+    window.scroll(0, 0);
+  };
+
   const handleClickChip = () => {
     console.log("Identifica el chip para filtrado...");
   };
@@ -108,7 +116,7 @@ export const Questions = () => {
       <MainContainer>
         <CardQuestionContainer>
           <div className="CardQuestionTitle">
-            <Avatars />
+            <Avatars orderByModule={handleOrderByModule} />
             <Button onClick={orderByDateHandler}>Nuevas</Button>
             <Button>Mas Visitas</Button>
             <Button>Mejores Calificadas</Button>
@@ -126,10 +134,10 @@ export const Questions = () => {
               ))
             )}
           </CardQuestion>
-          <PaginationComponent
+          {/* <PaginationComponent
             pageCount={pageCount}
             onPageChange={handlePageClick}
-          />
+          /> */}
         </CardQuestionContainer>
         <SideBar>
           <CounterSideBar>
@@ -137,15 +145,19 @@ export const Questions = () => {
             <p>Respuestas Online</p>
             <h4>TAGS MAS USADOS</h4>
           </CounterSideBar>
-            <Stack direction="column" spacing={2} sx={{  width:'fit-content', marginTop:'30px'  }}>
-              {allTags.map((tag) => (
-                <Chip
-                  label={<Box sx={{ color: "white" }}>{tag}</Box>}
-                  variant="outlined"
-                  onClick={ handleClickChip }
-                />
-              ))}
-              </Stack>
+          <Stack
+            direction="column"
+            spacing={2}
+            sx={{ width: "fit-content", marginTop: "30px" }}
+          >
+            {allTags.map((tag) => (
+              <Chip
+                label={<Box sx={{ color: "white" }}>{tag}</Box>}
+                variant="outlined"
+                onClick={handleClickChip}
+              />
+            ))}
+          </Stack>
         </SideBar>
       </MainContainer>
     </div>

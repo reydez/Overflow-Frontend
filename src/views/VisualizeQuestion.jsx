@@ -18,7 +18,7 @@ export default function VisualizeQuestion() {
     };
 
     loadQuestionDetails();
-  }, [dispatch, questionId]);
+  }, [dispatch, questionId, question]);
 
   return <DetailsComponent question={question} loading={loading} />;
 }

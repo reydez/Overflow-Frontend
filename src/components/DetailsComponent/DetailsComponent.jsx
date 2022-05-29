@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 // import Button from "@mui/material/Button";
-import { useHistory } from 'react-router-dom';
-import styled from 'styled-components';
+import { useHistory } from "react-router-dom";
+import styled from "styled-components";
 import { Typography } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { addComment } from "../../redux/actions/commentsActions";
 
 export default function DetailsComponent({ question, loading }) {
   const [comentarioText, setComentarioText] = useState("");
+  const dispatch = useDispatch();
 
   let history = useHistory();
-  const Return = () => { history.goBack() }
+  const Return = () => {
+    history.goBack();
+  };
 
   const onInputChange = (e) => {
     e.preventDefault();
@@ -17,9 +22,15 @@ export default function DetailsComponent({ question, loading }) {
   };
 
   const onSubmitHandler = () => {
-    console.log(comentarioText);
-  };
+    const body = {
+      message: comentarioText,
+      idPost: question.id,
+      idUser: "6ff3d5bc-0e0f-421c-8a00-8a3965e8e0c9",
+    };
 
+    console.log(body);
+    dispatch(addComment(body));
+  };
 
   return (
     <div>
@@ -31,26 +42,47 @@ export default function DetailsComponent({ question, loading }) {
             width: "70%",
             background: "#ecf0f3",
             borderRadius: "10px",
-            
+
             /* margin: "0 auto", */
           }}
         >
-          <h1 style={{ color: '#413a66', fontSize: '22px' }}>{question.title}</h1>
+          <h1 style={{ color: "#413a66", fontSize: "22px" }}>
+            {question.title}
+          </h1>
           <Typography
-                  variant="body2"
-                  sx={{
-                    fontSize: "14px",
-                    letterSpacing: 0.5,
-                    // width: "75%",
-                    color: "#413a66",
-                    marginTop: "-15px",
-                  }}
-                >
-          {question.message}
+            variant="body2"
+            sx={{
+              fontSize: "14px",
+              letterSpacing: 0.5,
+              // width: "75%",
+              color: "#413a66",
+              marginTop: "-15px",
+            }}
+          >
+            {question.message}
           </Typography>
           <hr />
-          <p style={{ margin: "0", paddingLeft: '10px', borderRadius:'10px', backgroundColor: '#413a66', color: '#fafafa', width: '15%' }}>Comentarios:</p>
-          <div style={{ maxHeight: "340px", overflow: "auto", backgroundColor: '#fafafa', marginTop:'10px', borderRadius:'20px'}}>
+          <p
+            style={{
+              margin: "0",
+              paddingLeft: "10px",
+              borderRadius: "10px",
+              backgroundColor: "#413a66",
+              color: "#fafafa",
+              width: "15%",
+            }}
+          >
+            Comentarios:
+          </p>
+          <div
+            style={{
+              maxHeight: "340px",
+              overflow: "auto",
+              backgroundColor: "#fafafa",
+              marginTop: "10px",
+              borderRadius: "20px",
+            }}
+          >
             {loading && <h3>Loading Question Details...</h3>}
             {question.comments?.length > 0 ? (
               question.comments.map((comment, index) => (
@@ -64,15 +96,24 @@ export default function DetailsComponent({ question, loading }) {
                   }}
                 >
                   <p
-                    style={{ margin: "0", fontSize: '16px', color: '#413a66'}}
+                    style={{ margin: "0", fontSize: "16px", color: "#413a66" }}
                   >{`${comment.user.first_name} ${comment.user.last_name}:`}</p>
-                  <span style={{ fontSize: '14px', width: "inhert", overflowWrap: "break-word", color:'#8c81a7' }}>
+                  <span
+                    style={{
+                      fontSize: "14px",
+                      width: "inhert",
+                      overflowWrap: "break-word",
+                      color: "#8c81a7",
+                    }}
+                  >
                     {comment.message}
                   </span>
                 </div>
               ))
             ) : (
-              <h3 style={{ color: 'grey' }}>Esta pregunta no tiene comentarios</h3>
+              <h3 style={{ color: "grey" }}>
+                Esta pregunta no tiene comentarios
+              </h3>
             )}
           </div>
           <div
@@ -82,11 +123,18 @@ export default function DetailsComponent({ question, loading }) {
               justifyContent: "flex-end",
             }}
           >
-            <p style={{ margin: 0, marginBottom: '1rem', marginTop: '1rem' }}>Hacer un comentario</p>
+            <p style={{ margin: 0, marginBottom: "1rem", marginTop: "1rem" }}>
+              Hacer un comentario
+            </p>
             <textarea
-              value={ comentarioText }
-              onChange={ onInputChange }
-              style={{ resize: "none", outline: "none", width: "100%", height : '150px' }}
+              value={comentarioText}
+              onChange={onInputChange}
+              style={{
+                resize: "none",
+                outline: "none",
+                width: "100%",
+                height: "150px",
+              }}
               placeholder="Escribe su comentario..."
             />
           </div>
@@ -98,31 +146,35 @@ export default function DetailsComponent({ question, loading }) {
             }}
           >
             <ButtonsDetail lila blanco corto>
-              <button onClick={ Return } className='homeButton' size="small">
+              <button onClick={Return} className="homeButton" size="small">
                 Home
               </button>
             </ButtonsDetail>
 
             <ButtonsDetail grey corto>
-              <button onClick={ onSubmitHandler } className='postCommentButton' size="small">
+              <button
+                onClick={onSubmitHandler}
+                className="postCommentButton"
+                size="small"
+              >
                 Publica comentario
               </button>
             </ButtonsDetail>
-            
           </div>
         </Box>
         <Box
           sx={{
             p: 2,
             border: "1px solid black",
-            marginLeft: '30px',
+            marginLeft: "30px",
             width: "20%",
             background: "#ecf0f3",
             borderRadius: "10px",
-            
+
             /* margin: "0 auto", */
-          }}>
-            <Typography 
+          }}
+        >
+          <Typography
             variant="body2"
             sx={{
               fontSize: "12px",
@@ -130,34 +182,38 @@ export default function DetailsComponent({ question, loading }) {
               // width: "75%",
               color: "#413a66",
               marginTop: "30px",
-              textAlign: 'center'
-            }}>
-            CONSEJOS PARA RESPONDER
-            SEGÚN LAS NORMAS
-            </Typography>
-
+              textAlign: "center",
+            }}
+          >
+            CONSEJOS PARA RESPONDER SEGÚN LAS NORMAS
+          </Typography>
         </Box>
       </MainContainer>
     </div>
   );
 }
 
-
 const ButtonsDetail = styled.div`
   /* width: 10.5rem; */
-  justify-content: space-between; 
+  justify-content: space-between;
   border: none;
   padding-left: 20px;
-  display: ${ props => props.corto ? "inline-block" : "inline"};
+  display: ${(props) => (props.corto ? "inline-block" : "inline")};
 
-  button{
+  button {
     background: #ecf0f3;
-    box-shadow: -3px -3px 7px #ffffff,
-                3px 3px 5px #ceced1;
+    box-shadow: -3px -3px 7px #ffffff, 3px 3px 5px #ceced1;
     border: none;
     border-radius: 5px;
-    background-color: ${ props => props.lila ? "#e2e6f7" : props.rosa ?  "#fadafa" : props.grey ? "#392e57" : "#aca9fa" };
-    color: ${ props => props.blanco ? "#817094" : "#fafafa" };
+    background-color: ${(props) =>
+      props.lila
+        ? "#e2e6f7"
+        : props.rosa
+        ? "#fadafa"
+        : props.grey
+        ? "#392e57"
+        : "#aca9fa"};
+    color: ${(props) => (props.blanco ? "#817094" : "#fafafa")};
     cursor: pointer;
     font-size: 17px;
     font-weight: 400;
@@ -169,7 +225,7 @@ const ButtonsDetail = styled.div`
     z-index: 4;
   }
 
-  button:hover:before{
+  button:hover:before {
     content: "";
     position: absolute;
     top: 0;
@@ -179,16 +235,15 @@ const ButtonsDetail = styled.div`
     border-radius: 50%;
     background: #ecf0f3;
     color: #392e57;
-    color: ${ props => props.blanco ? "#817094" : "#817094" };
-    box-shadow: inset -3px -3px 7px #ffffff,
-                inset 3px 3px 5px #ceced1;
+    color: ${(props) => (props.blanco ? "#817094" : "#817094")};
+    box-shadow: inset -3px -3px 7px #ffffff, inset 3px 3px 5px #ceced1;
     z-index: -1;
     border-radius: 5px;
-  }     
-  .postCommentButton:hover{
+  }
+  .postCommentButton:hover {
     color: #392e57;
   }
-`
+`;
 
 const MainContainer = styled.div`
   width: 100%;

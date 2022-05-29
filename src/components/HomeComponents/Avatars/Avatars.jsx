@@ -4,16 +4,9 @@ import { Button, ButtonGroup } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { orderByModule } from "../../../redux/actions/questionsActions";
 
-export default function Avatars() {
-  const dispatch = useDispatch();
-
-  const handleClick = (e) => {
-    dispatch(orderByModule(e.target.innerText));
-  };
-
+export default function Avatars({ orderByModule }) {
   return (
-
-    <Stack direction="row" spacing={2} sx={{ display:'inline' }}>
+    <Stack direction="row" spacing={2} sx={{ display: "inline" }}>
       <ButtonGroup
         variant="container"
         arial-label="container button group"
@@ -21,7 +14,7 @@ export default function Avatars() {
       >
         <Button size="large">
           <Avatar
-            onClick={handleClick}
+            onClick={orderByModule}
             size="small"
             sx={{ bgcolor: "#3A2D53", color: "#FBC02D" }}
           >
@@ -30,7 +23,7 @@ export default function Avatars() {
         </Button>
         <Button>
           <Avatar
-            onClick={handleClick}
+            onClick={orderByModule}
             sx={{ bgcolor: "#3A2D53", color: "#43A047" }}
           >
             M2
@@ -38,7 +31,7 @@ export default function Avatars() {
         </Button>
         <Button>
           <Avatar
-            onClick={handleClick}
+            onClick={orderByModule}
             sx={{ bgcolor: "#3A2D53", color: "#D81B60" }}
           >
             M3
@@ -46,17 +39,14 @@ export default function Avatars() {
         </Button>
         <Button>
           <Avatar
-            onClick={handleClick}
+            onClick={orderByModule}
             sx={{ bgcolor: "#3A2D53", color: "#42A5F5" }}
           >
             M4
           </Avatar>
         </Button>
-
-
       </ButtonGroup>
       {/* <Button disableRipple >Hacer una pregunta</Button> */}
     </Stack>
   );
 }
-
