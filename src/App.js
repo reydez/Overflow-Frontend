@@ -5,13 +5,18 @@ import LandingPage from "./views/LandingPage";
 import VisualizeQuestion from "./views/VisualizeQuestion";
 import BarLeft from "./components/HomeComponents/BarLeft/BarLeft";
 import PostFormMui from "./components/HomeComponents/FormWithMUI/PostFormMui";
-
+import FormUser from "./views/FormUser";
 
 
 function App() {
   return (
     <>
       <Switch>
+        
+        <Route path exact="/">
+          <LandingPage />
+        </Route>
+
         <Route path="/questions">
           <Home />
         </Route>
@@ -29,9 +34,11 @@ function App() {
           {/* </BarLeft> */}
         </Route>
 
-        <Route path="/">
-          <LandingPage />
+
+        <Route path="/intro-user">
+          <FormUser />
         </Route>
+
       </Switch>
      
    

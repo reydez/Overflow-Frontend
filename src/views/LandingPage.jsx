@@ -1,12 +1,13 @@
-import { Button, Chip, Typography } from "@mui/material";
 import React from "react";
+import { Chip, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-import AboutUs from "./LandingPage/Components/About";
 import imagen from "../imagen/Frame 3.png";
 import imagenLanding from "../imagen/imagen-lateral.jpg";
 import estilo from "../imagen/unnamed.png";
 
 function LandingPage() {
+
+
   return (
     <div>
       <img
@@ -45,29 +46,33 @@ function LandingPage() {
       </Typography>
 
       <Typography variant="text" style={{ color: "#121858" }}></Typography>
-      <Link to="/questions">
-        <Button
-          size="large"
-          style={{
+      <Link to="/intro-user">
+  
+          <Chip color="error" label="Ingrese" size="large"
+             style={{
             position: "absolute",
             top: "500px",
             left: "200px",
-          }}
-        >
-          <Chip color="error" label="Ingrese" size="large" />
-        </Button>
+            cursor: "pointer"
+          }} />
       </Link>
+      
 
-      <Button
-        size="large"
-        style={{
+       {/* PROXIMAMENTE! */}
+
+
+
+       {/*  <Chip color="error" label="About Us"
+            style={{
           position: "absolute",
           top: "500px",
           left: "300px",
+          cursor: "pointer"
         }}
-      >
-        <Chip color="error" label="About Us" />
-      </Button>
+        /> */}
+
+
+
       <img
         src={imagenLanding}
         alt="Imagen"

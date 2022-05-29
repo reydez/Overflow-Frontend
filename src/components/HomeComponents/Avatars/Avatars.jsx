@@ -12,6 +12,7 @@ export default function Avatars() {
   };
 
   return (
+
     <Stack direction="row" spacing={2}>
       <ButtonGroup
         variant="container"
@@ -51,7 +52,10 @@ export default function Avatars() {
             M4
           </Avatar>
         </Button>
+
       </ButtonGroup>
+      <Button disableRipple >Hacer una pregunta</Button>
     </Stack>
   );
 }
+
