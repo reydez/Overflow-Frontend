@@ -17,7 +17,7 @@ import { Questions } from "../Questions/Questions.jsx";
 
 const drawerWidth = 240;
 
-const Search = styled("div")(({ theme }) => ({
+/* const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
@@ -55,7 +55,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
       width: "20ch",
     },
   },
-}));
+})); */
 
 export default function BarLeft(props) {
   const { window } = props;
@@ -91,7 +91,6 @@ export default function BarLeft(props) {
           </IconButton>
           <Avatar />
           <SearchBar />
-          {/* aqui el componente a renderizar de search */}
         </Toolbar>
       </AppBar>
 
