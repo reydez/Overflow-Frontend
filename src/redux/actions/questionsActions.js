@@ -35,3 +35,10 @@ export const orderByDate = () => {
     type: "ORDER_BY_DATE",
   };
 };
+
+export const orderByModule = (module) => {
+  return {
+    type: "ORDER_BY_MODULE",
+    payload: module,
+  };
+};

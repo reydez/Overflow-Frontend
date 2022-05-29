@@ -39,6 +39,25 @@ const questionsReducer = (state = initialState, action) => {
         ...state,
         questions: sortByDate,
       };
+
+    case "ORDER_BY_MODULE":
+      const copyTempQuestions = state.tempQuestions.map((question) => {
+        return {
+          ...question,
+          module: question.module === null ? { name: "M1" } : question.module,
+        };
+      });
+
+      const filtered = copyTempQuestions.filter(
+        (question) => question.module.name === action.payload
+      );
+
+      console.log(filtered);
+      return {
+        ...state,
+        questions: filtered,
+      };
+
     default:
       return state;
   }
