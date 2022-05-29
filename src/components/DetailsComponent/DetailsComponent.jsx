@@ -28,7 +28,6 @@ export default function DetailsComponent({ question, loading }) {
       idUser: "6ff3d5bc-0e0f-421c-8a00-8a3965e8e0c9",
     };
 
-    console.log(body);
     dispatch(addComment(body));
   };
 
