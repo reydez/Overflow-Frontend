@@ -5,7 +5,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import drawer from "../../../Controllers/constante.js";
-import { IconButton } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Avatar from "../Avatars/Avatars.jsx";
 import { styled, alpha } from "@mui/material/styles";
@@ -89,7 +89,8 @@ export default function BarLeft(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Avatar />
+          {/* <Avatar /> */}
+          <Button disableRipple >Hacer una pregunta</Button>
           <SearchBar />
         </Toolbar>
       </AppBar>
