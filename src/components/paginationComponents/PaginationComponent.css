@@ -3,24 +3,28 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.2rem;
+    font-size: 1rem;
     gap: 5px;
     padding-left: 0;
 }
 
 .pagination .page-num{
-    padding: 0px 15px;
+    /* padding: 0px 15px; */
     cursor: pointer;
     border-radius: 3px;
     font-weight: 400;
+    margin-left: 25px;
 }
 
 .pagination .page-num:hover{
-    background-color: #42A5F5;
+    background-color: #392e57;
     color: #fff;
+    border-radius: 10px;
 }
 
 .pagination .active{
-    background-color: #42A5F5;
+    background-color: #392e57;
+    border-radius: 50%;
+    padding: 5px;
 }
 

@@ -90,7 +90,7 @@ export default function BarLeft(props) {
             <MenuIcon />
           </IconButton>
           {/* <Avatar /> */}
-          <Button disableRipple >Hacer una pregunta</Button>
+          <Button /* disableRipple  */sx={{ marginLeft:'30px', borderRadius:'20px', color: '#413a66', fontSize: '12px', padding: '5px 10px', background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)', boxShadow: '0 3px 5px 2px rgba(255,105,135, .3)' }}>Hacer una pregunta</Button>
           <SearchBar />
         </Toolbar>
       </AppBar>
