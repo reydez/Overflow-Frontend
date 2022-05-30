@@ -18,7 +18,7 @@ const drawer = (
     <Divider />
     <List>
         {/* , "Comunidad" */}
-      {[<Link to="/questions"><Button>Home</Button></Link>, <Link to="/"><Button>Categorías</Button></Link>].map((text, index) => (
+      {[<Link to="/questions"><Button sx={{ color: '#a8a3b5', '&:hover': { color: 'red'} }}>Home</Button></Link>, <Link to="/"><Button sx={{ color: '#a8a3b5','&:hover': { color: 'red'}}}>Categorías</Button></Link>].map((text, index) => (
         <ListItem
           key={text}
           disablePadding

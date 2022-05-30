@@ -27,7 +27,7 @@ const SideBar = styled.div`
 `;
 
 const CardQuestionContainer = styled.div`
-  color: pink;
+  color: #a8a3b5;
   height: 60px;
   width: 80%;
   background-color: #392e57;
@@ -36,10 +36,17 @@ const CardQuestionContainer = styled.div`
   .CardQuestionTitle button {
     color: #a8a3b5;
     text-decoration: none;
-    padding-top: 16px;
+    padding-top: 10px;
     span {
       padding-left: 100px;
     }
+  }
+  .buttonFilter:hover{
+    color: red;
+  }
+  .buttonFilter:active{
+    pointer-events: none;
+    background-color: inherit;
   }
 `;
 
@@ -115,15 +122,16 @@ export const Questions = () => {
     <div>
       <MainContainer>
         <CardQuestionContainer>
-          <div className="CardQuestionTitle">
+          <div className="CardQuestionTitle"> 
             <Avatars orderByModule={handleOrderByModule} />
-            <Button onClick={orderByDateHandler}>Nuevas</Button>
-            <Button>Mas Visitas</Button>
-            <Button>Mejores Calificadas</Button>
+            <Button className="buttonFilter" onClick={orderByDateHandler}>Nuevas</Button>
+            <Button className="buttonFilter">Mas Visitas</Button>
+            <Button className="buttonFilter">Mejores Calificadas</Button>
           </div>
           <PaginationComponent
             pageCount={pageCount}
             onPageChange={handlePageClick}
+           style={{ color: '#b93737' }}
           />
           <CardQuestion>
             {loading ? (

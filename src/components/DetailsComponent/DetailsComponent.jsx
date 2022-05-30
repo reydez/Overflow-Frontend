@@ -110,7 +110,7 @@ export default function DetailsComponent({ question, loading }) {
                 </div>
               ))
             ) : (
-              <h3 style={{ color: "grey" }}>
+              <h3 style={{ color: "grey", fontSize: '14px', paddingLeft:'10px' }}>
                 Esta pregunta no tiene comentarios
               </h3>
             )}
