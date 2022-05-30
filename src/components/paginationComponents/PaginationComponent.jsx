@@ -17,6 +17,7 @@ export default function PaginationComponent({ pageCount, onPageChange }) {
       previousLinkClassName="page-num"
       nextLinkClassName="page-num"
       activeLinkClassName="active"
+      forcePage={pageCount}
     />
   );
 }
