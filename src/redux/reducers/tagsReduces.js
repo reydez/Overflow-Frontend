@@ -11,7 +11,10 @@ const tagsReducer = (state = initialState, action) => {
             };
 
         default:
-            return state;
+            return {
+                ...state
+            }
+
     }
 };
 

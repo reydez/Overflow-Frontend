@@ -1,7 +1,9 @@
 import axios from "axios";
 
 export const getTags = () => {
+
     return async (dispatch) => {
+        // console.log(dispatch)
         try {
             let tags = await axios.get('http://localhost:3001/tags');
             return dispatch({

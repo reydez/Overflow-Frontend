@@ -5,9 +5,9 @@ import TextFields from "../Controllers/textField";
 import { Link } from 'react-router-dom'
 
 export default function FormUser() {
-  
+
   const validate = Yup.object({
-   
+
     email: Yup.string().required("Email is required.").email("Email formated."),
     password: Yup.string()
       .required("Password is required.")
@@ -16,7 +16,7 @@ export default function FormUser() {
   return (
 
     <Container sx={{ background: 'white', padding: '30px', position: 'absolute', top: '30%', left: '10%' }}>
-      <Grid container component="form" sx={{top: '20%'}}>
+      <Grid container component="form" sx={{ top: '20%' }}>
         <Grid item xs={12}>
           <Typography variant="h6" component="div" align="center">
             Sign in
@@ -52,9 +52,9 @@ export default function FormUser() {
                   name="password"
                 />
                 <Link to="/questions">
-                <Button variant="contained" color="secondary" fullWidth>
-                  Submit
-                </Button>
+                  <Button variant="contained" color="secondary" fullWidth>
+                    Submit
+                  </Button>
                 </Link>
               </div>
             );
@@ -62,7 +62,7 @@ export default function FormUser() {
         </Formik>
       </Grid>
     </Container>
- 
+
   );
 }
 
