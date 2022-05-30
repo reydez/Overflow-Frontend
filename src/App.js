@@ -1,4 +1,4 @@
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, BrowserRouter } from "react-router-dom";
 import Home from "./views/Home";
 import CreateQuestion from "./views/CreateQuestion";
 import LandingPage from "./views/LandingPage";
@@ -10,39 +10,40 @@ import FormUser from "./views/FormUser";
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <Switch>
-        
-        <Route path exact="/">
+
+        <Route exact={true} path="/">
           <LandingPage />
         </Route>
 
-        <Route path="/questions">
+        <Route exact={true} path="/questions">
           <Home />
         </Route>
 
-        <Route path="/visualize-question/:questionId">
+        <Route exact={true} path="/visualize-question/:questionId">
           <BarLeft>
             <VisualizeQuestion />
           </BarLeft>
         </Route>
 
-        <Route path="/create-question">
+        <Route exact={true} path="/create-question" >
           {/* <BarLeft> */}
           <PostFormMui />
+
           {/* <CreateQuestion /> */}
           {/* </BarLeft> */}
         </Route>
 
 
-        <Route path="/intro-user">
+        <Route exact={true} path="/intro-user">
           <FormUser />
         </Route>
 
       </Switch>
-     
-   
-    </>
+
+
+    </BrowserRouter>
   );
 }
 

@@ -1,4 +1,4 @@
-/* .form-post {
+.layout {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -8,18 +8,18 @@
         );
 }
 
-form {
+.form {
     background-color: white;
     padding: 0px 60px;
     border-radius: 10px;
 }
 
-h1 {
+.h1 {
     color: rgb(77, 1, 77);
     text-align: center;
 }
 
-button {
+.button {
     width: 100%;
     height: 50px;
     padding: 10px;
@@ -32,4 +32,10 @@ button {
     margin-top: 15px;
     margin-bottom: 30px;
 
-} */
+}
+
+.selectModules {
+    display: flex;
+    flex-direction: column;
+    /* background-color: red; */
+}

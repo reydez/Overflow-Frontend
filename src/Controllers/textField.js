@@ -1,5 +1,6 @@
 import { TextField, Typography } from "@mui/material";
 import { useField, ErrorMessage } from "formik";
+
 const TextFields = ({ lable, type, ...props }) => {
   const [field, meta] = useField(props);
 
@@ -23,7 +24,6 @@ const TextFields = ({ lable, type, ...props }) => {
           align="right"
           style={{
             color: "red"
-         
           }}
           component="div"
           variant="subtitle2"
@@ -32,7 +32,7 @@ const TextFields = ({ lable, type, ...props }) => {
         </Typography>
       }
 
-     
+
     />
   );
 };

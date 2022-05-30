@@ -1,10 +1,11 @@
 import React from "react";
-import FormularioPosteo from "../components/HomeComponents/Forms/FormularioPosteo";
+// import FormularioPosteo from "../components/HomeComponents/Forms/FormularioPosteo";
+import PostFormMui from "../components/HomeComponents/FormWithMUI/PostFormMui"
 
 export default function CreateQuestion() {
   return (
     <div>
-      <FormularioPosteo />
+      <PostFormMui />
     </div>
   );
 }

@@ -1,17 +1,21 @@
 const initialState = {
     modules: [],
+
 };
 
-const modulesReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case "GET_MODULES":
+const modulesReducer = (state = initialState, { payload, type }) => {
+    switch (type) {
+        case 'GET_MODULES':
+            // console.log(payload)
             return {
                 ...state,
-                modules: action.payload,
+                modules: payload,
             };
 
         default:
-            return state;
+            return {
+                ...state
+            }
     }
 };
 

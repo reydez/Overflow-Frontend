@@ -42,3 +42,11 @@ export const orderByModule = (module) => {
     payload: module,
   };
 };
+
+
+export const postQuestion = (payload) => {
+  return async function (dispatch) {
+    let newPost = await axios.post(`http://localhost:3001/post`, payload)
+    return newPost
+  }
+}
