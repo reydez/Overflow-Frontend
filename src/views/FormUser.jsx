@@ -15,8 +15,16 @@ export default function FormUser() {
   });
   return (
 
-    <Container sx={{ background: 'white', padding: '30px', position: 'absolute', top: '30%', left: '10%' }}>
-      <Grid container component="form" sx={{ top: '20%' }}>
+    <Container
+    sx={{
+     background: 'white',
+     padding: '30px',
+     position: 'absolute',
+     top: '30%',
+     left: '30%',
+     width: '40%'
+     }}>
+      <Grid container component="form" sx={{ top: '20%'}}>
         <Grid item xs={12}>
           <Typography variant="h6" component="div" align="center">
             Sign in
@@ -34,10 +42,12 @@ export default function FormUser() {
         >
           {(fomik) => {
             return (
-              <div
-                style={{
-                  width: "100%"
-                }}
+              <div 
+              style=
+              {{
+
+              }}
+               
               >
                 <TextFields
                   type="text"
@@ -52,7 +62,20 @@ export default function FormUser() {
                   name="password"
                 />
                 <Link to="/questions">
-                  <Button variant="contained" color="secondary" fullWidth>
+                  <Button 
+                    sx={{
+                      
+                      borderRadius:'20px',
+                      color: '#222831',
+                      size: 'large',
+                      width: '40%',
+                      fontSize: '20px',
+                      left: '30%',
+                      textAlign: 'center',
+                      background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+                      boxShadow: '0 3px 5px 2px rgba(255,105,135, .3)',
+                    }}
+                  variant="contained" color="secondary" fullWidth>
                     Submit
                   </Button>
                 </Link>

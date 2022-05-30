@@ -75,6 +75,10 @@ export const Questions = () => {
     loadQuestions();
   }, [dispatch]);
 
+  function refreshPage() {
+    window.location.reload(false);
+  }
+
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
     setCurrentItems(questions.slice(itemOffset, endOffset));
@@ -124,6 +128,7 @@ export const Questions = () => {
         <CardQuestionContainer>
           <div className="CardQuestionTitle"> 
             <Avatars orderByModule={handleOrderByModule} />
+            <Button className="buttonFilter" onClick={refreshPage}>Refresh</Button>
             <Button className="buttonFilter" onClick={orderByDateHandler}>Nuevas</Button>
             <Button className="buttonFilter">Mas Visitas</Button>
             <Button className="buttonFilter">Mejores Calificadas</Button>

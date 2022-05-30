@@ -11,6 +11,7 @@ import {
 import MailIcon from "@mui/icons-material/Mail";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import { Link } from "react-router-dom";
+import { PlayDisabled } from "@mui/icons-material";
 
 const drawer = (
   <div>
@@ -18,7 +19,11 @@ const drawer = (
     <Divider />
     <List>
         {/* , "Comunidad" */}
-      {[<Link to="/questions"><Button sx={{ color: '#a8a3b5', '&:hover': { color: 'red'} }}>Home</Button></Link>, <Link to="/"><Button sx={{ color: '#a8a3b5','&:hover': { color: 'red'}}}>Categorías</Button></Link>].map((text, index) => (
+      {[<Link to="/questions"><Button 
+      sx={{ color: '#a8a3b5',
+       '&:hover': { color: 'red'} 
+      }}>Home</Button></Link>, 
+      <Button sx={{ color: '#a8a3b5','&:hover': { color: 'red'}}}>Categorías</Button>].map((text, index) => (
         <ListItem
           key={text}
           disablePadding
