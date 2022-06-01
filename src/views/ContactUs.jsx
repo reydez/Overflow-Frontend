@@ -1,3 +1,4 @@
+
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
@@ -76,7 +77,7 @@ export default function ContactUs() {
   return (
     <div>
         
-      <Button onClick={handleClickOpen}>
+      <Button onClick={handleClickOpen} sx={{color: '#a8a3b5', '&: hover':{color:'red'}}}>
         Contactanos
       </Button>
       <SimpleDialog

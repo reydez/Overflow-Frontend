@@ -16,6 +16,7 @@ import { Box } from "@mui/system";
 import Avatars from "../Avatars/Avatars";
 
 import PaginationComponent from "../../paginationComponents/PaginationComponent";
+import Footer from "../../../views/Footer";
 
 const MainContainer = styled.div`
   width: 100%;
@@ -174,6 +175,7 @@ export const Questions = () => {
               ))
             )}
           </CardQuestion>
+        <Footer />
         </CardQuestionContainer>
         <SideBar>
           <CounterSideBar>

@@ -1,3 +1,4 @@
+
 import React from "react";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
@@ -6,9 +7,16 @@ import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import { Box } from "@mui/system";
 import Avatar from "@mui/material/Avatar";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import DoDisturbOnIcon from "@mui/icons-material/DoDisturbOn";
+import Checkbox from '@mui/material/Checkbox';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import { pink } from '@mui/material/colors';
+import Favorite from '@mui/icons-material/Favorite';
 import { Link } from "react-router-dom";
+import fotoPerfil from "../../../imagen/perfilIcono.png"
 
 export const QuestionCard = ({ question }) => {
   /* var year = question.date.getUTCFullYear();
@@ -22,6 +30,12 @@ export const QuestionCard = ({ question }) => {
   //     M3: "#D81B60",
   //   }[category] || "#42A5F5");
 
+  const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
+  const extras= {
+    vote: 1,
+    views:34
+  }
   const linkStyle = {
     margin: "0",
     color: "#fafafa",
@@ -33,7 +47,6 @@ export const QuestionCard = ({ question }) => {
       sx={{
         p: 2,
         margin: "auto",
-        marginTop: "0",
         flexGrow: 1,
         backgroundColor: (theme) =>
           theme.palette.mode === "dark" ? "#1A2027" : "transparent",
@@ -85,6 +98,28 @@ export const QuestionCard = ({ question }) => {
                     }}
                   >
                     Respuestas
+                  </p>
+                  <p
+                    style={{
+                      marginLeft: "-30px",
+                      marginTop: 0,
+                      fontSize: "9px",
+                      color: "#a8a3b5",
+                    }}
+                  >
+                  {/* VOTOS HACER CONEXION CON BACK */}
+                  <ThumbUpAltIcon sx={{ fontSize: 9 }}/> {extras.vote} Votos
+                  </p>
+                  <p
+                    style={{
+                      marginLeft: "-30px",
+                      marginTop: 0,
+                      fontSize: "9px",
+                      color: "#a8a3b5",
+                    }}
+                  >
+                  {/* VISITAS HACER CONEXION CON BACK */}
+                  <VisibilityIcon sx={{ fontSize: 9 }}/> {extras.views} Visitas
                   </p>
                 </Typography>
               </>
@@ -141,10 +176,46 @@ export const QuestionCard = ({ question }) => {
               </Stack>
             </Grid>
           </Grid>
-
+                <Grid>
+                {/* check de corazon para clickear hacia favoritos */}
+                  <Checkbox {...label}
+                     icon={<FavoriteBorder />}
+                     checkedIcon={<Favorite />}
+                     sx={{
+                        color: pink[800],
+                        '&.Mui-checked': {
+                        color: pink[600],
+                         },
+                        top: 10,
+                        left: -50,
+                        }}
+                     />
+          </Grid>
           <Grid item>
             <Typography variant="subtitle1" component="div" color="pink">
-              Carita Feliz :)
+             
+             
+             {/* Avatar perfil deberia venir desde back */}
+              
+              
+              <Avatar alt="Foto" src={fotoPerfil} style={{
+                      marginLeft: "-20px",
+                      marginTop: 10,
+                      fontSize: "9px",
+                      color: "#a8a3b5",
+                    }} />
+              <p
+                    style={{
+                      textAlign: "center",
+                      marginLeft: "-30px",
+                      marginTop: 10,
+                      left: 50,
+                      marginRight: "10px",
+                      fontSize: "9px",
+                      color: "#a8a3b5",
+                    }}
+                  > Nombre Perfil
+                  </p>
             </Typography>
             <Typography variant="body2" color="white">
               {question.id_user}
@@ -155,3 +226,4 @@ export const QuestionCard = ({ question }) => {
     </Paper>
   );
 };
+
