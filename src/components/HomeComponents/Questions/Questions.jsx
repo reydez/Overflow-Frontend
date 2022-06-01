@@ -5,14 +5,17 @@ import { QuestionCard } from "../QuestionCard/QuestionCard";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getQuestions,
+  getQuestionsByName,
   orderByDate,
   orderByModule,
+  orderByTag,
 } from "../../../redux/actions/questionsActions";
-import PaginationComponent from "../../paginationComponents/PaginationComponent";
 
 import { Chip, Stack } from "@mui/material";
 import { Box } from "@mui/system";
 import Avatars from "../Avatars/Avatars";
+
+import PaginationComponent from "../../paginationComponents/PaginationComponent";
 
 const MainContainer = styled.div`
   width: 100%;
@@ -33,6 +36,11 @@ const CardQuestionContainer = styled.div`
   background-color: #392e57;
   margin-left: 30px;
   margin-bottom: 10px;
+  .CardQuestionTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .CardQuestionTitle button {
     color: #a8a3b5;
     text-decoration: none;
@@ -41,12 +49,16 @@ const CardQuestionContainer = styled.div`
       padding-left: 100px;
     }
   }
-  .buttonFilter:hover{
+
+  .buttonFilter:hover {
     color: red;
+    background-color: #392e57;
   }
-  .buttonFilter:active{
-    pointer-events: none;
-    background-color: inherit;
+
+  @media (max-width: 1050px) {
+    .CardQuestionTitle {
+      flex-direction: column;
+    }
   }
 `;
 
@@ -60,10 +72,12 @@ export const Questions = () => {
   const dispatch = useDispatch();
   const [loading, setLoadin] = useState(false);
   const questions = useSelector((state) => state.questionsReducer.questions);
-  const [currentItems, setCurrentItems] = useState([]);
-  const [pageCount, setPageCount] = useState(0);
-  const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 5;
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
+
+  const [pageNumberLimit, setPageNumberLimit] = useState(5);
+  const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5);
+  const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
 
   useEffect(() => {
     const loadQuestions = async () => {
@@ -75,36 +89,34 @@ export const Questions = () => {
     loadQuestions();
   }, [dispatch]);
 
-  function refreshPage() {
-    window.location.reload(false);
-  }
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = questions.slice(indexOfFirstItem, indexOfLastItem);
 
-  useEffect(() => {
-    const endOffset = itemOffset + itemsPerPage;
-    setCurrentItems(questions.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(questions.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage, questions]);
-
-  const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % questions.length;
-    setItemOffset(newOffset);
-    window.scroll(0, 0);
+  const refreshPage = () => {
+    dispatch(getQuestionsByName(""));
+    setCurrentPage(1);
   };
 
   const orderByDateHandler = () => {
     dispatch(orderByDate());
+    setCurrentPage(1);
+  };
+
+  const orderByTagHandler = (tag) => {
+    dispatch(orderByTag(tag));
+    setCurrentPage(1);
   };
 
   const handleOrderByModule = (e) => {
     dispatch(orderByModule(e.target.innerText));
-    const newOffset = (0 * itemsPerPage) % questions.length;
-    setItemOffset(newOffset);
-    window.scroll(0, 0);
+    setCurrentPage(1);
   };
 
-  const handleClickChip = () => {
-    console.log("Identifica el chip para filtrado...");
+  const handleClickChip = (tagName) => {
+    console.log("Identifica el chip para filtrado..." + tagName);
   };
+
   // Sacar el hardcodeo y traerlo de la API
   const allTags = [
     "JavaScript",
@@ -120,24 +132,38 @@ export const Questions = () => {
     "Testing",
     "SQL",
     "Sequelize",
+    "HTML",
   ];
 
   return (
     <div>
       <MainContainer>
         <CardQuestionContainer>
-          <div className="CardQuestionTitle"> 
+          <div className="CardQuestionTitle">
             <Avatars orderByModule={handleOrderByModule} />
-            <Button className="buttonFilter" onClick={refreshPage}>Refresh</Button>
-            <Button className="buttonFilter" onClick={orderByDateHandler}>Nuevas</Button>
+            <Button className="buttonFilter" onClick={refreshPage}>
+              Refresh
+            </Button>
+            <Button className="buttonFilter" onClick={orderByDateHandler}>
+              Nuevas
+            </Button>
             <Button className="buttonFilter">Mas Visitas</Button>
             <Button className="buttonFilter">Mejores Calificadas</Button>
           </div>
+
           <PaginationComponent
-            pageCount={pageCount}
-            onPageChange={handlePageClick}
-           style={{ color: '#b93737' }}
+            questions={questions}
+            itemsPerPage={itemsPerPage}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            pageNumberLimit={pageNumberLimit}
+            setPageNumberLimit={setPageNumberLimit}
+            maxPageNumberLimit={maxPageNumberLimit}
+            setMaxPageNumberLimit={setMaxPageNumberLimit}
+            minPageNumberLimit={minPageNumberLimit}
+            setMinPageNumberLimit={setMinPageNumberLimit}
           />
+
           <CardQuestion>
             {loading ? (
               <h4>Loading Questions...</h4>
@@ -147,10 +173,6 @@ export const Questions = () => {
               ))
             )}
           </CardQuestion>
-          {/* <PaginationComponent
-            pageCount={pageCount}
-            onPageChange={handlePageClick}
-          /> */}
         </CardQuestionContainer>
         <SideBar>
           <CounterSideBar>
@@ -163,13 +185,16 @@ export const Questions = () => {
             spacing={2}
             sx={{ width: "fit-content", marginTop: "30px" }}
           >
-            {allTags.map((tag) => (
-              <Chip
-                label={<Box sx={{ color: "white" }}>{tag}</Box>}
-                variant="outlined"
-                onClick={handleClickChip}
-              />
-            ))}
+            {allTags.map((tag) => {
+              let upperCase = tag.toUpperCase();
+              return (
+                <Chip
+                  label={<Box sx={{ color: "white" }}>{tag}</Box>}
+                  variant="outlined"
+                  onClick={() => orderByTagHandler(upperCase)}
+                />
+              );
+            })}
           </Stack>
         </SideBar>
       </MainContainer>

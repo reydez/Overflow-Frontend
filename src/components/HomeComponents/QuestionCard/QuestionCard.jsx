@@ -33,6 +33,7 @@ export const QuestionCard = ({ question }) => {
       sx={{
         p: 2,
         margin: "auto",
+        marginTop: "0",
         flexGrow: 1,
         backgroundColor: (theme) =>
           theme.palette.mode === "dark" ? "#1A2027" : "transparent",
@@ -129,10 +130,10 @@ export const QuestionCard = ({ question }) => {
               {" "}
               {/* TAGs de cada categoría*/}
               <Stack direction="row" spacing={1}>
-                {question.tags.map((tag) => (
+                {question.tags.map((tag, index) => (
                   <Chip
-                    label={<Box sx={{ color: "white" }}>{tag.name}</Box>}
-                    key={tag.id}
+                    label={<Box sx={{ color: "white" }}>{tag}</Box>}
+                    key={index}
                     variant="outlined"
                     size="small"
                   />
