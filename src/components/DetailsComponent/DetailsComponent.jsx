@@ -19,9 +19,6 @@ export default function DetailsComponent({
   const dispatch = useDispatch();
   const isTextareaDisabled = comentarioText.length === 0;
 
-  console.log(comments);
-  console.log(question);
-
   let history = useHistory();
   const Return = () => {
     history.goBack();
@@ -91,11 +88,11 @@ export default function DetailsComponent({
           <p
             style={{
               margin: "0",
-              paddingLeft: "10px",
+              padding: "0 10px",
               borderRadius: "10px",
               backgroundColor: "#413a66",
               color: "#fafafa",
-              width: "15%",
+              width: "max-content",
             }}
           >
             Comentarios:
