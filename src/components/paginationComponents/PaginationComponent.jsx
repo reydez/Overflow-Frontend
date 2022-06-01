@@ -12,6 +12,7 @@ export default function PaginationComponent({
   setMaxPageNumberLimit,
   minPageNumberLimit,
   setMinPageNumberLimit,
+  currentItems,
 }) {
   const pages = [];
   for (let i = 1; i <= Math.ceil(questions.length / itemsPerPage); i++) {
@@ -70,23 +71,29 @@ export default function PaginationComponent({
   return (
     <ul className="pageNumbers">
       <li>
-        <button
-          onClick={handlePrevioBtn}
-          disabled={currentPage === pages[0] ? true : false}
-        >
-          {`< Previo`}
-        </button>
+        {currentItems.length > 0 ? (
+          <button
+            onClick={handlePrevioBtn}
+            disabled={currentPage === pages[0] ? true : false}
+          >
+            {`< Previo`}
+          </button>
+        ) : (
+          <button>No existen registros...</button>
+        )}
       </li>
       {pageDecrementBtn}
       {renderPageNumbers}
       {pageIncrementBtn}
       <li>
-        <button
-          onClick={handleSiguienteBtn}
-          disabled={currentPage === pages[pages.length - 1] ? true : false}
-        >
-          {`Siguiente >`}
-        </button>
+        {currentItems.length > 0 ? (
+          <button
+            onClick={handleSiguienteBtn}
+            disabled={currentPage === pages[pages.length - 1] ? true : false}
+          >
+            {`Siguiente >`}
+          </button>
+        ) : null}
       </li>
     </ul>
   );

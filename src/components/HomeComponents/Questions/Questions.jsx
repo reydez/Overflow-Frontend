@@ -162,6 +162,7 @@ export const Questions = () => {
             setMaxPageNumberLimit={setMaxPageNumberLimit}
             minPageNumberLimit={minPageNumberLimit}
             setMinPageNumberLimit={setMinPageNumberLimit}
+            currentItems={currentItems}
           />
 
           <CardQuestion>
