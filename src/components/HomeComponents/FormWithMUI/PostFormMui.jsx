@@ -1,144 +1,184 @@
 import React, { useState, useEffect } from "react";
 
-import { getTags } from '../../../redux/actions/tags';
-import { getModules } from '../../../redux/actions/module';
+import { useDispatch } from "react-redux";
+import styled from "styled-components";
+
 import { postQuestion } from '../../../redux/actions/questionsActions'
-import FormInput from "./formInput/FormInput";
+
+import FormM1Tags from "./FormTags/FormM1Tags";
+import FormM2Tags from "./FormTags/FormM2Tags";
+import FormM3Tags from "./FormTags/FormM3Tags";
+import FormM4Tags from "./FormTags/FormM4Tags";
+
 
 import Classes from "./PostFormMui.module.css";
-
-import { useDispatch, useSelector } from "react-redux";
+import InputForm from "./StylesForm/InputForm";
+import { NameDiv } from "./StylesForm/styles";
+import InputFormArea from "./StylesForm/InputFormArea";
 
 
 const PostFormMui = () => {
+
     const dispatch = useDispatch();
-    const allTags = useSelector(state => state.tagsReducer.tags);
 
-    const m1Tags = allTags.slice(0, 8)
-    const m2Tags = allTags.slice(10, 32)
-    const m3Tags = allTags.slice(33, 49)
-    const m4Tags = allTags.slice(50, 57)
+    //------------------------- CheckBoxes-----------------------
+    const [moduleSelected, setModuleSelected] = useState("selectModule");
 
+    const [m1TagsSelected, setM1TagsSelected] = useState(false)
+    const [m2TagsSelected, setM2TagsSelected] = useState(false)
+    const [m3TagsSelected, setM3TagsSelected] = useState(false)
+    const [m4TagsSelected, setM4TagsSelected] = useState(false)
+
+
+
+
+
+
+    const handleOnChange = (e) => {
+        setModuleSelected(e.target.value);
+        // console.log('Este es el name', e.target.name, 'Este es el value', e.target.value)
+
+        setModulo({
+            ...modulo,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const makeCheckboxesModule = (str) => {
+        return str.charAt(0).toUpperCase() + str.slice(1)
+    }
+
+    const renderResult = () => {
+        let result;
+        moduleSelected === "selectModule"
+            ? (result = "")
+            : (result = makeCheckboxesModule(moduleSelected))
+        return result;
+    }
 
     useEffect(() => {
-        dispatch(getTags());
-        dispatch(getModules());
-    }, [dispatch])
+        moduleSelected === "m1" ? setM1TagsSelected(true) : setM1TagsSelected(false);
+        moduleSelected === "m2" ? setM2TagsSelected(true) : setM2TagsSelected(false);
+        moduleSelected === "m3" ? setM3TagsSelected(true) : setM3TagsSelected(false);
+        moduleSelected === "m4" ? setM4TagsSelected(true) : setM4TagsSelected(false);
+    }, [moduleSelected])
+    //------------------------- CheckBoxes-----------------------
 
 
-    const [values, setValues] = useState({
-        title: "",
-        description: "",
-        code: "",
-        module: "",
-        tag: []
-    });
 
+    //? ------------------------- FORM - 'NUEVA IMPLEMENTACIÓN' -----------------------
 
-    const handleSelect = (e) => {
-        e.preventDefault();
-        let tags = values.tag.filter(d => d === e.target.value)
-        // console.log(e.target.value)
-        // console.log(tags)
-        if (tags.length === 0) {
-            (e.target.value === 'Module')
-                ? e.target.value = ""
-                : setValues({
-                    ...values,
-                    tag: [...values.tag, e.target.value]
-                })
-        } else alert('Ya se agrego este tag')
-    }
+    const [title, setTitle] = useState({ field: "", validate: null });
+    const [description, setDescription] = useState({ field: "", validate: null });
+    const [code, setCode] = useState({ field: "", validate: null });
+    const [modulo, setModulo] = useState({ field: "" });
+    const [tag, setTag] = useState({ tags: [] });
 
-
-    const handleDelete = (element, option) => {
-        if (option === 'tags') {
-            setValues({
-                ...values,
-                diets: values.tag.filter(e => e !== element.e)
-            })
-        }
-    }
+    const [validate, setValidate] = useState(null);
 
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        // if (validation()) {
-        dispatch(postQuestion(values))
-        // console.log(values)
-        // }
-        setValues({
-            title: "",
-            description: "",
-            code: "",
-            module: "",
-            tag: []
-        })
-        // navigate('/home')
-    }
-    const inputs = [
-        {
-            id: 12,
-            name: "title",
-            type: "text",
-            placeholder: "Title",
-            errorMessage: "You need a title for your question",
-            label: "title",
-            // required: true,
-        },
-        {
-            id: 22,
-            name: "code",
-            type: "text",
-            placeholder: "Code",
-            errorMessage: "We need some code to understand your problem",
-            label: "code",
-            // required: true,
-        },
-        {
-            id: 32,
-            name: "description",
-            type: "text",
-            placeholder: "Description",
-            errorMessage: "Maybe you can be more specific, could you tell us something about your problem?",
-            label: "description",
-            // required: true,
+        if (!tag.tags.length > 2) {
+            console.log('tienes más de 3')
+            alert('Debes elegir menos de 3 tags');
         }
-    ];
+        else if (title.validate === 'true' &&
+            description.validate === 'true' &&
+            code.validate === 'true'
+            // modulo.validate === 'true' &&
+        ) {
+            setValidate(true)
+            dispatch(postQuestion({
+                title: title.field,
+                description: description.field,
+                code: code.field,
+                modulo: modulo.field,
+                tag: tag.tags
+            }))
+
+        } else {
+            setValidate(false)
+        }
+    }
 
 
+    console.log("Estos son los tags:", tag.tags)
+    console.log("Esto es el title:", title.field)
+    console.log("Esta es la img code:", code.field)
+    console.log("Modulo:", modulo.field)
+    console.log("Esta es la descripción:", description.field)
 
-    const onChange = (e) => {
-        console.log(values)
-        setValues({
-            ...values,
-            [e.target.name]: e.target.value
-        });
-    };
-
-
+    // console.log("Esto es el title:", title.validate)
+    // console.log("Estos son los tags:", tag.validate)
+    // console.log("Esta es la img code:", code.validate)
+    // console.log("Modulo:", modulo.validate)
+    // console.log("Esta es la descripción:", description.validate)
     return (
         <div className={Classes.layout}>
-            <form
-                className={Classes.form}
-                onSubmit={handleSubmit}>
-                <h1 className={Classes.h1} > Ask me something... </h1>
 
-                {inputs.map((input) => (
-                    <FormInput
-                        key={input.id}
-                        {...input}
-                        value={values[input.name]}
-                        onChange={onChange}
+
+
+
+            <Formulario
+
+                onSubmit={handleSubmit}
+            >
+
+
+
+
+                <div className={Classes.container}>
+                    <h1 className={Classes.h1} > Pregúntame algo... </h1>
+                    <NameDiv>
+                        <InputForm
+                            type="text"
+                            state={title}
+                            changeState={setTitle}
+                            name="title"
+                            placeholder="Pregunta..."
+                            label="Pregunta"
+                            error="Tu pregunta debe llevar más de 10 caracteres."
+                            regularExpresion={/^[a-zA-ZÀ-ÿ\s?.,0-9]{4,100}$/}
+                        />
+                    </NameDiv>
+
+                    <InputForm
+                        // type="url"
+                        state={code}
+                        changeState={setCode}
+                        name="code"
+                        placeholder="Imagen de tu código..."
+                        label="Imagen de código"
+                        error="Muéstranos una imagen sobre tu problema."
+                        regularExpresion={/(https?:\/\/.*\.(?:png|jpg))/i}
                     />
-                ))}
+                    <InputFormArea
+                        // type="textarea"
+                        state={description}
+                        changeState={setDescription}
+                        name="description"
+                        placeholder="Describe tu pregunta..."
+                        label="Descripción"
+                        error="Háblanos sobre tu problema"
+                        regularExpresion={/^[a-zA-ZÀ-ÿ\s?.,0-9]{20,400}$/}
+                    />
 
-                <div
-                    className={Classes.selectModules}
-                >
-                    <label> Select a Module
-                        <select onChange={handleSelect}>
-                            <option>MODULES</option>
+                </div>
+
+
+
+
+                <div className={Classes.selectModules}>
+                    <label>
+                        Module selected <span className={Classes.slec}>{renderResult()} </span>
+                        <select
+                            className={Classes.selectInput}
+                            onChange={handleOnChange}
+                            value={moduleSelected}
+                            name='field'
+                        >
+                            <option value={'selectModule'}>MODULES</option>
                             <option value={'m1'}>M1</option>
                             <option value={'m2'}>M2</option>
                             <option value={'m3'}>M3</option>
@@ -148,64 +188,95 @@ const PostFormMui = () => {
 
                 </div>
 
-                <div>
-                    <label>M1
-                        <select onChange={handleSelect}>
-                            <option>module</option>
-                            {
-                                m1Tags?.map(e => {
-                                    return <option key={e.name} value={e.name} >{e.name}</option>
-                                })
-                            }
-                        </select>
-                    </label>
-                </div>
 
-                <div>
-                    <label>M2
-                        <select onChange={handleSelect}>
-                            <option>module</option>
-                            {
-                                m2Tags?.map(e => {
-                                    return <option key={e.name} value={e.name} >{e.name}</option>
-                                })
-                            }
-                        </select>
-                    </label>
-                </div>
-                <div>
-                    <label>M3
-                        <select onChange={handleSelect}>
-                            <option>module</option>
-                            {
-                                m3Tags?.map(e => {
-                                    return <option key={e.name} value={e.name} >{e.name}</option>
-                                })
-                            }
-                        </select>
-                    </label>
-                </div>
-                <div>
-                    <label>M4
-                        <select onChange={handleSelect}>
-                            <option>module</option>
-                            {
-                                m4Tags?.map(e => {
-                                    return <option key={e.name} value={e.name} >{e.name}</option>
-                                })
-                            }
-                        </select>
-                    </label>
-                </div>
+                {m1TagsSelected &&
+                    <FormM1Tags
+                        setTag={setTag}
+                        tag={tag}
+                    />}
+                {m2TagsSelected &&
+                    <FormM2Tags
+                        setTag={setTag}
+                        tag={tag}
+                    />}
+                {m3TagsSelected &&
+                    <FormM3Tags
+                        setTag={setTag}
+                        tag={tag}
+                    />}
+                {m4TagsSelected &&
+                    <FormM4Tags
+                        setTag={setTag}
+                        tag={tag}
+                    />}
 
-                <button
-                    className={Classes.button}
-                    type='submit'
-                >Submit</button>
-            </form>
-        </div>
+
+                <button className={Classes.button} type='submit'>Enviar</button>
+
+                {
+                    validate === true &&
+                    <Success>Successfully saved, redirecting to home</Success>
+                }
+
+            </Formulario>
+
+        </div >
     );
 };
 
 export default PostFormMui;
 
+
+const colores = {
+    inputPurple: "#413A66",
+    error: "#f66060",
+    succes: "#71ff4a"
+}
+
+const Formulario = styled.form`
+    display: flex;
+    flex-direction: column;
+    width: 580px;
+    /* grid-template-columns: 1fr 1fr; */
+    /* gap: 20px; */
+    align-items: center;
+    text-align: center;
+    margin: 10px;
+    padding: 20px;
+    background-color: white;
+    border-radius:  35px ;
+    border: solid 1px black;
+    /* box-shadow: 0px 0px 20px rgba(14, 29, 65,0.2); */
+    margin-left: 20px;
+    margin-right: 20px;
+    @media (max-width: 800px){
+        grid-template-columns: 1fr;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+`
+
+const Description = styled.textarea`
+/* display: flex; */
+/* align-items: center; */
+/* text-align: center; */
+
+margin-top:10px;
+flex-direction: column;
+width: 78%;
+border-radius: 4px;
+
+border: 2px solid grey ;
+
+
+`
+
+
+const Success = styled.p`
+    font-size: 20px;
+    background: ${colores.succes};
+    color: #141414;
+    padding: 15px 30px;
+    font-weight: bold;
+    border-radius: 5px;
+`

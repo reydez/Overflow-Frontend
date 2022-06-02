@@ -1,0 +1,13 @@
+.tags {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    align-items: center;
+    text-align: left;
+    color: gray;
+    font-size: 15px;
+
+}
