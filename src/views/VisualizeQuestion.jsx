@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import DetailsComponent from "../components/DetailsComponent/DetailsComponent";
@@ -9,6 +9,8 @@ export default function VisualizeQuestion() {
   const dispatch = useDispatch();
   const question = useSelector((state) => state.questionsReducer.question);
   const [loading, setLoadin] = useState(false);
+  const [comments, setComments] = useState([]);
+  const dummy = useRef(null);
 
   useEffect(() => {
     const loadQuestionDetails = async () => {
@@ -20,5 +22,31 @@ export default function VisualizeQuestion() {
     loadQuestionDetails();
   }, [dispatch, questionId]);
 
-  return <DetailsComponent question={question} loading={loading} />;
+  useEffect(() => {
+    setComments(question.comments);
+  }, [question.comments]);
+
+  let getRespuestas;
+
+  if (comments) {
+    getRespuestas = comments
+      .map((comments, index) => {
+        return {
+          idx: index,
+          ...comments,
+        };
+      })
+      .sort((a, b) => b.idx - a.idx);
+  }
+
+  return (
+    <DetailsComponent
+      question={question}
+      commentsARenderizar={getRespuestas}
+      comments={comments}
+      setComments={setComments}
+      loading={loading}
+      dummy={dummy}
+    />
+  );
 }

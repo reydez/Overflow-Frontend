@@ -1,3 +1,4 @@
+
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -31,7 +32,8 @@ export default function ScrollAboutUs() {
 
   return (
     <div>
-      <Button onClick={handleClickOpen('paper')}>Quienes Somos</Button>
+      <Button onClick={handleClickOpen('paper')} sx={{color: '#a8a3b5', '&: hover':{color:'red'}}}>Quienes Somos</Button>
+      
      
       <Dialog
         open={open}
@@ -40,9 +42,10 @@ export default function ScrollAboutUs() {
         aria-labelledby="scroll-dialog-title"
         aria-describedby="scroll-dialog-description"
       >
-        <DialogTitle id="scroll-dialog-title">Quienes Somos</DialogTitle>
+        <DialogTitle id="scroll-dialog-title"  >Quienes Somos</DialogTitle>
         <DialogContent dividers={scroll === 'paper'}>
           <DialogContentText
+         
             id="scroll-dialog-description"
             ref={descriptionElementRef}
             tabIndex={-1}

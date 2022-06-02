@@ -1,15 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 // import Button from "@mui/material/Button";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { Typography } from "@mui/material";
-import { useDispatch } from "react-redux";
-import { addComment } from "../../redux/actions/commentsActions";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
-export default function DetailsComponent({ question, loading }) {
+export default function DetailsComponent({
+  question,
+  loading,
+  comments,
+  setComments,
+  commentsARenderizar,
+  dummy,
+}) {
   const [comentarioText, setComentarioText] = useState("");
   const dispatch = useDispatch();
+  const isTextareaDisabled = comentarioText.length === 0;
 
   let history = useHistory();
   const Return = () => {
@@ -22,13 +30,27 @@ export default function DetailsComponent({ question, loading }) {
   };
 
   const onSubmitHandler = () => {
-    const body = {
-      message: comentarioText,
-      idPost: question.id,
-      idUser: "6ff3d5bc-0e0f-421c-8a00-8a3965e8e0c9",
-    };
-
-    dispatch(addComment(body));
+    axios
+      .post(
+        `http://localhost:3001/comments/${
+          question.id
+        }/${"6ff3d5bc-0e0f-421c-8a00-8a3965e8e0c9"}`,
+        {
+          message: comentarioText,
+        }
+      )
+      .then((response) => {
+        setComments([response.data, ...comments]);
+        setComentarioText("");
+      })
+      .finally(() => {
+        if (!dummy.current) return;
+        setTimeout(() => {
+          dummy.current.scrollIntoView({
+            behavior: "smooth",
+          });
+        }, 50);
+      });
   };
 
   return (
@@ -64,11 +86,11 @@ export default function DetailsComponent({ question, loading }) {
           <p
             style={{
               margin: "0",
-              paddingLeft: "10px",
+              padding: "0 10px",
               borderRadius: "10px",
               backgroundColor: "#413a66",
               color: "#fafafa",
-              width: "15%",
+              width: "max-content",
             }}
           >
             Comentarios:
@@ -83,8 +105,8 @@ export default function DetailsComponent({ question, loading }) {
             }}
           >
             {loading && <h3>Loading Question Details...</h3>}
-            {question.comments?.length > 0 ? (
-              question.comments.map((comment, index) => (
+            {commentsARenderizar?.length > 0 ? (
+              commentsARenderizar.map((comment, index) => (
                 <div
                   key={index}
                   style={{
@@ -107,10 +129,13 @@ export default function DetailsComponent({ question, loading }) {
                   >
                     {comment.message}
                   </span>
+                  <div ref={dummy}></div>
                 </div>
               ))
             ) : (
-              <h3 style={{ color: "grey" }}>
+              <h3
+                style={{ color: "grey", fontSize: "14px", paddingLeft: "10px" }}
+              >
                 Esta pregunta no tiene comentarios
               </h3>
             )}
@@ -155,6 +180,7 @@ export default function DetailsComponent({ question, loading }) {
                 onClick={onSubmitHandler}
                 className="postCommentButton"
                 size="small"
+                disabled={isTextareaDisabled}
               >
                 Publica comentario
               </button>
@@ -222,6 +248,13 @@ const ButtonsDetail = styled.div`
     width: 100%;
     padding: 10px;
     z-index: 4;
+  }
+
+  button:disabled,
+  button[disabled] {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
   }
 
   button:hover:before {

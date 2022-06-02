@@ -7,10 +7,17 @@ const initialState = {
 const questionsReducer = (state = initialState, action) => {
   switch (action.type) {
     case "GET_QUESTIONS":
+      const copyTempQuestionsTags = action.payload.map((question) => {
+        return {
+          ...question,
+          tags: question.tags.map((tag) => tag.name.toUpperCase()),
+        };
+      });
+
       return {
         ...state,
-        questions: action.payload,
-        tempQuestions: action.payload,
+        questions: copyTempQuestionsTags,
+        tempQuestions: copyTempQuestionsTags,
       };
 
     case "GET_QUESTION_DETAILS":
@@ -20,9 +27,16 @@ const questionsReducer = (state = initialState, action) => {
       };
 
     case "GET_QUESTIONS_BY_NAME":
+      const copyTempQuestionsNames = action.payload.map((question) => {
+        return {
+          ...question,
+          tags: question.tags.map((tag) => tag.name.toUpperCase()),
+        };
+      });
+
       return {
         ...state,
-        questions: action.payload,
+        questions: copyTempQuestionsNames,
       };
 
     case "ORDER_BY_DATE":
@@ -52,15 +66,26 @@ const questionsReducer = (state = initialState, action) => {
         (question) => question.module.name === action.payload
       );
 
-      console.log(filtered);
       return {
         ...state,
         questions: filtered,
       };
 
+    case "ORDER_BY_TAG":
+      const copyOfQuestion = state.questions.slice();
+
+      const filteredByTag = copyOfQuestion.filter(
+        (question) => question.tags.indexOf(action.payload) >= 0
+      );
+
+      return {
+        ...state,
+        questions: filteredByTag,
+      };
+
     default:
       return {
-        ...state
+        ...state,
       };
   }
 };

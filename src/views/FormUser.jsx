@@ -1,68 +1,33 @@
-import { Formik } from "formik";
-import * as Yup from "yup";
-import { Container, Grid, Button, Typography } from "@mui/material";
-import TextFields from "../Controllers/textField";
-import { Link } from 'react-router-dom'
+import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useHistory } from "react-router-dom";
+
 
 export default function FormUser() {
+  const { loginWithRedirect, isAuthenticated, user } = useAuth0();
+  const { logout } = useAuth0();
+  const history = useHistory()
 
-  const validate = Yup.object({
+  // SE DEBE REALIZAR UN POST A http://localhost:3001/users,
+  // COMO REQ.BODY SE DEBE ENVIAR LA INFORMACION OBTENIDA EN "user"
+  // ESE REQUEST DEVOLVERA UN TOKEN PARA QUE EL USUARIO PUEDA NAVEGAR EN LA PAGINA
+  console.log(user)
 
-    email: Yup.string().required("Email is required.").email("Email formated."),
-    password: Yup.string()
-      .required("Password is required.")
-      .max(8, "Name should be less than 8."),
-  });
   return (
-
-    <Container sx={{ background: 'white', padding: '30px', position: 'absolute', top: '30%', left: '10%' }}>
-      <Grid container component="form" sx={{ top: '20%' }}>
-        <Grid item xs={12}>
-          <Typography variant="h6" component="div" align="center">
-            Sign in
-          </Typography>
-        </Grid>
-        <Formik
-          initialValues={{
-            firstName: "",
-            lastName: "",
-            email: "",
-            password: "",
-            confirmPassword: ""
-          }}
-          validationSchema={validate}
-        >
-          {(fomik) => {
-            return (
-              <div
-                style={{
-                  width: "100%"
-                }}
-              >
-                <TextFields
-                  type="text"
-                  // value
-                  lable="Email"
-                  name="email"
-                />
-                <TextFields
-                  type="password"
-                  // value
-                  lable="Password"
-                  name="password"
-                />
-                <Link to="/questions">
-                  <Button variant="contained" color="secondary" fullWidth>
-                    Submit
-                  </Button>
-                </Link>
-              </div>
-            );
-          }}
-        </Formik>
-      </Grid>
-    </Container>
-
+    <div>
+      {isAuthenticated? 
+      <>
+      {/* <div>
+        <img src={user.picture} alt={user.name} />
+        <h2>{user.name}</h2>
+        <p>{user.email}</p>
+      </div> */}
+      <button onClick={() => logout({returnTo: window.location.origin})}>Log Out</button>
+      <button onClick={() => history.push("/questions")}>Intro page</button>
+      </>
+      :
+      <button onClick={() => loginWithRedirect()}>Log In</button>
+      }
+    </div>
   );
 }
-
