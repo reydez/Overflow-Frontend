@@ -30,10 +30,9 @@ function App() {
         <Route exact={true} path="/create-question" >
           {/* <BarLeft> */}
           <PostFormMui />
-
-          {/* <CreateQuestion /> */}
           {/* </BarLeft> */}
         </Route>
+
 
 
         <Route exact={true} path="/intro-user">
