@@ -50,6 +50,13 @@ export const orderByModule = (module) => {
   };
 };
 
+
+// export const postQuestion = (payload) => {
+//   return async function (dispatch) {
+//     let newPost = await axios.post(`http://localhost:3001/posts`, payload)
+//     return newPost
+//   }
+// }
 export const orderByTag = (tag) => {
   return {
     type: "ORDER_BY_TAG",
