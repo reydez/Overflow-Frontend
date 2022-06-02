@@ -23,7 +23,13 @@ const drawer = (
       sx={{ color: '#a8a3b5',
        '&:hover': { color: 'red'} 
       }}>Home</Button></Link>, 
-      <Button sx={{ color: '#a8a3b5','&:hover': { color: 'red'}}}>Categorías</Button>].map((text, index) => (
+      <Button sx={{ color: '#a8a3b5','&:hover': { color: 'red'}}}>Categorías</Button>,
+      <Divider />, 
+      <Button sx={{ color: '#a8a3b5','&:hover': { color: 'red'}}}>Mi Perfil</Button>, 
+      <Button sx={{ color: '#a8a3b5','&:hover': { color: 'red'}}}>Mis Favoritos
+      </Button>,
+      <Button sx={{ color: '#a8a3b5','&:hover': { color: 'red'}}}>Usuarios
+      </Button>].map((text, index) => (
         <ListItem
           key={text}
           disablePadding
