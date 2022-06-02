@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { addComment } from "../../redux/actions/commentsActions";
+import axios from "axios";
 
 export default function DetailsComponent({
   question,
@@ -30,29 +30,27 @@ export default function DetailsComponent({
   };
 
   const onSubmitHandler = () => {
-    const body = {
-      message: comentarioText,
-      idPost: question.id,
-      idUser: "6ff3d5bc-0e0f-421c-8a00-8a3965e8e0c9",
-      rating: 0,
-      user: {
-        first_name: "rodrigo",
-        id: "6ff3d5bc-0e0f-421c-8a00-8a3965e8e0c9",
-        last_name: "reyes",
-      },
-    };
-
-    console.log(comments);
-
-    dispatch(addComment(body));
-    setComentarioText("");
-    setComments([body, ...comments]);
-    if (!dummy.current) return;
-    setTimeout(() => {
-      dummy.current.scrollIntoView({
-        behavior: "smooth",
+    axios
+      .post(
+        `http://localhost:3001/comments/${
+          question.id
+        }/${"6ff3d5bc-0e0f-421c-8a00-8a3965e8e0c9"}`,
+        {
+          message: comentarioText,
+        }
+      )
+      .then((response) => {
+        setComments([response.data, ...comments]);
+        setComentarioText("");
+      })
+      .finally(() => {
+        if (!dummy.current) return;
+        setTimeout(() => {
+          dummy.current.scrollIntoView({
+            behavior: "smooth",
+          });
+        }, 50);
       });
-    }, 50);
   };
 
   return (

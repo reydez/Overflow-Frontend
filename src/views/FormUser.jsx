@@ -1,91 +1,51 @@
-import { Formik } from "formik";
-import * as Yup from "yup";
-import { Container, Grid, Button, Typography } from "@mui/material";
-import TextFields from "../Controllers/textField";
-import { Link } from 'react-router-dom'
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 export default function FormUser() {
-
-  const validate = Yup.object({
-
-    email: Yup.string().required("Email is required.").email("Email formated."),
-    password: Yup.string()
-      .required("Password is required.")
-      .max(8, "Name should be less than 8."),
-  });
   return (
-
-    <Container
-    sx={{
-     background: 'white',
-     padding: '30px',
-     position: 'absolute',
-     top: '30%',
-     left: '30%',
-     width: '40%'
-     }}>
-      <Grid container component="form" sx={{ top: '20%'}}>
-        <Grid item xs={12}>
-          <Typography variant="h6" component="div" align="center">
-            Sign in
-          </Typography>
-        </Grid>
-        <Formik
-          initialValues={{
-            firstName: "",
-            lastName: "",
-            email: "",
-            password: "",
-            confirmPassword: ""
+    <div
+      style={{
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "20px",
+          justifyContent: "center",
+          alignItems: "center",
+          margin: "15% auto",
+          background: "white",
+          width: "400px",
+          height: "200px",
+          borderRadius: "10px",
+          boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+        }}
+      >
+        <GitHubIcon
+          fontSize="large"
+          sx={{
+            boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 10px",
+            borderRadius: "50px",
           }}
-          validationSchema={validate}
+        />
+        <a
+          style={{
+            padding: "10px",
+            border: "1px solid black",
+            borderRadius: "10px",
+            textDecoration: "none",
+            color: "black",
+            boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 10px",
+          }}
+          href={`https://github.com/login/oauth/authorize?client_id=${"29c214f0eabafdd69c0c"}`}
         >
-          {(fomik) => {
-            return (
-              <div 
-              style=
-              {{
-
-              }}
-               
-              >
-                <TextFields
-                  type="text"
-                  // value
-                  lable="Email"
-                  name="email"
-                />
-                <TextFields
-                  type="password"
-                  // value
-                  lable="Password"
-                  name="password"
-                />
-                <Link to="/questions">
-                  <Button 
-                    sx={{
-                      
-                      borderRadius:'20px',
-                      color: '#222831',
-                      size: 'large',
-                      width: '40%',
-                      fontSize: '20px',
-                      left: '30%',
-                      textAlign: 'center',
-                      background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-                      boxShadow: '0 3px 5px 2px rgba(255,105,135, .3)',
-                    }}
-                  variant="contained" color="secondary" fullWidth>
-                    Submit
-                  </Button>
-                </Link>
-              </div>
-            );
-          }}
-        </Formik>
-      </Grid>
-    </Container>
-
+          Sing in with github
+        </a>
+      </div>
+    </div>
   );
 }
-
