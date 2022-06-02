@@ -6,6 +6,7 @@ import VisualizeQuestion from "./views/VisualizeQuestion";
 import BarLeft from "./components/HomeComponents/BarLeft/BarLeft";
 import PostFormMui from "./components/HomeComponents/FormWithMUI/PostFormMui";
 import FormUser from "./views/FormUser";
+import CardUser from "./components/cardUser/CardUser"
 
 
 function App() {
@@ -38,6 +39,10 @@ function App() {
 
         <Route exact={true} path="/intro-user">
           <FormUser />
+        </Route>
+
+        <Route exact={true} path="/user">
+          <CardUser />
         </Route>
 
       </Switch>
