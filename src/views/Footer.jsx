@@ -11,9 +11,11 @@ import ContactUs from "./ContactUs";
 export default function Footer() {
   return (
     <footer>
-      <Container maxWidth="sm">
-        <Box sx={{ height: 2170 }} />
-
+      <Container sx={{
+                marginTop: '30px',
+                color: '#a8a3b5',
+                backgroundColor: '#392e57'
+                }}>
         <Grid container spacing={1}>
           <Grid item xs={6}>
             <ScrollTerms />

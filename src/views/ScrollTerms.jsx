@@ -1,3 +1,5 @@
+
+
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -31,7 +33,7 @@ export default function ScrollTerms() {
 
   return (
     <div>
-      <Button onClick={handleClickOpen('paper')}>Terminos y Condiciones</Button>
+      <Button onClick={handleClickOpen('paper')} sx={{color: '#a8a3b5', '&: hover':{color:'red'}}}>Terminos y Condiciones</Button>
      
       <Dialog
         open={open}
@@ -65,3 +67,4 @@ export default function ScrollTerms() {
     </div>
   );
 }
+
