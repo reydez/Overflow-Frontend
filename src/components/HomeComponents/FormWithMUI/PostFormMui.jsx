@@ -265,7 +265,7 @@ margin-top:10px;
 flex-direction: column;
 width: 78%;
 border-radius: 4px;
-
+resize: none; 
 border: 2px solid grey ;
 
 
