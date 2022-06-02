@@ -12,9 +12,10 @@ export default function Footer() {
   return (
     <footer>
       <Container sx={{
-                marginTop: '30px',
+                marginTop: 'auto',
                 color: '#a8a3b5',
-                backgroundColor: '#392e57'
+                backgroundColor: '#392e57',
+             
                 }}>
         <Grid container spacing={1}>
           <Grid item xs={6}>
