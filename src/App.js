@@ -11,6 +11,7 @@ import { UserProfile } from "./components/HomeComponents/UserProfile/UserProfile
 import Component404 from "./components/404/Component404";
 import { useDispatch } from "react-redux";
 import { createUser } from "./redux/actions/userActions";
+import Spinner from "./components/spinner/Spinner";
 
 function App() {
   const { isLoading, isAuthenticated, user } = useAuth0();
@@ -23,10 +24,10 @@ function App() {
       }
     };
     createUserFromDispatch();
-  }, [user, isAuthenticated, isLoading]);
+  }, [user, isAuthenticated, isLoading, dispatch]);
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <Spinner />;
   }
 
   return (
