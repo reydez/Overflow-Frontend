@@ -7,12 +7,17 @@ const initialState = {
 const questionsReducer = (state = initialState, action) => {
   switch (action.type) {
     case "GET_QUESTIONS":
-      const copyTempQuestionsTags = action.payload.map((question) => {
-        return {
-          ...question,
-          tags: question.tags.map((tag) => tag.name.toUpperCase()),
-        };
-      });
+      const copyTempQuestionsTags = action.payload
+        .map((question) => {
+          return {
+            ...question,
+            tags: question.tags.map((tag) => tag.name.toUpperCase()),
+          };
+        })
+        .sort(
+          (a, b) =>
+            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
 
       return {
         ...state,

@@ -18,10 +18,9 @@ import { useHistory } from "react-router-dom";
 
 const PostFormMui = () => {
   const dispatch = useDispatch();
-  const history = useHistory()
-  const user = useSelector(state => state.userReducer.user)
+  const history = useHistory();
+  const user = useSelector((state) => state.userReducer.user);
   // console.log(user)
-
 
   //! ------------------------- CheckBoxes-----------------------
   const [moduleSelected, setModuleSelected] = useState("selectModule");
@@ -93,15 +92,19 @@ const PostFormMui = () => {
     ) {
       setValidate(true);
       dispatch(
-        postQuestion({
-          title: title.field,
-          message: description.field,
-          // code: code.field,
-          module: modulo.field,
-          tag: tag.tags,
-        }, user.id)
+        postQuestion(
+          {
+            title: title.field,
+            message: description.field,
+            // code: code.field,
+            module: modulo.field,
+            tag: tag.tags,
+          },
+          user.id
+        )
       );
-      history.push('/questions')
+
+      history.push("/questions");
     } else {
       setValidate(false);
     }
