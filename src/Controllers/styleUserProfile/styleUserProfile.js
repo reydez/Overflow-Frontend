@@ -15,7 +15,12 @@ export const name = (
       fontWeight: "600",
       fontSize: "18px",
       lineHeight: "21px",
-      color: "#413A66",
+      // color: "#413A66",
+      background: 'linear-gradient(74.27deg, #FFB400 -1.05%, rgba(255, 174, 18, 0.44) 50.29%, rgba(254, 177, 23, 0.54136) 62.68%, #FBC02D 116.41%)',
+      webkitBackgroundClip: 'text',
+      webkitTextFillColor: 'transparent',
+      backgroundClip: 'text',
+      textFillColor: 'transparent',
       marginLeft: "170px",
       marginTop: "20px",
     }}

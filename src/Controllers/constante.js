@@ -20,10 +20,20 @@ import { Link } from "react-router-dom";
 // import { PlayDisabled } from "@mui/icons-material";
 import { useAuth0 } from "@auth0/auth0-react";
 import styled from "@emotion/styled";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const ButtonLogOut = () => {
   const { logout } = useAuth0();
-  return <ButtonLogOutDiv><button className="ButtonLogOut"onClick={() => logout()}>Cerrar Sesión</button></ButtonLogOutDiv>
+  return (
+    <ButtonLogOutDiv>
+      <button 
+        className="ButtonLogOut"
+        onClick={() => logout()}
+      >
+        <LogoutIcon sx={{ marginRight: '5px', fontSize:'18px' }}/>Cerrar Sesión
+      </button>
+    </ButtonLogOutDiv>
+  )
 };
 
   
@@ -34,6 +44,7 @@ const ButtonLogOutDiv = styled.div`
     border-radius: 10px;
     background-color: transparent;
     color: #FF808B;
+    cursor: pointer;
     margin: 0 auto;
     margin-top: 50px;
     padding: 5px 10px;
