@@ -5,22 +5,18 @@ import App from "./App";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import store from "./redux/store";
-import { Auth0Provider } from "@auth0/auth0-react";
+import Auth0ProviderWithHistory from "./auth/auth0-provider-with-history";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <Auth0Provider // PROPIEDADES "domain" Y "clientId" SE DEBEN CONFIGURAR DESDE LA PAGINA DE AUTH0
-          domain="dev-fdp66b-n.us.auth0.com"
-          clientId="fmN8jTxwORLlH6KCeOrBozf7dITXTf9z"
-          redirectUri={window.location.origin}
-        >
+      <Auth0ProviderWithHistory>
+        <BrowserRouter>
           <App />
-        </Auth0Provider>
-      </BrowserRouter>
+        </BrowserRouter>
+      </Auth0ProviderWithHistory>
     </Provider>
   </React.StrictMode>
 );

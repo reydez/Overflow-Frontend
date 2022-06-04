@@ -43,6 +43,9 @@ export default function DetailsComponent({
         setComments([response.data, ...comments]);
         setComentarioText("");
       })
+      .catch((error) => {
+        console.log(error);
+      })
       .finally(() => {
         if (!dummy.current) return;
         setTimeout(() => {

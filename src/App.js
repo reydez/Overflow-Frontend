@@ -1,53 +1,72 @@
-import { Switch, Route, BrowserRouter } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Home from "./views/Home";
-import CreateQuestion from "./views/CreateQuestion";
 import LandingPage from "./views/LandingPage";
 import VisualizeQuestion from "./views/VisualizeQuestion";
 import BarLeft from "./components/HomeComponents/BarLeft/BarLeft";
 import PostFormMui from "./components/HomeComponents/FormWithMUI/PostFormMui";
 import FormUser from "./views/FormUser";
-import CardUser from "./components/cardUser/CardUser"
-
+import CardUser from "./components/cardUser/CardUser";
+import { useAuth0 } from "@auth0/auth0-react";
+import ProtectedRoute from "./auth/protected-route";
+import { Redirect } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { UserProfile } from "./components/HomeComponents/UserProfile/UserProfile";
 
 function App() {
+  const { isLoading, isAuthenticated, user } = useAuth0();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      console.log(user);
+    }
+  }, [user, isAuthenticated]);
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+
   return (
-    <BrowserRouter>
-      <Switch>
+    <Switch>
+      <Route exact path="/">
+        {isAuthenticated ? <Redirect to="/questions" /> : <LandingPage />}
+      </Route>
 
-        <Route exact={true} path="/">
-          <LandingPage />
-        </Route>
+      {/* <Route exact={true} path="/questions">
+        <Home />
+      </Route> */}
 
-        <Route exact={true} path="/questions">
-          <Home />
-        </Route>
+      <Route exact path="/questions">
+        {!isAuthenticated ? <Redirect to="/" /> : <Home />}
+      </Route>
 
-        <Route exact={true} path="/visualize-question/:questionId">
+      <Route exact={true} path="/visualize-question/:questionId">
+        {!isAuthenticated ? (
+          <Redirect to="/" />
+        ) : (
           <BarLeft>
             <VisualizeQuestion />
           </BarLeft>
+        )}
+      </Route>
+
+      <Route exact={true} path="/create-question">
+        {!isAuthenticated ? <Redirect to="/" /> : <PostFormMui />}
+      </Route>
+
+      <Route exact={true} path="/UserProfile/" >
+        {!isAuthenticated 
+          ? ( <Redirect to="/" /> )
+          : ( <BarLeft>
+                <UserProfile />
+              </BarLeft>
+            )
+        }
         </Route>
 
-        <Route exact={true} path="/create-question" >
-          {/* <BarLeft> */}
-          <PostFormMui />
-          {/* </BarLeft> */}
-        </Route>
-
-
-
-        <Route exact={true} path="/intro-user">
-          <FormUser />
-        </Route>
-
-        <Route exact={true} path="/user">
-          <CardUser />
-        </Route>
-
-      </Switch>
-
-
-    </BrowserRouter>
+      <Route exact={true} path="/user">
+        <CardUser />
+      </Route>
+    </Switch>
   );
 }
 
