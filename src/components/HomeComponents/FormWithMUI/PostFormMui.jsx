@@ -14,10 +14,13 @@ import Classes from "./PostFormMui.module.css";
 import InputForm from "./StylesForm/InputForm";
 import { NameDiv } from "./StylesForm/styles";
 import InputFormArea from "./StylesForm/InputFormArea";
+import { useHistory } from "react-router-dom";
 
 const PostFormMui = () => {
   const dispatch = useDispatch();
+  const history = useHistory()
   const user = useSelector(state => state.userReducer.user)
+  // console.log(user)
 
 
   //! ------------------------- CheckBoxes-----------------------
@@ -77,10 +80,10 @@ const PostFormMui = () => {
   const [validate, setValidate] = useState(null);
 
   const handleSubmit = (e) => {
-    console.log(title.field, description.field, { modulo, tag });
+    // console.log(title.field, description.field, { modulo, tag });
     e.preventDefault();
     if (!tag.tags.length > 2) {
-      console.log("tienes más de 3");
+      // console.log("tienes más de 3");
       alert("Debes elegir menos de 3 tags");
     } else if (
       title.validate === "true" &&
@@ -98,6 +101,7 @@ const PostFormMui = () => {
           tag: tag.tags,
         }, user.id)
       );
+      history.push('/questions')
     } else {
       setValidate(false);
     }
