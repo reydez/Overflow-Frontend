@@ -61,9 +61,13 @@ const drawer = (
          <ListAltIcon sx={{ marginRight: '10px', fontSize:'18px' }}/> Categorías
         </Button>,
         <Divider />,
-        <Button sx={{ color: "#a8a3b5", "&:hover": { color: "red" } }}>
-          <AccountBoxIcon sx={{ marginRight: '10px', fontSize:'18px' }} />Mi Perfil
-        </Button>,
+
+        <Link to={`/UserProfile/`}>
+          <Button sx={{ color: "#a8a3b5", "&:hover": { color: "red" } }}>
+            <AccountBoxIcon sx={{ marginRight: '10px', fontSize:'18px' }} />Mi Perfil
+          </Button>
+        </Link>,
+
         <Button sx={{ color: "#a8a3b5", "&:hover": { color: "red" } }}>
           <FavoriteIcon sx={{ marginRight: '10px', fontSize:'18px' }} />Mis Favoritos
         </Button>,
