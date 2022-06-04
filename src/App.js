@@ -1,78 +1,75 @@
-import { Switch, Route, BrowserRouter } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Home from "./views/Home";
-import CreateQuestion from "./views/CreateQuestion";
 import LandingPage from "./views/LandingPage";
 import VisualizeQuestion from "./views/VisualizeQuestion";
 import BarLeft from "./components/HomeComponents/BarLeft/BarLeft";
-import PostFormMui from "./components/HomeComponents/FormWithMUI/PostFormMui";
-import FormUser from "./views/FormUser";
-import CardUser from "./components/cardUser/CardUser"
-import { useContext } from "react";
-import { ColorModeContext } from "./darkMode";
-import { bgcolor } from "@mui/system";
-import { Button, Box, dividerClasses } from "@mui/material";
-
+import PostFormMui from "./components/HomeComponents/FormWithMUI/FormularioQuestion";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Redirect } from "react-router-dom";
+import { useEffect } from "react";
+import { UserProfile } from "./components/HomeComponents/UserProfile/UserProfile";
+import Component404 from "./components/404/Component404";
+import { useDispatch } from "react-redux";
+import { createUser } from "./redux/actions/userActions";
+import Spinner from "./components/spinner/Spinner";
 
 function App() {
-  // const {mode, toggleMode} = useContext(ColorModeContext);
+  const { isLoading, isAuthenticated, user } = useAuth0();
+  const dispatch = useDispatch();
 
-  // console.log(mode, "mode")
+  useEffect(() => {
+    const createUserFromDispatch = () => {
+      if (isAuthenticated) {
+        dispatch(createUser(user));
+      }
+    };
+    createUserFromDispatch();
+  }, [user, isAuthenticated, isLoading, dispatch]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
   return (
-      
-    
-      // <Box sx={{
-      //   display: 'flex',
-      //   width: '100%',
-      //   alignItems: 'center',
-      //   justifyContent: 'center',
-      //   bgcolor: 'background.default',
-      //   color: 'text.primary',
-      //   boderRadius: 1,
-      //   p: 3,
-      // }}>
-      //   <Button onClick={toggleMode}>
-      //     change Mode
-      //   </Button>
-      // </Box>
+    <Switch>
+      <Route exact path="/">
+        {isAuthenticated ? <Redirect to="/questions" /> : <LandingPage />}
+      </Route>
 
-    <BrowserRouter>
-      <Switch>
+      {/* <Route exact path="/questions">
+        {!isAuthenticated ? <Redirect to="/" /> : <Home />}
+      </Route> */}
 
-        <Route exact={true} path="/">
-          <LandingPage />
-        </Route>
+      <Route exact path="/questions">
+        {!isAuthenticated ? <Redirect to="/" /> : <Home />}
+      </Route>
 
-        <Route exact={true} path="/questions">
-          <Home />
-        </Route>
-
-        <Route exact={true} path="/visualize-question/:questionId">
+      <Route exact={true} path="/visualize-question/:questionId">
+        {!isAuthenticated ? (
+          <Redirect to="/" />
+        ) : (
           <BarLeft>
             <VisualizeQuestion />
           </BarLeft>
-        </Route>
+        )}
+      </Route>
 
-        <Route exact={true} path="/create-question" >
-          {/* <BarLeft> */}
-          <PostFormMui />
+      <Route exact={true} path="/create-question">
+        {!isAuthenticated ? <Redirect to="/" /> : <PostFormMui />}
+      </Route>
 
-          {/* <CreateQuestion /> */}
-          {/* </BarLeft> */}
-        </Route>
+      <Route exact={true} path="/user-profile">
+        {!isAuthenticated ? (
+          <Redirect to="/" />
+        ) : (
+          <BarLeft>
+            <UserProfile />
+          </BarLeft>
+        )}
+      </Route>
 
-
-        <Route exact={true} path="/intro-user">
-          <FormUser />
-        </Route>
-
-        <Route exact={true} path="/user">
-          <CardUser />
-        </Route>
-
-      </Switch>
-
-
-    </BrowserRouter>
+      {<Route path="*" exact={true} component={Component404} />}
+    </Switch>
   );
 }
 

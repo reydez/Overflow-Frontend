@@ -9,18 +9,21 @@ import CssBaseline from '@mui/material/CssBaseline';
 import {ColorContextProvider} from './darkMode/index';
 
 
+import Auth0ProviderWithHistory from "./auth/auth0-provider-with-history";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
-      <Provider store={store}>
-      <BrowserRouter>
+    <Provider store={store}>
+      <Auth0ProviderWithHistory>
+        <BrowserRouter>
         <CssBaseline />
         <ColorContextProvider>
         <App />
         </ColorContextProvider>
-      </BrowserRouter>
+        </BrowserRouter>
+      </Auth0ProviderWithHistory>
     </Provider>
       
   </React.StrictMode>

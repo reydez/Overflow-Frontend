@@ -7,57 +7,14 @@ import Toolbar from "@mui/material/Toolbar";
 import drawer from "../../../Controllers/constante.js";
 import { Button, IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import Avatar from "../Avatars/Avatars.jsx";
-import { styled, alpha } from "@mui/material/styles";
-import InputBase from "@mui/material/InputBase";
 import SearchBar from "../SearchBar/SearchBar.jsx";
-import { Questions } from "../Questions/Questions.jsx";
 import { Link } from "react-router-dom";
+import PerfilIcon from "../Perfil/PerfilIcon.jsx";
 
 
 /* aqui va el componente de lisandro search  */
 
 const drawerWidth = 240;
-
-/* const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(3),
-    width: "auto",
-  },
-}));
-
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
-  },
-})); */
 
 export default function BarLeft(props) {
   const { window } = props;
@@ -81,7 +38,7 @@ export default function BarLeft(props) {
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
-         backgroundColor: "#301b70",
+          backgroundColor: "#301b70",
         }}
       >
         <Toolbar>
@@ -96,19 +53,22 @@ export default function BarLeft(props) {
           </IconButton>
           {/* <Avatar /> */}
           <Link to={"/create-question"}>
-          <Button /* disableRipple  */
+            <Button /* disableRipple  */
               sx={{
-                marginLeft:'30px',
-                borderRadius:'20px',
-                color: '#413a66',
-                fontSize: '12px',
-                padding: '5px 10px',
-                background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)', 
-                boxShadow: '0 3px 5px 2px rgba(255,105,135, .3)' 
-                }}>
-                Hacer una pregunta</Button>
+                marginLeft: "30px",
+                borderRadius: "20px",
+                color: "#413a66",
+                fontSize: "12px",
+                padding: "5px 10px",
+                background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+                boxShadow: "0 3px 5px 2px rgba(255,105,135, .3)",
+              }}
+            >
+              Hacer una pregunta
+            </Button>
           </Link>
           <SearchBar />
+          <PerfilIcon />
         </Toolbar>
       </AppBar>
 

@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
 import { QuestionCard } from "../QuestionCard/QuestionCard";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -33,6 +34,7 @@ const SideBar = styled.div`
 
 const CardQuestionContainer = styled.div`
   color: #a8a3b5;
+
   height: 60px;
   width: 80%;
   background-color: #392e57;
@@ -47,6 +49,7 @@ const CardQuestionContainer = styled.div`
     
     text-decoration: none;
     padding-top: 10px;
+
     span {
       padding-left: 100px;
     }
@@ -80,6 +83,8 @@ export const Questions = () => {
   const [pageNumberLimit, setPageNumberLimit] = useState(5);
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5);
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
+
+  console.log(questions);
 
   useEffect(() => {
     const loadQuestions = async () => {
@@ -178,7 +183,10 @@ export const Questions = () => {
               ))
             )}
           </CardQuestion>
-        <Footer />
+
+          <Box>
+            <Footer />
+          </Box>
         </CardQuestionContainer>
         <SideBar>
           <CounterSideBar>
