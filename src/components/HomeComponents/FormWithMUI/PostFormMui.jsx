@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
 import { postQuestion } from "../../../redux/actions/questionsActions";
@@ -17,6 +17,7 @@ import InputFormArea from "./StylesForm/InputFormArea";
 
 const PostFormMui = () => {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.userReducer.user);
 
   //! ------------------------- CheckBoxes-----------------------
   const [moduleSelected, setModuleSelected] = useState("selectModule");
@@ -75,6 +76,7 @@ const PostFormMui = () => {
   const [validate, setValidate] = useState(null);
 
   const handleSubmit = (e) => {
+    console.log(title.field, description.field, { modulo, tag });
     e.preventDefault();
     if (!tag.tags.length > 2) {
       console.log("tienes más de 3");
@@ -87,24 +89,26 @@ const PostFormMui = () => {
     ) {
       setValidate(true);
       dispatch(
-        postQuestion({
-          title: title.field,
-          description: description.field,
-          code: code.field,
-          modulo: modulo.field,
-          tag: tag.tags,
-        })
+        postQuestion(
+          {
+            title: title.field,
+            message: description.field,
+            module: modulo.field,
+            tag: tag.tags,
+          },
+          user.id
+        )
       );
     } else {
       setValidate(false);
     }
   };
 
-  console.log("Estos son los tags:", tag.tags);
+  /*  console.log("Estos son los tags:", tag.tags);
   console.log("Esto es el title:", title.field);
   console.log("Esta es la img code:", code.field);
   console.log("Modulo:", modulo.field);
-  console.log("Esta es la descripción:", description.field);
+  console.log("Esta es la descripción:", description.field); */
 
   // console.log("Esto es el title:", title.validate)
   // console.log("Estos son los tags:", tag.validate)

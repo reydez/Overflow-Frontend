@@ -18,7 +18,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const createUserFromDispatch = async () => {
+    const createUserFromDispatch = () => {
       if (isAuthenticated) {
         dispatch(createUser(user));
       }
@@ -68,7 +68,7 @@ function App() {
         )}
       </Route>
 
-      <Route path="*" exact={true} component={Component404} />
+      {<Route path="*" exact={true} component={Component404} />}
     </Switch>
   );
 }
