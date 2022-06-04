@@ -3,7 +3,7 @@ import axios from "axios";
 export const getModules = () => {
   return async (dispatch) => {
     try {
-      let modules = await axios.get("http://localhost:3001/modules");
+      let modules = await axios.get("/modules");
       // console.log(modules.data)
       return dispatch({
         type: "GET_MODULES",

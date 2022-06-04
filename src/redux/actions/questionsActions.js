@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const getQuestions = () => async (dispatch) => {
   try {
-    const response = await axios.get("http://localhost:3001/posts");
+    const response = await axios.get("/posts");
     dispatch({ type: "GET_QUESTIONS", payload: response.data });
   } catch (error) {
     console.log(error);
@@ -11,7 +11,7 @@ export const getQuestions = () => async (dispatch) => {
 
 export const getQuestionDetails = (id) => async (dispatch) => {
   try {
-    const response = await axios.get(`http://localhost:3001/posts/${id}`);
+    const response = await axios.get(`/posts/${id}`);
     dispatch({ type: "GET_QUESTION_DETAILS", payload: response.data[0] });
   } catch (error) {
     console.log(error);
@@ -21,7 +21,7 @@ export const getQuestionDetails = (id) => async (dispatch) => {
 export const getQuestionsByName = (name) => async (dispatch) => {
   try {
     const questionsByName = await axios.get(
-      `http://localhost:3001/posts?title=${name}`
+      `/posts?title=${name}`
     );
 
     dispatch({ type: "GET_QUESTIONS_BY_NAME", payload: questionsByName.data });
@@ -39,9 +39,10 @@ export const orderByDate = () => {
 export const postQuestion = (payload, id) => {
   return async function (dispatch) {
     let newPost = await axios.post(
-      `http://localhost:3001/posts/${id}`,
+      `/posts/${id}`,
       payload
     );
+
     return newPost;
   };
 };
