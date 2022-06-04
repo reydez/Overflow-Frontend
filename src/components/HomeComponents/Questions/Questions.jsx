@@ -83,6 +83,8 @@ export const Questions = () => {
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5);
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
 
+  console.log(questions);
+
   useEffect(() => {
     const loadQuestions = async () => {
       setLoadin(true);

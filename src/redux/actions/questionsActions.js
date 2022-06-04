@@ -36,9 +36,12 @@ export const orderByDate = () => {
   };
 };
 
-export const postQuestion = (payload) => {
+export const postQuestion = (payload, id) => {
   return async function (dispatch) {
-    let newPost = await axios.post(`http://localhost:3001/post`, payload);
+    let newPost = await axios.post(
+      `http://localhost:3001/posts/${id}`,
+      payload
+    );
     return newPost;
   };
 };
@@ -49,8 +52,6 @@ export const orderByModule = (module) => {
     payload: module,
   };
 };
-
-
 
 export const orderByTag = (tag) => {
   return {

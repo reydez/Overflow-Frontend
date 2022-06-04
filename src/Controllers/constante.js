@@ -9,41 +9,38 @@ import {
   ListItemText,
   Toolbar,
 } from "@mui/material";
-import HomeIcon from '@mui/icons-material/Home';
-import ListAltIcon from '@mui/icons-material/ListAlt';
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import HomeIcon from "@mui/icons-material/Home";
+import ListAltIcon from "@mui/icons-material/ListAlt";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 // import MailIcon from "@mui/icons-material/Mail";
 // import InboxIcon from "@mui/icons-material/MoveToInbox";
 import { Link } from "react-router-dom";
 // import { PlayDisabled } from "@mui/icons-material";
 import { useAuth0 } from "@auth0/auth0-react";
 import styled from "@emotion/styled";
-import LogoutIcon from '@mui/icons-material/Logout';
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const ButtonLogOut = () => {
   const { logout } = useAuth0();
   return (
     <ButtonLogOutDiv>
-      <button 
-        className="ButtonLogOut"
-        onClick={() => logout()}
-      >
-        <LogoutIcon sx={{ marginRight: '5px', fontSize:'18px' }}/>Cerrar Sesión
+      <button className="ButtonLogOut" onClick={() => logout()}>
+        <LogoutIcon sx={{ marginRight: "5px", fontSize: "18px" }} />
+        Cerrar Sesión
       </button>
     </ButtonLogOutDiv>
-  )
+  );
 };
 
-  
 const ButtonLogOutDiv = styled.div`
   .ButtonLogOut {
     display: flex;
-    border: 1px solid #A8A3B5;
+    border: 1px solid #a8a3b5;
     border-radius: 10px;
     background-color: transparent;
-    color: #FF808B;
+    color: #ff808b;
     cursor: pointer;
     margin: 0 auto;
     margin-top: 50px;
@@ -53,8 +50,7 @@ const ButtonLogOutDiv = styled.div`
     font-family: Roboto;
     font-size: 15px;
   }
-`
-
+`;
 
 const drawer = (
   <div>
@@ -64,26 +60,31 @@ const drawer = (
       {/* , "Comunidad" */}
       {[
         <Link to="/questions">
-          <Button sx={{ color: "#a8a3b5", "&:hover": { color: "red"} }}>
-            <HomeIcon sx={{ marginRight: '10px', fontSize:'18px' }}/>Home
+          <Button sx={{ color: "#a8a3b5", "&:hover": { color: "red" } }}>
+            <HomeIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
+            Home
           </Button>
         </Link>,
         <Button sx={{ color: "#a8a3b5", "&:hover": { color: "red" } }}>
-         <ListAltIcon sx={{ marginRight: '10px', fontSize:'18px' }}/> Categorías
+          <ListAltIcon sx={{ marginRight: "10px", fontSize: "18px" }} />{" "}
+          Categorías
         </Button>,
         <Divider />,
 
-        <Link to={`/UserProfile/`}>
+        <Link to={`/user-profile`}>
           <Button sx={{ color: "#a8a3b5", "&:hover": { color: "red" } }}>
-            <AccountBoxIcon sx={{ marginRight: '10px', fontSize:'18px' }} />Mi Perfil
+            <AccountBoxIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
+            Mi Perfil
           </Button>
         </Link>,
 
         <Button sx={{ color: "#a8a3b5", "&:hover": { color: "red" } }}>
-          <FavoriteIcon sx={{ marginRight: '10px', fontSize:'18px' }} />Mis Favoritos
+          <FavoriteIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
+          Mis Favoritos
         </Button>,
         <Button sx={{ color: "#a8a3b5", "&:hover": { color: "red" } }}>
-          <PeopleAltIcon sx={{ marginRight: '10px', fontSize:'18px' }}/>Usuarios
+          <PeopleAltIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
+          Usuarios
         </Button>,
       ].map((text, index) => (
         <ListItem
