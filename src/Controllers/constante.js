@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Button,
   Divider,
@@ -8,17 +9,41 @@ import {
   ListItemText,
   Toolbar,
 } from "@mui/material";
-import MailIcon from "@mui/icons-material/Mail";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
+import HomeIcon from '@mui/icons-material/Home';
+import ListAltIcon from '@mui/icons-material/ListAlt';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+// import MailIcon from "@mui/icons-material/Mail";
+// import InboxIcon from "@mui/icons-material/MoveToInbox";
 import { Link } from "react-router-dom";
-import { PlayDisabled } from "@mui/icons-material";
+// import { PlayDisabled } from "@mui/icons-material";
 import { useAuth0 } from "@auth0/auth0-react";
-import React from "react";
+import styled from "@emotion/styled";
 
 const ButtonLogOut = () => {
   const { logout } = useAuth0();
-  return <button onClick={() => logout()}>Cerrar session.</button>;
+  return <ButtonLogOutDiv><button className="ButtonLogOut"onClick={() => logout()}>Cerrar Sesión</button></ButtonLogOutDiv>
 };
+
+  
+const ButtonLogOutDiv = styled.div`
+  .ButtonLogOut {
+    display: flex;
+    border: 1px solid #A8A3B5;
+    border-radius: 10px;
+    background-color: transparent;
+    color: #FF808B;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 5px 10px;
+    font-style: normal;
+    font-weight: 500;
+    font-family: Roboto;
+    font-size: 15px;
+  }
+`
+
 
 const drawer = (
   <div>
@@ -28,22 +53,22 @@ const drawer = (
       {/* , "Comunidad" */}
       {[
         <Link to="/questions">
-          <Button sx={{ color: "#a8a3b5", "&:hover": { color: "red" } }}>
-            Home
+          <Button sx={{ color: "#a8a3b5", "&:hover": { color: "red"} }}>
+            <HomeIcon sx={{ marginRight: '10px', fontSize:'18px' }}/>Home
           </Button>
         </Link>,
         <Button sx={{ color: "#a8a3b5", "&:hover": { color: "red" } }}>
-          Categorías
+         <ListAltIcon sx={{ marginRight: '10px', fontSize:'18px' }}/> Categorías
         </Button>,
         <Divider />,
         <Button sx={{ color: "#a8a3b5", "&:hover": { color: "red" } }}>
-          Mi Perfil
+          <AccountBoxIcon sx={{ marginRight: '10px', fontSize:'18px' }} />Mi Perfil
         </Button>,
         <Button sx={{ color: "#a8a3b5", "&:hover": { color: "red" } }}>
-          Mis Favoritos
+          <FavoriteIcon sx={{ marginRight: '10px', fontSize:'18px' }} />Mis Favoritos
         </Button>,
         <Button sx={{ color: "#a8a3b5", "&:hover": { color: "red" } }}>
-          Usuarios
+          <PeopleAltIcon sx={{ marginRight: '10px', fontSize:'18px' }}/>Usuarios
         </Button>,
       ].map((text, index) => (
         <ListItem
