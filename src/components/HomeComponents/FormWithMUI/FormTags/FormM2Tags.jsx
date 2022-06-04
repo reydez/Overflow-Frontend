@@ -37,7 +37,7 @@ const FormM2Tags = ({ setTag, tag }) => {
     }
 
     // console.log(state)
-    console.log(tagsM2)
+    // console.log(tagsM2)
     return (
         <React.Fragment>
             {/* <div className={Classes.containG}> */}

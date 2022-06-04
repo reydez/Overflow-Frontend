@@ -31,7 +31,9 @@ const PostFormMui = () => {
 
 
     const handleOnChange = (e) => {
+        console.log('Soy el detector del select: ', e.target.value);
         setModuleSelected(e.target.value);
+
         // console.log('Este es el name', e.target.name, 'Este es el value', e.target.value)
 
         setModulo({
@@ -98,18 +100,18 @@ const PostFormMui = () => {
         }
     }
 
-
-    console.log("Estos son los tags:", tag.tags)
-    console.log("Esto es el title:", title.field)
-    console.log("Esta es la img code:", code.field)
-    console.log("Modulo:", modulo.field)
-    console.log("Esta es la descripción:", description.field)
+    // console.log(moduleSelected)
+    // console.log("Esto es el title:", title.field)
+    // console.log("Esta es la descripción:", description.field)
+    // console.log("Esta es la img code:", code.field)
+    // console.log("Modulo:", modulo.field)
+    // console.log("Estos son los tags:", tag.tags)
 
     // console.log("Esto es el title:", title.validate)
-    // console.log("Estos son los tags:", tag.validate)
+    // console.log("Esta es la descripción:", description.validate)
     // console.log("Esta es la img code:", code.validate)
     // console.log("Modulo:", modulo.validate)
-    // console.log("Esta es la descripción:", description.validate)
+    // console.log("Estos son los tags:", tag.validate)
     return (
         <div className={Classes.layout}>
 
@@ -117,11 +119,8 @@ const PostFormMui = () => {
 
 
             <Formulario
-
                 onSubmit={handleSubmit}
             >
-
-
 
 
                 <div className={Classes.container}>
@@ -140,7 +139,7 @@ const PostFormMui = () => {
                     </NameDiv>
 
                     <InputForm
-                        // type="url"
+                        type="url"
                         state={code}
                         changeState={setCode}
                         name="code"
@@ -211,7 +210,7 @@ const PostFormMui = () => {
 
                 {
                     validate === true &&
-                    <Success>Successfully saved, redirecting to home</Success>
+                    <Success>Pregunta realizada correctamente, redericcionando a la página principal</Success>
                 }
 
             </Formulario>
