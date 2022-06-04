@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
 import { postQuestion } from "../../../redux/actions/questionsActions";
@@ -17,6 +17,7 @@ import InputFormArea from "./StylesForm/InputFormArea";
 
 const PostFormMui = () => {
   const dispatch = useDispatch();
+  const user = useSelector(state => state.userReducer.user)
 
   //! ------------------------- CheckBoxes-----------------------
   const [moduleSelected, setModuleSelected] = useState("selectModule");
@@ -49,16 +50,16 @@ const PostFormMui = () => {
   };
 
   useEffect(() => {
-    moduleSelected === "m1"
+    moduleSelected === "M1"
       ? setM1TagsSelected(true)
       : setM1TagsSelected(false);
-    moduleSelected === "m2"
+    moduleSelected === "M2"
       ? setM2TagsSelected(true)
       : setM2TagsSelected(false);
-    moduleSelected === "m3"
+    moduleSelected === "M3"
       ? setM3TagsSelected(true)
       : setM3TagsSelected(false);
-    moduleSelected === "m4"
+    moduleSelected === "M4"
       ? setM4TagsSelected(true)
       : setM4TagsSelected(false);
   }, [moduleSelected]);
@@ -89,28 +90,17 @@ const PostFormMui = () => {
       dispatch(
         postQuestion({
           title: title.field,
-          description: description.field,
-          code: code.field,
-          modulo: modulo.field,
+          message: description.field,
+          // code: code.field,
+          module: modulo.field,
           tag: tag.tags,
-        })
+        }, user.id)
       );
     } else {
       setValidate(false);
     }
   };
 
-  console.log("Estos son los tags:", tag.tags);
-  console.log("Esto es el title:", title.field);
-  console.log("Esta es la img code:", code.field);
-  console.log("Modulo:", modulo.field);
-  console.log("Esta es la descripción:", description.field);
-
-  // console.log("Esto es el title:", title.validate)
-  // console.log("Estos son los tags:", tag.validate)
-  // console.log("Esta es la img code:", code.validate)
-  // console.log("Modulo:", modulo.validate)
-  // console.log("Esta es la descripción:", description.validate)
   return (
     <div className={Classes.layout}>
       <Formulario onSubmit={handleSubmit}>
@@ -162,10 +152,10 @@ const PostFormMui = () => {
               name="field"
             >
               <option value={"selectModule"}>MODULES</option>
-              <option value={"m1"}>M1</option>
-              <option value={"m2"}>M2</option>
-              <option value={"m3"}>M3</option>
-              <option value={"m4"}>M4</option>
+              <option value={"M1"}>M1</option>
+              <option value={"M2"}>M2</option>
+              <option value={"M3"}>M3</option>
+              <option value={"M4"}>M4</option>
             </select>
           </label>
         </div>
