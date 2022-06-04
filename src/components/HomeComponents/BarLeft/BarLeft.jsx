@@ -11,6 +11,7 @@ import SearchBar from "../SearchBar/SearchBar.jsx";
 import { Link } from "react-router-dom";
 import PerfilIcon from "../Perfil/PerfilIcon.jsx";
 
+
 /* aqui va el componente de lisandro search  */
 
 const drawerWidth = 240;
@@ -26,8 +27,11 @@ export default function BarLeft(props) {
     setMobileOpen(!mobileOpen);
   };
 
+
+
   return (
-    <Box sx={{ display: "flex" }}>
+     
+      <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar
         position="fixed"
