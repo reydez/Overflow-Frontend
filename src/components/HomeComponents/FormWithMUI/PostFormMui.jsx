@@ -21,17 +21,13 @@ const PostFormMui = () => {
 
     const dispatch = useDispatch();
 
-    //------------------------- CheckBoxes-----------------------
+    //! ------------------------- CheckBoxes-----------------------
     const [moduleSelected, setModuleSelected] = useState("selectModule");
 
     const [m1TagsSelected, setM1TagsSelected] = useState(false)
     const [m2TagsSelected, setM2TagsSelected] = useState(false)
     const [m3TagsSelected, setM3TagsSelected] = useState(false)
     const [m4TagsSelected, setM4TagsSelected] = useState(false)
-
-
-
-
 
 
     const handleOnChange = (e) => {
@@ -62,7 +58,7 @@ const PostFormMui = () => {
         moduleSelected === "m3" ? setM3TagsSelected(true) : setM3TagsSelected(false);
         moduleSelected === "m4" ? setM4TagsSelected(true) : setM4TagsSelected(false);
     }, [moduleSelected])
-    //------------------------- CheckBoxes-----------------------
+    //! ------------------------- CheckBoxes-----------------------
 
 
 
