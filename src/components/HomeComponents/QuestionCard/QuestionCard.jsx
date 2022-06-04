@@ -44,13 +44,13 @@ export const QuestionCard = ({ question }) => {
 
   return (
     <Paper
-      sx={{
-        p: 2,
-        margin: "auto",
-        flexGrow: 1,
-        backgroundColor: (theme) =>
-          theme.palette.mode === "dark" ? "#1A2027" : "transparent",
-      }}
+    sx={{
+      p: 2,
+      margin: "auto",
+      flexGrow: 1,
+      backgroundColor: (theme) =>
+      theme.palette.mode === "dark" ? "#1A2027" : "transparent",
+    }}
     >
       <Grid container spacing={2}>
         <Grid item>
@@ -167,12 +167,12 @@ export const QuestionCard = ({ question }) => {
               <Stack direction="row" spacing={1}>
                 {question.tags.map((tag, index) => (
                   <Chip
-                    label={<Box sx={{ color: "white" }}>{tag}</Box>}
-                    key={index}
-                    variant="outlined"
-                    size="small"
+                  label={<Box sx={{ color: "white" }}>{tag}</Box>}
+                  key={index}
+                  variant="outlined"
+                  size="small"
                   />
-                ))}
+                  ))}
               </Stack>
             </Grid>
           </Grid>
@@ -182,13 +182,13 @@ export const QuestionCard = ({ question }) => {
                      icon={<FavoriteBorder />}
                      checkedIcon={<Favorite />}
                      sx={{
-                        color: pink[800],
-                        '&.Mui-checked': {
+                       color: pink[800],
+                       '&.Mui-checked': {
                         color: pink[600],
-                         },
+                      },
                         top: 10,
                         left: -50,
-                        }}
+                      }}
                      />
           </Grid>
           <Grid item>
@@ -226,4 +226,5 @@ export const QuestionCard = ({ question }) => {
     </Paper>
   );
 };
+
 

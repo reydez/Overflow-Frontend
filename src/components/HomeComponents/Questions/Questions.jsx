@@ -18,6 +18,7 @@ import Avatars from "../Avatars/Avatars";
 import PaginationComponent from "../../paginationComponents/PaginationComponent";
 import Footer from "../../../views/Footer";
 
+
 const MainContainer = styled.div`
   width: 100%;
   display: flex;
@@ -43,7 +44,7 @@ const CardQuestionContainer = styled.div`
     align-items: center;
   }
   .CardQuestionTitle button {
-    color: #a8a3b5;
+    
     text-decoration: none;
     padding-top: 10px;
     span {
@@ -52,8 +53,8 @@ const CardQuestionContainer = styled.div`
   }
 
   .buttonFilter:hover {
-    color: red;
-    background-color: #392e57;
+  
+  
   }
 
   @media (max-width: 1050px) {
@@ -135,6 +136,8 @@ export const Questions = () => {
     "Sequelize",
     "HTML",
   ];
+
+
 
   return (
     <div>
