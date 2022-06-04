@@ -3,7 +3,9 @@ import styled, { css } from "styled-components";
 import { Label, Error, DivIcon } from "./FormActStyled"
 
 
-const InputForm = ({ label, name, placeholder, error, type, state, changeState, regularExpresion }) => {
+const InputForm = ({ label, name, placeholder, error, state, changeState, regularExpresion }) => {
+
+
 
     const handleChange = (e) => {
         console.log(e.target.value)
@@ -52,7 +54,7 @@ export default InputForm
 const colores = {
     inputPurple: "#413A66",
     error: "#f66060",
-    succes: "#71ff4a"
+    succes: "#71ff4a99"
 }
 
 const GrupoInput = styled.div`
@@ -60,29 +62,28 @@ const GrupoInput = styled.div`
     z-index: 10;
 `
 
-const Description = styled.textarea`
-/* display: flex; */
-/* align-items: center; */
-/* text-align: center; */
+// const Description = styled.textarea`
+// /* display: flex; */
+// /* align-items: center; */
+// /* text-align: center; */
 
-margin-top:10px;
-flex-direction: column;
-width: 78%;
-border-radius: 4px;
-
-border: 2px solid grey ;
-
-
-`
+// margin-top:10px;
+// flex-direction: column;
+// width: 78%;
+// border-radius: 4px;
+// border: 2px solid grey ;
+// `
 
 const Input = styled.textarea`
+    /* padding: 5px; */
     width: 70%;
+    resize: none;
     background: #fff;
     border-radius: 4px;
-    height: 105px;
+    height: 155px;
     font-size: 14px;
     line-height: 20px;
-    padding: 0 40px 0 10px;
+    padding: 12px 40px 0 10px;
     transition: 0.3s ease all;
     border: 2px solid gray;
     &:hover{
@@ -100,3 +101,5 @@ const Input = styled.textarea`
         border: 2px solid ${colores.error} !important;
     `}
 `
+
+

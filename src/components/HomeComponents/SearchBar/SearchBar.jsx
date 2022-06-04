@@ -5,9 +5,16 @@ import Toolbar from "@mui/material/Toolbar";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
+import SvgIcon from "@mui/material/SvgIcon";
+import IconButton from "@mui/material/IconButton";
 import Swal from "sweetalert2";
 import { getQuestionsByName } from "../../../redux/actions/questionsActions";
 import { useDispatch } from "react-redux";
+import { useContext } from "react";
+import { ColorModeContext } from "../../../darkMode/index";
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -86,6 +93,8 @@ export default function SearchBar() {
     }
   };
 
+  const {mode, toggleMode} = useContext(ColorModeContext);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Toolbar>
@@ -104,6 +113,19 @@ export default function SearchBar() {
             Buscar
           </Button>
         </Search>
+        <Box sx={{
+        marginLeft: 50,
+        
+        
+       
+      }}>
+        <IconButton variant="fixed"  size="small" sx={{  }} onClick={toggleMode} >
+          <SvgIcon >
+            <DarkModeIcon  />
+          </SvgIcon>
+          
+        </IconButton>
+      </Box>
       </Toolbar>
     </Box>
   );

@@ -20,6 +20,7 @@
 .h1 {
     color: #413A66;
     text-align: center;
+    /* display: block; */
 }
 
 .button {
@@ -59,8 +60,8 @@
     align-items: center;
     text-align: left;
     margin-top: 5px;
-    padding: 8px;
-    border: 1px solid gray;
+    padding: 12px;
+    border: 2px solid gray;
     color: gray;
     cursor: pointer;
     border-radius: 5px;
