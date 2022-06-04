@@ -29,12 +29,11 @@ const SideBar = styled.div`
   height: 60px;
   margin-left: 30px;
   width: 15%;
-  
 `;
 
 const CardQuestionContainer = styled.div`
   color: #a8a3b5;
-  
+
   height: 60px;
   width: 80%;
   background-color: #392e57;
@@ -49,7 +48,7 @@ const CardQuestionContainer = styled.div`
     color: #a8a3b5;
     text-decoration: none;
     padding-top: 10px;
-    
+
     span {
       padding-left: 100px;
     }
@@ -71,7 +70,6 @@ const CardQuestion = styled.div`
   margin-top: 25px;
   width: 100%;
   background-color: #392e57;
- 
 `;
 
 export const Questions = () => {
@@ -157,31 +155,7 @@ export const Questions = () => {
             <Button className="buttonFilter">Mejores Calificadas</Button>
           </div>
 
-         {/*  <PaginationComponent
-            questions={questions}
-            itemsPerPage={itemsPerPage}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-            pageNumberLimit={pageNumberLimit}
-            setPageNumberLimit={setPageNumberLimit}
-            maxPageNumberLimit={maxPageNumberLimit}
-            setMaxPageNumberLimit={setMaxPageNumberLimit}
-            minPageNumberLimit={minPageNumberLimit}
-            setMinPageNumberLimit={setMinPageNumberLimit}
-            currentItems={currentItems}
-          /> */}
-
-          <CardQuestion>
-            {loading ? (
-              <h4>Loading Questions...</h4>
-            ) : (
-              currentItems.map((question, index) => (
-                <QuestionCard question={question} key={index} />
-              ))
-            )}
-          </CardQuestion>
-         
-        <PaginationComponent
+          <PaginationComponent
             questions={questions}
             itemsPerPage={itemsPerPage}
             currentPage={currentPage}
@@ -194,9 +168,20 @@ export const Questions = () => {
             setMinPageNumberLimit={setMinPageNumberLimit}
             currentItems={currentItems}
           />
-        <Box >
-        <Footer />
-        </Box>
+
+          <CardQuestion>
+            {loading ? (
+              <h4>Loading Questions...</h4>
+            ) : (
+              currentItems.map((question, index) => (
+                <QuestionCard question={question} key={index} />
+              ))
+            )}
+          </CardQuestion>
+
+          <Box>
+            <Footer />
+          </Box>
         </CardQuestionContainer>
         <SideBar>
           <CounterSideBar>
