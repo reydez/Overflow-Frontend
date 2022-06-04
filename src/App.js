@@ -10,6 +10,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import ProtectedRoute from "./auth/protected-route";
 import { Redirect } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { UserProfile } from "./components/HomeComponents/UserProfile/UserProfile";
 
 function App() {
   const { isLoading, isAuthenticated, user } = useAuth0();
@@ -51,6 +52,16 @@ function App() {
       <Route exact={true} path="/create-question">
         {!isAuthenticated ? <Redirect to="/" /> : <PostFormMui />}
       </Route>
+
+      <Route exact={true} path="/UserProfile/" >
+        {!isAuthenticated 
+          ? ( <Redirect to="/" /> )
+          : ( <BarLeft>
+                <UserProfile />
+              </BarLeft>
+            )
+        }
+        </Route>
 
       <Route exact={true} path="/user">
         <CardUser />
