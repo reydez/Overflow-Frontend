@@ -19,6 +19,7 @@ const PostFormMui = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.userReducer.user)
 
+
   //! ------------------------- CheckBoxes-----------------------
   const [moduleSelected, setModuleSelected] = useState("selectModule");
 
@@ -76,6 +77,7 @@ const PostFormMui = () => {
   const [validate, setValidate] = useState(null);
 
   const handleSubmit = (e) => {
+    console.log(title.field, description.field, { modulo, tag });
     e.preventDefault();
     if (!tag.tags.length > 2) {
       console.log("tienes más de 3");

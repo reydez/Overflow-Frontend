@@ -3,7 +3,7 @@ import Home from "./views/Home";
 import LandingPage from "./views/LandingPage";
 import VisualizeQuestion from "./views/VisualizeQuestion";
 import BarLeft from "./components/HomeComponents/BarLeft/BarLeft";
-import PostFormMui from "./components/HomeComponents/FormWithMUI/PostFormMui";
+import PostFormMui from "./components/HomeComponents/FormWithMUI/FormularioQuestion";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Redirect } from "react-router-dom";
 import { useEffect } from "react";
@@ -18,7 +18,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const createUserFromDispatch = async () => {
+    const createUserFromDispatch = () => {
       if (isAuthenticated) {
         dispatch(createUser(user));
       }
@@ -68,7 +68,7 @@ function App() {
         )}
       </Route>
 
-      <Route path="*" exact={true} component={Component404} />
+      {<Route path="*" exact={true} component={Component404} />}
     </Switch>
   );
 }
