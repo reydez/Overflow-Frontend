@@ -21,7 +21,9 @@ const FormM1Tags = ({ setTag, tag }) => {
 
 
     function handleCheckTags(e) {
-
+        // if (tag.tags.length > 3) {
+        //     alert('puedes seleccionar máximo 2 tags')
+        // }
         if (e.target.checked) {
             setTag({
                 ...tag,

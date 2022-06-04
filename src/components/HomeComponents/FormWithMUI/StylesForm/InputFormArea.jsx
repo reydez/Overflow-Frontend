@@ -5,6 +5,8 @@ import { Label, Error, DivIcon } from "./FormActStyled"
 
 const InputForm = ({ label, name, placeholder, error, state, changeState, regularExpresion }) => {
 
+
+
     const handleChange = (e) => {
         console.log(e.target.value)
         changeState({
@@ -52,7 +54,7 @@ export default InputForm
 const colores = {
     inputPurple: "#413A66",
     error: "#f66060",
-    succes: "#71ff4a"
+    succes: "#71ff4a99"
 }
 
 const GrupoInput = styled.div`
@@ -73,6 +75,7 @@ const GrupoInput = styled.div`
 // `
 
 const Input = styled.textarea`
+    /* padding: 5px; */
     width: 70%;
     resize: none;
     background: #fff;
@@ -80,7 +83,7 @@ const Input = styled.textarea`
     height: 155px;
     font-size: 14px;
     line-height: 20px;
-    padding: 0 40px 0 10px;
+    padding: 12px 40px 0 10px;
     transition: 0.3s ease all;
     border: 2px solid gray;
     &:hover{
@@ -98,3 +101,5 @@ const Input = styled.textarea`
         border: 2px solid ${colores.error} !important;
     `}
 `
+
+
