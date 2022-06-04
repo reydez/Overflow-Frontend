@@ -3,23 +3,27 @@ import Home from "./views/Home";
 import LandingPage from "./views/LandingPage";
 import VisualizeQuestion from "./views/VisualizeQuestion";
 import BarLeft from "./components/HomeComponents/BarLeft/BarLeft";
-import PostFormMui from "./components/HomeComponents/FormWithMUI/PostFormMui";
-import FormUser from "./views/FormUser";
-import CardUser from "./components/cardUser/CardUser";
+import PostFormMui from "./components/HomeComponents/FormWithMUI/FormularioQuestion";
 import { useAuth0 } from "@auth0/auth0-react";
-import ProtectedRoute from "./auth/protected-route";
 import { Redirect } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { UserProfile } from "./components/HomeComponents/UserProfile/UserProfile";
+import Component404 from "./components/404/Component404";
+import { useDispatch } from "react-redux";
+import { createUser } from "./redux/actions/userActions";
 
 function App() {
   const { isLoading, isAuthenticated, user } = useAuth0();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isAuthenticated) {
-      console.log(user);
-    }
-  }, [user, isAuthenticated]);
+    const createUserFromDispatch = async () => {
+      if (isAuthenticated) {
+        dispatch(createUser(user));
+      }
+    };
+    createUserFromDispatch();
+  }, [user, isAuthenticated, isLoading]);
 
   if (isLoading) {
     return <h1>Loading...</h1>;
@@ -31,8 +35,8 @@ function App() {
         {isAuthenticated ? <Redirect to="/questions" /> : <LandingPage />}
       </Route>
 
-      {/* <Route exact={true} path="/questions">
-        <Home />
+      {/* <Route exact path="/questions">
+        {!isAuthenticated ? <Redirect to="/" /> : <Home />}
       </Route> */}
 
       <Route exact path="/questions">
@@ -53,19 +57,17 @@ function App() {
         {!isAuthenticated ? <Redirect to="/" /> : <PostFormMui />}
       </Route>
 
-      <Route exact={true} path="/UserProfile/" >
-        {!isAuthenticated 
-          ? ( <Redirect to="/" /> )
-          : ( <BarLeft>
-                <UserProfile />
-              </BarLeft>
-            )
-        }
-        </Route>
-
-      <Route exact={true} path="/user">
-        <CardUser />
+      <Route exact={true} path="/user-profile">
+        {!isAuthenticated ? (
+          <Redirect to="/" />
+        ) : (
+          <BarLeft>
+            <UserProfile />
+          </BarLeft>
+        )}
       </Route>
+
+      <Route path="*" exact={true} component={Component404} />
     </Switch>
   );
 }

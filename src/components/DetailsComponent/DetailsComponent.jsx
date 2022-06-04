@@ -17,7 +17,10 @@ export default function DetailsComponent({
 }) {
   const [comentarioText, setComentarioText] = useState("");
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.userReducer.user);
   const isTextareaDisabled = comentarioText.length === 0;
+
+  console.log(user);
 
   let history = useHistory();
   const Return = () => {
@@ -31,14 +34,9 @@ export default function DetailsComponent({
 
   const onSubmitHandler = () => {
     axios
-      .post(
-        `http://localhost:3001/comments/${
-          question.id
-        }/${"6ff3d5bc-0e0f-421c-8a00-8a3965e8e0c9"}`,
-        {
-          message: comentarioText,
-        }
-      )
+      .post(`http://localhost:3001/comments/${question.id}/${user.id}`, {
+        message: comentarioText,
+      })
       .then((response) => {
         setComments([response.data, ...comments]);
         setComentarioText("");
