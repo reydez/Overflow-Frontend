@@ -2,7 +2,9 @@ import axios from "axios";
 
 export const getQuestions = () => async (dispatch) => {
   try {
-    const response = await axios.get("/posts");
+    const response = await axios.get(
+      "https://henry-overflow-api.herokuapp.com/posts"
+    );
     dispatch({ type: "GET_QUESTIONS", payload: response.data });
   } catch (error) {
     console.log(error);
@@ -11,7 +13,9 @@ export const getQuestions = () => async (dispatch) => {
 
 export const getQuestionDetails = (id) => async (dispatch) => {
   try {
-    const response = await axios.get(`/posts/${id}`);
+    const response = await axios.get(
+      `https://henry-overflow-api.herokuapp.com/posts/${id}`
+    );
     dispatch({ type: "GET_QUESTION_DETAILS", payload: response.data[0] });
   } catch (error) {
     console.log(error);
@@ -21,7 +25,7 @@ export const getQuestionDetails = (id) => async (dispatch) => {
 export const getQuestionsByName = (name) => async (dispatch) => {
   try {
     const questionsByName = await axios.get(
-      `/posts?title=${name}`
+      `https://henry-overflow-api.herokuapp.com/posts?title=${name}`
     );
 
     dispatch({ type: "GET_QUESTIONS_BY_NAME", payload: questionsByName.data });
@@ -39,7 +43,7 @@ export const orderByDate = () => {
 export const postQuestion = (payload, id) => {
   return async function (dispatch) {
     let newPost = await axios.post(
-      `/posts/${id}`,
+      `https://henry-overflow-api.herokuapp.com/posts/${id}`,
       payload
     );
 

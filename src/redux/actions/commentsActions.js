@@ -5,7 +5,7 @@ export const addComment =
   async (dispatch) => {
     try {
       const response = await axios.post(
-        `/comments/${idPost}/${idUser}`,
+        `https://henry-overflow-api.herokuapp.com/comments/${idPost}/${idUser}`,
         { message }
       );
 
