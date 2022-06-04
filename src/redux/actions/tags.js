@@ -5,7 +5,7 @@ export const getTags = () => {
     return async (dispatch) => {
         // console.log(dispatch)
         try {
-            let tags = await axios.get('http://localhost:3001/tags');
+            let tags = await axios.get('/tags');
             return dispatch({
                 type: 'GET_TAGS',
                 payload: tags.data
