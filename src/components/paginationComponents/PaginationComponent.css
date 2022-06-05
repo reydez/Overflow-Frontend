@@ -3,21 +3,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
     padding: 0;
 }
 
 .pageNumbers li{
-    padding: 5px;
-    border: 2px solid white;
-    border-radius: 10px;
+    padding: 3px;
+    border: 2px solid #7165A0;
+    border-radius: 5px;
     font-weight: bold;
     cursor: pointer;  
 }
 
 .pageNumbers li.active{
-    background-color: white;
-    color: black;
+    
+    color:#A8A3B5;
 }
 
 .pageNumbers li:first-child, .pageNumbers li:last-child{
@@ -25,17 +25,17 @@
 }
 
 .pageNumbers li button{
-    background-color: transparent;
+    background: #392E57;
     border: none;
-    color: white;
+    color: #A8A3B5;
     font-size: 1.5;
     cursor: pointer;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .pageNumbers li button:hover{
-    background-color: white;
-    color: black;
+    
+    color: #F50057;
 }
 
 .pageNumbers li button:focus{

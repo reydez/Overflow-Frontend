@@ -33,7 +33,7 @@ export default function ScrollTerms() {
 
   return (
     <div>
-      <Button onClick={handleClickOpen('paper')} sx={{color: '#a8a3b5', '&: hover':{color:'red'}}}>Terminos y Condiciones</Button>
+      <Button onClick={handleClickOpen('paper')} sx={{color: "#a8a3b5", "&:hover": { color: "#F50057" }}}>Terminos y Condiciones</Button>
      
       <Dialog
         open={open}

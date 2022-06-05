@@ -32,7 +32,7 @@ export default function ScrollAboutUs() {
 
   return (
     <div>
-      <Button onClick={handleClickOpen('paper')} sx={{color: '#a8a3b5', '&: hover':{color:'red'}}}>Quienes Somos</Button>
+      <Button onClick={handleClickOpen('paper')} sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }}>Quienes Somos</Button>
       
      
       <Dialog
@@ -42,7 +42,7 @@ export default function ScrollAboutUs() {
         aria-labelledby="scroll-dialog-title"
         aria-describedby="scroll-dialog-description"
       >
-        <DialogTitle id="scroll-dialog-title"  >Quienes Somos</DialogTitle>
+        <DialogTitle id="scroll-dialog-title">Quienes Somos</DialogTitle>
         <DialogContent dividers={scroll === 'paper'}>
           <DialogContentText
          

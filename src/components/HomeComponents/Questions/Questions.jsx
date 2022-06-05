@@ -26,18 +26,17 @@ const MainContainer = styled.div`
 `;
 
 const SideBar = styled.div`
-  background-color: #392e57;
   height: 60px;
   margin-left: 30px;
   width: 15%;
 `;
 
 const CardQuestionContainer = styled.div`
-  color: #a8a3b5;
+  
 
   height: 60px;
   width: 80%;
-  background-color: #392e57;
+  
   margin-left: 30px;
   margin-bottom: 10px;
   .CardQuestionTitle {
@@ -70,7 +69,7 @@ const CardQuestionContainer = styled.div`
 const CardQuestion = styled.div`
   margin-top: 25px;
   width: 100%;
-  background-color: #392e57;
+  
 `;
 
 export const Questions = () => {
@@ -144,18 +143,18 @@ export const Questions = () => {
 
   return (
     <div>
-      <MainContainer>
-        <CardQuestionContainer>
+      <MainContainer >
+        <CardQuestionContainer >
           <div className="CardQuestionTitle">
             <Avatars orderByModule={handleOrderByModule} />
-            <Button className="buttonFilter" onClick={refreshPage}>
+            <Button sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }} className="buttonFilter" onClick={refreshPage}>
               Refresh
             </Button>
-            <Button className="buttonFilter" onClick={orderByDateHandler}>
-              Nuevas
+            <Button sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }} className="buttonFilter" onClick={orderByDateHandler}>
+             Nuevas
             </Button>
-            <Button className="buttonFilter">Mas Visitas</Button>
-            <Button className="buttonFilter">Mejores Calificadas</Button>
+            <Button sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }} className="buttonFilter">Mas Visitas</Button>
+            <Button sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }} className="buttonFilter">Mejores Calificadas</Button>
           </div>
 
           <PaginationComponent
@@ -201,7 +200,7 @@ export const Questions = () => {
               let upperCase = tag.toUpperCase();
               return (
                 <Chip
-                  label={<Box sx={{ color: "white" }}>{tag}</Box>}
+                  label={<Box>{tag}</Box>}
                   variant="outlined"
                   onClick={() => orderByTagHandler(upperCase)}
                 />
@@ -215,14 +214,7 @@ export const Questions = () => {
 };
 
 const CounterSideBar = styled.div`
-  p {
-    color: #a8a3b5;
-    text-align: center;
-  }
-  H4 {
-    color: white;
-    text-align: center;
-  }
+  
   /*COUNTER              CHEQUAR ESTE PROPERTY*/
   @property --num {
     syntax: "<integer>";
@@ -247,7 +239,7 @@ const CounterSideBar = styled.div`
     width: 2em;
     font: 400 2.5em system-ui;
     content: counter(num);
-    color: #a8a3b5;
+    
     display: flex;
     margin: 0 auto;
     text-align: center;
@@ -261,7 +253,7 @@ const CounterSideBar = styled.div`
   .nums::after {
     position: absolute;
     /* content: 'Preguntas'; */
-    color: #a8a3b5;
+    
     font-weight: 400;
     text-align: center;
     padding-left: 28px;

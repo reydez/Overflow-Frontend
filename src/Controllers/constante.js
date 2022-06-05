@@ -27,7 +27,7 @@ const ButtonLogOut = () => {
   return (
     <ButtonLogOutDiv>
       <button className="ButtonLogOut" onClick={() => logout()}>
-        <LogoutIcon sx={{ marginRight: "5px", fontSize: "18px" }} />
+        <LogoutIcon sx={{ marginRight: "10px", fontSize: "19px" }} />
         Cerrar Sesión
       </button>
     </ButtonLogOutDiv>
@@ -35,54 +35,56 @@ const ButtonLogOut = () => {
 };
 
 const ButtonLogOutDiv = styled.div`
+
   .ButtonLogOut {
     display: flex;
     border: 1px solid #a8a3b5;
     border-radius: 10px;
     background-color: transparent;
-    color: #ff808b;
+    color: #A8A3B5;
     cursor: pointer;
-    margin: 0 auto;
-    margin-top: 50px;
-    padding: 5px 10px;
+    margin:  auto;
+    margin-top: 100px;
+    padding: 5px 20px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 900;
     font-family: Roboto;
     font-size: 15px;
+    
   }
 `;
 
 const drawer = (
   <div>
-    <Toolbar />
+    <Toolbar sx={{ bgcolor: "background.default"}}/>
     <Divider />
-    <List>
+    <List sx={{ bgcolor: "background.default"}}>
       {/* , "Comunidad" */}
       {[
         <Link to="/questions">
-          <Button sx={{ color: "#a8a3b5", "&:hover": { color: "red" } }}>
+          <Button sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }}>
             <HomeIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
             Home
           </Button>
         </Link>,
-        <Button sx={{ color: "#a8a3b5", "&:hover": { color: "red" } }}>
+        <Button sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }}>
           <ListAltIcon sx={{ marginRight: "10px", fontSize: "18px" }} />{" "}
           Categorías
         </Button>,
         <Divider />,
 
         <Link to={`/user-profile`}>
-          <Button sx={{ color: "#a8a3b5", "&:hover": { color: "red" } }}>
+          <Button sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }}>
             <AccountBoxIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
             Mi Perfil
           </Button>
         </Link>,
 
-        <Button sx={{ color: "#a8a3b5", "&:hover": { color: "red" } }}>
+        <Button sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }}>
           <FavoriteIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
           Mis Favoritos
         </Button>,
-        <Button sx={{ color: "#a8a3b5", "&:hover": { color: "red" } }}>
+        <Button sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }}>
           <PeopleAltIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
           Usuarios
         </Button>,
@@ -100,7 +102,7 @@ const drawer = (
           </ListItemButton>
         </ListItem>
       ))}
-    </List>
+    </List >
     <Divider />
     {/* <List> */}
     {/*  */}
@@ -119,7 +121,10 @@ const drawer = (
         </ListItem>
       ))}
     </List>  */}
+    <List sx={{}}>
+
     <ButtonLogOut />
+    </List>
   </div>
 );
 

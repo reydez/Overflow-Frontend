@@ -120,7 +120,7 @@ export const btnOne = (
       position: "absolute",
       width: "99px",
       height: "27px",
-      background: "#F4F5F8",
+      
       borderRadius: "10px",
       marginLeft: "10px",
       marginTop: "150px",
@@ -133,7 +133,7 @@ export const btnOne = (
       lineHeight: "14px",
       '&:hover': {
         border: '1px solid',
-        borderColor: '#0062cc',
+        
         boxShadow: 'none',
       }
     }}
@@ -148,7 +148,7 @@ export const btnTwo = (
       position: "absolute",
       width: "99px",
       height: "27px",
-      background: "#F4F5F8",
+      
       borderRadius: "10px",
       marginLeft: "120px",
       marginTop: "150px",
@@ -209,7 +209,7 @@ export const btnFour = (
       marginLeft: "10px",
       marginTop: "190px",
       textAlign: "center",
-      color: "#A7A9BA",
+   
       fontFamily: "Roboto",
       fontStyle: "normal",
       fontWeight: "400",

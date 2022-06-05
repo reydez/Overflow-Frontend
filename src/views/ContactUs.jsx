@@ -77,7 +77,7 @@ export default function ContactUs() {
   return (
     <div>
         
-      <Button onClick={handleClickOpen} sx={{color: '#a8a3b5', '&: hover':{color:'red'}}}>
+      <Button onClick={handleClickOpen} sx={{color: "#a8a3b5", "&:hover": { color: "#F50057" }}}>
         Contactanos
       </Button>
       <SimpleDialog
