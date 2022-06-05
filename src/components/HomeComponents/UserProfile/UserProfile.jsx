@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { CardActions,CardContent, Button, Typography, Card} from '@mui/material'
+import { CardActions, CardContent, Button, Typography, Card } from '@mui/material'
 import {
   name,
   botton,
@@ -18,9 +18,13 @@ import {
 } from '../../../Controllers/styleUserProfile/styleUserProfile';
 
 import { EditUserProfile } from './EditUserProfile';
+import { useSelector } from "react-redux";
 
 export const UserProfile = () => {
- 
+
+
+  const user = useSelector(state => state.userReducer.user)
+  console.log(user)
   const [editMode, setEditMode] = useState(false);
 
   const changeToFalse = () => {
@@ -38,22 +42,22 @@ export const UserProfile = () => {
           marginTop: "20px",
         }}
       >
-        {editMode 
-        ? (
+        {editMode
+          ? (
             <div>
-              <EditUserProfile changeToFalse={changeToFalse}/> 
+              <EditUserProfile changeToFalse={changeToFalse} />
             </div>
           )
-        : ( <CardContent>
-            <Button  sx={{ml: 33, py: 0}}>{botton}</Button>
+          : (<CardContent>
+            <Button sx={{ ml: 33, py: 0 }}>{botton}</Button>
             <Typography variant="h5" component="div">
-              {name}
+              {name(user.full_name)}
             </Typography>
             <Typography variant="h5" component="div">
-              {student}
+              {student(user.role)}
             </Typography>
             <Card alt="Remy Sharp" src="">
-              {img}
+              {img(user.image)}
             </Card>
 
             <Typography variant="h5" component="div">
@@ -75,13 +79,13 @@ export const UserProfile = () => {
             <Typography>{btnFive}</Typography>
 
             <Typography>{btnSix}</Typography>
-            
-            <CardActions onClick={ ()=>setEditMode(true) } >{ editButton }</CardActions>
-            <CardActions>{ vipButton }</CardActions>
-            </CardContent>
+
+            <CardActions onClick={() => setEditMode(true)} >{editButton}</CardActions>
+            <CardActions>{vipButton}</CardActions>
+          </CardContent>
           )
         }
       </Card>
-  </>
+    </>
   )
 }

@@ -14,9 +14,10 @@ export const getModuleColor = (question) => {
 
 
 
-export const getTagColor = (tag) => {
+export const getTagColor = (t) => {
+    let tag = t.toUpperCase()
     let colorTag;
-    console.log(tag)
+    // console.log(tag)
     if (tag === "JAVASCRIPT" || tag === "ESTRUCTURA DE DATOS" || tag === "ALGORITMO" || tag === "CLOSURES" || tag === "CONTEXTO DE EJECUCION" || tag === "RECURSIVIDAD" || tag === "ARBOLES" || tag === "LINKED LIST") {
         colorTag = "#FBC02D"
     } else if (tag === "SEQUELIZE" || tag === "DBMS" || tag === "BASE DE DATOS" || tag === "ORM" || tag === "MODELOS" || tag === "CRUD" || tag === "AUTENTICACION") {
@@ -27,5 +28,4 @@ export const getTagColor = (tag) => {
         colorTag = "#43A047"
     }
     return colorTag
-
 }

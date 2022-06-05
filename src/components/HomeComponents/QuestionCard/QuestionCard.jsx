@@ -18,7 +18,9 @@ import { Link } from "react-router-dom";
 import fotoPerfil from "../../../imagen/perfilIcono.png";
 import { getModuleColor, getTagColor } from "../../../Controllers/Helpers/colorsQuestion";
 
+
 export const QuestionCard = ({ question }) => {
+
   /* var year = question.date.getUTCFullYear();
   var month = question.date.getUTCMonth() + 1;
   var day = question.date.getUTCDate(); */
@@ -42,6 +44,8 @@ export const QuestionCard = ({ question }) => {
     textDecoration: "none",
 
   };
+
+
 
   return (
     <Paper
@@ -145,7 +149,7 @@ export const QuestionCard = ({ question }) => {
                   <Typography
                     variant="body2"
                     sx={{
-                      fontSize: "24px",
+                      fontSize: "20px",
                       letterSpacing: 0.75,
                       margin: "4px 2px",
                       width: "75%",
@@ -181,25 +185,28 @@ export const QuestionCard = ({ question }) => {
               {/* TAGs de cada categoría*/}
 
               <Stack direction="row" spacing={1}>
-                {question.tags.map((tag, index) => (
-                  <Chip
-                    label={<Box
-                      sx={{
-                        bgcolor: 'transparent',
-                        color: getTagColor(tag),
-                        // border: getTagColor(tag)
-                        // border: `2px solid ${getTagColor(tag)}`,
-                        // padding: '2px 15px',
-                        borderRadius: "15px"
-                      }}
-                    >{tag}</Box>}
-                    key={index}
-                    // disabled="true"
-                    // color='disabled'
-                    variant="outlined"
-                    size="small"
-                  />
-                ))}
+                {question.tags.map(tag => {
+                  // console.log(tag)
+                  return (
+                    <Chip
+                      label={<Box Box
+                        key={tag}
+                        sx={{
+                          bgcolor: 'transparent',
+                          color: getTagColor(tag),
+                          // border: getTagColor(tag)
+                          // border: `2px solid ${getTagColor(tag)}`,
+                          // padding: '2px 15px',
+                          // borderRadius: "15px"
+                        }}
+                      >{tag}</Box>}
+                      // disabled="true"
+                      // color='disabled'
+                      variant="outlined"
+                      size="small"
+                    />)
+                }
+                )}
               </Stack>
             </Grid>
           </Grid>

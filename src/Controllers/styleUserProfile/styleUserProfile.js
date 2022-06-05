@@ -1,33 +1,37 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { Typography } from "@mui/material";
+import { Typography, CardMedia } from "@mui/material";
 // import { color } from "@mui/system";
 
-export const name = (
-  <Box
-    sx={{
-      position: "absolute",
-      width: "150px",
-      height: "21px",
-      fontFamily: "Roboto",
-      fontStyle: "normal",
-      fontWeight: "600",
-      fontSize: "18px",
-      lineHeight: "21px",
-      // color: "#413A66",
-      background: 'linear-gradient(74.27deg, #FFB400 -1.05%, rgba(255, 174, 18, 0.44) 50.29%, rgba(254, 177, 23, 0.54136) 62.68%, #FBC02D 116.41%)',
-      webkitBackgroundClip: 'text',
-      webkitTextFillColor: 'transparent',
-      backgroundClip: 'text',
-      textFillColor: 'transparent',
-      marginLeft: "170px",
-      marginTop: "20px",
-    }}
-  >
-    Juana Manso
-  </Box>
-);
+export const name = (name) => {
+  return (
+
+    <Box
+      sx={{
+        position: "absolute",
+        width: "150px",
+        height: "21px",
+        fontFamily: "body1",
+        fontStyle: "normal",
+        fontWeight: "600",
+        fontSize: "18px",
+        lineHeight: "21px",
+        // background: 'linear-gradient(74.27deg, #FFB400 -1.05%, rgba(255, 174, 18, 0.44) 50.29%, rgba(254, 177, 23, 0.54136) 62.68%, #FBC02D 116.41%)',
+        // color: "#413A66",
+        background: 'white',
+        webkitBackgroundClip: 'text',
+        webkitTextFillColor: 'transparent',
+        backgroundClip: 'text',
+        textFillColor: 'transparent',
+        marginLeft: "170px",
+        marginTop: "20px",
+      }}
+    >
+      {name}
+    </Box>
+  )
+};
 
 export const botton = (
   <Typography
@@ -35,7 +39,7 @@ export const botton = (
       position: "absolute",
       with: "24px",
       height: "36px",
-      fontFamily: "Roboto",
+      fontFamily: "body1",
       fontStyle: "regular",
       fontWeight: "900",
       lineHeight: "150%",
@@ -46,25 +50,27 @@ export const botton = (
   </Typography>
 );
 
-export const student = (
-  <Box
-    sx={{
-      position: "absolute",
-      width: "58px",
-      height: "16px",
-      fontFamily: "Roboto",
-      fontStyle: "normal",
-      fontWeight: "500",
-      fontSize: "14px",
-      lineHeight: "16px",
-      color: "#A7A9BA",
-      marginLeft: "172px",
-      marginTop: "50px",
-    }}
-  >
-    Student
-  </Box>
-);
+export const student = (name) => {
+  return (
+    <Box
+      sx={{
+        position: "absolute",
+        width: "58px",
+        height: "16px",
+        fontFamily: "body1",
+        fontStyle: "normal",
+        fontWeight: "500",
+        fontSize: "14px",
+        lineHeight: "16px",
+        color: "#A7A9BA",
+        marginLeft: "172px",
+        marginTop: "50px",
+      }}
+    >
+      {name}
+    </Box>
+  )
+}
 
 export const quantityQuestions = (
   <Box
@@ -72,7 +78,7 @@ export const quantityQuestions = (
       position: "absolute",
       width: "82px",
       height: "9px",
-      fontFamily: "Roboto",
+      fontFamily: "body1",
       fontStyle: "normal",
       fontWeight: "400",
       fontSize: "8px",
@@ -92,7 +98,7 @@ export const quantityAnswers = (
       position: "absolute",
       width: "87px",
       height: "9px",
-      fontFamily: "Roboto",
+      fontFamily: "body1",
       fontStyle: "normal",
       fontWeight: "400",
       fontSize: "8px",
@@ -106,18 +112,24 @@ export const quantityAnswers = (
   </Box>
 );
 
-export const img = (
-  <Box
-    sx={{
-      position: "absolute",
-      width: "130px",
-      height: "130px",
-      borderRadius: "20px",
-      background: "black",
-      marginLeft: "10px",
-    }}
-  ></Box>
-);
+export const img = (name) => {
+  return (
+
+    <CardMedia
+      sx={{
+        position: "absolute",
+        width: "130px",
+        height: "130px",
+        borderRadius: "20px",
+        marginLeft: "10px",
+      }}
+      component="img"
+      height="194"
+      image={name}
+      alt="Paella dish"
+    />
+  )
+}
 
 export const btnOne = (
   <Button
@@ -131,7 +143,7 @@ export const btnOne = (
       marginTop: "150px",
       textAlign: "center",
       color: "#A7A9BA",
-      fontFamily: "Roboto",
+      fontFamily: "body1",
       fontStyle: "normal",
       fontWeight: "400",
       fontSize: "12px",
@@ -159,7 +171,7 @@ export const btnTwo = (
       marginTop: "150px",
       textAlign: "center",
       color: "#A7A9BA",
-      fontFamily: "Roboto",
+      fontFamily: "body1",
       fontStyle: "normal",
       fontWeight: "400",
       fontSize: "12px",
@@ -187,7 +199,7 @@ export const btnThree = (
       marginTop: "150px",
       textAlign: "center",
       color: "#A7A9BA",
-      fontFamily: "Roboto",
+      fontFamily: "body1",
       fontStyle: "normal",
       fontWeight: "400",
       fontSize: "12px",
@@ -215,7 +227,7 @@ export const btnFour = (
       marginTop: "190px",
       textAlign: "center",
       color: "#A7A9BA",
-      fontFamily: "Roboto",
+      fontFamily: "body1",
       fontStyle: "normal",
       fontWeight: "400",
       fontSize: "12px",
@@ -243,7 +255,7 @@ export const btnFive = (
       marginTop: "190px",
       textAlign: "center",
       color: "#A7A9BA",
-      fontFamily: "Roboto",
+      fontFamily: "body1",
       fontStyle: "normal",
       fontWeight: "400",
       fontSize: "12px",
@@ -260,7 +272,7 @@ export const btnFive = (
 );
 
 export const btnSix = (
-  <Button  
+  <Button
     sx={{
       position: "absolute",
       width: "99px",
@@ -271,7 +283,7 @@ export const btnSix = (
       marginTop: "190px",
       textAlign: "center",
       color: "#A7A9BA",
-      fontFamily: "Roboto",
+      fontFamily: "body1",
       fontStyle: "normal",
       fontWeight: "400",
       fontSize: "12px",
@@ -301,7 +313,7 @@ export const editButton = (
       color: "#D4DDFE",
       fontStyle: "normal",
       fontWeight: "500",
-      fontFamily: "Roboto",
+      fontFamily: "body1",
       fontSize: "15px",
     }}
   >
@@ -323,7 +335,7 @@ export const vipButton = (
       color: "#9585D4",
       fontStyle: "normal",
       fontWeight: "500",
-      fontFamily: "Roboto",
+      fontFamily: "body1",
       fontSize: "15px",
     }}
   >
