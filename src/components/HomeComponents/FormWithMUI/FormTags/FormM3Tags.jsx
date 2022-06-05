@@ -1,64 +1,80 @@
 import * as React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getTags } from '../../../../redux/actions/tags';
 import { useDispatch, useSelector } from 'react-redux';
 import Classes from "./FormM1Tags.module.css"
+import styled from "styled-components";
 
 
 const FormM3Tags = ({ setTag, tag }) => {
     const dispatch = useDispatch();
     const allTags = useSelector(state => state.tagsReducer.tags);
 
-
-    const [tagsM3, setTagsM3] = React.useState([])
+    const [checked, setChecked] = useState([]);
     const mtags = allTags.slice(33, 49);
 
     useEffect(() => {
         dispatch(getTags());
-        setTagsM3(mtags)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [dispatch])
+    }, [dispatch]);
 
+    const checkChange = (e, value) => {
+        if (checked.indexOf(value) !== -1) {
+            setChecked(checked.filter((checkBox) => checkBox !== value));
+            setTag({
+                ...tag,
+                tags: tag.tags.filter((p) => p !== e.target.value),
+            });
 
-    function handleCheckTags(e) {
-
-        if (e.target.checked) {
+        } else {
+            setChecked([...checked, value]);
             setTag({
                 ...tag,
                 tags: [...tag.tags, e.target.value],
             });
         }
-        else if (!e.target.checked) {
-            setTag({
-                ...tag,
-                tags: tag.tags.filter((p) => p !== e.target.value),
-            });
-        }
-    }
+    };
 
-    // console.log(state)
-    // console.log(tagsM3)
+    // console.log(tag.tags)
     return (
         <React.Fragment>
-            {/* <div className={Classes.containG}> */}
-
             <div className={Classes.tags}>
                 {
-                    tagsM3.map((g) => (
+                    mtags.map((g, index) => (
                         <div key={g.id}>
                             <input
                                 type="checkbox"
-                                onClick={(e) => handleCheckTags(e)}
                                 value={g.name}
                                 name="tags"
                                 key={g.id}
+                                onChange={(e) => checkChange(e, index)}
+                                checked={checked.includes(index)}
+                                disabled={!checked.includes(index) && checked.length > 1}
                             />{g.name}
                         </div>
                     ))
                 }
             </div>
-            {/* </div> */}
+            {tag.tags.length > 1 && (
+                <Success>Sólo puedes escoger dos tags :D</Success>
+            )}
+
         </React.Fragment>
     );
 }
 export default FormM3Tags
+
+const colores = {
+    inputPurple: "#413A66",
+    error: "#f66060",
+    succes: "#ae4aff64",
+};
+
+const Success = styled.p`
+  transition: 2000ms;
+  font-size: 15px;
+  background: ${colores.succes};
+  color: #141414;
+  padding: 15px 30px;
+  font-weight: bold;
+  border-radius: 5px;
+`;
