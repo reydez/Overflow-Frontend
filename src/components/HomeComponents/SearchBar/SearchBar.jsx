@@ -98,28 +98,28 @@ export default function SearchBar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Toolbar>
-        <Search>
-          <SearchIconWrapper>
-            <SearchIcon />
+        <Search sx={{bgcolor:'background.default'}}>
+          <SearchIconWrapper >
+            <SearchIcon sx={{color: "#a8a3b5"}}/>
           </SearchIconWrapper>
-          <StyledInputBase
+          <StyledInputBase sx={{ color: "#a8a3b5" }}
             placeholder="Buscar…"
             inputProps={{ "aria-label": "search" }}
             onChange={onInputChange}
             onKeyPress={onKeyPress}
             value={palabraBuscada}
           />
-          <Button type="submit" onClick={onSubmit} style={{ color: "white" }}>
+          <Button sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }} type="submit" onClick={onSubmit} >
             Buscar
           </Button>
         </Search>
         <Box sx={{
-        marginLeft: 50,
+        marginLeft: 30,
         
         
        
       }}>
-        <IconButton variant="fixed"  size="small" sx={{  }} onClick={toggleMode} >
+        <IconButton sx={{ marginLeft:8}}  onClick={toggleMode} >
           <SvgIcon >
             <DarkModeIcon  />
           </SvgIcon>

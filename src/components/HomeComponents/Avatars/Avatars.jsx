@@ -6,11 +6,11 @@ import { orderByModule } from "../../../redux/actions/questionsActions";
 
 export default function Avatars({ orderByModule }) {
   return (
-    <Stack direction="row" spacing={2} sx={{ display: "inline" }}>
+    <Stack direction="row" spacing={2} sx={{ display: "inline"}}>
       <ButtonGroup
         variant="container"
         arial-label="container button group"
-        sx={{ bgcolor: "transparent" }}
+        sx={{ bgcolor: "background.default" }}
       >
         <Button size="large">
           <Avatar
