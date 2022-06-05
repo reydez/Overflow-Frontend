@@ -16,24 +16,13 @@ import { pink } from "@mui/material/colors";
 import Favorite from "@mui/icons-material/Favorite";
 import { Link } from "react-router-dom";
 import fotoPerfil from "../../../imagen/perfilIcono.png";
+import { getModuleColor, getTagColor } from "../../../Controllers/Helpers/colorsQuestion";
 
 export const QuestionCard = ({ question }) => {
   /* var year = question.date.getUTCFullYear();
   var month = question.date.getUTCMonth() + 1;
   var day = question.date.getUTCDate(); */
-  const getModuleColor = (question) => {
-    let colorModule;
-    if (question.module.name === "M1") {
-      colorModule = "#FBC02D"
-    } else if (question.module.name === "M2") {
-      colorModule = "#43A047"
-    } else if (question.module.name === "M3") {
-      colorModule = "#D81B60"
-    } else if (question.module.name === "M3") {
-      colorModule = "#42A5F5"
-    }
-    return colorModule
-  }
+
 
   // const getAvatarBgColor = ({ category }) =>
   // ({
@@ -153,7 +142,20 @@ export const QuestionCard = ({ question }) => {
                   to={`/visualize-question/${question.id}`}
                   style={linkStyle}
                 >
-                  {question.title}
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      fontSize: "24px",
+                      letterSpacing: 0.75,
+                      margin: "4px 2px",
+                      width: "75%",
+                      color: "#000000",
+                      // marginTop: "-15px",
+                    }}
+                  >
+                    {question.title}
+                  </Typography>
+
                 </Link>
 
                 <h6
@@ -177,11 +179,23 @@ export const QuestionCard = ({ question }) => {
             <Grid item>
               {" "}
               {/* TAGs de cada categoría*/}
+
               <Stack direction="row" spacing={1}>
                 {question.tags.map((tag, index) => (
                   <Chip
-                    label={<Box sx={{ bgcolor: 'background.default' }}>{tag}</Box>}
+                    label={<Box
+                      sx={{
+                        bgcolor: 'transparent',
+                        color: getTagColor(tag),
+                        // border: getTagColor(tag)
+                        // border: `2px solid ${getTagColor(tag)}`,
+                        // padding: '2px 15px',
+                        borderRadius: "15px"
+                      }}
+                    >{tag}</Box>}
                     key={index}
+                    // disabled="true"
+                    // color='disabled'
                     variant="outlined"
                     size="small"
                   />
@@ -189,6 +203,7 @@ export const QuestionCard = ({ question }) => {
               </Stack>
             </Grid>
           </Grid>
+
           <Grid>
             {/* check de corazon para clickear hacia favoritos */}
             <Checkbox
@@ -239,6 +254,6 @@ export const QuestionCard = ({ question }) => {
           </Grid>
         </Grid>
       </Grid>
-    </Paper>
+    </Paper >
   );
 };
