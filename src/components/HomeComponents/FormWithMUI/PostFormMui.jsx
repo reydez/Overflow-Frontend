@@ -20,7 +20,7 @@ const PostFormMui = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state) => state.userReducer.user);
-  // console.log(user)
+
 
   //! ------------------------- CheckBoxes-----------------------
   const [moduleSelected, setModuleSelected] = useState("selectModule");
@@ -32,7 +32,6 @@ const PostFormMui = () => {
 
   const handleOnChange = (e) => {
     setModuleSelected(e.target.value);
-    // console.log('Este es el name', e.target.name, 'Este es el value', e.target.value)
 
     setModulo({
       ...modulo,
@@ -128,7 +127,7 @@ const PostFormMui = () => {
             />
           </NameDiv>
 
-          <InputForm
+          {/* <InputForm
             // type="url"
             state={code}
             changeState={setCode}
@@ -137,21 +136,21 @@ const PostFormMui = () => {
             label="Imagen de código"
             error="Muéstranos una imagen sobre tu problema."
             regularExpresion={/(https?:\/\/.*\.(?:png|jpg))/i}
-          />
+          /> */}
           <InputFormArea
             // type="textarea"
             state={description}
             changeState={setDescription}
             name="description"
             placeholder="Describe tu pregunta..."
-            label="Descripción"
+            label="Descripción y Código"
             error="Háblanos sobre tu problema"
-            regularExpresion={/^[a-zA-ZÀ-ÿ\s?.,0-9]{20,400}$/}
+            regularExpresion={/^[a-zA-ZÀ-ÿ:<|&*>\s?.,0-9]{20,800}$/}
           />
         </div>
 
         <div className={Classes.selectModules}>
-          <label>
+          <label className={Classes.labelModule}>
             Module selected{" "}
             <span className={Classes.slec}>{renderResult()} </span>
             <select
@@ -179,7 +178,7 @@ const PostFormMui = () => {
         </button>
 
         {validate === true && (
-          <Success>Successfully saved, redirecting to home</Success>
+          <Success>Pregunta correctamente posteada, redireccionando a home</Success>
         )}
       </Formulario>
     </div>
@@ -191,7 +190,7 @@ export default PostFormMui;
 const colores = {
   inputPurple: "#413A66",
   error: "#f66060",
-  succes: "#71ff4a",
+  succes: "#71ff4a52",
 };
 
 const Formulario = styled.form`
