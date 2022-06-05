@@ -21,13 +21,26 @@ export const QuestionCard = ({ question }) => {
   /* var year = question.date.getUTCFullYear();
   var month = question.date.getUTCMonth() + 1;
   var day = question.date.getUTCDate(); */
+  const getModuleColor = (question) => {
+    let colorModule;
+    if (question.module.name === "M1") {
+      colorModule = "#FBC02D"
+    } else if (question.module.name === "M2") {
+      colorModule = "#43A047"
+    } else if (question.module.name === "M3") {
+      colorModule = "#D81B60"
+    } else if (question.module.name === "M3") {
+      colorModule = "#42A5F5"
+    }
+    return colorModule
+  }
 
   // const getAvatarBgColor = ({ category }) =>
-  //   ({
-  //     M1: "#FBC02D",
-  //     M2: "#43A047",
-  //     M3: "#D81B60",
-  //   }[category] || "#42A5F5");
+  // ({
+  //   M1: "#FBC02D",
+  //   M2: "#43A047",
+  //   M3: "#D81B60",
+  // }[category] || "#42A5F5");
 
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -38,25 +51,25 @@ export const QuestionCard = ({ question }) => {
   const linkStyle = {
     margin: "0",
     textDecoration: "none",
-   
-};
+
+  };
 
   return (
     <Paper
-    sx={{
-      p: 2,
-      margin: "auto",
-      flexGrow: 1,
-      bgcolor: "background.default",
-      
-    }}
+      sx={{
+        p: 2,
+        margin: "auto",
+        flexGrow: 1,
+        bgcolor: "background.default",
+
+      }}
     >
-      <Grid  container spacing={2}>
+      <Grid container spacing={2}>
         <Grid item>
           <Avatar
             sx={{
-              // bgcolor: getAvatarBgColor(question),
-              bgcolor: "#FBC02D",
+              bgcolor: getModuleColor(question),
+              // bgcolor: "#FBC02D",
               fontSize: "1rem",
               color: "#392e57",
               marginBottom: "10px",
@@ -136,7 +149,7 @@ export const QuestionCard = ({ question }) => {
                 component="div"
                 sx={{ fontSize: "20px" }}
               >
-                <Link 
+                <Link
                   to={`/visualize-question/${question.id}`}
                   style={linkStyle}
                 >
@@ -167,12 +180,12 @@ export const QuestionCard = ({ question }) => {
               <Stack direction="row" spacing={1}>
                 {question.tags.map((tag, index) => (
                   <Chip
-                  label={<Box sx={{ bgcolor: 'background.default' }}>{tag}</Box>}
-                  key={index}
-                  variant="outlined"
-                  size="small"
+                    label={<Box sx={{ bgcolor: 'background.default' }}>{tag}</Box>}
+                    key={index}
+                    variant="outlined"
+                    size="small"
                   />
-                  ))}
+                ))}
               </Stack>
             </Grid>
           </Grid>

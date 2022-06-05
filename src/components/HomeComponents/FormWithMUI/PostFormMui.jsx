@@ -70,7 +70,6 @@ const PostFormMui = () => {
 
   //? ------------------------- FORM - 'NUEVA IMPLEMENTACIÓN' -----------------------
 
-  // const [code, setCode] = useState({ field: "", validate: null });
   const [title, setTitle] = useState({ field: "", validate: null });
   const [description, setDescription] = useState({ field: "", validate: null });
   const [modulo, setModulo] = useState({ field: "" });
@@ -159,7 +158,6 @@ const PostFormMui = () => {
             <span className={Classes.slec}>{renderResult()} </span>
 
             <Seleccionador
-              // className={Classes.selectInput}
               onChange={handleOnChange}
               value={moduleSelected}
               name="field"
@@ -179,7 +177,6 @@ const PostFormMui = () => {
         {m4TagsSelected && <FormM4Tags setTag={setTag} tag={tag} />}
 
         <Send
-          // className={Classes.button}
           type="submit"
           onClick={handleSubmit}
         >
