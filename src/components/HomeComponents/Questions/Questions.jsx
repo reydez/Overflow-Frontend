@@ -11,71 +11,22 @@ import {
   orderByModule,
   orderByTag,
 } from "../../../redux/actions/questionsActions";
-
+import { getTags } from "../../../redux/actions/tags";
 import { Chip, Stack } from "@mui/material";
 import { Box } from "@mui/system";
 import Avatars from "../Avatars/Avatars";
 
 import PaginationComponent from "../../paginationComponents/PaginationComponent";
 import Footer from "../../../views/Footer";
+import { getTagColor } from "../../../Controllers/Helpers/colorsQuestion";
 
-
-const MainContainer = styled.div`
-  width: 100%;
-  display: flex;
-`;
-
-const SideBar = styled.div`
-  height: 60px;
-  margin-left: 30px;
-  width: 15%;
-`;
-
-const CardQuestionContainer = styled.div`
-  
-
-  height: 60px;
-  width: 80%;
-  
-  margin-left: 30px;
-  margin-bottom: 10px;
-  .CardQuestionTitle {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .CardQuestionTitle button {
-    
-    text-decoration: none;
-    padding-top: 10px;
-
-    span {
-      padding-left: 100px;
-    }
-  }
-
-  .buttonFilter:hover {
-  
-  
-  }
-
-  @media (max-width: 1050px) {
-    .CardQuestionTitle {
-      flex-direction: column;
-    }
-  }
-`;
-
-const CardQuestion = styled.div`
-  margin-top: 25px;
-  width: 100%;
-  
-`;
 
 export const Questions = () => {
   const dispatch = useDispatch();
   const [loading, setLoadin] = useState(false);
   const questions = useSelector((state) => state.questionsReducer.questions);
+  const tags = useSelector(state => state.tagsReducer.tags)
+
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
 
@@ -83,10 +34,14 @@ export const Questions = () => {
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5);
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
 
+
+
+
   useEffect(() => {
-    const loadQuestions = async () => {
+    const loadQuestions = () => {
       setLoadin(true);
-      await dispatch(getQuestions());
+      dispatch(getTags())
+      dispatch(getQuestions());
       setLoadin(false);
     };
 
@@ -140,7 +95,7 @@ export const Questions = () => {
   ];
 
 
-
+  console.log(tags)
   return (
     <div>
       <MainContainer >
@@ -151,7 +106,7 @@ export const Questions = () => {
               Refresh
             </Button>
             <Button sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }} className="buttonFilter" onClick={orderByDateHandler}>
-             Nuevas
+              Nuevas
             </Button>
             <Button sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }} className="buttonFilter">Mas Visitas</Button>
             <Button sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }} className="buttonFilter">Mejores Calificadas</Button>
@@ -175,8 +130,8 @@ export const Questions = () => {
             {loading ? (
               <h4>Loading Questions...</h4>
             ) : (
-              currentItems.map((question, index) => (
-                <QuestionCard question={question} key={index} />
+              currentItems.map(question => (
+                <QuestionCard question={question} key={question.id} />
               ))
             )}
           </CardQuestion>
@@ -196,12 +151,17 @@ export const Questions = () => {
             spacing={2}
             sx={{ width: "fit-content", marginTop: "30px" }}
           >
-            {allTags.map((tag) => {
-              let upperCase = tag.toUpperCase();
+            {tags.map((tag) => {
+              let upperCase = tag.name.toUpperCase();
               return (
                 <Chip
-                  label={<Box>{tag}</Box>}
+                  sx={{
+                    color: getTagColor(tag.name)
+                  }}
                   variant="outlined"
+                  key={tag.id}
+                  // backgroundcolor={getTagColor(tag.name)}
+                  label={<Box>{tag.name}</Box>}
                   onClick={() => orderByTagHandler(upperCase)}
                 />
               );
@@ -273,4 +233,58 @@ const CounterSideBar = styled.div`
       --num: 327;
     }
   }
+`;
+
+
+
+const MainContainer = styled.div`
+  width: 100%;
+  display: flex;
+`;
+
+const SideBar = styled.div`
+  height: 60px;
+  margin-left: 30px;
+  width: 15%;
+`;
+
+const CardQuestionContainer = styled.div`
+  
+
+  height: 60px;
+  width: 80%;
+  
+  margin-left: 30px;
+  margin-bottom: 10px;
+  .CardQuestionTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .CardQuestionTitle button {
+    
+    text-decoration: none;
+    padding-top: 10px;
+
+    span {
+      padding-left: 100px;
+    }
+  }
+
+  .buttonFilter:hover {
+  
+  
+  }
+
+  @media (max-width: 1050px) {
+    .CardQuestionTitle {
+      flex-direction: column;
+    }
+  }
+`;
+
+const CardQuestion = styled.div`
+  margin-top: 25px;
+  width: 100%;
+  
 `;

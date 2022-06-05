@@ -5,6 +5,7 @@ import { Typography } from "@mui/material";
 import { color } from "@mui/system";
 
 export const name = (
+
   <Box
     sx={{
       position: "absolute",
@@ -120,7 +121,7 @@ export const btnOne = (
       position: "absolute",
       width: "99px",
       height: "27px",
-      
+
       borderRadius: "10px",
       marginLeft: "10px",
       marginTop: "150px",
@@ -133,7 +134,7 @@ export const btnOne = (
       lineHeight: "14px",
       '&:hover': {
         border: '1px solid',
-        
+
         boxShadow: 'none',
       }
     }}
@@ -148,7 +149,7 @@ export const btnTwo = (
       position: "absolute",
       width: "99px",
       height: "27px",
-      
+
       borderRadius: "10px",
       marginLeft: "120px",
       marginTop: "150px",
@@ -209,7 +210,7 @@ export const btnFour = (
       marginLeft: "10px",
       marginTop: "190px",
       textAlign: "center",
-   
+
       fontFamily: "Roboto",
       fontStyle: "normal",
       fontWeight: "400",
@@ -255,7 +256,7 @@ export const btnFive = (
 );
 
 export const btnSix = (
-  <Button  
+  <Button
     sx={{
       position: "absolute",
       width: "99px",
