@@ -38,10 +38,10 @@ export default function BarLeft(props) {
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
-          backgroundColor: "#301b70",
+          bgcolor: "background.default"
         }}
       >
-        <Toolbar>
+        <Toolbar >
           <IconButton
             color="inherit"
             arial-label="open drawer"
@@ -56,12 +56,15 @@ export default function BarLeft(props) {
             <Button /* disableRipple  */
               sx={{
                 marginLeft: "30px",
-                borderRadius: "20px",
-                color: "#413a66",
+                borderRadius: "25px",
+                border: 'none',
+                color: "black", "&:hover": { color: "#FAFAFA"},
+                cursor: 'pointer',
                 fontSize: "12px",
                 padding: "5px 10px",
                 background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
-                boxShadow: "0 3px 5px 2px rgba(255,105,135, .3)",
+                boxShadow: "0 8px 10px 3px rgba(255,105,135, .3)",
+                bgcolor: 'background.default'
               }}
             >
               Hacer una pregunta
@@ -92,7 +95,7 @@ export default function BarLeft(props) {
             "& .MuiDrawer-paper": {
               width: drawerWidth,
               boxSizing: "border-box",
-              background: "rgba(57, 46, 87, 1)",
+              
             },
           }}
         >
@@ -105,7 +108,7 @@ export default function BarLeft(props) {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
-              background: "rgba(57, 46, 87, 1)",
+              bgcolor: "background.default"
             },
           }}
           open

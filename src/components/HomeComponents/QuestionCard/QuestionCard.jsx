@@ -37,9 +37,9 @@ export const QuestionCard = ({ question }) => {
   };
   const linkStyle = {
     margin: "0",
-    color: "#fafafa",
     textDecoration: "none",
-  };
+   
+};
 
   return (
     <Paper
@@ -47,11 +47,11 @@ export const QuestionCard = ({ question }) => {
       p: 2,
       margin: "auto",
       flexGrow: 1,
-      backgroundColor: (theme) =>
-      theme.palette.mode === "dark" ? "#1A2027" : "transparent",
+      bgcolor: "background.default",
+      
     }}
     >
-      <Grid container spacing={2}>
+      <Grid  container spacing={2}>
         <Grid item>
           <Avatar
             sx={{
@@ -136,7 +136,7 @@ export const QuestionCard = ({ question }) => {
                 component="div"
                 sx={{ fontSize: "20px" }}
               >
-                <Link
+                <Link 
                   to={`/visualize-question/${question.id}`}
                   style={linkStyle}
                 >
@@ -167,7 +167,7 @@ export const QuestionCard = ({ question }) => {
               <Stack direction="row" spacing={1}>
                 {question.tags.map((tag, index) => (
                   <Chip
-                  label={<Box sx={{ color: "white" }}>{tag}</Box>}
+                  label={<Box sx={{ bgcolor: 'background.default' }}>{tag}</Box>}
                   key={index}
                   variant="outlined"
                   size="small"

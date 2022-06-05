@@ -10,17 +10,33 @@ const themeObj = {
     light: {
         background: {
             default: "#F7FBFE"
-        }
+        },
+       
+        
     },
     dark: {
         background: {
-            default: "#413A66"
-        }
+            default: "#392E57",
+        },
+        
     }
 }
 
+const themeText = {
+  light: {
+    text: {
+      primary: "#392E57"
+    }
+  },
+  dark: {
+    text: {
+      primary: "#fff"
+    }
+  }
+}
+
 export const ColorContextProvider = ({ children }) => {
-  const [mode, setMode] = useState("dark");
+  const [mode, setMode] = useState("light");
 
   const colorMode = useMemo(
     () => ({
@@ -31,12 +47,19 @@ export const ColorContextProvider = ({ children }) => {
     [mode]
   );
 
-  const theme = createTheme({
+  const theme = useMemo(() => createTheme({
     palette: {
       mode: mode,
-      ...themeObj[mode],
+      ...themeObj [mode],
+      
     },
-  });
+  }), [mode])
+  // const theme = createTheme({
+  //   palette: {
+  //     mode: mode,
+  //     ...themeObj[mode],
+  //   },
+  // });
 
   return (
     <ColorModeContext.Provider value={colorMode}>
