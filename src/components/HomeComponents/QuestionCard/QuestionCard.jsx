@@ -1,11 +1,8 @@
 import React from "react";
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
-import Typography from "@mui/material/Typography";
-import Chip from "@mui/material/Chip";
-import Stack from "@mui/material/Stack";
+import { Grid, Paper, Typography, Chip, Stack, Avatar, Link } from "@mui/material";
+
 import { Box } from "@mui/system";
-import Avatar from "@mui/material/Avatar";
+
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
@@ -14,8 +11,8 @@ import Checkbox from "@mui/material/Checkbox";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import { pink } from "@mui/material/colors";
 import Favorite from "@mui/icons-material/Favorite";
-import { Link } from "react-router-dom";
-import fotoPerfil from "../../../imagen/perfilIcono.png";
+import { Link as RouterLink } from "react-router-dom";
+
 import { getModuleColor, getTagColor } from "../../../Controllers/Helpers/colorsQuestion";
 
 
@@ -62,9 +59,8 @@ export const QuestionCard = ({ question }) => {
           <Avatar
             sx={{
               bgcolor: getModuleColor(question),
-              // bgcolor: "#FBC02D",
               fontSize: "1rem",
-              color: "#392e57",
+              // color: "#392e57",
               marginBottom: "10px",
             }}
             aria-label="recipe"
@@ -142,26 +138,32 @@ export const QuestionCard = ({ question }) => {
                 component="div"
                 sx={{ fontSize: "20px" }}
               >
+                {/* <RouterLink
+                  to={`/visualize-question/${question.id}`}
+                  // style={linkStyle}
+                  underline="none"
+                  color="inherit"
+                > lola</RouterLink> */}
                 <Link
                   to={`/visualize-question/${question.id}`}
-                  style={linkStyle}
+                  component={RouterLink}
+                  // variant="button"
+                  color="inherit"
+                  underline='none'
                 >
                   <Typography
-                    variant="body2"
+                    // variant="body2"
                     sx={{
                       fontSize: "20px",
                       letterSpacing: 0.75,
                       margin: "4px 2px",
                       width: "75%",
-                      color: "#000000",
-                      // marginTop: "-15px",
+
                     }}
                   >
                     {question.title}
                   </Typography>
-
                 </Link>
-
                 <h6
                   style={{ marginTop: "0", fontSize: "10px", color: "#A8A3B5" }}
                 >{`${question.createdAt}`}</h6>
@@ -172,7 +174,7 @@ export const QuestionCard = ({ question }) => {
                   fontSize: "14px",
                   letterSpacing: 0.5,
                   width: "75%",
-                  color: "#A8A3B5",
+                  // color: "#A8A3B5",
                   marginTop: "-15px",
                 }}
               >
@@ -238,7 +240,8 @@ export const QuestionCard = ({ question }) => {
                   marginLeft: "-20px",
                   marginTop: 10,
                   fontSize: "9px",
-                  color: "#a8a3b5",
+                  // position: "absolute",
+                  // color: "#a8a3b5",
                 }}
               />
               <p

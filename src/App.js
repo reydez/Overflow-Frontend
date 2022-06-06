@@ -12,6 +12,8 @@ import Component404 from "./components/404/Component404";
 import { useDispatch } from "react-redux";
 import { createUser } from "./redux/actions/userActions";
 import Spinner from "./components/spinner/Spinner";
+import ProfileDashboard from "./components/HomeComponents/ProfileDashBoard/ProfileDashboard"
+
 
 function App() {
   const { isLoading, isAuthenticated, user } = useAuth0();
@@ -57,13 +59,23 @@ function App() {
       <Route exact={true} path="/create-question">
         {!isAuthenticated ? <Redirect to="/" /> : <PostFormMui />}
       </Route>
-
+      {/* 
       <Route exact={true} path="/user-profile">
         {!isAuthenticated ? (
           <Redirect to="/" />
         ) : (
           <BarLeft>
             <UserProfile />
+          </BarLeft>
+        )}
+      </Route> */}
+
+      <Route exact={true} path="/user-profile">
+        {!isAuthenticated ? (
+          <Redirect to="/" />
+        ) : (
+          <BarLeft>
+            <ProfileDashboard />
           </BarLeft>
         )}
       </Route>
