@@ -7,6 +7,7 @@ export const ColorModeContext = createContext({
 });
 
 const themeObj = {
+
   components: {
     MuiTypography: {
       defaultProps: {
@@ -44,6 +45,7 @@ const themeObj = {
     }
   }
 }
+
 
 
 

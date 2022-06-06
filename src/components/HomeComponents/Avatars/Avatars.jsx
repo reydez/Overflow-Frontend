@@ -16,7 +16,7 @@ export default function Avatars({ orderByModule }) {
           <Avatar
             onClick={orderByModule}
             size="small"
-            sx={{ bgcolor: "#3A2D53", color: "#FBC02D" }}
+            sx={{ bgcolor: "background.violet", color: "#FBC02D" }}
           >
             M1
           </Avatar>
@@ -24,7 +24,7 @@ export default function Avatars({ orderByModule }) {
         <Button>
           <Avatar
             onClick={orderByModule}
-            sx={{ bgcolor: "#3A2D53", color: "#43A047" }}
+            sx={{ bgcolor: "background.violet", color: "#43A047" }}
           >
             M2
           </Avatar>
@@ -32,7 +32,7 @@ export default function Avatars({ orderByModule }) {
         <Button>
           <Avatar
             onClick={orderByModule}
-            sx={{ bgcolor: "#3A2D53", color: "#D81B60" }}
+            sx={{ bgcolor: "background.violet", color: "#D81B60" }}
           >
             M3
           </Avatar>
@@ -40,7 +40,7 @@ export default function Avatars({ orderByModule }) {
         <Button>
           <Avatar
             onClick={orderByModule}
-            sx={{ bgcolor: "#3A2D53", color: "#42A5F5" }}
+            sx={{ bgcolor: "background.violet", color: "#42A5F5" }}
           >
             M4
           </Avatar>
