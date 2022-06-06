@@ -60,7 +60,7 @@ function App() {
       <Route exact={true} path="/create-question">
         {!isAuthenticated ? <Redirect to="/" /> : <PostFormMui />}
       </Route>
-      {/* 
+
       <Route exact={true} path="/user-profile">
         {!isAuthenticated ? (
           <Redirect to="/" />
@@ -69,27 +69,27 @@ function App() {
             <UserProfile />
           </BarLeft>
         )}
-      </Route> */}
+      </Route>
 
       <Route exact={true} path="/user-profile">
-        {!isAuthenticated 
-          ? ( <Redirect to="/" />) 
+        {!isAuthenticated
+          ? (<Redirect to="/" />)
           : (
             <BarLeft>
               <ProfileDashboard />
             </BarLeft>
-            )
+          )
         }
       </Route>
 
       <Route exact={true} path="/all-users">
-        {!isAuthenticated 
-          ? ( <Redirect to="/" />) 
+        {!isAuthenticated
+          ? (<Redirect to="/" />)
           : (
             <BarLeft>
               <AllUsers />
             </BarLeft>
-            )
+          )
         }
       </Route>
 
