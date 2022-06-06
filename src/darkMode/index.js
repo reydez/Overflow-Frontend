@@ -9,31 +9,22 @@ export const ColorModeContext = createContext({
 const themeObj = {
     light: {
         background: {
-            default: "#F7FBFE"
+            default: "#F9FAFE",
+            white: '#EBEFFE',
+            violet: '#7165A0'
         },
-       
-        
     },
     dark: {
         background: {
             default: "#392E57",
+            violet:'#392E57',
+
         },
         
     }
 }
 
-const themeText = {
-  light: {
-    text: {
-      primary: "#392E57"
-    }
-  },
-  dark: {
-    text: {
-      primary: "#fff"
-    }
-  }
-}
+
 
 export const ColorContextProvider = ({ children }) => {
   const [mode, setMode] = useState("light");

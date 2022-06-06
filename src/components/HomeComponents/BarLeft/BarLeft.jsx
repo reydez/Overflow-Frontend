@@ -53,18 +53,19 @@ export default function BarLeft(props) {
           </IconButton>
           {/* <Avatar /> */}
           <Link to={"/create-question"}>
-            <Button /* disableRipple  */
+            <Button variant='primary' size='large' /* disableRipple  */
               sx={{
+                width: '176px',
+                height: '36px',
                 marginLeft: "30px",
                 borderRadius: "25px",
                 border: 'none',
-                color: "black", "&:hover": { color: "#FAFAFA"},
+                color: "black", "&:hover": { color: "#BDD96C"},
                 cursor: 'pointer',
                 fontSize: "12px",
-                padding: "5px 10px",
-                background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
-                boxShadow: "0 8px 10px 3px rgba(255,105,135, .3)",
-                bgcolor: 'background.default'
+                padding: "5px 13px",
+                
+                bgcolor: '#BDD96C'
               }}
             >
               Hacer una pregunta
@@ -101,20 +102,20 @@ export default function BarLeft(props) {
         >
           {drawer}
         </Drawer>
-        <Drawer
-          variant="permanent"
-          sx={{
-            display: { xs: "none", sm: "block" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-              bgcolor: "background.default"
-            },
-          }}
-          open
-        >
-          {drawer}
-        </Drawer>
+          <Drawer
+            variant="permanent"
+            sx={{
+              display: { xs: "none", sm: "block" },
+              "& .MuiDrawer-paper": {
+                boxSizing: "border-box",
+                width: drawerWidth,
+                bgcolor: "transparent" //esta parte arreglar no cambia el color de el barleft hasta abajo
+              },
+            }}
+            open
+          >
+            {drawer}
+          </Drawer>
       </Box>
       <Box
         component="main"
