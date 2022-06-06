@@ -23,7 +23,7 @@ export const name = (name) => {
         webkitBackgroundClip: 'text',
         webkitTextFillColor: 'transparent',
         backgroundClip: 'text',
-        textFillColor: 'transparent',
+        // textFillColor: 'transparent',
         marginLeft: "170px",
         marginTop: "20px",
       }}
