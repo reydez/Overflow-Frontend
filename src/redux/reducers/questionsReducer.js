@@ -11,7 +11,7 @@ const questionsReducer = (state = initialState, action) => {
         .map((question) => {
           return {
             ...question,
-            tags: question.tags.map((tag) => tag.name.toUpperCase()),
+            tags: question.tags.map((tag) => tag.name),
           };
         })
         .sort(
@@ -36,7 +36,7 @@ const questionsReducer = (state = initialState, action) => {
         .map((question) => {
           return {
             ...question,
-            tags: question.tags.map((tag) => tag.name.toUpperCase()),
+            tags: question.tags.map((tag) => tag.name),
           };
         })
         .sort(

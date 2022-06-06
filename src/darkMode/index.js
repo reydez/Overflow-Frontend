@@ -33,6 +33,7 @@ const themeObj = {
     },
     text: {
       primary: "#392E57",
+      secondary: "#7165A0",
     }
   },
   dark: {

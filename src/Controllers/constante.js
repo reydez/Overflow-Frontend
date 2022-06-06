@@ -61,7 +61,7 @@ const drawer = (
     <List sx={{ bgcolor:'background.white'}}>
       {/* , "Comunidad" */}
       {[
-        <Link to="/questions">
+        <Link to="/questions" style={{textDecoration:'none'}}>
           <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" } }}>
             <HomeIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
             Home
@@ -73,7 +73,7 @@ const drawer = (
         </Button>,
         <Divider />,
 
-        <Link to={`/user-profile`}>
+        <Link to={`/user-profile`} style={{textDecoration:'none'}}>
           <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" } }}>
             <AccountBoxIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
             Mi Perfil
@@ -84,10 +84,13 @@ const drawer = (
           <FavoriteIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
           Mis Favoritos
         </Button>,
-        <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" } }}>
-          <PeopleAltIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
-          Usuarios
-        </Button>,
+
+        <Link to={`/all-users`} style={{textDecoration:'none'}}>
+          <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" } }}>
+            <PeopleAltIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
+            Usuarios
+          </Button>
+        </Link>,
       ].map((text, index) => (
         <ListItem
           key={text}
