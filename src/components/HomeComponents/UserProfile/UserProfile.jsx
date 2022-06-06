@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { CardActions,CardContent, Button, Typography, Card} from '@mui/material'
+import { CardActions, CardContent, Button, Typography, Card } from '@mui/material'
 import {
   name,
   botton,
@@ -18,9 +18,13 @@ import {
 } from '../../../Controllers/styleUserProfile/styleUserProfile';
 
 import { EditUserProfile } from './EditUserProfile';
+import { useSelector } from "react-redux";
 
 export const UserProfile = () => {
- 
+
+
+  const user = useSelector(state => state.userReducer.user);
+  // console.log(user)
   const [editMode, setEditMode] = useState(false);
 
   const changeToFalse = () => {
@@ -36,52 +40,54 @@ export const UserProfile = () => {
           borderRadius: "35px",
           marginLeft: "30px",
           marginTop: "20px",
+          color: 'primary'
         }}
       >
-        {editMode 
-        ? (
+        {editMode
+          ? (
             <div>
-              <EditUserProfile changeToFalse={changeToFalse}/> 
+              <EditUserProfile changeToFalse={changeToFalse} />
             </div>
           )
-        : ( <CardContent>
-            <Button  sx={{ml: 33, py: 0}}>{botton}</Button>
-            <Typography variant="h5" component="div">
-              {name}
-            </Typography>
-            <Typography variant="h5" component="div">
-              {student}
-            </Typography>
-            <Card alt="Remy Sharp" src="">
-              {img}
-            </Card>
+          : (
+            <CardContent>
+              <Button sx={{ ml: 33, py: 0 }}>{botton}</Button>
+              <Typography variant="h5" component="div">
+                {name(user.full_name)}
+              </Typography>
+              <Typography variant="h5" component="div">
+                {student(user.role)}
+              </Typography>
+              <Card alt="Remy Sharp" src="">
+                {img(user.image)}
+              </Card>
 
-            <Typography variant="h5" component="div">
-              {quantityQuestions}
-            </Typography>
+              <Typography variant="h5" component="div">
+                {quantityQuestions}
+              </Typography>
 
-            <Typography variant="h5" component="div">
-              {quantityAnswers}
-            </Typography>
+              <Typography variant="h5" component="div">
+                {quantityAnswers}
+              </Typography>
 
-            <Typography>{btnOne}</Typography>
+              <Typography>{btnOne}</Typography>
 
-            <Typography>{btnTwo}</Typography>
+              <Typography>{btnTwo}</Typography>
 
-            <Typography>{btnThree}</Typography>
+              <Typography>{btnThree}</Typography>
 
-            <Typography>{btnFour}</Typography>
+              <Typography>{btnFour}</Typography>
 
-            <Typography>{btnFive}</Typography>
+              <Typography>{btnFive}</Typography>
 
-            <Typography>{btnSix}</Typography>
-            
-            <CardActions onClick={ ()=>setEditMode(true) } >{ editButton }</CardActions>
-            <CardActions>{ vipButton }</CardActions>
+              <Typography>{btnSix}</Typography>
+
+              <CardActions onClick={() => setEditMode(true)} >{editButton}</CardActions>
+              <CardActions>{vipButton}</CardActions>
             </CardContent>
           )
         }
       </Card>
-  </>
+    </>
   )
 }

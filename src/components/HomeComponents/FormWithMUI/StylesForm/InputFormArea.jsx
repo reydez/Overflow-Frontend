@@ -6,7 +6,6 @@ import { Label, Error, DivIcon } from "./FormActStyled"
 const InputForm = ({ label, name, placeholder, error, state, changeState, regularExpresion }) => {
 
 
-
     const handleChange = (e) => {
         console.log(e.target.value)
         changeState({
@@ -75,12 +74,11 @@ const GrupoInput = styled.div`
 // `
 
 const Input = styled.textarea`
-    /* padding: 5px; */
     width: 70%;
     resize: none;
     background: #fff;
     border-radius: 4px;
-    height: 155px;
+    height: 185px;
     font-size: 14px;
     line-height: 20px;
     padding: 12px 40px 0 10px;

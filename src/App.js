@@ -3,7 +3,7 @@ import Home from "./views/Home";
 import LandingPage from "./views/LandingPage";
 import VisualizeQuestion from "./views/VisualizeQuestion";
 import BarLeft from "./components/HomeComponents/BarLeft/BarLeft";
-import PostFormMui from "./components/HomeComponents/FormWithMUI/FormularioQuestion";
+import PostFormMui from "./components/HomeComponents/FormWithMUI/PostFormMui";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Redirect } from "react-router-dom";
 import { useEffect } from "react";
@@ -12,6 +12,8 @@ import Component404 from "./components/404/Component404";
 import { useDispatch } from "react-redux";
 import { createUser } from "./redux/actions/userActions";
 import Spinner from "./components/spinner/Spinner";
+import ProfileDashboard from "./components/HomeComponents/ProfileDashBoard/ProfileDashboard"
+
 
 function App() {
   const { isLoading, isAuthenticated, user } = useAuth0();
@@ -57,7 +59,7 @@ function App() {
       <Route exact={true} path="/create-question">
         {!isAuthenticated ? <Redirect to="/" /> : <PostFormMui />}
       </Route>
-
+      {/* 
       <Route exact={true} path="/user-profile">
         {!isAuthenticated ? (
           <Redirect to="/" />
@@ -66,9 +68,19 @@ function App() {
             <UserProfile />
           </BarLeft>
         )}
+      </Route> */}
+
+      <Route exact={true} path="/user-profile">
+        {!isAuthenticated ? (
+          <Redirect to="/" />
+        ) : (
+          <BarLeft>
+            <ProfileDashboard />
+          </BarLeft>
+        )}
       </Route>
 
-      {<Route path="*" exact={true} component={Component404} />}
+      <Route path="*" exact={true} component={Component404} />
     </Switch>
   );
 }
