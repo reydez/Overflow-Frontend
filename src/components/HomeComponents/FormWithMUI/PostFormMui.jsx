@@ -82,7 +82,8 @@ const PostFormMui = () => {
     e.preventDefault();
     if (
       title.validate === "true" &&
-      description.validate === "true"
+      description.validate === "true" &&
+      modulo.field
     ) {
       setValidate(true);
       dispatch(

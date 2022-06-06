@@ -61,7 +61,7 @@ function App() {
         {!isAuthenticated ? <Redirect to="/" /> : <PostFormMui />}
       </Route>
 
-      <Route exact={true} path="/user-profile">
+      {/* <Route exact={true} path="/user-profile">
         {!isAuthenticated ? (
           <Redirect to="/" />
         ) : (
@@ -69,7 +69,7 @@ function App() {
             <UserProfile />
           </BarLeft>
         )}
-      </Route>
+      </Route> */}
 
       <Route exact={true} path="/user-profile">
         {!isAuthenticated
