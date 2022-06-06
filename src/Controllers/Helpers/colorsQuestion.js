@@ -1,12 +1,12 @@
 export const getModuleColor = (question) => {
     let colorModule;
-    if (question.module.name === "M1") {
+    if (question.module?.name === "M1") {
         colorModule = "#FBC02D"
-    } else if (question.module.name === "M2") {
+    } else if (question.module?.name === "M2") {
         colorModule = "#43A047"
-    } else if (question.module.name === "M3") {
+    } else if (question.module?.name === "M3") {
         colorModule = "#D81B60"
-    } else if (question.module.name === "M4") {
+    } else if (question.module?.name === "M4") {
         colorModule = "#42A5F5"
     }
     return colorModule
