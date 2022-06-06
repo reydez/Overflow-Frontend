@@ -41,13 +41,13 @@ const ButtonLogOutDiv = styled.div`
     border: 1px solid #a8a3b5;
     border-radius: 10px;
     background-color: transparent;
-    color: #A8A3B5;
+    color: #7165A0;
     cursor: pointer;
     margin:  auto;
     margin-top: 100px;
     padding: 5px 20px;
     font-style: normal;
-    font-weight: 900;
+    font-weight: 500;
     font-family: Roboto;
     font-size: 15px;
     
@@ -56,38 +56,41 @@ const ButtonLogOutDiv = styled.div`
 
 const drawer = (
   <div>
-    <Toolbar sx={{ bgcolor: "background.default"}}/>
+    <Toolbar sx={{bgcolor:'background.white'}}/>
     <Divider />
-    <List sx={{ bgcolor: "background.default"}}>
+    <List sx={{ bgcolor:'background.white'}}>
       {/* , "Comunidad" */}
       {[
-        <Link to="/questions">
-          <Button sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }}>
+        <Link to="/questions" style={{textDecoration:'none'}}>
+          <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" } }}>
             <HomeIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
             Home
           </Button>
         </Link>,
-        <Button sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }}>
+        <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" } }}>
           <ListAltIcon sx={{ marginRight: "10px", fontSize: "18px" }} />{" "}
           Categorías
         </Button>,
         <Divider />,
 
-        <Link to={`/user-profile`}>
-          <Button sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }}>
+        <Link to={`/user-profile`} style={{textDecoration:'none'}}>
+          <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" } }}>
             <AccountBoxIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
             Mi Perfil
           </Button>
         </Link>,
 
-        <Button sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }}>
+        <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" } }}>
           <FavoriteIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
           Mis Favoritos
         </Button>,
-        <Button sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }}>
-          <PeopleAltIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
-          Usuarios
-        </Button>,
+
+        <Link to={`/all-users`} style={{textDecoration:'none'}}>
+          <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" } }}>
+            <PeopleAltIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
+            Usuarios
+          </Button>
+        </Link>,
       ].map((text, index) => (
         <ListItem
           key={text}
@@ -121,7 +124,7 @@ const drawer = (
         </ListItem>
       ))}
     </List>  */}
-    <List sx={{}}>
+    <List sx={{bgcolor:'background.white'}}>
 
     <ButtonLogOut />
     </List>

@@ -12,7 +12,8 @@ import Component404 from "./components/404/Component404";
 import { useDispatch } from "react-redux";
 import { createUser } from "./redux/actions/userActions";
 import Spinner from "./components/spinner/Spinner";
-// import ProfileDashboard from "./components/HomeComponents/ProfileDashBoard/ProfileDashboard"
+import ProfileDashboard from "./components/HomeComponents/ProfileDashBoard/ProfileDashboard"
+import { AllUsers } from "./components/HomeComponents/AllUsers/AllUsers";
 
 
 function App() {
@@ -70,15 +71,27 @@ function App() {
         )}
       </Route>
 
-      {/* <Route exact={true} path="/user-profile">
-        {!isAuthenticated ? (
-          <Redirect to="/" />
-        ) : (
-          <BarLeft>
-            <ProfileDashboard />
-          </BarLeft>
-        )}
-      </Route> */}
+      <Route exact={true} path="/user-profile">
+        {!isAuthenticated
+          ? (<Redirect to="/" />)
+          : (
+            <BarLeft>
+              <ProfileDashboard />
+            </BarLeft>
+          )
+        }
+      </Route>
+
+      <Route exact={true} path="/all-users">
+        {!isAuthenticated
+          ? (<Redirect to="/" />)
+          : (
+            <BarLeft>
+              <AllUsers />
+            </BarLeft>
+          )
+        }
+      </Route>
 
       <Route path="*" exact={true} component={Component404} />
     </Switch>

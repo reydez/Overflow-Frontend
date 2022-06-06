@@ -6,11 +6,11 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 export default function PerfilIcon() {
   return (
     <>
-    <Badge sx={{color: 'black', background: '#3C315E', borderRadius: '30%', marginLeft: '50px'}}>
-      <NotificationsIcon  size="small" sx={{color: 'white'}} />
+    <Badge sx={{ bgcolor:"background.default", borderRadius: '30%', marginLeft: '50px'}}>
+      <NotificationsIcon  size="small" sx={{bgcolor: '#3C315E'}} />
     </Badge>
-    <Badge sx={{color: 'black', background: '#3C315E', borderRadius: '30%', marginLeft: '30px' }}>
-      <PersonIcon size="small" sx={{color: 'white'}} />
+    <Badge sx={{bgcolor: 'background.default', borderRadius: '30%', marginLeft: '30px' }}>
+      <PersonIcon size="small" sx={{bgcolor: '#3C315E'}} />
     </Badge>
     </>
   );

@@ -96,34 +96,32 @@ export default function SearchBar() {
   const {mode, toggleMode} = useContext(ColorModeContext);
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <Toolbar>
-        <Search sx={{bgcolor:'background.default'}}>
-          <SearchIconWrapper >
-            <SearchIcon sx={{color: "#a8a3b5"}}/>
-          </SearchIconWrapper>
-          <StyledInputBase sx={{ color: "#a8a3b5" }}
+    <Box >
+          {/* <SearchIconWrapper >
+            <SearchIcon  sx={{color:'#A8A3B5', marginLeft: '100px', position:'absolute'}}/>
+          </SearchIconWrapper> */}
+      <Toolbar > 
+        <Search sx={{bgcolor:'#7165A0', borderRadius:3}}> 
+          <StyledInputBase sx={{bgcolor: '#7165A0', borderRadius: '10px'}}
             placeholder="Buscar…"
             inputProps={{ "aria-label": "search" }}
             onChange={onInputChange}
             onKeyPress={onKeyPress}
             value={palabraBuscada}
           />
-          <Button sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }} type="submit" onClick={onSubmit} >
+          <Button variant="text"    size="small" sx={{ color: "#A8A3B5",  bgcolor: '#7165A0', borderRadius:3, "&:hover": { color: "#BDD96C" } }} type="submit" onClick={onSubmit} >
             Buscar
           </Button>
         </Search>
+          <SearchIcon sx={{position:'absolute', color:'#A8A3B5', marginLeft:'35px'}}/>
         <Box sx={{
         marginLeft: 30,
         
         
        
       }}>
-        <IconButton sx={{ marginLeft:8}}  onClick={toggleMode} >
-          <SvgIcon >
-            <DarkModeIcon  />
-          </SvgIcon>
-          
+        <IconButton size="small" sx={{ bgcolor:'background.default', borderRadius: '30%' }}  onClick={toggleMode} >
+          <DarkModeIcon  />
         </IconButton>
       </Box>
       </Toolbar>
