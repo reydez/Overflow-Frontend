@@ -4,9 +4,7 @@ export const getTags = () => {
   return async (dispatch) => {
     // console.log(dispatch)
     try {
-      let tags = await axios.get(
-        "https://henry-overflow-api.herokuapp.com/tags"
-      );
+      let tags = await axios.get("http://localhost:3001/tags");
       return dispatch({
         type: "GET_TAGS",
         payload: tags.data,

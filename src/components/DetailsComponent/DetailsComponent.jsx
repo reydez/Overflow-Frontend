@@ -6,21 +6,18 @@ import styled from "styled-components";
 import { Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 export default function DetailsComponent({
   question,
   loading,
-  comments,
   setComments,
   commentsARenderizar,
   dummy,
 }) {
   const [comentarioText, setComentarioText] = useState("");
-  const dispatch = useDispatch();
   const user = useSelector((state) => state.userReducer.user);
   const isTextareaDisabled = comentarioText.length === 0;
-
-  console.log(user);
 
   let history = useHistory();
   const Return = () => {
@@ -34,18 +31,21 @@ export default function DetailsComponent({
 
   const onSubmitHandler = () => {
     axios
-      .post(
-        `https://henry-overflow-api.herokuapp.com/comments/${question.id}/${user.id}`,
-        {
-          message: comentarioText,
-        }
-      )
+      .post(`http://localhost:3001/comments/${question.id}/${user.id}`, {
+        message: comentarioText,
+      })
       .then((response) => {
-        setComments([response.data, ...comments]);
+        setComments([...commentsARenderizar, response.data]);
         setComentarioText("");
       })
       .catch((error) => {
-        console.log(error);
+        if (error.response.status === 500) {
+          Swal.fire(
+            "Comentario repetido!",
+            "Por favor ingrese un comentario que no se repita",
+            "question"
+          );
+        }
       })
       .finally(() => {
         if (!dummy.current) return;
@@ -121,7 +121,11 @@ export default function DetailsComponent({
                   }}
                 >
                   <p
-                    style={{ margin: "0", fontSize: "16px", color: "#413a66" }}
+                    style={{
+                      margin: "0",
+                      fontSize: "16px",
+                      color: "#413a66",
+                    }}
                   >{`${comment.user.first_name} ${comment.user.last_name}:`}</p>
                   <span
                     style={{
