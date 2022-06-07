@@ -255,7 +255,6 @@ const CounterSideBar = styled.div`
 const MainContainer = styled.div`
   width: 100%;
   display: flex;
- 
 `;
 
 const SideBar = styled.div`
