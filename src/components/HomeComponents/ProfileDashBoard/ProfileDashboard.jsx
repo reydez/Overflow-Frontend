@@ -48,30 +48,29 @@ const ProfileDashboard = () => {
                             backgroundColor: 'background.white',
                             borderRadius: "5px",
                             display: "flex",
-                            flexDirection: { xs: 'column', md: 'row' },
+                            flexDirection: 'column',
                             justifyContent: "center",
                             alignItems: "center",
                         }}
                     >
-                        <CardContent sx={{
-                            display: "flex",
-                            flexDirection: { md: 'column' },
-                        }}>
-                            {/* <Card
-                                sx={{
-                                    display: 'flex',
-                                    // maxWidth: 345
-                                }}
-                            > */}
+                        <CardContent
+                            sx={{
+                                display: "flex",
+                                flexDirection: 'column',
+                            }}
+                        >
                             {img(user.image)}
-
-                            {/* </Card> */}
 
                             <Typography>
                                 {name(user.full_name)}
                             </Typography>
-
-
+                        </CardContent>
+                        <CardContent
+                            sx={{
+                                display: "flex",
+                                flexDirection: 'column',
+                            }}
+                        >
                             <Typography
                                 sx={{
                                     fontWeight: 400,

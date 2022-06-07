@@ -122,9 +122,8 @@ export const img = (name) => {
         marginLeft: "10px",
       }}
       component="img"
-      // height="294"
       image={name}
-      alt="Paella dish"
+      alt="user"
     />
   )
 }
