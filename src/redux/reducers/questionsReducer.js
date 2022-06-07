@@ -11,7 +11,7 @@ const questionsReducer = (state = initialState, action) => {
         .map((question) => {
           return {
             ...question,
-            tags: question.tags.map((tag) => tag.name),
+            tags: question.tags.map((tag) => tag.name.toUpperCase()),
           };
         })
         .sort(
@@ -36,7 +36,7 @@ const questionsReducer = (state = initialState, action) => {
         .map((question) => {
           return {
             ...question,
-            tags: question.tags.map((tag) => tag.name),
+            tags: question.tags.map((tag) => tag.name.toUpperCase()),
           };
         })
         .sort(
@@ -85,7 +85,7 @@ const questionsReducer = (state = initialState, action) => {
       const copyOfQuestion = state.questions.slice();
 
       const filteredByTag = copyOfQuestion.filter(
-        (question) => question.tags.indexOf(action.payload) >= 0
+        (question) => question.tags.indexOf(action.payload.toUpperCase()) >= 0
       );
 
       return {

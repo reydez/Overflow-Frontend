@@ -26,24 +26,14 @@ export default function VisualizeQuestion() {
     setComments(question.comments);
   }, [question.comments]);
 
-  let getRespuestas;
-
-  if (comments) {
-    getRespuestas = comments
-      .map((comments, index) => {
-        return {
-          idx: index,
-          ...comments,
-        };
-      })
-      .sort((a, b) => b.idx - a.idx);
-  }
+  let comentsARenderizar = comments?.sort(
+    (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+  );
 
   return (
     <DetailsComponent
       question={question}
-      commentsARenderizar={getRespuestas}
-      comments={comments}
+      commentsARenderizar={comentsARenderizar}
       setComments={setComments}
       loading={loading}
       dummy={dummy}

@@ -37,24 +37,25 @@ const themeObj = {
   },
   light: {
     background: {
-      default: "#fff",
-      dark: '#E8B5D0',
-
-
+      default: "#F9FAFE",
+      white: '#EBEFFE', // color del barleft
+      violet: '#7165A0', // color del avatar
     },
     text: {
-      primary: "#392E57",
+      primary: "#7165A0",
       secondary: "#7165A0",
     }
   },
   dark: {
     background: {
-      default: "#392E57",
-      dark: '#BEB0D1'
+      default: "#413A66",
+      violet: "#392E57",
+      white: "#392E57"
     },
 
     text: {
-      primary: "#fff"
+      primary: "#fff",
+
     }
   }
 }

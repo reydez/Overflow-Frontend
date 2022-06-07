@@ -13,8 +13,8 @@ import { getQuestionsByName } from "../../../redux/actions/questionsActions";
 import { useDispatch } from "react-redux";
 import { useContext } from "react";
 import { ColorModeContext } from "../../../darkMode/index";
-import LightModeIcon from '@mui/icons-material/LightMode';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -67,63 +67,72 @@ export default function SearchBar() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    /* !palabraBuscada
-      ? Swal.fire(
-          "¿Búsqueda vacía?",
-          "Por favor decinos que estás buscando...",
-          "question"
-        )
-      :  */ dispatch(getQuestionsByName(palabraBuscada));
-
-    setPalabraBuscada("");
+    dispatch(getQuestionsByName(palabraBuscada));
   };
 
   const onKeyPress = (e) => {
     if (e.charCode === 13) {
-      /* !palabraBuscada
-        ? Swal.fire(
-            "¿Búsqueda vacía?",
-            "Por favor decinos que estás buscando...",
-            "question"
-          )
-        : */
       dispatch(getQuestionsByName(palabraBuscada));
-      /* setPalabraBuscada(e.target.value); */
-      setPalabraBuscada("");
     }
   };
 
-  const {mode, toggleMode} = useContext(ColorModeContext);
+  const onKeyUpHandler = (e) => {
+    if (palabraBuscada.trim() === "") {
+      dispatch(getQuestionsByName(palabraBuscada));
+    }
+  };
+
+  const { mode, toggleMode } = useContext(ColorModeContext);
 
   return (
-    <Box >
-          {/* <SearchIconWrapper >
+    <Box>
+      {/* <SearchIconWrapper >
             <SearchIcon  sx={{color:'#A8A3B5', marginLeft: '100px', position:'absolute'}}/>
           </SearchIconWrapper> */}
-      <Toolbar > 
-        <Search sx={{bgcolor:'#7165A0', borderRadius:3}}> 
-          <StyledInputBase sx={{bgcolor: '#7165A0', borderRadius: '10px'}}
+      <Toolbar>
+        <Search sx={{ bgcolor: "#7165A0", borderRadius: 3 }}>
+          <StyledInputBase
+            sx={{ bgcolor: "#7165A0", borderRadius: "10px" }}
             placeholder="Buscar…"
             inputProps={{ "aria-label": "search" }}
             onChange={onInputChange}
             onKeyPress={onKeyPress}
+            onKeyUp={onKeyUpHandler}
             value={palabraBuscada}
           />
-          <Button variant="text"    size="small" sx={{ color: "#A8A3B5",  bgcolor: '#7165A0', borderRadius:3, "&:hover": { color: "#BDD96C" } }} type="submit" onClick={onSubmit} >
+
+          <Button
+            variant="text"
+            size="small"
+            sx={{
+              color: "#A8A3B5",
+              bgcolor: "#7165A0",
+              borderRadius: 3,
+              "&:hover": { color: "#BDD96C" },
+            }}
+            type="submit"
+            onClick={onSubmit}
+          >
+
             Buscar
           </Button>
         </Search>
-          <SearchIcon sx={{position:'absolute', color:'#A8A3B5', marginLeft:'35px'}}/>
-        <Box sx={{
-        marginLeft: 30,
-        
-        
-       
-      }}>
-        <IconButton size="small" sx={{ bgcolor:'background.default', borderRadius: '30%' }}  onClick={toggleMode} >
-          <DarkModeIcon  />
-        </IconButton>
-      </Box>
+        <SearchIcon
+          sx={{ position: "absolute", color: "#A8A3B5", marginLeft: "35px" }}
+        />
+        <Box
+          sx={{
+            marginLeft: 30,
+          }}
+        >
+          <IconButton
+            size="small"
+            sx={{ bgcolor: "background.default", borderRadius: "30%" }}
+            onClick={toggleMode}
+          >
+            <DarkModeIcon />
+          </IconButton>
+        </Box>
       </Toolbar>
     </Box>
   );
