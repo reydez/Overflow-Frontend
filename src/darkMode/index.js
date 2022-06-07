@@ -40,6 +40,7 @@ const themeObj = {
       default: "#F9FAFE",
       white: '#EBEFFE', // color del barleft
       violet: '#7165A0', // color del avatar
+      fondoPerfil: '#f4f4f4'
     },
     text: {
       primary: "#7165A0",
@@ -50,7 +51,8 @@ const themeObj = {
     background: {
       default: "#413A66",
       violet: "#392E57",
-      white: "#392E57"
+      white: "#392E57",
+      fondoPerfil: '#392E57'
     },
 
     text: {
