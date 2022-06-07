@@ -24,6 +24,15 @@ const themeObj = {
           body2: 'span',
         },
       },
+      typography: {
+        fontFamily: [
+          '"Segoe UI"',
+          'Arial',
+          'sans-serif',
+          '"Segoe UI Emoji"',
+          '"Segoe UI Symbol"',
+        ].join(','),
+      },
     },
   },
   light: {
@@ -46,10 +55,11 @@ const themeObj = {
 
     text: {
       primary: "#fff",
-      
+
     }
   }
 }
+
 
 
 

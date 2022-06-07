@@ -17,7 +17,8 @@ import {
     editButton,
     vipButton
 } from '../../../Controllers/styleUserProfile/styleUserProfile';
-import { EditUserProfile } from "../UserProfile/EditUserProfile"
+import { EditUserProfile } from "../UserProfile/EditUserProfile";
+import TwitterIcon from '@mui/icons-material/Twitter';
 
 const ProfileDashboard = () => {
 
@@ -42,9 +43,10 @@ const ProfileDashboard = () => {
                 : (
                     <Box
                         sx={{
+                            // fontFamily: 'Roboto',
                             width: '80%',
                             height: '700%',
-                            // backgroundColor: 'secondary',
+                            backgroundColor: 'background.dark',
                             padding: "50px",
                             borderRadius: "5px",
                         }}
@@ -59,6 +61,8 @@ const ProfileDashboard = () => {
 
                             <Typography
                                 sx={{
+                                    fontWeight: 400,
+                                    fontFamily: 'Segoe UI',
                                     marginLeft: "170px",
                                     marginTop: "80px",
                                 }}
@@ -68,6 +72,8 @@ const ProfileDashboard = () => {
                             </Typography>
                             <Typography
                                 sx={{
+                                    fontWeight: 400,
+                                    fontFamily: 'Segoe UI',
                                     marginLeft: "170px",
                                     marginTop: "40px",
                                 }}
