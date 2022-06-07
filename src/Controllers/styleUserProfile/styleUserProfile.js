@@ -1,7 +1,7 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { Typography, CardMedia } from "@mui/material";
+import { Typography, CardMedia, Card } from "@mui/material";
 // import { color } from "@mui/system";
 
 export const name = (name) => {
@@ -110,22 +110,26 @@ export const quantityAnswers = (
   </Box>
 );
 
-export const img = (name) => {
+export const img = (image, username) => {
   return (
-
-    <CardMedia
-      sx={{
-        position: "absolute",
-        width: "150px",
-        height: "140px",
-        borderRadius: "20px",
-        marginLeft: "10px",
-      }}
-      component="img"
-      // height="294"
-      image={name}
-      alt="Paella dish"
-    />
+    <Card>
+      <CardMedia
+        sx={{
+          position: "absolute",
+          width: "150px",
+          height: "140px",
+          borderRadius: "20px",
+          marginLeft: "10px",
+        }}
+        component="img"
+        // height="294"
+        image={image}
+        alt="Paella dish"
+      />
+      <Typography sx={{}}>
+        {username}
+      </Typography>
+    </Card>
   )
 }
 
