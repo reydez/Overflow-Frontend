@@ -11,7 +11,6 @@ import SearchBar from "../SearchBar/SearchBar.jsx";
 import { Link } from "react-router-dom";
 import PerfilIcon from "../Perfil/PerfilIcon.jsx";
 
-
 /* aqui va el componente de lisandro search  */
 
 const drawerWidth = 240;
@@ -27,21 +26,18 @@ export default function BarLeft(props) {
     setMobileOpen(!mobileOpen);
   };
 
-
-
   return (
-     
-      <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar
         position="fixed"
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
-          bgcolor: "background.default"
+          bgcolor: "background.default",
         }}
       >
-        <Toolbar >
+        <Toolbar>
           <IconButton
             color="inherit"
             arial-label="open drawer"
@@ -52,20 +48,23 @@ export default function BarLeft(props) {
             <MenuIcon />
           </IconButton>
           {/* <Avatar /> */}
-          <Link to={"/create-question"}>
-            <Button variant='primary' size='large' /* disableRipple  */
+          <Link to={"/create-question"} style={{ textDecoration: "none" }}>
+            <Button
+              variant="primary"
+              size="large" /* disableRipple  */
               sx={{
-                width: '176px',
-                height: '36px',
+                width: "176px",
+                height: "36px",
                 marginLeft: "30px",
                 borderRadius: "25px",
-                border: 'none',
-                color: "black", "&:hover": { color: "#BDD96C"},
-                cursor: 'pointer',
+                border: "none",
+                color: "black",
+                "&:hover": { color: "#BDD96C" },
+                cursor: "pointer",
                 fontSize: "12px",
                 padding: "5px 13px",
-                
-                bgcolor: '#BDD96C'
+
+                bgcolor: "#BDD96C",
               }}
             >
               Hacer una pregunta
@@ -96,26 +95,25 @@ export default function BarLeft(props) {
             "& .MuiDrawer-paper": {
               width: drawerWidth,
               boxSizing: "border-box",
-              
             },
           }}
         >
           {drawer}
         </Drawer>
-          <Drawer
-            variant="permanent"
-            sx={{
-              display: { xs: "none", sm: "block" },
-              "& .MuiDrawer-paper": {
-                boxSizing: "border-box",
-                width: drawerWidth,
-                bgcolor: "transparent" //esta parte arreglar no cambia el color de el barleft hasta abajo
-              },
-            }}
-            open
-          >
-            {drawer}
-          </Drawer>
+        <Drawer
+          variant="permanent"
+          sx={{
+            display: { xs: "none", sm: "block" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+              bgcolor: "transparent", //esta parte arreglar no cambia el color de el barleft hasta abajo
+            },
+          }}
+          open
+        >
+          {drawer}
+        </Drawer>
       </Box>
       <Box
         component="main"

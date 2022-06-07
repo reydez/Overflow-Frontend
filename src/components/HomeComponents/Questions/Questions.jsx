@@ -20,12 +20,11 @@ import PaginationComponent from "../../paginationComponents/PaginationComponent"
 import Footer from "../../../views/Footer";
 import { getTagColor } from "../../../Controllers/Helpers/colorsQuestion";
 
-
 export const Questions = () => {
   const dispatch = useDispatch();
   const [loading, setLoadin] = useState(false);
   const questions = useSelector((state) => state.questionsReducer.questions);
-  const tags = useSelector(state => state.tagsReducer.tags)
+  const tags = useSelector((state) => state.tagsReducer.tags);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
@@ -34,13 +33,10 @@ export const Questions = () => {
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5);
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
 
-
-
-
   useEffect(() => {
     const loadQuestions = () => {
       setLoadin(true);
-      dispatch(getTags())
+      dispatch(getTags());
       dispatch(getQuestions());
       setLoadin(false);
     };
@@ -94,22 +90,39 @@ export const Questions = () => {
     "HTML",
   ];
 
-
-  console.log(tags)
+  console.log(tags);
   return (
     <div>
-      <MainContainer >
-        <CardQuestionContainer >
+      <MainContainer>
+        <CardQuestionContainer>
           <div className="CardQuestionTitle">
             <Avatars orderByModule={handleOrderByModule} />
-            <Button sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }} className="buttonFilter" onClick={refreshPage}>
+            <Button
+              sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }}
+              className="buttonFilter"
+              onClick={refreshPage}
+            >
               Refresh
             </Button>
-            <Button sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }} className="buttonFilter" onClick={orderByDateHandler}>
+            <Button
+              sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }}
+              className="buttonFilter"
+              onClick={orderByDateHandler}
+            >
               Nuevas
             </Button>
-            <Button sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }} className="buttonFilter">Mas Visitas</Button>
-            <Button sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }} className="buttonFilter">Mejores Calificadas</Button>
+            <Button
+              sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }}
+              className="buttonFilter"
+            >
+              Mas Visitas
+            </Button>
+            <Button
+              sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }}
+              className="buttonFilter"
+            >
+              Mejores Calificadas
+            </Button>
           </div>
 
           <PaginationComponent
@@ -130,8 +143,10 @@ export const Questions = () => {
             {loading ? (
               <h4>Loading Questions...</h4>
             ) : (
-              currentItems.map(question => (
-                <QuestionCard  question={question} key={question.id} />
+
+              currentItems.map((question) => (
+                <QuestionCard question={question} key={question.id} />
+
               ))
             )}
           </CardQuestion>
@@ -156,7 +171,7 @@ export const Questions = () => {
               return (
                 <Chip
                   sx={{
-                    color: getTagColor(tag.name)
+                    color: getTagColor(tag.name),
                   }}
                   variant="outlined"
                   key={tag.id}
@@ -174,7 +189,6 @@ export const Questions = () => {
 };
 
 const CounterSideBar = styled.div`
-  
   /*COUNTER              CHEQUAR ESTE PROPERTY*/
   @property --num {
     syntax: "<integer>";
@@ -202,7 +216,7 @@ const CounterSideBar = styled.div`
     width: 2em;
     font: 400 2.5em system-ui;
     content: counter(num);
-  
+
     display: flex;
     margin: 0 auto;
     text-align: center;
@@ -216,7 +230,7 @@ const CounterSideBar = styled.div`
   .nums::after {
     position: absolute;
     /* content: 'Preguntas'; */
-   
+
     font-weight: 400;
     text-align: center;
     padding-left: 28px;
@@ -238,8 +252,6 @@ const CounterSideBar = styled.div`
   }
 `;
 
-
-
 const MainContainer = styled.div`
   width: 100%;
   display: flex;
@@ -253,11 +265,9 @@ const SideBar = styled.div`
 `;
 
 const CardQuestionContainer = styled.div`
-  
-
   height: 60px;
   width: 80%;
-  
+
   margin-left: 30px;
   margin-bottom: 10px;
   .CardQuestionTitle {
@@ -266,7 +276,6 @@ const CardQuestionContainer = styled.div`
     align-items: center;
   }
   .CardQuestionTitle button {
-    
     text-decoration: none;
     padding-top: 10px;
 
@@ -276,8 +285,6 @@ const CardQuestionContainer = styled.div`
   }
 
   .buttonFilter:hover {
-  
-  
   }
 
   @media (max-width: 1050px) {
@@ -290,5 +297,4 @@ const CardQuestionContainer = styled.div`
 const CardQuestion = styled.div`
   margin-top: 25px;
   width: 100%;
-  
 `;
