@@ -116,13 +116,13 @@ export const img = (name) => {
     <CardMedia
       sx={{
         position: "absolute",
-        width: "130px",
-        height: "130px",
+        width: "150px",
+        height: "140px",
         borderRadius: "20px",
         marginLeft: "10px",
       }}
       component="img"
-      height="194"
+      // height="294"
       image={name}
       alt="Paella dish"
     />

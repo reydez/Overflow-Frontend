@@ -141,7 +141,7 @@ export const QuestionCard = ({ question }) => {
                       letterSpacing: 0.4,
                       margin: "4px 2px",
                       width: "75%",
-                      color:  (theme) => theme.palette.mode === 'dark' ? '#fff'  : '#7165A0'
+                      color: (theme) => theme.palette.mode === 'dark' ? '#fff' : '#7165A0'
                     }}
                   >
                     {question.title}
@@ -171,18 +171,18 @@ export const QuestionCard = ({ question }) => {
               {" "}
               {/* TAGs de cada categoría*/}
 
-              <Stack direction="row" spacing={1} sx={{ marginTop:'-35px' }}>
+              <Stack direction="row" spacing={1} sx={{ marginTop: '-35px' }}>
                 {question.tags.map(tag => {
                   // console.log(tag)
                   return (
                     <Chip
-                      
+
                       label={<Box Box
                         key={tag}
                         sx={{
                           bgcolor: 'transparent',
                           color: getTagColor(tag),
-                          
+
                           // border: getTagColor(tag)
                           // border: `2px solid ${getTagColor(tag)}`,
                           // padding: '2px 15px',
@@ -202,8 +202,8 @@ export const QuestionCard = ({ question }) => {
             {/* check de corazon para clickear hacia favoritos */}
             <Checkbox
               {...label}
-              icon={<Favorite sx={{color: '#A8A3B5'}}/>}
-              checkedIcon={<Favorite sx={{color: '#D81B60'}}/>}
+              icon={<Favorite sx={{ color: '#A8A3B5' }} />}
+              checkedIcon={<Favorite sx={{ color: '#D81B60' }} />}
               sx={{
                 color: pink[800],
                 "&.Mui-checked": {

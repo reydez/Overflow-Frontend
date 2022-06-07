@@ -43,21 +43,34 @@ const ProfileDashboard = () => {
                 : (
                     <Box
                         sx={{
-                            // fontFamily: 'Roboto',
-                            width: '80%',
-                            height: '700%',
-                            backgroundColor: 'background.dark',
-                            padding: "50px",
+                            width: '90%',
+                            height: '80vh',
+                            backgroundColor: 'background.white',
                             borderRadius: "5px",
+                            display: "flex",
+                            flexDirection: { xs: 'column', md: 'row' },
+                            justifyContent: "center",
+                            alignItems: "center",
                         }}
                     >
-                        <CardContent>
-                            <Card alt="Remy Sharp" src="">
-                                {img(user.image)}
-                            </Card>
+                        <CardContent sx={{
+                            display: "flex",
+                            flexDirection: { md: 'column' },
+                        }}>
+                            {/* <Card
+                                sx={{
+                                    display: 'flex',
+                                    // maxWidth: 345
+                                }}
+                            > */}
+                            {img(user.image)}
+
+                            {/* </Card> */}
+
                             <Typography>
                                 {name(user.full_name)}
                             </Typography>
+
 
                             <Typography
                                 sx={{
