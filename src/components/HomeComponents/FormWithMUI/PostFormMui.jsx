@@ -83,7 +83,8 @@ const PostFormMui = () => {
     if (
       title.validate === "true" &&
       description.validate === "true" &&
-      modulo.field
+      modulo.field &&
+      tag.tags.length < 3
     ) {
       setValidate(true);
       dispatch(
@@ -212,7 +213,7 @@ const Formulario = styled.form`
   background-color: white;
   border-radius: 35px;
   border: solid 1px black;
-  /* box-shadow: 0px 0px 20px rgba(14, 29, 65,0.2); */
+ 
   margin-left: 20px;
   margin-right: 20px;
   @media (max-width: 800px) {

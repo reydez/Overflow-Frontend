@@ -24,11 +24,22 @@ const themeObj = {
           body2: 'span',
         },
       },
+      typography: {
+        fontFamily: [
+          '"Segoe UI"',
+          'Arial',
+          'sans-serif',
+          '"Segoe UI Emoji"',
+          '"Segoe UI Symbol"',
+        ].join(','),
+      },
     },
   },
   light: {
     background: {
-      default: "#fff"
+      default: "#fff",
+      dark: '#E8B5D0',
+
 
     },
     text: {
@@ -39,6 +50,7 @@ const themeObj = {
   dark: {
     background: {
       default: "#392E57",
+      dark: '#BEB0D1'
     },
 
     text: {
@@ -46,6 +58,7 @@ const themeObj = {
     }
   }
 }
+
 
 
 
