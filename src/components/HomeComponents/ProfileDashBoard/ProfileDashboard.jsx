@@ -33,6 +33,7 @@ const ProfileDashboard = () => {
 
 
     return (
+
       <>
 
         {editMode
@@ -106,55 +107,10 @@ const ProfileDashboard = () => {
               )
           }
       </>
+
     )
 }
 
 export default ProfileDashboard
 
 
-
-// <Box
-//                 sx={{
-//                     width: '80%',
-//                     backgroundColor: 'background.dark',
-//                     padding: "50px",
-//                     borderRadius: "5px",
-//                     border: '1px solid red'
-//                 }}
-//               >
-//                 <CardContent sx={{border: '1px solid green'}}>
-//                   <Card alt="Remy Sharp" src="">
-//                     {img(user.image)}
-//                   </Card>
-//                   <Typography>
-//                       {name(user.full_name)}
-//                   </Typography>
-
-//                   <Typography
-//                       sx={{
-//                           fontWeight: 400,
-//                           fontFamily: 'Segoe UI',
-//                           marginLeft: "170px",
-//                           marginTop: "80px",
-//                       }}
-//                   >
-//                       GitHub username: {<br />}
-//                       {user.nick}
-//                   </Typography>
-//                   <Typography
-//                       sx={{
-//                           fontWeight: 400,
-//                           fontFamily: 'Segoe UI',
-//                           marginLeft: "170px",
-//                           marginTop: "40px",
-//                       }}
-//                   >
-//                       Email: {<br />}
-//                       {user.email}
-//                   </Typography>
-
-//                   <CardActions onClick={() => setEditMode(true)} >{editButton}</CardActions>
-//                   <CardActions>{vipButton}</CardActions>
-//                 </CardContent>
-
-//               </Box>
