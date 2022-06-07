@@ -109,7 +109,7 @@ export default function SearchBar() {
             onKeyPress={onKeyPress}
             value={palabraBuscada}
           />
-          <Button variant="text"    size="small" sx={{ color: "#A8A3B5",  bgcolor: '#7165A0', borderRadius:3, "&:hover": { color: "#BDD96C" } }} type="submit" onClick={onSubmit} >
+          <Button variant="text" size="small" sx={{ color: "#A8A3B5",  bgcolor: '#7165A0', borderRadius:3, "&:hover": { color: "#BDD96C" } }} type="submit" onClick={onSubmit} >
             Buscar
           </Button>
         </Search>

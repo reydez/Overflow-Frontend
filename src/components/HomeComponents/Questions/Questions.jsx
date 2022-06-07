@@ -126,12 +126,12 @@ export const Questions = () => {
             currentItems={currentItems}
           />
 
-          <CardQuestion>
+          <CardQuestion >
             {loading ? (
               <h4>Loading Questions...</h4>
             ) : (
               currentItems.map(question => (
-                <QuestionCard question={question} key={question.id} />
+                <QuestionCard  question={question} key={question.id} />
               ))
             )}
           </CardQuestion>
@@ -141,15 +141,15 @@ export const Questions = () => {
           </Box>
         </CardQuestionContainer>
         <SideBar>
-          <CounterSideBar>
-            <div className="nums"></div>
-            <p>Respuestas Online</p>
-            <h4>TAGS MAS USADOS</h4>
+          <CounterSideBar >
+            <Box sx={{bgcolor: 'background.white', color: "#a8a3b5", width:'130px', borderRadius:1}} className="nums" ></Box>
+            <Box sx={{color: '#A8A3B5', marginTop: 1, marginLeft:4}}>Respuestas </Box>
+            <Box sx={{marginTop: 3, marginLeft:0, textAlign: 'center'}}>Tags mas usados</Box>
           </CounterSideBar>
           <Stack
             direction="column"
             spacing={2}
-            sx={{ width: "fit-content", marginTop: "30px" }}
+            sx={{ width: "fit-content", marginTop: "30px"}}
           >
             {tags.map((tag) => {
               let upperCase = tag.name.toUpperCase();
@@ -180,12 +180,14 @@ const CounterSideBar = styled.div`
     syntax: "<integer>";
     inherits: false;
     initial-value: 0;
+    
   }
   .nums {
     position: relative;
     display: flex;
     padding-top: 5px;
     margin: 0 auto;
+    
     text-align: center;
     animation-name: counter;
     animation-duration: 2s;
@@ -193,13 +195,14 @@ const CounterSideBar = styled.div`
     animation-fill-mode: forwards;
     counter-reset: num var(--num);
     /* margin-bottom: 25px; */
+   
   }
 
   .nums::before {
     width: 2em;
     font: 400 2.5em system-ui;
     content: counter(num);
-    
+  
     display: flex;
     margin: 0 auto;
     text-align: center;
@@ -213,7 +216,7 @@ const CounterSideBar = styled.div`
   .nums::after {
     position: absolute;
     /* content: 'Preguntas'; */
-    
+   
     font-weight: 400;
     text-align: center;
     padding-left: 28px;
@@ -240,6 +243,7 @@ const CounterSideBar = styled.div`
 const MainContainer = styled.div`
   width: 100%;
   display: flex;
+ 
 `;
 
 const SideBar = styled.div`
