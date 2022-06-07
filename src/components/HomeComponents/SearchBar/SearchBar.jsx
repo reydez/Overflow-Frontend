@@ -100,6 +100,7 @@ export default function SearchBar() {
             onKeyUp={onKeyUpHandler}
             value={palabraBuscada}
           />
+
           <Button
             variant="text"
             size="small"
@@ -112,6 +113,7 @@ export default function SearchBar() {
             type="submit"
             onClick={onSubmit}
           >
+
             Buscar
           </Button>
         </Search>
