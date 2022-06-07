@@ -12,7 +12,7 @@
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    border-left-color: yellowgreen;
+    border-left-color: #7165A0;
     
     animation: spin 1s linear infinite;
 }
