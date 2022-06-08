@@ -45,7 +45,8 @@ const themeObj = {
     },
     text: {
       primary: "#7165A0",
-      secondary: "#7165A0",
+      secondary: "#7165A0", //color de texto en el nombre del perfil
+     
     }
   },
   dark: {
@@ -55,11 +56,14 @@ const themeObj = {
       white: "#392E57",
       fondoPerfil: '#392E57',
       profileGrid: '#4B4171', // recuadros del profile
-      profilePhotos: '#423B67' // recuadros del profile
+      profilePhotos: '#423B67', // recuadros del profile
+     
     },
     // #423B67
     text: {
       primary: "#fff",
+      secondary: '#A8A3B5',
+      btnEdit: '#BDD96C',       //boton de editar el perfil
 
     }
   }

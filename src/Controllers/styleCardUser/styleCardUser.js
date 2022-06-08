@@ -107,7 +107,7 @@ export const img = (
     sx={{
       position: "absolute",
       width: "130px",
-      height: "130px",
+      height: "110px",
       borderRadius: "20px",
       background: "black",
       marginLeft: "10px",
