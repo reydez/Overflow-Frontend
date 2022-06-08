@@ -13,8 +13,7 @@ import { getQuestionsByName } from "../../../redux/actions/questionsActions";
 import { useDispatch } from "react-redux";
 import { useContext } from "react";
 import { ColorModeContext } from "../../../darkMode/index";
-import LightModeIcon from "@mui/icons-material/LightMode";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
+import Container from "@mui/material/Container";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -82,13 +81,8 @@ export default function SearchBar() {
     }
   };
 
-  const { mode, toggleMode } = useContext(ColorModeContext);
-
   return (
-    <Box>
-      {/* <SearchIconWrapper >
-            <SearchIcon  sx={{color:'#A8A3B5', marginLeft: '100px', position:'absolute'}}/>
-          </SearchIconWrapper> */}
+    <Container sx={{ display: "flex", flexDirection: "row" }}>
       <Toolbar>
         <Search sx={{ bgcolor: "#7165A0", borderRadius: 3 }}>
           <StyledInputBase
@@ -100,23 +94,22 @@ export default function SearchBar() {
             onKeyUp={onKeyUpHandler}
             value={palabraBuscada}
           />
-
-          <Button
-            variant="text"
-            size="small"
-            sx={{
-              color: "#A8A3B5",
-              bgcolor: "#7165A0",
-              borderRadius: 3,
-              "&:hover": { color: "#BDD96C" },
-            }}
-            type="submit"
-            onClick={onSubmit}
-          >
-
-            Buscar
-          </Button>
         </Search>
+        <Button
+          variant="text"
+          size="small"
+          sx={{
+            color: "#A8A3B5",
+            bgcolor: "#7165A0",
+            padding: "9px",
+            borderRadius: 3,
+            "&:hover": { color: "#BDD96C" },
+          }}
+          type="submit"
+          onClick={onSubmit}
+        >
+          Buscar
+        </Button>
         <SearchIcon
           sx={{ position: "absolute", color: "#A8A3B5", marginLeft: "35px" }}
         />
@@ -124,16 +117,8 @@ export default function SearchBar() {
           sx={{
             marginLeft: 30,
           }}
-        >
-          <IconButton
-            size="small"
-            sx={{ bgcolor: "background.default", borderRadius: "30%" }}
-            onClick={toggleMode}
-          >
-            <DarkModeIcon />
-          </IconButton>
-        </Box>
+        ></Box>
       </Toolbar>
-    </Box>
+    </Container>
   );
 }

@@ -8,7 +8,7 @@ import drawer from "../../../Controllers/constante.js";
 import { Button, IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchBar from "../SearchBar/SearchBar.jsx";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import PerfilIcon from "../Perfil/PerfilIcon.jsx";
 
 /* aqui va el componente de lisandro search  */
@@ -16,6 +16,8 @@ import PerfilIcon from "../Perfil/PerfilIcon.jsx";
 const drawerWidth = 240;
 
 export default function BarLeft(props) {
+  const location = useLocation();
+
   const { window } = props;
 
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -49,28 +51,32 @@ export default function BarLeft(props) {
           </IconButton>
           {/* <Avatar /> */}
           <Link to={"/create-question"} style={{ textDecoration: "none" }}>
-            <Button
-              variant="primary"
-              size="large" /* disableRipple  */
-              sx={{
-                width: "176px",
-                height: "36px",
-                marginLeft: "30px",
-                borderRadius: "25px",
-                border: "none",
-                color: "black",
-                "&:hover": { color: "#BDD96C" },
-                cursor: "pointer",
-                fontSize: "12px",
-                padding: "5px 13px",
+            {location.pathname !== "/questions" &&
+            location.pathname !== "/user-profile" &&
+            location.pathname !== "/all-users" ? null : (
+              <Button
+                variant="primary"
+                size="large" /* disableRipple  */
+                sx={{
+                  width: "176px",
+                  height: "36px",
+                  marginLeft: "30px",
+                  borderRadius: "25px",
+                  border: "none",
+                  color: "black",
+                  "&:hover": { color: "#BDD96C" },
+                  cursor: "pointer",
+                  fontSize: "12px",
+                  padding: "5px 13px",
 
-                bgcolor: "#BDD96C",
-              }}
-            >
-              Hacer una pregunta
-            </Button>
+                  bgcolor: "#BDD96C",
+                }}
+              >
+                Hacer una pregunta
+              </Button>
+            )}
           </Link>
-          <SearchBar />
+          {location.pathname !== "/questions" ? null : <SearchBar />}
           <PerfilIcon />
         </Toolbar>
       </AppBar>

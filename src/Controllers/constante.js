@@ -42,6 +42,7 @@ const ButtonLogOut = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          flexDirection: "column",
         }}
       >
         <PayPalScriptProvider
@@ -74,6 +75,7 @@ const ButtonLogOut = () => {
             }}
           />
         </PayPalScriptProvider>
+        <h5 style={{ margin: "0" }}>Donate</h5>
       </div>
     </>
   );
