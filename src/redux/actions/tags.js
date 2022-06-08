@@ -1,4 +1,5 @@
 import axios from "axios";
+import { tag, URL } from "../action-types/index.js";
 
 export const getTags = () => {
   return async (dispatch) => {
@@ -6,7 +7,7 @@ export const getTags = () => {
     try {
       let tags = await axios.get("http://localhost:3001/tags");
       return dispatch({
-        type: "GET_TAGS",
+        type: tag.GET_TAGS,
         payload: tags.data,
       });
     } catch (error) {

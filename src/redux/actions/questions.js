@@ -1,9 +1,10 @@
 import axios from "axios";
+import { question, URL } from "../action-types/index.js";
 
 export const getQuestions = () => async (dispatch) => {
   try {
     const response = await axios.get("http://localhost:3001/posts");
-    dispatch({ type: "GET_QUESTIONS", payload: response.data });
+    dispatch({ type: question.GET_QUESTIONS, payload: response.data });
   } catch (error) {
     console.log(error);
   }
@@ -12,7 +13,10 @@ export const getQuestions = () => async (dispatch) => {
 export const getQuestionDetails = (id) => async (dispatch) => {
   try {
     const response = await axios.get(`http://localhost:3001/posts/${id}`);
-    dispatch({ type: "GET_QUESTION_DETAILS", payload: response.data[0] });
+    dispatch({
+      type: question.GET_QUESTION_DETAILS,
+      payload: response.data[0],
+    });
   } catch (error) {
     console.log(error);
   }
@@ -24,7 +28,10 @@ export const getQuestionsByName = (name) => async (dispatch) => {
       `http://localhost:3001/posts?title=${name}`
     );
 
-    dispatch({ type: "GET_QUESTIONS_BY_NAME", payload: questionsByName.data });
+    dispatch({
+      type: question.GET_QUESTIONS_BY_NAME,
+      payload: questionsByName.data,
+    });
   } catch (error) {
     console.log(error);
   }
@@ -32,7 +39,7 @@ export const getQuestionsByName = (name) => async (dispatch) => {
 
 export const orderByDate = () => {
   return {
-    type: "ORDER_BY_DATE",
+    type: question.ORDER_BY_DATE,
   };
 };
 
@@ -41,7 +48,8 @@ export const postQuestion = (payload, id) => {
     return async function (dispatch) {
       let newPost = await axios.post(
         `http://localhost:3001/posts/${id}`,
-        payload, {
+        payload,
+        {
           headers: {
             authorization: id,
           },
@@ -51,20 +59,20 @@ export const postQuestion = (payload, id) => {
       return newPost;
     };
   } catch (error) {
-    console.log('no es posible')
+    console.log("no es posible");
   }
 };
 
 export const orderByModule = (module) => {
   return {
-    type: "ORDER_BY_MODULE",
+    type: question.ORDER_BY_MODULE,
     payload: module,
   };
 };
 
 export const orderByTag = (tag) => {
   return {
-    type: "ORDER_BY_TAG",
+    type: question.ORDER_BY_TAG,
     payload: tag,
   };
 };

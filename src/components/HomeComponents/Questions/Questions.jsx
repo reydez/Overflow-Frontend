@@ -10,7 +10,7 @@ import {
   orderByDate,
   orderByModule,
   orderByTag,
-} from "../../../redux/actions/questionsActions";
+} from "../../../redux/actions/questions";
 import { getTags } from "../../../redux/actions/tags";
 import { Chip, Stack } from "@mui/material";
 import { Box } from "@mui/system";

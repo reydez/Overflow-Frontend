@@ -9,7 +9,7 @@ import Grid from "@mui/material/Grid";
 import SvgIcon from "@mui/material/SvgIcon";
 import IconButton from "@mui/material/IconButton";
 import Swal from "sweetalert2";
-import { getQuestionsByName } from "../../../redux/actions/questionsActions";
+import { getQuestionsByName } from "../../../redux/actions/questions";
 import { useDispatch } from "react-redux";
 import { useContext } from "react";
 import { ColorModeContext } from "../../../darkMode/index";

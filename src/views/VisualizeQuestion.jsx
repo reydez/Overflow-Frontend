@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import DetailsComponent from "../components/DetailsComponent/DetailsComponent";
-import { getQuestionDetails } from "../redux/actions/questionsActions";
+import { getQuestionDetails } from "../redux/actions/questions";
 
 export default function VisualizeQuestion() {
   const { questionId } = useParams();
