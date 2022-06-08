@@ -33,6 +33,11 @@ export default function DetailsComponent({
     axios
       .post(`http://localhost:3001/comments/${question.id}/${user.id}`, {
         message: comentarioText,
+      }, {
+        headers: {
+          "authorization":
+            user.id,
+        },
       })
       .then((response) => {
         setComments([...commentsARenderizar, response.data]);
