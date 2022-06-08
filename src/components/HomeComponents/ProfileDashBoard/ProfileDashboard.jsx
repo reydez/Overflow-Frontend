@@ -20,7 +20,7 @@ import {
 } from '../../../Controllers/styleUserProfile/styleUserProfile';
 import { EditUserProfile } from "../UserProfile/EditUserProfile";
 import TwitterIcon from '@mui/icons-material/Twitter';
-
+import { PersonalInformation } from '../../../Controllers/styleUserProfile/informationProfile';
 
 
 const ProfileDashboard = () => {
@@ -53,7 +53,12 @@ const ProfileDashboard = () => {
                                     {/* <p style={{ textAlign: 'center' }}></p> */}
                                     {/* {name(user.full_name)} */}
                                 </Grid>
-                                <Grid item sx={{ width: '78%', marginLeft: '2%', backgroundColor: 'background.profilePhotos' }}>  <p style={{ textAlign: 'center' }}>Info de Usuario</p> </Grid>
+
+                                <Grid item sx={{ width: '78%', marginLeft: '2%', backgroundColor: 'background.profilePhotos', borderRadius: '16px' }}>
+                                    <p style={{ textAlign: 'center' }}>Info de Usuario</p>
+                                    {PersonalInformation(user)}
+
+                                </Grid>
                             </Grid>
 
                             <Grid sx={{ width: '96%', height: '60px', margin: '0 auto', marginTop: '20px', backgroundColor: 'profileGrid' }}>  {/* BARRA CONTIENE SUB-MENU */}
