@@ -72,20 +72,8 @@ const ProfileDashboard = () => {
                                     {/* {name(user.full_name)} */}
                                 </Grid>
                                 <Grid item sx={{ width: '78%', marginLeft: '2%', backgroundColor: 'background.profilePhotos' }}>  <p style={{ textAlign: 'center' }}>Info de Usuario</p> </Grid>
-
                             </Grid>
-                            <Grid
-                                item
-                                sx={{
-                                    width: "78%",
-                                    marginLeft: "2%",
-                                    backgroundColor: "background.profilePhotos",
-                                }}
-                            >
-                                {" "}
-                                <p style={{ textAlign: "center" }}>Info de Usuario</p>{" "}
-                            </Grid>
-                        </Grid>
+                          
                         <Grid
                             sx={{
                                 width: "96%",
