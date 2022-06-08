@@ -1,8 +1,9 @@
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 import { Button, ButtonGroup } from "@mui/material";
-// import { useDispatch } from "react-redux";
-// import { orderByModule } from "../../../redux/actions/questionsActions";
+import { useDispatch } from "react-redux";
+import { orderByModule } from "../../../redux/actions/questions";
+
 
 export default function Avatars({ orderByModule }) {
   return (
