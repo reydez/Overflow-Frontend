@@ -22,7 +22,10 @@ export const PersonalInformation = (info) => {
                 // width: '78%',
                 // marginLeft: '2%',
                 // backgroundColor: 'background.profilePhotos', borderRadius: '16px'
-                width: '96%', margin: '0 auto', marginTop: '20px'
+                width: '96%',
+                margin: '0 auto',
+                marginTop: '20px',
+
             }}
         >
             <Grid
@@ -47,22 +50,22 @@ export const PersonalInformation = (info) => {
 
             <Grid
                 sx={{
-                    width: '78%', marginLeft: '2%', backgroundColor: 'background.profilePhotos', borderRadius: '16px'
+                    width: '28%', marginLeft: '2%', backgroundColor: 'background.profilePhotos', borderRadius: '16px'
                 }}
             >
-                <Typography sx={{ fontFamily: 'Segoe UI Symbol', fontSize: '18px', fontWeight: 700 }}>GitHub User:</Typography>
-                <Typography>{info?.github}</Typography>
+                <Typography sx={{ fontFamily: 'Segoe UI Symbol', fontSize: '18px', fontWeight: 700 }}>Portfolio:</Typography>
+                <Typography>{info?.portfolio}</Typography>
 
 
-                <Typography sx={{ fontFamily: 'Segoe UI Symbol', fontSize: '18px', fontWeight: 700 }}>Nombre:</Typography>
+                <Typography sx={{ fontFamily: 'Segoe UI Symbol', fontSize: '18px', fontWeight: 700 }}>Github link:</Typography>
                 {/* <Chip> */}
                 {/* {info?.first_name} */}
-                <Typography>{info?.first_name}</Typography>
+                <Typography>{info?.github}</Typography>
                 {/* </Chip> */}
 
 
-                <Typography sx={{ fontFamily: 'Segoe UI Symbol', fontSize: '18px', fontWeight: 700 }}>Apellido:</Typography>
-                <Typography>{info?.last_name}</Typography>
+                <Typography sx={{ fontFamily: 'Segoe UI Symbol', fontSize: '18px', fontWeight: 700 }}>Twitter:</Typography>
+                <Typography>{info?.twitter}</Typography>
             </Grid>
 
 
