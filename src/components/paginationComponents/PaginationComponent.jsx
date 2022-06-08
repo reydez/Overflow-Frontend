@@ -30,7 +30,7 @@ export default function PaginationComponent({
           key={number}
           id={number}
           onClick={handleClick}
-          className={currentPage == number ? "active" : ""}
+          className={currentPage === number ? "active" : ""}
         >
           {number}
         </li>

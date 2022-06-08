@@ -7,15 +7,14 @@ import PostFormMui from "./components/HomeComponents/FormWithMUI/PostFormMui";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Redirect } from "react-router-dom";
 import { useEffect } from "react";
-import { UserProfile } from "./components/HomeComponents/UserProfile/UserProfile";
+// import { UserProfile } from "./components/HomeComponents/UserProfile/UserProfile";
 import Component404 from "./components/404/Component404";
 import { useDispatch } from "react-redux";
 import { createUser } from "./redux/actions/user";
 import FavoritesUser from "./views/FavouritesUser"
 import Spinner from "./components/spinner/Spinner";
-import ProfileDashboard from "./components/HomeComponents/ProfileDashBoard/ProfileDashboard"
+import ProfileDashboard from "./components/HomeComponents/ProfileDashBoard/ProfileDashboard";
 import { AllUsers } from "./components/HomeComponents/AllUsers/AllUsers";
-
 
 function App() {
   const { isLoading, isAuthenticated, user } = useAuth0();
@@ -59,30 +58,33 @@ function App() {
       </Route>
 
       <Route exact={true} path="/create-question">
-        {!isAuthenticated ? <Redirect to="/" /> : <PostFormMui />}
+        {!isAuthenticated ? (
+          <Redirect to="/" />
+        ) : (
+          <BarLeft>
+            <PostFormMui />
+          </BarLeft>
+        )}
       </Route>
 
-
       <Route exact={true} path="/user-profile">
-        {!isAuthenticated
-          ? (<Redirect to="/" />)
-          : (
-            <BarLeft>
-              <ProfileDashboard />
-            </BarLeft>
-          )
-        }
+        {!isAuthenticated ? (
+          <Redirect to="/" />
+        ) : (
+          <BarLeft>
+            <ProfileDashboard />
+          </BarLeft>
+        )}
       </Route>
 
       <Route exact={true} path="/all-users">
-        {!isAuthenticated
-          ? (<Redirect to="/" />)
-          : (
-            <BarLeft>
-              <AllUsers />
-            </BarLeft>
-          )
-        }
+        {!isAuthenticated ? (
+          <Redirect to="/" />
+        ) : (
+          <BarLeft>
+            <AllUsers />
+          </BarLeft>
+        )}
       </Route>
 
       <Route exact={true} path="/favourites-user">
