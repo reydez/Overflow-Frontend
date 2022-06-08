@@ -4,6 +4,7 @@ import userReducer from "./userReducer";
 import modulesReducer from "./modulesReducer";
 import tagsReducer from "./tagsReduces";
 import commentsReducer from "./commentsReducer";
+import favouritesReducer from "./favouritesReducer.js";
 
 const rootReducer = combineReducers({
   questionsReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   modulesReducer,
   tagsReducer,
   commentsReducer,
+  favouritesReducer,
 });
 
 export default rootReducer;

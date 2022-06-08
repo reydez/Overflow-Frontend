@@ -124,10 +124,12 @@ const drawer = (
           </Button>
         </Link>,
 
+        <Link to={`/favourites-user`} style={{textDecoration:'none'}}>
         <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" } }}>
           <FavoriteIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
           Mis Favoritos
-        </Button>,
+        </Button>
+        </Link>,
 
         <Link to={`/all-users`} style={{ textDecoration: "none" }}>
           <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" } }}>
