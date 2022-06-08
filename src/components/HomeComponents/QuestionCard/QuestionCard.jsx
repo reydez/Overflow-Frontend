@@ -1,5 +1,13 @@
 import React from "react";
-import { Grid, Paper, Typography, Chip, Stack, Avatar, Link } from "@mui/material";
+import {
+  Grid,
+  Paper,
+  Typography,
+  Chip,
+  Stack,
+  Avatar,
+  Link,
+} from "@mui/material";
 import { Box } from "@mui/system";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
@@ -10,11 +18,12 @@ import Checkbox from "@mui/material/Checkbox";
 import { pink } from "@mui/material/colors";
 import Favorite from "@mui/icons-material/Favorite";
 import { Link as RouterLink } from "react-router-dom";
-import { getModuleColor, getTagColor } from "../../../Controllers/Helpers/colorsQuestion";
-
+import {
+  getModuleColor,
+  getTagColor,
+} from "../../../Controllers/Helpers/colorsQuestion";
 
 export const QuestionCard = ({ question }) => {
-
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   const extras = {
@@ -26,14 +35,12 @@ export const QuestionCard = ({ question }) => {
   //   textDecoration: "none",
   // };
 
-
-
   return (
     <Paper
       sx={{
         p: 2,
         margin: "auto",
-        marginTop: '4px',
+        marginTop: "4px",
         flexGrow: 1,
         bgcolor: "background.default",
       }}
@@ -132,7 +139,7 @@ export const QuestionCard = ({ question }) => {
                   component={RouterLink}
                   // variant="button"
                   color="inherit"
-                  underline='none'
+                  underline="none"
                 >
                   <Typography
                     // variant="body2"
@@ -141,7 +148,8 @@ export const QuestionCard = ({ question }) => {
                       letterSpacing: 0.4,
                       margin: "4px 2px",
                       width: "75%",
-                      color:  (theme) => theme.palette.mode === 'dark' ? '#fff'  : '#7165A0'
+                      color: (theme) =>
+                        theme.palette.mode === "dark" ? "#fff" : "#7165A0",
                     }}
                   >
                     {question.title}
@@ -159,41 +167,43 @@ export const QuestionCard = ({ question }) => {
                   width: "75%",
                   color: "#A8A3B5",
                   marginTop: "-15px",
-                  fontStyle: 'normal',
-                  fontWeight: '400',
+                  fontStyle: "normal",
+                  fontWeight: "400",
                 }}
               >
                 {question.message}
               </Typography>
             </Grid>
 
-            <Grid item >
+            <Grid item>
               {" "}
               {/* TAGs de cada categoría*/}
-
-              <Stack direction="row" spacing={1} sx={{ marginTop:'-35px' }}>
-                {question.tags.map(tag => {
-                  // console.log(tag)
+              <Stack direction="row" spacing={1} sx={{ marginTop: "-35px" }}>
+                {question.tags.map((tag) => {
                   return (
                     <Chip
-                      
-                      label={<Box Box
-                        key={tag}
-                        sx={{
-                          bgcolor: 'transparent',
-                          color: getTagColor(tag),
-                          
-                          // border: getTagColor(tag)
-                          // border: `2px solid ${getTagColor(tag)}`,
-                          // padding: '2px 15px',
-                          // borderRadius: "15px"
-                        }}
-                      >{tag}</Box>}
+                      label={
+                        <Box
+                          Box
+                          key={tag}
+                          sx={{
+                            bgcolor: "transparent",
+                            color: getTagColor(tag),
+
+                            // border: getTagColor(tag)
+                            // border: `2px solid ${getTagColor(tag)}`,
+                            // padding: '2px 15px',
+                            // borderRadius: "15px"
+                          }}
+                        >
+                          {tag}
+                        </Box>
+                      }
                       variant="outlined"
                       size="small"
-                    />)
-                }
-                )}
+                    />
+                  );
+                })}
               </Stack>
             </Grid>
           </Grid>
@@ -202,8 +212,8 @@ export const QuestionCard = ({ question }) => {
             {/* check de corazon para clickear hacia favoritos */}
             <Checkbox
               {...label}
-              icon={<Favorite sx={{color: '#A8A3B5'}}/>}
-              checkedIcon={<Favorite sx={{color: '#D81B60'}}/>}
+              icon={<Favorite sx={{ color: "#A8A3B5" }} />}
+              checkedIcon={<Favorite sx={{ color: "#D81B60" }} />}
               sx={{
                 color: pink[800],
                 "&.Mui-checked": {
@@ -249,6 +259,6 @@ export const QuestionCard = ({ question }) => {
           </Grid>
         </Grid>
       </Grid>
-    </Paper >
+    </Paper>
   );
 };
