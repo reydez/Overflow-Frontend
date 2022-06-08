@@ -22,11 +22,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 import styled from "@emotion/styled";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-import { useDispatch, useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 const ButtonLogOut = () => {
   const { logout } = useAuth0();
-  const user = useSelector((state) => state.userReducer.user);
+  // const user = useSelector((state) => state.userReducer.user);
 
   return (
     <>
@@ -126,11 +126,11 @@ const drawer = (
           </Button>
         </Link>,
 
-        <Link to={`/favourites-user`} style={{textDecoration:'none'}}>
-        <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" } }}>
-          <FavoriteIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
-          Mis Favoritos
-        </Button>
+        <Link to={`/favourites-user`} style={{ textDecoration: 'none' }}>
+          <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" } }}>
+            <FavoriteIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
+            Mis Favoritos
+          </Button>
         </Link>,
 
         <Link to={`/all-users`} style={{ textDecoration: "none" }}>
