@@ -180,6 +180,7 @@ export const QuestionCard = ({ question }) => {
               {/* TAGs de cada categoría*/}
               <Stack direction="row" spacing={1} sx={{ marginTop: "-35px" }}>
                 {question.tags.map((tag) => {
+                  // console.log(tag)
                   return (
                     <Chip
                       label={

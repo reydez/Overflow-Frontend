@@ -12,9 +12,9 @@ const themeObj = {
     MuiTypography: {
       defaultProps: {
         variantMapping: {
-          h1: 'h2',
+          h1: 'h1',
           h2: 'h2',
-          h3: 'h2',
+          h3: 'h3',
           h4: 'h2',
           h5: 'h2',
           h6: 'h2',
@@ -40,6 +40,8 @@ const themeObj = {
       default: "#F9FAFE",
       white: '#EBEFFE', // color del barleft
       violet: '#7165A0', // color del avatar
+      fondoPerfil: '#f4f4f4',
+      profilePhotos: '#EBEFFE'
     },
     text: {
       primary: "#7165A0",
@@ -50,9 +52,12 @@ const themeObj = {
     background: {
       default: "#413A66",
       violet: "#392E57",
-      white: "#392E57"
+      white: "#392E57",
+      fondoPerfil: '#392E57',
+      profileGrid: '#4B4171', // recuadros del profile
+      profilePhotos: '#423B67' // recuadros del profile
     },
-
+    // #423B67
     text: {
       primary: "#fff",
 
