@@ -1,23 +1,24 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import {
-    CardActions,
+    /*CardActions,
     CardContent,
+    Card,*/
     Button,
     Typography,
     Box,
-    Card,
+
     List,
 } from "@mui/material";
 import Grid from "@mui/material/Grid";
 
 import {
     name,
-    botton,
+    img,
+    /*botton,
     student,
     quantityQuestions,
     quantityAnswers,
-    img,
     btnOne,
     btnTwo,
     btnThree,
@@ -25,10 +26,10 @@ import {
     btnFive,
     btnSix,
     editButton,
-    vipButton,
+    vipButton,*/
 } from "../../../Controllers/styleUserProfile/styleUserProfile";
 import { EditUserProfile } from "../UserProfile/EditUserProfile";
-import TwitterIcon from "@mui/icons-material/Twitter";
+// import TwitterIcon from "@mui/icons-material/";
 import { PersonalInformation } from '../../../Controllers/styleUserProfile/informationProfile'
 
 
@@ -38,7 +39,7 @@ const ProfileDashboard = () => {
     const [editMode, setEditMode] = useState(false);
 
     const changeToFalse = () => {
-        setEditMode(false);
+        setEditMode(true);
     };
 
     return (
@@ -63,7 +64,7 @@ const ProfileDashboard = () => {
                                         <Typography variant="caption" sx={{ position: 'relative', p: 1, m: 18, fontSize: "14px", color: 'text.btnEdit' }}>Editar</Typography>
                                     </Box>
                                     <Box sx={{ position: 'absolute', marginTop: "20px", }}>
-                                        <Button variant="caption" size="small" sx={{ position: 'relative', p: 0, ml: 18, fontSize: "10px", fontWeight: 1000, color: 'text.btnEdit' }}> . . .</Button>
+                                        <Button onClick={changeToFalse} variant="caption" size="small" sx={{ position: 'relative', p: 0, ml: 18, fontSize: "10px", fontWeight: 1000, color: 'text.btnEdit' }}> . . .</Button>
                                     </Box>
 
                                     {img(user.image)}
