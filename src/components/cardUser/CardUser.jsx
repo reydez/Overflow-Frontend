@@ -1,5 +1,12 @@
 import * as React from "react";
-import { CardActions, CardContent, Button, Typography, Card, Box } from "@mui/material";
+import {
+  CardActions,
+  CardContent,
+  Button,
+  Typography,
+  Card,
+  Box,
+} from "@mui/material";
 import {
   name,
   botton,
@@ -14,15 +21,13 @@ import {
   btnFive,
   btnSix,
   btnSend,
-  btnFav
-} from '../../Controllers/styleCardUser/styleCardUser.js'
+  btnFav,
+} from "../../Controllers/styleCardUser/styleCardUser.js";
 import { useSelector } from "react-redux";
 
-;
 export default function CardUser() {
+  const user = useSelector((state) => state.userReducer.user);
 
-  const user = useSelector(state => state.userReducer.user)
-  // console.log(user)
   return (
     <Card
       sx={{
