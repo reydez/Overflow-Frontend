@@ -17,13 +17,13 @@ export const name = (name) => {
         // fontWeight: "600",
         fontSize: "25px",
         lineHeight: "21px",
-        fontWeight: 700,
+        fontWeight: 200,
         // webkitBackgroundClip: 'text',
         // webkitTextFillColor: 'transparent',
         // backgroundClip: 'text',
         // textFillColor: 'transparent',
-        marginLeft: "170px",
-        marginTop: "20px",
+        marginLeft: "60px",
+        marginTop: "200px",
       }}
     >
       {name}
@@ -34,8 +34,8 @@ export const name = (name) => {
 export const botton = (
   <Typography
     sx={{
-      position: "absolute",
-      with: "24px",
+
+      with: "200px",
       height: "36px",
       fontFamily: "Segoe UI Symbol",
       fontStyle: "regular",
@@ -52,17 +52,17 @@ export const student = (name) => {
   return (
     <Box
       sx={{
-        position: "absolute",
-        width: "58px",
-        height: "16px",
-        fontFamily: "Segoe UI Symbol",
-        fontStyle: "normal",
-        fontWeight: "500",
-        fontSize: "14px",
-        lineHeight: "16px",
-        color: "#A7A9BA",
-        marginLeft: "172px",
-        marginTop: "50px",
+
+        // width: "58px",
+        // height: "16px",
+        // fontFamily: "Segoe UI Symbol",
+        // fontStyle: "normal",
+        // fontWeight: "500",
+        // fontSize: "14px",
+        // lineHeight: "16px",
+        // color: "#A7A9BA",
+        // marginLeft: "172px",
+        // marginTop: "50px",
       }}
     >
       {name}
@@ -110,25 +110,34 @@ export const quantityAnswers = (
   </Box>
 );
 
-export const img = (image, username) => {
+export const img = (image) => {
   return (
     <Card>
       <CardMedia
         sx={{
           position: "absolute",
           width: "150px",
-          height: "140px",
-          borderRadius: "20px",
-          marginLeft: "10px",
+          height: "150px",
+          borderRadius: "75px",
+          marginLeft: "30px",
+          border: "3px solid",
+          p:0,
+          marginTop: "40px",
+          color: "text.btnEdit"
         }}
         component="img"
         // height="294"
         image={image}
         alt="Paella dish"
       />
-      <Typography sx={{}}>
+      {/* <Box sx={{ textAlign: "center",  fontFamily: "Segoe UI Symbol",
+
+      fontWeight: "700",
+      fontSize: "20px",
+      backgroundColor: 'background.profilePhotos'
+      }}>
         {username}
-      </Typography>
+      </Box> */}
     </Card>
   )
 }
