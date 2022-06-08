@@ -37,14 +37,22 @@ export const orderByDate = () => {
 };
 
 export const postQuestion = (payload, id) => {
-  return async function (dispatch) {
-    let newPost = await axios.post(
-      `http://localhost:3001/posts/${id}`,
-      payload
-    );
+  try {
+    return async function (dispatch) {
+      let newPost = await axios.post(
+        `http://localhost:3001/posts/${id}`,
+        payload, {
+          headers: {
+            authorization: id,
+          },
+        }
+      );
 
-    return newPost;
-  };
+      return newPost;
+    };
+  } catch (error) {
+    console.log('no es posible')
+  }
 };
 
 export const orderByModule = (module) => {
