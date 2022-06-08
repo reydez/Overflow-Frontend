@@ -43,44 +43,37 @@ const ProfileDashboard = () => {
 
     return (
         <>
-            {editMode ? (
-                <div>
-                    <EditUserProfile changeToFalse={changeToFalse} />
-                </div>
-            ) : (
-                <Box>
-                    <Grid container sx={{ backgroundColor: "background.fondoPerfil" }}>
-                        {" "}
-                        {/* CONTAINER GRAL */}
-                        <Grid
-                            container
-                            sx={{ width: "96%", margin: "0 auto", marginTop: "20px" }}
-                        >
-                            {" "}
-                            {/* CONTAINER FOTO + INFO USER */}
-                            <Grid
-                                sx={{
-                                    width: "20%",
-                                    height: "260px",
-                                    backgroundColor: "background.profilePhotos",
-                                }}
-                            >
-                                {img(user.image, user.full_name)}
-                                {/* <p style={{ textAlign: 'center' }}></p> */}
-                                {/* {name(user.full_name)} */}
+
+            {editMode
+                ? (
+                    <div>
+                        <EditUserProfile changeToFalse={changeToFalse} />
+                    </div>
+                )
+                : (
+                    <Box>
+                        <Box sx={{ml:8, color: 'text.secondary'}}>
+                        <Typography sx={{position: "absolute",}}>Perfil del Usuario</Typography>
+                        </Box>
+                        <Grid container sx={{ backgroundColor: 'background.fondoPerfil' }}> {/* CONTAINER GRAL */}
+                        
+                            <Grid container sx={{ width: '96%', margin: '0 auto', marginTop: '20px' }}>   {/* CONTAINER FOTO + INFO USER */}
+                                <Grid sx={{ width: '20%', height: '260px', backgroundColor: 'background.profilePhotos' }}>
+                                    <Box sx={{position: 'absolute', marginTop: 1, marginLeft: '5px', color: 'primary'}}>
+                                    <Typography variant="caption" sx={{position: 'relative',p:1, m:18, fontSize: "14px", color: 'text.btnEdit'}}>Editar</Typography>
+                                    </Box>
+                                    <Box sx={{position: 'absolute', marginTop: "20px",}}>
+                                    <Button variant="caption" size="small" sx={{position: 'relative', p:0, ml:18, fontSize: "10px", fontWeight: 1000, color: 'text.btnEdit'}}> . . .</Button>
+                                    </Box>
+                                    
+                                    {img(user.image )}
+                                    <Typography sx={{color: 'text.secondary'}}>{name(user.full_name)}</Typography>
+                                    {/* <p style={{ textAlign: 'center' }}></p> */}
+                                    {/* {name(user.full_name)} */}
+                                </Grid>
+                                <Grid item sx={{ width: '78%', marginLeft: '2%', backgroundColor: 'background.profilePhotos' }}>  <p style={{ textAlign: 'center' }}>Info de Usuario</p> </Grid>
                             </Grid>
-                            <Grid
-                                item
-                                sx={{
-                                    width: "78%",
-                                    marginLeft: "2%",
-                                    backgroundColor: "background.profilePhotos",
-                                }}
-                            >
-                                {" "}
-                                <p style={{ textAlign: "center" }}>Info de Usuario</p>{" "}
-                            </Grid>
-                        </Grid>
+                          
                         <Grid
                             sx={{
                                 width: "96%",
