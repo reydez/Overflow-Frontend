@@ -15,13 +15,12 @@ import InputForm from "./StylesForm/InputForm";
 import { NameDiv } from "./StylesForm/styles";
 import InputFormArea from "./StylesForm/InputFormArea";
 import { useHistory, Link } from "react-router-dom";
-import home from "./StylesForm/home.svg"
+import home from "./StylesForm/home.svg";
 
 const PostFormMui = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state) => state.userReducer.user);
-
 
   //! ------------------------- CheckBoxes-----------------------
   const [moduleSelected, setModuleSelected] = useState("selectModule");
@@ -78,7 +77,6 @@ const PostFormMui = () => {
   const [validate, setValidate] = useState(null);
 
   const handleSubmit = (e) => {
-
     e.preventDefault();
     if (
       title.validate === "true" &&
@@ -100,8 +98,6 @@ const PostFormMui = () => {
       );
 
       history.push("/questions");
-
-
     } else {
       setValidate(false);
     }
@@ -109,14 +105,6 @@ const PostFormMui = () => {
 
   return (
     <div className={Classes.layout}>
-      <Casita>
-        <Link to='/questions'>
-          <img
-            alt="home"
-            src={home}
-          />
-        </Link>
-      </Casita>
       <Formulario onSubmit={handleSubmit}>
         <div className={Classes.container}>
           <h1 className={Classes.h1}> Pregúntame algo... </h1>
@@ -158,7 +146,6 @@ const PostFormMui = () => {
           <label className={Classes.labelModule}>
             Module selected{" "}
             <span className={Classes.slec}>{renderResult()} </span>
-
             <Seleccionador
               onChange={handleOnChange}
               value={moduleSelected}
@@ -178,17 +165,19 @@ const PostFormMui = () => {
         {m3TagsSelected && <FormM3Tags setTag={setTag} tag={tag} />}
         {m4TagsSelected && <FormM4Tags setTag={setTag} tag={tag} />}
 
-        <Send
-          type="submit"
-          onClick={handleSubmit}
-        >
+        <Send type="submit" onClick={handleSubmit}>
           Enviar
         </Send>
 
-        {validate === true && (<Success>Pregunta correctamente posteada, redireccionando a home</Success>)}
-        {validate === false && (<NoSuccess>Rellena bien los campos, crack</NoSuccess>)}
+        {validate === true && (
+          <Success>
+            Pregunta correctamente posteada, redireccionando a home
+          </Success>
+        )}
+        {validate === false && (
+          <NoSuccess>Rellena bien los campos, crack</NoSuccess>
+        )}
       </Formulario>
-
     </div>
   );
 };
@@ -199,7 +188,6 @@ const colores = {
   inputPurple: "#413A66",
   error: "#f66060",
   succes: "#71ff4a52",
-
 };
 
 const Formulario = styled.form`
@@ -213,7 +201,7 @@ const Formulario = styled.form`
   background-color: white;
   border-radius: 35px;
   border: solid 1px black;
- 
+
   margin-left: 20px;
   margin-right: 20px;
   @media (max-width: 800px) {
@@ -224,68 +212,76 @@ const Formulario = styled.form`
 `;
 
 const Seleccionador = styled.select`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: left;
-    margin-top: 5px;
-    padding: 10px;
-    border: 2px solid gray;
-    color: gray;
-    cursor: pointer;
-    background: #fff;
-    border-radius: 4px;
-    font-size: 14px;
-    transition: 0.3s ease all;
-    &:hover{
-        box-shadow: 3px 0px 40px rgba(0,0,0,0.2);
-    }
-    &:focus{
-        border: 2px solid ${colores.inputPurple};
-        outline: none;
-        box-shadow: 3px 0px 30px rgba(0,0,0,0.2);
-    }
-    ${props => props.valid === 'true' && css`
-        border: 2px solid gray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  margin-top: 5px;
+  padding: 10px;
+  border: 2px solid gray;
+  color: gray;
+  cursor: pointer;
+  background: #fff;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: 0.3s ease all;
+  &:hover {
+    box-shadow: 3px 0px 40px rgba(0, 0, 0, 0.2);
+  }
+  &:focus {
+    border: 2px solid ${colores.inputPurple};
+    outline: none;
+    box-shadow: 3px 0px 30px rgba(0, 0, 0, 0.2);
+  }
+  ${(props) =>
+    props.valid === "true" &&
+    css`
+      border: 2px solid gray;
     `}
-    ${props => props.valid === 'false' && css`
-        border: 2px solid ${colores.error} !important;
+  ${(props) =>
+    props.valid === "false" &&
+    css`
+      border: 2px solid ${colores.error} !important;
     `}
-`
+`;
 const Send = styled.button`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 40px;
-    margin-bottom: 40px;
-    text-align: left;
-    
-    padding: 10px;
-    width: 80%;
-    border: 2px solid gray;
-    color: white;
-    cursor: pointer;
-    background: #413A66;
-    border-radius: 4px;
-    font-size: 14px;
-    transition: 0.3s ease all;
-   
-    &:hover{
-        box-shadow: 3px 0px 40px rgba(0,0,0,0.2);
-        transform: scale(1.1,1.1);
-    }
-    &:focus{
-        border: 2px solid ${colores.inputPurple};
-        outline: none;
-        box-shadow: 3px 0px 30px rgba(0,0,0,0.2);
-    }
-    ${props => props.valid === 'true' && css`
-        border: 2px solid gray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  text-align: left;
+
+  padding: 10px;
+  width: 80%;
+  border: 2px solid gray;
+  color: white;
+  cursor: pointer;
+  background: #413a66;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: 0.3s ease all;
+
+  &:hover {
+    box-shadow: 3px 0px 40px rgba(0, 0, 0, 0.2);
+    transform: scale(1.1, 1.1);
+  }
+  &:focus {
+    border: 2px solid ${colores.inputPurple};
+    outline: none;
+    box-shadow: 3px 0px 30px rgba(0, 0, 0, 0.2);
+  }
+  ${(props) =>
+    props.valid === "true" &&
+    css`
+      border: 2px solid gray;
     `}
-    ${props => props.valid === 'false' && css`
-        border: 2px solid ${colores.error} !important;
+  ${(props) =>
+    props.valid === "false" &&
+    css`
+      border: 2px solid ${colores.error} !important;
     `}
-`
+`;
 const Success = styled.img`
   font-size: 20px;
   background: ${colores.succes};
@@ -296,23 +292,23 @@ const Success = styled.img`
 `;
 
 const Casita = styled.button`
-position: static;
+  position: static;
 
-background-color: transparent;
-border: transparent;
-border-radius: 4px;
-text-decoration: none;
-  &:hover{
-        box-shadow: 3px 0px 40px rgba(0,0,0,0.2);
-        transform: scale(1.1,1.1);
-        transition: 500ms;
-    }
-    &:focus{
-        border: 2px solid ${colores.inputPurple};
-        outline: none;
-        box-shadow: 3px 0px 30px rgba(0,0,0,0.2);
-    }
-`
+  background-color: transparent;
+  border: transparent;
+  border-radius: 4px;
+  text-decoration: none;
+  &:hover {
+    box-shadow: 3px 0px 40px rgba(0, 0, 0, 0.2);
+    transform: scale(1.1, 1.1);
+    transition: 500ms;
+  }
+  &:focus {
+    border: 2px solid ${colores.inputPurple};
+    outline: none;
+    box-shadow: 3px 0px 30px rgba(0, 0, 0, 0.2);
+  }
+`;
 
 const NoSuccess = styled.p`
   font-size: 20px;
@@ -321,4 +317,4 @@ const NoSuccess = styled.p`
   padding: 15px 30px;
   font-weight: bold;
   border-radius: 5px;
-`
+`;

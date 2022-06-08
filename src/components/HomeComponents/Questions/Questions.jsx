@@ -79,21 +79,9 @@ export const Questions = () => {
               className="buttonFilter"
               onClick={refreshPage}
             >
-              Refresh
+              Refresh preguntas
             </Button>
-            <Button
-              sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }}
-              className="buttonFilter"
-              onClick={orderByDateHandler}
-            >
-              Nuevas
-            </Button>
-            <Button
-              sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }}
-              className="buttonFilter"
-            >
-              Mas Visitas
-            </Button>
+
             <Button
               sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }}
               className="buttonFilter"
@@ -151,7 +139,12 @@ export const Questions = () => {
           <Stack
             direction="column"
             spacing={2}
-            sx={{ width: "fit-content", marginTop: "30px" }}
+            sx={{
+              width: "fit-content",
+              marginTop: "30px",
+              maxHeight: "450px",
+              overflow: "auto",
+            }}
           >
             {tags.map((tag) => {
               let upperCase = tag.name.toUpperCase();
