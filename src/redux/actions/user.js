@@ -17,10 +17,39 @@ export function createUser(loginWithAuth0) {
   }
 };
 
-
-export function getUserProfile(id) {
+export function getUsers() {
   return (dispatch) => {
-    axios.get(`${URL}/users/${id}`)
+    axios.get(`${URL}/users`)
+      .then(response => {
+        dispatch({
+          type: user.GET_USERS,
+          payload: response.data
+        })
+      })
+      .catch(error => {
+        console.log(error)
+      });
+  }
+};
+
+export function getUsersByName(search) {
+  return (dispatch) => {
+    axios.get(`${URL}/users/${search}`)
+      .then(response => {
+        dispatch({
+          type: user.GET_USERS_BY_NAME,
+          payload: response.data
+        })
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+};
+
+export function getUserProfile(idUser) {
+  return (dispatch) => {
+    axios.get(`${URL}/users/${idUser}`)
       .then(response => {
         dispatch({
           type: user.GET_USER_PROFILE,
@@ -31,4 +60,19 @@ export function getUserProfile(id) {
         console.log(error)
       })
   }
-}
+};
+
+export function updateUserProfile(form, idUser) {
+  return (dispatch) => {
+    axios.put(`${URL}/users/${idUser}`, form)
+      .then(response => {
+        dispatch({
+          type: user.UPDATE_USER_PROFILE,
+          payload: response.data
+        })
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+};
