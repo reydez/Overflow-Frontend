@@ -1,17 +1,30 @@
 import axios from "axios";
+import { favorite, URL } from "../action-types/index.js";
 
-export const getFavourite = (idOf) => {
-    return async (dispatch) => {
-      try {
-        let modules = await axios.get(`http://localhost:3001/likes/${idOf}`);
-        return dispatch({
-          type: "GET_FAVOURITE",
-          payload: modules.data,
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    };
-  };
 
+export function getFavorite(idUser) {
+  return (dispatch) => {
+    axios.get(`${URL}/favorites/${idUser}`)
+      .then(response => {dispatch({
+        type: favorite.GET_FAVORITE,
+        payload: response.data
+      })})
+      .catch(error => {
+        console.log(error)
+      })
+  }
+};
+
+export function setFavorite(idOf, idUser) {
+  return (dispatch) => {
+    axios.put(`${URL}/favorites/${idOf}/${idUser}`)
+      .then(response => {dispatch({
+        type: favorite.SET_FAVORITE,
+        payload: response.data
+      })})
+      .catch(error => {
+        console.log(error)
+      })
+  }
+};
 

@@ -53,7 +53,8 @@ export default function BarLeft(props) {
           <Link to={"/create-question"} style={{ textDecoration: "none" }}>
             {location.pathname !== "/questions" &&
             location.pathname !== "/user-profile" &&
-            location.pathname !== "/all-users" ? null : (
+            location.pathname !== "/all-users" &&
+            location.pathname !== "/favourites-user" ? null : (
               <Button
                 variant="primary"
                 size="large" /* disableRipple  */

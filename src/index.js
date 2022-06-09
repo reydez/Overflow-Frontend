@@ -5,10 +5,10 @@ import App from "./App";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import store from "./redux/store";
-import { Auth0Provider } from "@auth0/auth0-react";
+// import { Auth0Provider } from "@auth0/auth0-react";
 import axios from "axios"
 import CssBaseline from '@mui/material/CssBaseline';
-import {ColorContextProvider} from './darkMode/index';
+import { ColorContextProvider } from './darkMode/index';
 import Auth0ProviderWithHistory from "./auth/auth0-provider-with-history";
 
 
@@ -22,13 +22,13 @@ root.render(
     <Provider store={store}>
       <Auth0ProviderWithHistory>
         <BrowserRouter>
-        <CssBaseline />
-        <ColorContextProvider>
-        <App />
-        </ColorContextProvider>
+          <CssBaseline />
+          <ColorContextProvider>
+            <App />
+          </ColorContextProvider>
         </BrowserRouter>
       </Auth0ProviderWithHistory>
     </Provider>
-      
+
   </React.StrictMode>
 );

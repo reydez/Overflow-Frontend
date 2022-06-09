@@ -22,18 +22,10 @@ import { useAuth0 } from "@auth0/auth0-react";
 import styled from "@emotion/styled";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-import { useDispatch, useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 const ButtonLogOut = () => {
   const { logout } = useAuth0();
-  const [selectedOption, setSelectedOption] = useState("5.00");
-  const [show, setShow] = useState(true);
-
-  const user = useSelector((state) => state.userReducer.user);
-
-  const onValueChangeHandler = (e) => {
-    setSelectedOption(e.target.value);
-  };
 
   return (
     <>

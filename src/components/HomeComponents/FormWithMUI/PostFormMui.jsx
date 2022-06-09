@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled, { css } from "styled-components";
 
-import { postQuestion } from "../../../redux/actions/questionsActions";
+import { postQuestion } from "../../../redux/actions/questions";
 
 import FormM1Tags from "./FormTags/FormM1Tags";
 import FormM2Tags from "./FormTags/FormM2Tags";
