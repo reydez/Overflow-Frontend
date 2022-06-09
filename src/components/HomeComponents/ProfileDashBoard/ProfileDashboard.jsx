@@ -1,33 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-    /*CardActions,
-    CardContent,
-    Card,*/
-    Button,
-    Typography,
-    Box,
-
-    List,
-    Item
-} from "@mui/material";
+import { Button, Typography, Box, List } from "@mui/material";
 import Grid from "@mui/material/Grid";
 
 import { name, img } from "../../../Controllers/styleUserProfile/styleUserProfile";
 import { EditUserProfile } from "../UserProfile/EditUserProfile";
 
 import { PersonalInformation } from '../../../Controllers/styleUserProfile/informationProfile';
-import { getQuestions } from "../../../redux/actions/questions";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import { getUserProfile } from "../../../redux/actions/user"
 
 
 const ProfileDashboard = () => {
     const user = useSelector((state) => state.userReducer.user);
-    // const questions = useSelector((state) => state.questionsReducer.questions);
+    const userDetail = useSelector((state) => state.userReducer.userDetail);
+
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getQuestions());
+        dispatch(getUserProfile(user.id))
     }, [dispatch]);
 
 
@@ -35,11 +26,10 @@ const ProfileDashboard = () => {
     const [editMode, setEditMode] = useState(false);
 
     const changeToFalse = () => {
-        console.log('he sido clikeado')
         setEditMode(true);
     };
 
-    // console.log(questions)
+    console.log('Yo soy el detalle: ', userDetail)
     return (
         <>
 
