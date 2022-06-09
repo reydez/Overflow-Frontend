@@ -1,16 +1,13 @@
 import axios from "axios";
+import { module, URL } from "../action-types/index.js";
 
-export const getModules = () => {
-  return async (dispatch) => {
-    try {
-      let modules = await axios.get("http://localhost:3001/modules");
-      // console.log(modules.data)
-      return dispatch({
-        type: "GET_MODULES",
-        payload: modules.data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
+export function getModules() {
+  return (dispatch) => {
+    axios.get(`${URL}/modules`)
+      .then(response => {dispatch({
+        type: module.GET_MODULES,
+        payload: response.data
+      })})
+  }
 };

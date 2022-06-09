@@ -10,7 +10,7 @@ import { useEffect } from "react";
 // import { UserProfile } from "./components/HomeComponents/UserProfile/UserProfile";
 import Component404 from "./components/404/Component404";
 import { useDispatch } from "react-redux";
-import { createUser } from "./redux/actions/userActions";
+import { createUser } from "./redux/actions/user";
 import FavoritesUser from "./views/FavouritesUser"
 import Spinner from "./components/spinner/Spinner";
 import ProfileDashboard from "./components/HomeComponents/ProfileDashBoard/ProfileDashboard";
