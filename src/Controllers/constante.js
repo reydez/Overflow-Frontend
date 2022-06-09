@@ -22,26 +22,31 @@ import { useAuth0 } from "@auth0/auth0-react";
 import styled from "@emotion/styled";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-import { useSelector } from 'react-redux'
-import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import { useSelector } from "react-redux";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const ButtonLogOut = () => {
   const { logout } = useAuth0();
-  const user = useSelector((state) => state.userReducer.user)
+  const user = useSelector((state) => state.userReducer.user);
 
   return (
     <>
-      {user.isAdmin === true
-        ? (
-          <Link to="/admin" style={{ textDecoration: "none" }}>
-          <Button sx={{ color: "red;", "&:hover": { color: "#F50057" }, margin: '30px' }}>
+      {user.isAdmin === true ? (
+        <Link to="/admin" style={{ textDecoration: "none" }}>
+          <Button
+            sx={{
+              color: "red;",
+              "&:hover": { color: "#F50057" },
+              margin: "30px",
+            }}
+          >
             <AdminPanelSettingsIcon sx={{ fontSize: "18px" }} />
             Panel de Admin
           </Button>
-          </Link>
-        ) 
-        : null
-      }
+        </Link>
+      ) : null}
       <ButtonLogOutDiv>
         <button className="ButtonLogOut" onClick={() => logout()}>
           <LogoutIcon sx={{ marginRight: "10px", fontSize: "19px" }} />
@@ -59,10 +64,8 @@ const ButtonLogOut = () => {
       >
         <PayPalScriptProvider
           options={{
-            "client-id":
-              "Ae2m28_QPii8gMDTPs9b13NZURT4XP8KDlZCfgqA9DQkogkpyvXNTTm-5HAihKiUSS4OfXCVQ5PzgXvf",
+            "client-id": process.env.REACT_APP_CLIENT_ID,
           }}
-          deferLoading={false}
         >
           <PayPalButtons
             fundingSource="paypal"
@@ -82,8 +85,29 @@ const ButtonLogOut = () => {
                 });
             }}
             onApprove={async (data, actions) => {
+              const obj = {};
+
               return actions.order.capture().then((details) => {
-                console.log(details);
+                obj.id = details.id;
+                obj.amount = details.purchase_units[0].amount.value;
+                obj.orderIdPayment =
+                  details.purchase_units[0].payments.captures[0].id;
+                obj.email_address = details.payer.email_address;
+                obj.status = details.status;
+                let userId = user.id;
+
+                axios
+                  .post(`http://localhost:3001/orders/${userId}`, obj)
+                  .then((response) => {
+                    Swal.fire(
+                      "Aviso!",
+                      `Donación realizada, muchas gracias.`,
+                      "success"
+                    );
+                  })
+                  .catch((error) => {
+                    console.log(error);
+                  });
               });
             }}
           />
@@ -126,10 +150,7 @@ const drawer = (
             Home
           </Button>
         </Link>,
-        <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" } }}>
-          <ListAltIcon sx={{ marginRight: "10px", fontSize: "18px" }} />{" "}
-          Categorías
-        </Button>,
+
         <Divider />,
 
         <Link to={`/user-profile`} style={{ textDecoration: "none" }}>
