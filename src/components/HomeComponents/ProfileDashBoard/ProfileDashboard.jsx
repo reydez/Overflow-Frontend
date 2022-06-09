@@ -8,6 +8,7 @@ import {
     Box,
     Card,
     List,
+    Item
 } from "@mui/material";
 import Grid from "@mui/material/Grid";
 
@@ -29,11 +30,13 @@ import {
 } from "../../../Controllers/styleUserProfile/styleUserProfile";
 import { EditUserProfile } from "../UserProfile/EditUserProfile";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import { PersonalInformation } from '../../../Controllers/styleUserProfile/informationProfile'
+// import { PersonalInformation } from '../../../Controllers/styleUserProfile/informationProfile'
 
 
 const ProfileDashboard = () => {
     const user = useSelector((state) => state.userReducer.user);
+
+   
 
     const [editMode, setEditMode] = useState(false);
 
@@ -57,7 +60,7 @@ const ProfileDashboard = () => {
                         </Box>
                         <Grid container sx={{ backgroundColor: 'background.fondoPerfil' }}> {/* CONTAINER GRAL */}
 
-                            <Grid container sx={{ width: '96%', margin: '0 auto', marginTop: '20px' }}>   {/* CONTAINER FOTO + INFO USER */}
+                            <Grid container sx={{ width: '96%', margin: '0 auto', marginTop: '30px' }}>   {/* CONTAINER FOTO + INFO USER */}
                                 <Grid sx={{ width: '20%', height: '260px', backgroundColor: 'background.profilePhotos' }}>
                                     <Box sx={{ position: 'absolute', marginTop: 1, marginLeft: '5px', color: 'primary' }}>
                                         <Typography variant="caption" sx={{ position: 'relative', p: 1, m: 18, fontSize: "14px", color: 'text.btnEdit' }}>Editar</Typography>
@@ -71,10 +74,69 @@ const ProfileDashboard = () => {
                                     {/* <p style={{ textAlign: 'center' }}></p> */}
                                     {/* {name(user.full_name)} */}
                                 </Grid>
-                                <Grid item sx={{ width: '78%', marginLeft: '2%', backgroundColor: 'background.profilePhotos' }}>  <p style={{ textAlign: 'center' }}>Info de
-                                    Usuario</p>
-                                    {PersonalInformation(user)}
+                                <Box sx={{ flexGrow: 1, bgcolor: 'background.profilePhotos', ml:4}}>
+                                <Grid container  sx={{}}> 
+                                <Box sx={{position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p:2, ml:2, color: 'text.btnEdit', fontWeight: 500}}>GitHub Usuario</Box>
+                                <Grid item xs={3} sx={{p: 1, ml: 4, marginTop: 4, bgcolor: 'background.white'}}>
+                                <Box>github</Box>
+                                    
+                                    {/* {PersonalInformation(user)} */}
+
+                                    
+                                    </Grid> 
+                                    <Box sx={{position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p:2, ml:32, color: 'text.btnEdit', fontWeight: 500}}>GitHub link</Box>
+                                <Grid item xs={3} sx={{p: 1, ml: 4, marginTop: 4, bgcolor: 'background.white' }}>
+                                <Box>aca va el Github</Box>
+                                    
+                                    {/* {PersonalInformation(user)} */}
+
+                                    
+                                    </Grid> 
                                 </Grid>
+
+                                <Grid container  sx={{}}> 
+                                <Box sx={{position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p:2, ml:2, color: 'text.btnEdit', fontWeight: 500}}>Nombre</Box>
+                                <Grid item xs={3} sx={{p: 1, ml: 4, marginTop: 4, bgcolor: 'background.white'}}>
+                                <Box>aca va el nombre</Box>
+                                    
+                                    {/* {PersonalInformation(user)} */}
+
+                                    
+                                    </Grid> 
+
+                                    <Box sx={{position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p:2, ml:32, color: 'text.btnEdit', fontWeight: 500}}>Linkedin</Box>
+                                <Grid item xs={3} sx={{p: 1, ml: 4, marginTop: 4, bgcolor: 'background.white'}}>
+                                <Box>aca va el Linkedin</Box>
+                                    
+                                    {/* {PersonalInformation(user)} */}
+
+                                    
+                                    </Grid> 
+                                </Grid>
+
+                                <Grid container  sx={{}}> 
+                                <Box sx={{position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p:2, ml:2, color: 'text.btnEdit', fontWeight: 500}}>Apellido</Box>
+                                <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, bgcolor: 'background.white'}}>
+                                <Box>aca va el apellido</Box>
+                                    
+                                    {/* {PersonalInformation(user)} */}
+
+                                    
+                                    </Grid> 
+                                    <Box sx={{position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p:2, ml:32, color: 'text.btnEdit', fontWeight: 500}}>Twitter</Box>
+                                <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, bgcolor: 'background.white'}}>
+                                <Box>aca va el Twitter</Box>
+                                    
+                                    {/* {PersonalInformation(user)} */}
+
+                                    
+                                    </Grid> 
+                                    
+                                </Grid>
+
+                                
+
+                                </Box>
                             </Grid>
 
                             <Grid
