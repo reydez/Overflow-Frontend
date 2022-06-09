@@ -13,136 +13,145 @@ import {
 } from "@mui/material";
 import Grid from "@mui/material/Grid";
 
-import {
-    name,
-    img,
-    /*botton,
-    student,
-    quantityQuestions,
-    quantityAnswers,
-    btnOne,
-    btnTwo,
-    btnThree,
-    btnFour,
-    btnFive,
-    btnSix,
-    editButton,
-    vipButton,*/
-} from "../../../Controllers/styleUserProfile/styleUserProfile";
+import { name, img } from "../../../Controllers/styleUserProfile/styleUserProfile";
 import { EditUserProfile } from "../UserProfile/EditUserProfile";
+
+import { PersonalInformation } from '../../../Controllers/styleUserProfile/informationProfile';
+import { getQuestions } from "../../../redux/actions/questions";
 import TwitterIcon from "@mui/icons-material/Twitter";
-// import { PersonalInformation } from '../../../Controllers/styleUserProfile/informationProfile'
 
 
 const ProfileDashboard = () => {
     const user = useSelector((state) => state.userReducer.user);
-    const questions = useSelector((state) => state.questionsReducer.questions);
+    // const questions = useSelector((state) => state.questionsReducer.questions);
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(getQuestions());
     }, [dispatch]);
 
-   
+
 
     const [editMode, setEditMode] = useState(false);
 
     const changeToFalse = () => {
+        console.log('he sido clikeado')
         setEditMode(true);
     };
 
-    console.log(questions)
+    // console.log(questions)
     return (
         <>
 
-            {editMode
+            {(editMode === true)
                 ? (
                     <div>
-                        <EditUserProfile changeToFalse={changeToFalse} />
+                        <EditUserProfile
+                            changeToFalse={changeToFalse}
+                            setEditMode={setEditMode}
+                        />
                     </div>
                 )
                 : (
-                    <Box>
+                    <Box
+                        sx={{
+                            width: '1200px',
+                            // border: 'solid 1px red'
+                        }}
+                    >
                         <Box sx={{ ml: 8, color: 'text.secondary' }}>
                             <Typography sx={{ position: "absolute", }}>Perfil del Usuario</Typography>
                         </Box>
                         <Grid container sx={{ backgroundColor: 'background.fondoPerfil' }}> {/* CONTAINER GRAL */}
 
-                            <Grid container sx={{ width: '96%', margin: '0 auto', marginTop: '30px' }}>   {/* CONTAINER FOTO + INFO USER */}
+                            <Grid container sx={{ width: '96%', margin: '0 auto', marginTop: '30px' }}>
+                                {/* CONTAINER FOTO + INFO USER */}
                                 <Grid sx={{ width: '20%', height: '260px', backgroundColor: 'background.profilePhotos' }}>
                                     <Box sx={{ position: 'absolute', marginTop: 1, marginLeft: '5px', color: 'primary' }}>
-                                        <Typography variant="caption" sx={{ position: 'relative', p: 1, m: 18, fontSize: "14px", color: 'text.btnEdit' }}>Editar</Typography>
+                                        <Typography variant="caption" sx={{ position: 'relative', p: 1, m: 18, fontSize: "14px", color: 'text.btnEdit' }}>
+                                            Editar
+                                        </Typography>
                                     </Box>
                                     <Box sx={{ position: 'absolute', marginTop: "20px", }}>
-                                        <Button onClick={changeToFalse} variant="caption" size="small" sx={{ position: 'relative', p: 0, ml: 18, fontSize: "10px", fontWeight: 1000, color: 'text.btnEdit' }}> . . .</Button>
+                                        <Button
+                                            onClick={changeToFalse}
+                                            variant="caption"
+                                            size="small"
+                                            sx={{ position: 'relative', p: 0, ml: 18, fontSize: "10px", fontWeight: 1000, color: 'text.btnEdit', marginBottom: '5px' }}>...</Button>
                                     </Box>
 
                                     {img(user.image)}
-                                    <Typography sx={{ color: 'text.secondary' }}>{name(user.full_name)}</Typography>
+
+
+                                    {/* <Typography sx={{ padding: '10px', border: 'solid 1px red', color: 'text.secondary', display: 'flex', textAlign: 'center', alignItems: 'left' }}> */}
+                                    {/* {user.full_name} */}
+                                    {name(user.first_name)}
+
+                                    {/* </Typography> */}
                                     {/* <p style={{ textAlign: 'center' }}></p> */}
                                     {/* {name(user.full_name)} */}
                                 </Grid>
-                                <Box sx={{ flexGrow: 1, bgcolor: 'background.profilePhotos', ml:4}}>
-                                <Grid container  sx={{}}> 
-                                <Box sx={{position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p:2, ml:2, color: 'text.btnEdit', fontWeight: 500}}>GitHub Usuario</Box>
-                                <Grid item xs={3} sx={{p: 1, ml: 4, marginTop: 4, bgcolor: 'background.white'}}>
-                                <Box>github</Box>
-                                    
-                                    {/* {PersonalInformation(user)} */}
+                                <Box sx={{ flexGrow: 1, bgcolor: 'background.profilePhotos', ml: 4 }}>
+                                    <Grid container sx={{}}>
+                                        <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 2, color: 'text.btnEdit', fontWeight: 500 }}>GitHub Usuario</Box>
+                                        <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, bgcolor: 'background.white' }}>
+                                            <Box>github</Box>
 
-                                    
-                                    </Grid> 
-                                    <Box sx={{position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p:2, ml:32, color: 'text.btnEdit', fontWeight: 500}}>GitHub link</Box>
-                                <Grid item xs={3} sx={{p: 1, ml: 4, marginTop: 4, bgcolor: 'background.white' }}>
-                                <Box>aca va el Github</Box>
-                                    
-                                    {/* {PersonalInformation(user)} */}
+                                            {/* {PersonalInformation(user)} */}
 
-                                    
-                                    </Grid> 
-                                </Grid>
 
-                                <Grid container  sx={{}}> 
-                                <Box sx={{position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p:2, ml:2, color: 'text.btnEdit', fontWeight: 500}}>Nombre</Box>
-                                <Grid item xs={3} sx={{p: 1, ml: 4, marginTop: 4, bgcolor: 'background.white'}}>
-                                <Box>aca va el nombre</Box>
-                                    
-                                    {/* {PersonalInformation(user)} */}
+                                        </Grid>
+                                        <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 32, color: 'text.btnEdit', fontWeight: 500 }}>GitHub link</Box>
+                                        <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, bgcolor: 'background.white' }}>
+                                            <Box>aca va el Github</Box>
 
-                                    
-                                    </Grid> 
+                                            {/* {PersonalInformation(user)} */}
 
-                                    <Box sx={{position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p:2, ml:32, color: 'text.btnEdit', fontWeight: 500}}>Linkedin</Box>
-                                <Grid item xs={3} sx={{p: 1, ml: 4, marginTop: 4, bgcolor: 'background.white'}}>
-                                <Box>aca va el Linkedin</Box>
-                                    
-                                    {/* {PersonalInformation(user)} */}
 
-                                    
-                                    </Grid> 
-                                </Grid>
+                                        </Grid>
+                                    </Grid>
 
-                                <Grid container  sx={{}}> 
-                                <Box sx={{position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p:2, ml:2, color: 'text.btnEdit', fontWeight: 500}}>Apellido</Box>
-                                <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, bgcolor: 'background.white'}}>
-                                <Box>aca va el apellido</Box>
-                                    
-                                    {/* {PersonalInformation(user)} */}
+                                    <Grid container sx={{}}>
+                                        <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 2, color: 'text.btnEdit', fontWeight: 500 }}>Nombre</Box>
+                                        <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, bgcolor: 'background.white' }}>
+                                            <Box>aca va el nombre</Box>
 
-                                    
-                                    </Grid> 
-                                    <Box sx={{position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p:2, ml:32, color: 'text.btnEdit', fontWeight: 500}}>Twitter</Box>
-                                <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, bgcolor: 'background.white'}}>
-                                <Box>aca va el Twitter</Box>
-                                    
-                                    {/* {PersonalInformation(user)} */}
+                                            {/* {PersonalInformation(user)} */}
 
-                                    
-                                    </Grid> 
-                                    
-                                </Grid>
 
-                                
+                                        </Grid>
+
+                                        <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 32, color: 'text.btnEdit', fontWeight: 500 }}>Linkedin</Box>
+                                        <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, bgcolor: 'background.white' }}>
+                                            <Box>aca va el Linkedin</Box>
+
+                                            {/* {PersonalInformation(user)} */}
+
+
+                                        </Grid>
+                                    </Grid>
+
+                                    <Grid container sx={{}}>
+                                        <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 2, color: 'text.btnEdit', fontWeight: 500 }}>Apellido</Box>
+                                        <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, bgcolor: 'background.white' }}>
+                                            <Box>aca va el apellido</Box>
+
+                                            {/* {PersonalInformation(user)} */}
+
+
+                                        </Grid>
+                                        <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 32, color: 'text.btnEdit', fontWeight: 500 }}>Twitter</Box>
+                                        <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, bgcolor: 'background.white' }}>
+                                            <Box>aca va el Twitter</Box>
+
+                                            {/* {PersonalInformation(user)} */}
+
+
+                                        </Grid>
+
+                                    </Grid>
+
+
 
                                 </Box>
                             </Grid>
@@ -236,7 +245,8 @@ const ProfileDashboard = () => {
                             </Grid>
                         </Grid>
                     </Box>
-                )}
+                )
+            }
         </>
     );
 };
