@@ -22,13 +22,26 @@ import { useAuth0 } from "@auth0/auth0-react";
 import styled from "@emotion/styled";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-// import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux'
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 
 const ButtonLogOut = () => {
   const { logout } = useAuth0();
+  const user = useSelector((state) => state.userReducer.user)
 
   return (
     <>
+      {user.isAdmin === true
+        ? (
+          <Link to="/admin" style={{ textDecoration: "none" }}>
+          <Button sx={{ color: "red;", "&:hover": { color: "#F50057" }, margin: '30px' }}>
+            <AdminPanelSettingsIcon sx={{ fontSize: "18px" }} />
+            Panel de Admin
+          </Button>
+          </Link>
+        ) 
+        : null
+      }
       <ButtonLogOutDiv>
         <button className="ButtonLogOut" onClick={() => logout()}>
           <LogoutIcon sx={{ marginRight: "10px", fontSize: "19px" }} />
