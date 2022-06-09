@@ -31,8 +31,7 @@ import {
 import { EditUserProfile } from "../UserProfile/EditUserProfile";
 // import TwitterIcon from "@mui/icons-material/";
 import { PersonalInformation } from '../../../Controllers/styleUserProfile/informationProfile';
-import { getQuestions } from "../../../redux/actions/questionsActions";
-
+import { getQuestions } from "../../../redux/actions/questions";
 
 const ProfileDashboard = () => {
     const user = useSelector((state) => state.userReducer.user);
