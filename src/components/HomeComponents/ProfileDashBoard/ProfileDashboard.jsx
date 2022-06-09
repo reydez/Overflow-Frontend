@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {
     /*CardActions,
     CardContent,
@@ -30,11 +30,18 @@ import {
 } from "../../../Controllers/styleUserProfile/styleUserProfile";
 import { EditUserProfile } from "../UserProfile/EditUserProfile";
 // import TwitterIcon from "@mui/icons-material/";
-import { PersonalInformation } from '../../../Controllers/styleUserProfile/informationProfile'
+import { PersonalInformation } from '../../../Controllers/styleUserProfile/informationProfile';
+import { getQuestions } from "../../../redux/actions/questionsActions";
 
 
 const ProfileDashboard = () => {
     const user = useSelector((state) => state.userReducer.user);
+    const questions = useSelector((state) => state.questionsReducer.questions);
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getQuestions());
+    }, [dispatch]);
 
     const [editMode, setEditMode] = useState(false);
 
@@ -42,6 +49,7 @@ const ProfileDashboard = () => {
         setEditMode(true);
     };
 
+    console.log(questions)
     return (
         <>
 
@@ -84,7 +92,7 @@ const ProfileDashboard = () => {
                                     height: "60px",
                                     margin: "0 auto",
                                     marginTop: "20px",
-                                    backgroundColor: "profileGrid",
+                                    backgroundColor: "background.profilePhotos",
                                 }}
                             >
                                 {" "}
@@ -92,11 +100,11 @@ const ProfileDashboard = () => {
                                 <List sx={{ textAlign: "center" }}>
                                     {" "}
                                     {/* LISTA DEL SUB-MENU */}
-                                    <Button sx={{ color: "#D81B60" }}>Preguntas Realizadas</Button>
-                                    <Button sx={{ color: "#fff" }}>Respuestas Realizadas</Button>
-                                    <Button sx={{ color: "#fff" }}>Preguntas Favoritas</Button>
-                                    <Button sx={{ color: "#fff" }}>Usuarios Favoritos</Button>
-                                    <Button sx={{ color: "#fff" }}>Likes</Button>
+                                    <Button sx={{ color: "text.primary" }}>Preguntas Realizadas</Button>
+                                    <Button sx={{ color: "text.primary" }}>Respuestas Realizadas</Button>
+                                    <Button sx={{ color: "text.primary" }}>Preguntas Favoritas</Button>
+                                    <Button sx={{ color: "text.primary" }}>Usuarios Favoritos</Button>
+                                    <Button sx={{ color: "text.primary" }}>Likes</Button>
                                 </List>
                             </Grid>
                             <Grid

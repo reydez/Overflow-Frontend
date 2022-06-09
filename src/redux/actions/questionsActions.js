@@ -42,10 +42,10 @@ export const postQuestion = (payload, id) => {
       let newPost = await axios.post(
         `http://localhost:3001/posts/${id}`,
         payload, {
-          headers: {
-            authorization: id,
-          },
-        }
+        headers: {
+          authorization: id,
+        },
+      }
       );
 
       return newPost;
