@@ -1,12 +1,13 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {
-    CardActions,
+    /*CardActions,
     CardContent,
+    Card,*/
     Button,
     Typography,
     Box,
-    Card,
+
     List,
     Item
 } from "@mui/material";
@@ -14,11 +15,11 @@ import Grid from "@mui/material/Grid";
 
 import {
     name,
-    botton,
+    img,
+    /*botton,
     student,
     quantityQuestions,
     quantityAnswers,
-    img,
     btnOne,
     btnTwo,
     btnThree,
@@ -26,7 +27,7 @@ import {
     btnFive,
     btnSix,
     editButton,
-    vipButton,
+    vipButton,*/
 } from "../../../Controllers/styleUserProfile/styleUserProfile";
 import { EditUserProfile } from "../UserProfile/EditUserProfile";
 import TwitterIcon from "@mui/icons-material/Twitter";
@@ -35,15 +36,22 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 
 const ProfileDashboard = () => {
     const user = useSelector((state) => state.userReducer.user);
+    const questions = useSelector((state) => state.questionsReducer.questions);
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getQuestions());
+    }, [dispatch]);
 
    
 
     const [editMode, setEditMode] = useState(false);
 
     const changeToFalse = () => {
-        setEditMode(false);
+        setEditMode(true);
     };
 
+    console.log(questions)
     return (
         <>
 
@@ -66,7 +74,7 @@ const ProfileDashboard = () => {
                                         <Typography variant="caption" sx={{ position: 'relative', p: 1, m: 18, fontSize: "14px", color: 'text.btnEdit' }}>Editar</Typography>
                                     </Box>
                                     <Box sx={{ position: 'absolute', marginTop: "20px", }}>
-                                        <Button variant="caption" size="small" sx={{ position: 'relative', p: 0, ml: 18, fontSize: "10px", fontWeight: 1000, color: 'text.btnEdit' }}> . . .</Button>
+                                        <Button onClick={changeToFalse} variant="caption" size="small" sx={{ position: 'relative', p: 0, ml: 18, fontSize: "10px", fontWeight: 1000, color: 'text.btnEdit' }}> . . .</Button>
                                     </Box>
 
                                     {img(user.image)}
@@ -145,7 +153,7 @@ const ProfileDashboard = () => {
                                     height: "60px",
                                     margin: "0 auto",
                                     marginTop: "20px",
-                                    backgroundColor: "profileGrid",
+                                    backgroundColor: "background.profilePhotos",
                                 }}
                             >
                                 {" "}
@@ -153,11 +161,11 @@ const ProfileDashboard = () => {
                                 <List sx={{ textAlign: "center" }}>
                                     {" "}
                                     {/* LISTA DEL SUB-MENU */}
-                                    <Button sx={{ color: "#D81B60" }}>Preguntas Realizadas</Button>
-                                    <Button sx={{ color: "#fff" }}>Respuestas Realizadas</Button>
-                                    <Button sx={{ color: "#fff" }}>Preguntas Favoritas</Button>
-                                    <Button sx={{ color: "#fff" }}>Usuarios Favoritos</Button>
-                                    <Button sx={{ color: "#fff" }}>Likes</Button>
+                                    <Button sx={{ color: "text.primary" }}>Preguntas Realizadas</Button>
+                                    <Button sx={{ color: "text.primary" }}>Respuestas Realizadas</Button>
+                                    <Button sx={{ color: "text.primary" }}>Preguntas Favoritas</Button>
+                                    <Button sx={{ color: "text.primary" }}>Usuarios Favoritos</Button>
+                                    <Button sx={{ color: "text.primary" }}>Likes</Button>
                                 </List>
                             </Grid>
                             <Grid

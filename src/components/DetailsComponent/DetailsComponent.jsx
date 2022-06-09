@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { Typography } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import axios from "axios";
 import Swal from "sweetalert2";
 
@@ -244,13 +244,13 @@ const ButtonsDetail = styled.div`
     border: none;
     border-radius: 5px;
     background-color: ${(props) =>
-      props.lila
-        ? "#e2e6f7"
-        : props.rosa
+    props.lila
+      ? "#e2e6f7"
+      : props.rosa
         ? "#fadafa"
         : props.grey
-        ? "#392e57"
-        : "#aca9fa"};
+          ? "#392e57"
+          : "#aca9fa"};
     color: ${(props) => (props.blanco ? "#817094" : "#fafafa")};
     cursor: pointer;
     font-size: 17px;

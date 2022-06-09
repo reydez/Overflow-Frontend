@@ -1,7 +1,7 @@
-// import React from "react";
+import React from "react";
 // import Box from "@mui/material/Box";
 // import Button from "@mui/material/Button";
-// import { Typography, CardMedia, Card, Grid, Chip } from "@mui/material";
+import { Typography, Grid, /*CardMedia, Card,  Chip */ } from "@mui/material";
 
 
 // export const PersonalInformation = (info) => {
