@@ -5,24 +5,24 @@ import { Typography, CardMedia, Card } from "@mui/material";
 // import { color } from "@mui/system";
 
 export const name = (name) => {
+
   return (
 
     <Box
       sx={{
+        display: 'flex',
+        aligItems: 'center',
+        textAlign: 'center',
         position: "absolute",
-        // width: "150px",
-        // height: "21px",
+        padding: '10px',
+        // border: 'solid 1px red',
         fontFamily: "Segoe UI Symbol",
-        // fontStyle: "normal",
-        // fontWeight: "600",
-        fontSize: "25px",
-        lineHeight: "21px",
+        fontSize: "20px",
+        lineHeight: "18px",
         fontWeight: 200,
-        // webkitBackgroundClip: 'text',
-        // webkitTextFillColor: 'transparent',
-        // backgroundClip: 'text',
-        // textFillColor: 'transparent',
-        marginLeft: "60px",
+        width: '100px',
+        marginLeft: "67px",
+        marginRigth: '62px',
         marginTop: "200px",
       }}
     >
@@ -115,13 +115,15 @@ export const img = (image) => {
     <Card>
       <CardMedia
         sx={{
+
           position: "absolute",
           width: "150px",
           height: "150px",
           borderRadius: "75px",
-          marginLeft: "30px",
+          marginLeft: "38px",
+          marginRight: '20px',
           border: "3px solid",
-          p:0,
+          p: 0,
           marginTop: "40px",
           color: "text.btnEdit"
         }}

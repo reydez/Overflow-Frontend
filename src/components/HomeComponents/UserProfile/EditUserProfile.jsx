@@ -64,14 +64,17 @@ let validationSchema = Yup.object().shape({
 
 
 
-export const EditUserProfile = ({ changeToFalse }) => {
+export const EditUserProfile = ({ changeToFalse, setEditMode }) => {
 
 
   const onSubmit = (values) => {
     console.log(values)
   }
 
-
+  const cancelEdit = () => {
+    setEditMode(false)
+    console.log('he sido clikeado')
+  }
   return (
 
 
@@ -193,6 +196,18 @@ export const EditUserProfile = ({ changeToFalse }) => {
                       }}
                     >
                       REGISTER
+                    </Button>
+                    <Button
+                      onClick={cancelEdit}
+                      // disabled={!dirty || !isValid}
+                      variant="contained"
+                      color="primary"
+                      type="Submit"
+                      sx={{
+                        padding: '1px'
+                      }}
+                    >
+                      Cancel
                     </Button>
                   </CardActions>
                 </Form>
