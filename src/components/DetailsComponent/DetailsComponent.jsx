@@ -31,20 +31,23 @@ export default function DetailsComponent({
 
   const onSubmitHandler = () => {
     axios
-      .post(`http://localhost:3001/comments/${question.id}/${user.id}`, {
-        message: comentarioText,
-      }, {
-        headers: {
-          "authorization":
-            user.id,
+      .post(
+        `http://localhost:3001/comments/${question.id}/${user.id}`,
+        {
+          message: comentarioText.trim(),
         },
-      })
+        {
+          headers: {
+            authorization: user.id,
+          },
+        }
+      )
       .then((response) => {
         setComments([...commentsARenderizar, response.data]);
         setComentarioText("");
       })
       .catch((error) => {
-        if (error.response.status === 500) {
+        if (error.response.status === 400) {
           Swal.fire(
             "Comentario repetido!",
             "Por favor ingrese un comentario que no se repita",
@@ -244,13 +247,13 @@ const ButtonsDetail = styled.div`
     border: none;
     border-radius: 5px;
     background-color: ${(props) =>
-    props.lila
-      ? "#e2e6f7"
-      : props.rosa
+      props.lila
+        ? "#e2e6f7"
+        : props.rosa
         ? "#fadafa"
         : props.grey
-          ? "#392e57"
-          : "#aca9fa"};
+        ? "#392e57"
+        : "#aca9fa"};
     color: ${(props) => (props.blanco ? "#817094" : "#fafafa")};
     cursor: pointer;
     font-size: 17px;

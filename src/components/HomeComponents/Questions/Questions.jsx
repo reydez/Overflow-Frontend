@@ -53,11 +53,6 @@ export const Questions = () => {
     setCurrentPage(1);
   };
 
-  const orderByDateHandler = () => {
-    dispatch(orderByDate());
-    setCurrentPage(1);
-  };
-
   const orderByTagHandler = (tag) => {
     dispatch(orderByTag(tag));
     setCurrentPage(1);
