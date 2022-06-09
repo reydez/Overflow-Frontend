@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   Divider,
@@ -26,7 +26,14 @@ import { useDispatch, useSelector } from "react-redux";
 
 const ButtonLogOut = () => {
   const { logout } = useAuth0();
+  const [selectedOption, setSelectedOption] = useState("5.00");
+  const [show, setShow] = useState(true);
+
   const user = useSelector((state) => state.userReducer.user);
+
+  const onValueChangeHandler = (e) => {
+    setSelectedOption(e.target.value);
+  };
 
   return (
     <>
@@ -50,6 +57,7 @@ const ButtonLogOut = () => {
             "client-id":
               "Ae2m28_QPii8gMDTPs9b13NZURT4XP8KDlZCfgqA9DQkogkpyvXNTTm-5HAihKiUSS4OfXCVQ5PzgXvf",
           }}
+          deferLoading={false}
         >
           <PayPalButtons
             fundingSource="paypal"
@@ -75,7 +83,7 @@ const ButtonLogOut = () => {
             }}
           />
         </PayPalScriptProvider>
-        <h5 style={{ margin: "0" }}>Donate</h5>
+        <p style={{ margin: "0" }}>Donar $5 USD</p>
       </div>
     </>
   );
@@ -126,11 +134,11 @@ const drawer = (
           </Button>
         </Link>,
 
-        <Link to={`/favourites-user`} style={{textDecoration:'none'}}>
-        <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" } }}>
-          <FavoriteIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
-          Mis Favoritos
-        </Button>
+        <Link to={`/favourites-user`} style={{ textDecoration: "none" }}>
+          <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" } }}>
+            <FavoriteIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
+            Mis Favoritos
+          </Button>
         </Link>,
 
         <Link to={`/all-users`} style={{ textDecoration: "none" }}>
