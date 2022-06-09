@@ -15,6 +15,8 @@ import FavoritesUser from "./views/FavouritesUser"
 import Spinner from "./components/spinner/Spinner";
 import ProfileDashboard from "./components/HomeComponents/ProfileDashBoard/ProfileDashboard";
 import { AllUsers } from "./components/HomeComponents/AllUsers/AllUsers";
+import { AdminContainer } from "./views/AdminContainer";
+import { AdminEditTags } from "./components/HomeComponents/Admin/AdminEditTags";
 
 function App() {
   const { isLoading, isAuthenticated, user } = useAuth0();
@@ -93,6 +95,29 @@ function App() {
           : (
             <BarLeft>
               <FavoritesUser />
+            </BarLeft>
+          )
+        }
+      </Route>
+
+      <Route exact={true} path="/admin">
+        {!isAuthenticated
+          ? (<Redirect to="/" />)
+          : (
+            <BarLeft>
+              <AdminContainer />
+            </BarLeft>
+          )
+        }
+      </Route>
+
+      <Route exact={true} patch='/admin/edit-tags'>
+        {!isAuthenticated
+          ? (<Redirect to="/" />)
+          : (
+            <BarLeft>
+              <AdminContainer />
+              <AdminEditTags />
             </BarLeft>
           )
         }
