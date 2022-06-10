@@ -21,11 +21,12 @@ import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import styled from "@emotion/styled";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useSelector } from "react-redux";
+
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-import axios from "axios";
-import Swal from "sweetalert2";
+import Paypal from "./Paypal/Paypal";
+
+
 
 const ButtonLogOut = () => {
   const { logout } = useAuth0();
@@ -53,67 +54,7 @@ const ButtonLogOut = () => {
           Cerrar Sesión
         </button>
       </ButtonLogOutDiv>
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-        }}
-      >
-        <PayPalScriptProvider
-          options={{
-            "client-id": process.env.REACT_APP_CLIENT_ID,
-          }}
-        >
-          <PayPalButtons
-            fundingSource="paypal"
-            createOrder={(data, actions) => {
-              return actions.order
-                .create({
-                  purchase_units: [
-                    {
-                      amount: {
-                        value: "5.00",
-                      },
-                    },
-                  ],
-                })
-                .catch((e) => {
-                  console.log(e.message);
-                });
-            }}
-            onApprove={async (data, actions) => {
-              const obj = {};
-
-              return actions.order.capture().then((details) => {
-                obj.id = details.id;
-                obj.amount = details.purchase_units[0].amount.value;
-                obj.orderIdPayment =
-                  details.purchase_units[0].payments.captures[0].id;
-                obj.email_address = details.payer.email_address;
-                obj.status = details.status;
-                let userId = user.id;
-
-                axios
-                  .post(`http://localhost:3001/orders/${userId}`, obj)
-                  .then((response) => {
-                    Swal.fire(
-                      "Aviso!",
-                      `Donación realizada, muchas gracias.`,
-                      "success"
-                    );
-                  })
-                  .catch((error) => {
-                    console.log(error);
-                  });
-              });
-            }}
-          />
-        </PayPalScriptProvider>
-        <p style={{ margin: "0" }}>Donar $5 USD</p>
-      </div>
+      <Paypal/>
     </>
   );
 };
