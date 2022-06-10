@@ -1,6 +1,7 @@
 const initialState = {
   user: {},
   isLogin: 0
+  userDetail: {}
 };
 
 const userReducer = (state = initialState, action) => {
@@ -11,7 +12,11 @@ const userReducer = (state = initialState, action) => {
         user: action.payload.user,
         isLogin: 1
       };
-
+    case "GET_USER_PROFILE":
+      return {
+        ...state,
+        userDetail: action.payload
+      };
     default:
       return {
         ...state,
