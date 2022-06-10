@@ -16,7 +16,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import CircularStatic from './CircularWithLabel'
-import { getUserProfile, finishedPost } from "../../../redux/actions/user"
+import { getUserProfile,/* finishedPost*/ } from "../../../redux/actions/user"
 import PaginationProfile from './paginationOfProfileDashboard/PaginationProfile'
 
 
@@ -24,9 +24,9 @@ const ProfileDashboard = () => {
     const user = useSelector((state) => state.userReducer.user);
     const userDetail = useSelector((state) => state.userReducer.userDetail);
 
-    // const [finishedC, setFinishedC] = useState({
-    //     finished: false
-    // })
+
+    const [questionsProfile, setQuestionsProfile] = useState([]);
+
     const [informationProfile, setInformationProfile] = useState({
         firstName: "",
         lastName: "",
@@ -52,21 +52,10 @@ const ProfileDashboard = () => {
         setEditMode(true);
     };
 
-    // const handleChange = (event, id) => {
-    //     console.log('he sido clicado', !event.target.clicked)
-
-    //     // setFinishedC({
-    //     //     ...finishedC,
-    //     //     [event.target.name]: event.target.checked
-    //     // });
-
-    //     dispatch(finishedPost(id, !event.target.clicked))
-
-    // };
 
 
-    // console.log('Yo soy el detalle: ', userDetail.posts)
-    // console.log(finishedC.finished)
+    console.log('usuario info', questionsProfile)
+
     return (
         <>
 
@@ -84,7 +73,8 @@ const ProfileDashboard = () => {
                     <Box
                         sx={{
                             width: '1200px',
-                            // border: 'solid 1px red'
+                            height: '600px',
+                            backgroundColor: 'background.profilePhotos'
                         }}
                     >
                         <Box sx={{ ml: 8, color: 'text.secondary' }}>
@@ -265,10 +255,13 @@ const ProfileDashboard = () => {
                                     backgroundColor: "background.default",
                                     margin: "0 auto",
                                     marginTop: "10px",
+                                    position: 'absolute',
+                                    marginTop: '370px',
+                                    marginLeft: '26px'
                                     // boder: '1px solid red'
                                 }}
                             >
-                                {userDetail.posts?.map((p) => {
+                                {questionsProfile?.map((p) => {
 
                                     return (
                                         <Grid container
@@ -333,7 +326,12 @@ const ProfileDashboard = () => {
                                         </Grid>
                                     )
                                 })}
-                                <PaginationProfile />
+                                <PaginationProfile
+                                    posts={userDetail.posts}
+                                    setQuestionsProfile={(q) => setQuestionsProfile(q)}
+                                // questionsProfile={questionsProfile}
+                                />
+
 
 
 

@@ -81,7 +81,7 @@ export function updateUserProfile(form, idUser) {
 
 export function finishedPost(idPost, finishedPost) {
 
-  console.log('id:', idPost, 'esta en:', finishedPost)
+  // console.log('id:', idPost, 'esta en:', finishedPost)
 
   return (dispatch) => {
     axios.put(`${URL}/${idPost}`, finishedPost)
