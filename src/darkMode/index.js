@@ -41,12 +41,15 @@ const themeObj = {
       white: '#EBEFFE', // color del barleft
       violet: '#7165A0', // color del avatar
       fondoPerfil: '#f4f4f4',
-      profilePhotos: '#EBEFFE'
+      profilePhotos: '#EBEFFE',
+      mapeado: "#EBEFFE",
+      informationProfile: '#F4F4F4',
+      buttons: '#EBEFFE'
     },
     text: {
       primary: "#7165A0",
       secondary: "#7165A0", //color de texto en el nombre del perfil
-     
+      btnEdit: "#7165A0"
     }
   },
   dark: {
@@ -57,7 +60,9 @@ const themeObj = {
       fondoPerfil: '#392E57',
       profileGrid: '#4B4171', // recuadros del profile
       profilePhotos: '#423B67', // recuadros del profile
-     
+      mapeado: "#392E57",
+      informationProfile: '#392E57',
+      buttons: '#392E57'
     },
     // #423B67
     text: {

@@ -21,75 +21,40 @@ import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import styled from "@emotion/styled";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-import { useSelector } from 'react-redux'
-import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import { useSelector } from "react-redux";
+
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import Paypal from "./Paypal/Paypal";
+
+
 
 const ButtonLogOut = () => {
   const { logout } = useAuth0();
-  const user = useSelector((state) => state.userReducer.user)
+  const user = useSelector((state) => state.userReducer.user);
 
   return (
     <>
-      {user.isAdmin === true
-        ? (
-          <Link to="/admin" style={{ textDecoration: "none" }}>
-          <Button sx={{ color: "red;", "&:hover": { color: "#F50057" }, margin: '30px' }}>
+      {user.isAdmin === true ? (
+        <Link to="/admin" style={{ textDecoration: "none" }}>
+          <Button
+            sx={{
+              color: "red;",
+              "&:hover": { color: "#F50057" },
+              margin: "30px",
+            }}
+          >
             <AdminPanelSettingsIcon sx={{ fontSize: "18px" }} />
             Panel de Admin
           </Button>
-          </Link>
-        ) 
-        : null
-      }
+        </Link>
+      ) : null}
       <ButtonLogOutDiv>
         <button className="ButtonLogOut" onClick={() => logout()}>
           <LogoutIcon sx={{ marginRight: "10px", fontSize: "19px" }} />
           Cerrar Sesión
         </button>
       </ButtonLogOutDiv>
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-        }}
-      >
-        <PayPalScriptProvider
-          options={{
-            "client-id":
-              "Ae2m28_QPii8gMDTPs9b13NZURT4XP8KDlZCfgqA9DQkogkpyvXNTTm-5HAihKiUSS4OfXCVQ5PzgXvf",
-          }}
-          deferLoading={false}
-        >
-          <PayPalButtons
-            fundingSource="paypal"
-            createOrder={(data, actions) => {
-              return actions.order
-                .create({
-                  purchase_units: [
-                    {
-                      amount: {
-                        value: "5.00",
-                      },
-                    },
-                  ],
-                })
-                .catch((e) => {
-                  console.log(e.message);
-                });
-            }}
-            onApprove={async (data, actions) => {
-              return actions.order.capture().then((details) => {
-                console.log(details);
-              });
-            }}
-          />
-        </PayPalScriptProvider>
-        <p style={{ margin: "0" }}>Donar $5 USD</p>
-      </div>
+      <Paypal/>
     </>
   );
 };
@@ -126,10 +91,7 @@ const drawer = (
             Home
           </Button>
         </Link>,
-        <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" } }}>
-          <ListAltIcon sx={{ marginRight: "10px", fontSize: "18px" }} />{" "}
-          Categorías
-        </Button>,
+
         <Divider />,
 
         <Link to={`/user-profile`} style={{ textDecoration: "none" }}>
