@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 // import Button from "@mui/material/Button";
+import Switch from "@mui/material/Switch";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { Typography } from "@mui/material";
@@ -18,6 +19,10 @@ export default function DetailsComponent({
   const [comentarioText, setComentarioText] = useState("");
   const user = useSelector((state) => state.userReducer.user);
   const isTextareaDisabled = comentarioText.length === 0;
+  const [checked, setChecked] = useState(true);
+
+  console.log(question);
+  console.log(user);
 
   let history = useHistory();
   const Return = () => {
@@ -28,6 +33,36 @@ export default function DetailsComponent({
     e.preventDefault();
     setComentarioText(e.target.value);
   };
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
+
+  /* const switchComponent =
+    user.id === question.user.id ? (
+      <div
+        style={{
+          position: "absolute",
+          top: "-0px",
+          right: "-0px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        <h6 style={{ margin: 0, paddingTop: ".5em" }}>Resuelto</h6>
+        <Switch
+          checked={checked}
+          onChange={handleChange}
+          inputProps={{ "aria-label": "controlled" }}
+          sx={{
+            background: "transparent",
+            color: "white",
+          }}
+        />
+      </div>
+    ) : null; */
 
   const onSubmitHandler = () => {
     axios
@@ -75,13 +110,14 @@ export default function DetailsComponent({
             width: "70%",
             background: "#ecf0f3",
             borderRadius: "10px",
-
+            position: "relative",
             /* margin: "0 auto", */
           }}
         >
           <h1 style={{ color: "#413a66", fontSize: "22px" }}>
             {question.title}
           </h1>
+          {/*  {switchComponent} */}
           <Typography
             variant="body2"
             sx={{
