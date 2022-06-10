@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -7,6 +7,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { Button, Grid, List } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import {getFavorite} from "../redux/actions/favourite";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -32,20 +34,25 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
 
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0),
-  createData("Ice cream sandwich", 237, 9.0),
-  createData("Eclair", 262, 16.0),
-  createData("Cupcake", 305, 3.7),
-];
-
-console.log()
 
 function FavouritesUser() {
+
+  const favorite = useSelector((state) => state.favouritesReducer.favourites);
+  const user = useSelector((state) => state.userReducer.user)
+  const idUser = useSelector((state) => state.userReducer.user.id);
+
+  console.log(idUser)
+  const dispatch = useDispatch()
+ 
+  useEffect(() => {
+      dispatch(getFavorite(idUser));
+  }, [dispatch]);
+
+  console.log(favorite);
+ 
+ 
+ 
   return (
     <div>
       <Grid
@@ -92,7 +99,7 @@ function FavouritesUser() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
+            {/* {rows.map((row) => (
               <StyledTableRow key={row.name}>
                 <StyledTableCell align="center">
                   {row.name}
@@ -102,7 +109,7 @@ function FavouritesUser() {
                 <StyledTableCell align="center">{row.calories}</StyledTableCell>
                 
               </StyledTableRow>
-            ))}
+            ))} */}
           </TableBody>
         </Table>
       </TableContainer>

@@ -13,10 +13,10 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import DoDisturbOnIcon from "@mui/icons-material/DoDisturbOn";
-import Checkbox from "@mui/material/Checkbox";
+import FavoriteCheck from "../../Favorite/FavoriteCheck";
 // import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
-import { pink } from "@mui/material/colors";
-import Favorite from "@mui/icons-material/Favorite";
+
+
 import { Link as RouterLink } from "react-router-dom";
 import {
   getModuleColor,
@@ -24,7 +24,7 @@ import {
 } from "../../../Controllers/Helpers/colorsQuestion";
 
 export const QuestionCard = ({ question }) => {
-  const label = { inputProps: { "aria-label": "Checkbox demo" } };
+  
 
   const extras = {
     vote: 1,
@@ -118,7 +118,7 @@ export const QuestionCard = ({ question }) => {
             )}
           </Stack>
         </Grid>
-
+       
         <Grid item xs={12} sm container>
           <Grid item xs container direction="column" spacing={2}>
             <Grid item xs>
@@ -174,7 +174,7 @@ export const QuestionCard = ({ question }) => {
                 {question.message}
               </Typography>
             </Grid>
-
+              
             <Grid item>
               {" "}
               {/* TAGs de cada categoría*/}
@@ -208,23 +208,9 @@ export const QuestionCard = ({ question }) => {
               </Stack>
             </Grid>
           </Grid>
-
-          <Grid>
-            {/* check de corazon para clickear hacia favoritos */}
-            <Checkbox
-              {...label}
-              icon={<Favorite sx={{ color: "#A8A3B5" }} />}
-              checkedIcon={<Favorite sx={{ color: "#D81B60" }} />}
-              sx={{
-                color: pink[800],
-                "&.Mui-checked": {
-                  color: pink[600],
-                },
-                top: 10,
-                left: -50,
-              }}
-            />
-          </Grid>
+         
+             <FavoriteCheck />
+             
           <Grid item>
             <Typography variant="subtitle1" component="div" color="pink">
               {/* Avatar perfil deberia venir desde back */}
