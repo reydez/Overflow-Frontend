@@ -27,6 +27,15 @@ const ProfileDashboard = () => {
     // const [finishedC, setFinishedC] = useState({
     //     finished: false
     // })
+    const [informationProfile, setInformationProfile] = useState({
+        firstName: "",
+        lastName: "",
+        role: "",
+        twitter: "",
+        github: "",
+        portfolio: "",
+        linkedin: "",
+    })
 
     const dispatch = useDispatch()
 
@@ -67,6 +76,7 @@ const ProfileDashboard = () => {
                         <EditUserProfile
                             changeToFalse={changeToFalse}
                             setEditMode={setEditMode}
+                            setInformationProfile={setInformationProfile}
                         />
                     </div>
                 )
@@ -113,7 +123,7 @@ const ProfileDashboard = () => {
                                     <Grid container sx={{}}>
                                         <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 2, color: 'text.btnEdit', fontWeight: 500 }}>GitHub Usuario</Box>
                                         <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, backgroundColor: 'background.informationProfile' }}>
-                                            <Box>github</Box>
+                                            <Box sx={{ height: '20px' }}>github</Box>
 
                                             {/* {PersonalInformation(user)} */}
 
@@ -121,7 +131,7 @@ const ProfileDashboard = () => {
                                         </Grid>
                                         <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 32, color: 'text.btnEdit', fontWeight: 500 }}>GitHub link</Box>
                                         <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, backgroundColor: 'background.informationProfile' }}>
-                                            <Box>aca va el Github</Box>
+                                            <Box sx={{ height: '20px' }}>{informationProfile.github}</Box>
 
                                             {/* {PersonalInformation(user)} */}
 
@@ -145,7 +155,7 @@ const ProfileDashboard = () => {
                                     <Grid container sx={{}}>
                                         <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 2, color: 'text.btnEdit', fontWeight: 500 }}>Nombre</Box>
                                         <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, bgcolor: 'background.informationProfile' }}>
-                                            <Box>aca va el nombre</Box>
+                                            <Box sx={{ height: '20px' }}>{informationProfile.firstName}</Box>
 
                                             {/* {PersonalInformation(user)} */}
 
@@ -154,7 +164,7 @@ const ProfileDashboard = () => {
 
                                         <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 32, color: 'text.btnEdit', fontWeight: 500 }}>Linkedin</Box>
                                         <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, backgroundColor: 'background.informationProfile' }}>
-                                            <Box>aca va el Linkedin</Box>
+                                            <Box sx={{ height: '20px' }}>{informationProfile.linkedin}</Box>
 
                                             {/* {PersonalInformation(user)} */}
 
