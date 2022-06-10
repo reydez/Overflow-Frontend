@@ -13,7 +13,7 @@ import {
   styled
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteNotification, userInbox } from "../redux/actions/inboxes";
+import { deleteNotification, userInbox, cleanInbox } from "../redux/actions/inboxes";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -52,10 +52,18 @@ export default function InboxUser() {
     const pending = inbox.reduce((prev, curr) => curr.isActive? prev + 1 : prev, 0)
     const [change, setChange] = useState(false)
 
+    console.log(user)
     const clearNotification = (not) => {
         dispatch(deleteNotification(user.id, not.target.value));
+        dispatch(userInbox(user.id))
         change ? setChange(false) : setChange(true)
-        // console.log(change)
+        // dispatch(userInbox(user.id))
+    }
+
+    const clearAll = () => {
+        dispatch(cleanInbox(user.id));
+        dispatch(userInbox(user.id))
+        change ? setChange(false) : setChange(true)
     }
 
     React.useEffect(() => {
@@ -91,7 +99,12 @@ export default function InboxUser() {
                 </List>
             </Grid>
                 {
-                    pending ? <h3>Tienes {pending} notificaciones sin leer</h3> : null
+                    pending ? 
+                    <>
+                    <h3>Tienes {pending} notificaciones sin leer</h3>
+                    <button style={{marginLeft: "1100px"}} onClick={clearAll}>Limiar bandeja</button>
+                    </>
+                    : null
                 }
             <TableContainer component={TableRow}>
                 <Table
