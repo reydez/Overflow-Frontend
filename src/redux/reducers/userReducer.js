@@ -1,6 +1,6 @@
 const initialState = {
   user: {},
-  isLogin: 0
+  isLogin: 0,
   userDetail: {}
 };
 
