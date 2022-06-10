@@ -2,9 +2,9 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
-import ButtonWrapper from "./Suscription";
+import ButtonWrapper from "./Suscription1";
 
-const Paypal = () => {
+const Plan1 = () => {
     const user = useSelector((state) => state.userReducer.user);
     return (
         <div
@@ -85,4 +85,4 @@ const Paypal = () => {
 }
 
 
-export default Paypal;
+export default Plan1;
