@@ -17,6 +17,7 @@ import ProfileDashboard from "./components/HomeComponents/ProfileDashBoard/Profi
 import { AllUsers } from "./components/HomeComponents/AllUsers/AllUsers";
 import { AdminContainer } from "./views/AdminContainer";
 import { AdminEditTags } from "./components/HomeComponents/Admin/AdminEditTags";
+import InboxUser from "./views/InboxUser";
 
 function App() {
   const { isLoading, isAuthenticated, user } = useAuth0();
@@ -95,6 +96,17 @@ function App() {
           : (
             <BarLeft>
               <FavoritesUser />
+            </BarLeft>
+          )
+        }
+      </Route>
+
+      <Route exact={true} path="/inbox-user">
+        {!isAuthenticated
+          ? (<Redirect to="/" />)
+          : (
+            <BarLeft>
+              <InboxUser />
             </BarLeft>
           )
         }
