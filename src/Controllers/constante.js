@@ -31,8 +31,6 @@ import Plan1 from "./Paypal/Plan1";
 import Plan2 from "./Paypal/Plan2";
 import Plan3 from "./Paypal/Plan3"
 
-
-
 const ButtonLogOut = () => {
   const { logout } = useAuth0();
   const user = useSelector((state) => state.userReducer.user);

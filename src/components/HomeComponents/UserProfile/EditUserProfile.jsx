@@ -24,7 +24,7 @@ const initialValues = {
   twitter: "",
   github: "",
   portfolio: "",
-  linkedin: "",
+  linkedin: ""
 }
 
 const options = [
@@ -64,11 +64,12 @@ let validationSchema = Yup.object().shape({
 
 
 
-export const EditUserProfile = ({ changeToFalse, setEditMode }) => {
+export const EditUserProfile = ({ changeToFalse, setEditMode, setInformationProfile }) => {
 
 
   const onSubmit = (values) => {
     console.log(values)
+    setInformationProfile(values)
   }
 
   const cancelEdit = () => {
@@ -174,7 +175,7 @@ export const EditUserProfile = ({ changeToFalse, setEditMode }) => {
                       </Grid>
                       <Grid item xs={12} sm={6} md={6}>
                         <Field
-                          label="linkedin"
+                          label="Linkedin"
                           variant="outlined"
                           fullWidth
                           name="linkedin"

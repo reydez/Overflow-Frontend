@@ -1,24 +1,47 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Button, Typography, Box, List } from "@mui/material";
+
+import { Button, Typography, Box, List, CardMedia, FormLabel, FormControl, FormGroup, FormControlLabel, FormHelperText, Switch } from "@mui/material";
+
 import Grid from "@mui/material/Grid";
+
+import { IconButton } from "@mui/material";
 
 import { name, img } from "../../../Controllers/styleUserProfile/styleUserProfile";
 import { EditUserProfile } from "../UserProfile/EditUserProfile";
 
 import { PersonalInformation } from '../../../Controllers/styleUserProfile/informationProfile';
 import TwitterIcon from "@mui/icons-material/Twitter";
-import { getUserProfile } from "../../../redux/actions/user"
+
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import CircularStatic from './CircularWithLabel'
+import { getUserProfile, finishedPost } from "../../../redux/actions/user"
+import PaginationProfile from './paginationOfProfileDashboard/PaginationProfile'
 
 
 const ProfileDashboard = () => {
     const user = useSelector((state) => state.userReducer.user);
     const userDetail = useSelector((state) => state.userReducer.userDetail);
 
+    // const [finishedC, setFinishedC] = useState({
+    //     finished: false
+    // })
+    const [informationProfile, setInformationProfile] = useState({
+        firstName: "",
+        lastName: "",
+        role: "",
+        twitter: "",
+        github: "",
+        portfolio: "",
+        linkedin: "",
+    })
+
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(getUserProfile(user.id))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch]);
 
 
@@ -29,7 +52,21 @@ const ProfileDashboard = () => {
         setEditMode(true);
     };
 
-    console.log('Yo soy el detalle: ', userDetail)
+    // const handleChange = (event, id) => {
+    //     console.log('he sido clicado', !event.target.clicked)
+
+    //     // setFinishedC({
+    //     //     ...finishedC,
+    //     //     [event.target.name]: event.target.checked
+    //     // });
+
+    //     dispatch(finishedPost(id, !event.target.clicked))
+
+    // };
+
+
+    // console.log('Yo soy el detalle: ', userDetail.posts)
+    // console.log(finishedC.finished)
     return (
         <>
 
@@ -39,6 +76,7 @@ const ProfileDashboard = () => {
                         <EditUserProfile
                             changeToFalse={changeToFalse}
                             setEditMode={setEditMode}
+                            setInformationProfile={setInformationProfile}
                         />
                     </div>
                 )
@@ -84,18 +122,31 @@ const ProfileDashboard = () => {
                                 <Box sx={{ flexGrow: 1, bgcolor: 'background.profilePhotos', ml: 4 }}>
                                     <Grid container sx={{}}>
                                         <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 2, color: 'text.btnEdit', fontWeight: 500 }}>GitHub Usuario</Box>
-                                        <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, bgcolor: 'background.white' }}>
-                                            <Box>github</Box>
+                                        <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, backgroundColor: 'background.informationProfile' }}>
+                                            <Box sx={{ height: '20px' }}>github</Box>
 
                                             {/* {PersonalInformation(user)} */}
 
 
                                         </Grid>
                                         <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 32, color: 'text.btnEdit', fontWeight: 500 }}>GitHub link</Box>
-                                        <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, bgcolor: 'background.white' }}>
-                                            <Box>aca va el Github</Box>
+                                        <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, backgroundColor: 'background.informationProfile' }}>
+                                            <Box sx={{ height: '20px' }}>{informationProfile.github}</Box>
 
                                             {/* {PersonalInformation(user)} */}
+
+
+                                        </Grid>
+
+                                        {/* {aca esta la rueda de de datos cargados} */}
+                                        <Box sx={{ position: 'absolute', p: 2, ml: 71 }}> <CircularStatic /></Box>
+                                        <Grid sx={{ bgcolor: 'background.white' }}>
+                                            <Typography sx={{ position: 'absolute', p: 1, ml: 9, marginTop: '100px', fontSize: '10px', color: 'text.secondary' }}> Perfil de usuario</Typography>
+
+
+
+
+
 
 
                                         </Grid>
@@ -103,8 +154,8 @@ const ProfileDashboard = () => {
 
                                     <Grid container sx={{}}>
                                         <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 2, color: 'text.btnEdit', fontWeight: 500 }}>Nombre</Box>
-                                        <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, bgcolor: 'background.white' }}>
-                                            <Box>aca va el nombre</Box>
+                                        <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, bgcolor: 'background.informationProfile' }}>
+                                            <Box sx={{ height: '20px' }}>{informationProfile.firstName}</Box>
 
                                             {/* {PersonalInformation(user)} */}
 
@@ -112,10 +163,22 @@ const ProfileDashboard = () => {
                                         </Grid>
 
                                         <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 32, color: 'text.btnEdit', fontWeight: 500 }}>Linkedin</Box>
-                                        <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, bgcolor: 'background.white' }}>
-                                            <Box>aca va el Linkedin</Box>
+                                        <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, backgroundColor: 'background.informationProfile' }}>
+                                            <Box sx={{ height: '20px' }}>{informationProfile.linkedin}</Box>
 
                                             {/* {PersonalInformation(user)} */}
+
+
+
+                                        </Grid>
+
+
+                                        <Grid sx={{ marginTop: 4, bgcolor: 'background.white' }}>
+
+                                            <Typography sx={{ position: 'absolute', p: 1, ml: 8, marginTop: '15px', fontSize: '12px', color: 'text.btnEdit' }}> 50% completado... </Typography>
+
+                                            {/* {PersonalInformation(user)} */}
+
 
 
                                         </Grid>
@@ -123,7 +186,7 @@ const ProfileDashboard = () => {
 
                                     <Grid container sx={{}}>
                                         <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 2, color: 'text.btnEdit', fontWeight: 500 }}>Apellido</Box>
-                                        <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, bgcolor: 'background.white' }}>
+                                        <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, backgroundColor: 'background.informationProfile' }}>
                                             <Box>aca va el apellido</Box>
 
                                             {/* {PersonalInformation(user)} */}
@@ -131,13 +194,39 @@ const ProfileDashboard = () => {
 
                                         </Grid>
                                         <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 32, color: 'text.btnEdit', fontWeight: 500 }}>Twitter</Box>
-                                        <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, bgcolor: 'background.white' }}>
+                                        <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, backgroundColor: 'background.informationProfile' }}>
                                             <Box>aca va el Twitter</Box>
 
                                             {/* {PersonalInformation(user)} */}
 
 
                                         </Grid>
+
+
+
+
+
+
+                                        <Box sx={{ position: 'absolute' }}></Box>
+                                        <Grid item xs={2} sx={{ p: 1, ml: 7, marginTop: 2 }}>
+
+                                            <IconButton size="small" sx={{ color: 'text.secondary', "&:hover": { color: "text.btnEdit" } }} >
+                                                <TwitterIcon />
+                                            </IconButton>
+
+                                            <IconButton size="small" sx={{ color: 'text.secondary', "&:hover": { color: "text.btnEdit" } }}>
+                                                <LinkedInIcon />
+                                            </IconButton>
+
+                                            <IconButton size="small" sx={{ color: 'text.secondary', "&:hover": { color: "text.btnEdit" } }}>
+                                                <GitHubIcon />
+                                            </IconButton>
+
+                                            {/* {PersonalInformation(user)} */}
+
+
+                                        </Grid>
+
 
                                     </Grid>
 
@@ -157,81 +246,97 @@ const ProfileDashboard = () => {
                             >
                                 {" "}
                                 {/* BARRA CONTIENE SUB-MENU */}
-                                <List sx={{ textAlign: "center" }}>
+                                <List sx={{ margin: '5px 0px', textAlign: "center" }}>
                                     {" "}
                                     {/* LISTA DEL SUB-MENU */}
-                                    <Button sx={{ color: "text.primary" }}>Preguntas Realizadas</Button>
-                                    <Button sx={{ color: "text.primary" }}>Respuestas Realizadas</Button>
-                                    <Button sx={{ color: "text.primary" }}>Preguntas Favoritas</Button>
-                                    <Button sx={{ color: "text.primary" }}>Usuarios Favoritos</Button>
-                                    <Button sx={{ color: "text.primary" }}>Likes</Button>
+                                    <Button sx={{ color: "text.btnEdit", backgroundColor: 'background.buttons', marginLeft: '15px', border: 'solid 1px ' }}>Preguntas Realizadas</Button>
+                                    <Button sx={{ color: "text.btnEdit", backgroundColor: 'background.buttons', marginLeft: '15px', border: 'solid 1px ' }}>Respuestas Realizadas</Button>
+                                    <Button sx={{ color: "text.btnEdit", backgroundColor: 'background.buttons', marginLeft: '15px', border: 'solid 1px ' }}>Preguntas Favoritas</Button>
+                                    {/* <Button sx={{ color: "text.primary" }}>Usuarios Favoritos</Button> */}
+                                    <Button sx={{ color: "text.btnEdit", backgroundColor: 'background.buttons', marginLeft: '15px', border: 'solid 1px ' }}>Likes</Button>
                                 </List>
                             </Grid>
+
+
                             <Grid
                                 container
                                 sx={{
                                     width: "96%",
-                                    backgroundColor: "#4B4171",
+                                    backgroundColor: "background.default",
                                     margin: "0 auto",
                                     marginTop: "10px",
+                                    // boder: '1px solid red'
                                 }}
                             >
-                                {" "}
-                                {/* CONTAINER RENGLONES DE ACTIVIDAD */}
-                                <Grid container sx={{ height: "40px", border: "1px solid red" }}>
-                                    {" "}
-                                    {/* CADA RENGLON    -------- esto se deberia mapear*/}
-                                    <Grid sx={{ width: "10%" }}> Abierto </Grid>
-                                    <Grid sx={{ width: "10%" }}> Avatar </Grid>
-                                    <Grid sx={{ width: "30%" }}> Pregunta </Grid>
-                                    <Grid sx={{ width: "30%" }}> Mensaje </Grid>
-                                    <Grid sx={{ width: "10%" }}> Respuestas </Grid>
-                                    <Grid sx={{ width: "10%" }}> Likes/Views </Grid>
-                                </Grid>
-                                <Grid
-                                    container
-                                    sx={{
-                                        height: "40px",
-                                        marginTop: "10px",
-                                        backgroundColor: "#413A66",
-                                    }}
-                                >
-                                    {" "}
-                                    {/* CADA RENGLON    -------- esto se deberia mapear*/}
-                                    <Grid sx={{ width: "10%" }}> Abierto </Grid>
-                                    <Grid sx={{ width: "10%" }}> Avatar </Grid>
-                                    <Grid sx={{ width: "30%" }}> Pregunta </Grid>
-                                    <Grid sx={{ width: "30%" }}> Mensaje </Grid>
-                                    <Grid sx={{ width: "10%" }}> Respuestas </Grid>
-                                    <Grid sx={{ width: "10%" }}> Likes/Views </Grid>
-                                </Grid>
-                                <Grid container sx={{ height: "40px", marginTop: "10px" }}>
-                                    {" "}
-                                    {/* CADA RENGLON    -------- esto se deberia mapear*/}
-                                    <Grid sx={{ width: "10%" }}> Abierto </Grid>
-                                    <Grid sx={{ width: "10%" }}> Avatar </Grid>
-                                    <Grid sx={{ width: "30%" }}> Pregunta </Grid>
-                                    <Grid sx={{ width: "30%" }}> Mensaje </Grid>
-                                    <Grid sx={{ width: "10%" }}> Respuestas </Grid>
-                                    <Grid sx={{ width: "10%" }}> Likes/Views </Grid>
-                                </Grid>
-                                <Grid
-                                    container
-                                    sx={{
-                                        height: "40px",
-                                        marginTop: "10px",
-                                        backgroundColor: "#413A66",
-                                    }}
-                                >
-                                    {" "}
-                                    {/* CADA RENGLON    -------- esto se deberia mapear*/}
-                                    <Grid sx={{ width: "10%" }}> Abierto </Grid>
-                                    <Grid sx={{ width: "10%" }}> Avatar </Grid>
-                                    <Grid sx={{ width: "30%" }}> Pregunta </Grid>
-                                    <Grid sx={{ width: "30%" }}> Mensaje </Grid>
-                                    <Grid sx={{ width: "10%" }}> Respuestas </Grid>
-                                    <Grid sx={{ width: "10%" }}> Likes/Views </Grid>
-                                </Grid>
+                                {userDetail.posts?.map((p) => {
+
+                                    return (
+                                        <Grid container
+                                            key={p.id}
+                                            sx={{
+                                                width: '1133px',
+                                                height: "55px",
+                                                marginLeft: '10px',
+                                                marginTop: '12px',
+                                                // marginBottom: '10px',
+                                                padding: '14px 0px',
+                                                // border: 'solid 1px ',
+                                                borderRadius: '4px',
+                                                backgroundColor: "background.mapeado",
+                                                color: "text.btnEdit"
+                                            }}
+                                        >
+                                            {" "}
+
+                                            <Grid sx={{ width: "10%" }}>
+
+                                                {
+                                                    /* <FormControl component="fieldset" variant="standard">
+    
+                                                        <FormGroup>
+                                                            <FormControlLabel
+                                                                control={
+                                                                    <Switch checked={finishedC.finished} onChange={(e) => handleChange(e, p.id)} name='finished' />
+                                                                } />
+                                                        </FormGroup>
+                                                    </FormControl>
+                                                     */
+                                                }
+                                            </Grid>
+
+                                            <Grid
+                                                sx={{ width: "10%" }}
+                                            >
+                                                <CardMedia
+                                                    sx={{
+                                                        position: "absolute",
+                                                        width: "35px",
+                                                        height: "35px",
+                                                        borderRadius: "75px",
+                                                        marginLeft: "4px",
+                                                        marginRight: '20px',
+                                                        border: "2px solid",
+                                                        marginTop: "-6px",
+                                                        color: "text.btnEdit"
+                                                    }}
+                                                    component="img"
+                                                    // height="294"
+                                                    image={user.image}
+                                                    alt="Paella dish"
+                                                />
+                                                {/* {user.image} */}
+                                            </Grid>
+                                            <Grid sx={{ width: "30%" }}> {p.title} </Grid>
+                                            <Grid sx={{ width: "30%" }}> {p.message} </Grid>
+                                            <Grid sx={{ width: "10%" }}> Respuestas </Grid>
+                                            <Grid sx={{ width: "10%" }}> Likes/Views </Grid>
+                                        </Grid>
+                                    )
+                                })}
+                                <PaginationProfile />
+
+
+
                             </Grid>
                         </Grid>
                     </Box>
