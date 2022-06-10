@@ -26,8 +26,6 @@ import { useSelector } from "react-redux";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import Paypal from "./Paypal/Paypal";
 
-
-
 const ButtonLogOut = () => {
   const { logout } = useAuth0();
   const user = useSelector((state) => state.userReducer.user);
@@ -54,7 +52,7 @@ const ButtonLogOut = () => {
           Cerrar Sesión
         </button>
       </ButtonLogOutDiv>
-      <Paypal/>
+      <Paypal />
     </>
   );
 };
