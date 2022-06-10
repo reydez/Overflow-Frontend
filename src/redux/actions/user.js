@@ -76,3 +76,27 @@ export function updateUserProfile(form, idUser) {
       })
   }
 };
+
+
+
+export function finishedPost(idPost, finishedPost) {
+
+  console.log('id:', idPost, 'esta en:', finishedPost)
+
+  return (dispatch) => {
+    axios.put(`${URL}/${idPost}`, finishedPost)
+      .then(response => {
+        dispatch({
+          type: user.FINISHED_POST,
+          payload: response.data
+        })
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+};
+
+
+// '/:idPost', finishedPost
+//'/:idPost', finishedPost;

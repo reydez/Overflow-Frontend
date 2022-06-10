@@ -1,24 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Button, Typography, Box, List } from "@mui/material";
+import { Button, Typography, Box, List, CardMedia, FormLabel, FormControl, FormGroup, FormControlLabel, FormHelperText, Switch } from "@mui/material";
 import Grid from "@mui/material/Grid";
+
+
 
 import { name, img } from "../../../Controllers/styleUserProfile/styleUserProfile";
 import { EditUserProfile } from "../UserProfile/EditUserProfile";
 
 import { PersonalInformation } from '../../../Controllers/styleUserProfile/informationProfile';
 import TwitterIcon from "@mui/icons-material/Twitter";
-import { getUserProfile } from "../../../redux/actions/user"
+import { getUserProfile, finishedPost } from "../../../redux/actions/user"
 
 
 const ProfileDashboard = () => {
     const user = useSelector((state) => state.userReducer.user);
     const userDetail = useSelector((state) => state.userReducer.userDetail);
 
+    // const [finishedC, setFinishedC] = useState({
+    //     finished: false
+    // })
+
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(getUserProfile(user.id))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch]);
 
 
@@ -29,7 +36,21 @@ const ProfileDashboard = () => {
         setEditMode(true);
     };
 
-    console.log('Yo soy el detalle: ', userDetail)
+    // const handleChange = (event, id) => {
+    //     console.log('he sido clicado', !event.target.clicked)
+
+    //     // setFinishedC({
+    //     //     ...finishedC,
+    //     //     [event.target.name]: event.target.checked
+    //     // });
+
+    //     dispatch(finishedPost(id, !event.target.clicked))
+
+    // };
+
+
+    // console.log('Yo soy el detalle: ', userDetail.posts)
+    // console.log(finishedC.finished)
     return (
         <>
 
@@ -167,6 +188,8 @@ const ProfileDashboard = () => {
                                     <Button sx={{ color: "text.primary" }}>Likes</Button>
                                 </List>
                             </Grid>
+
+
                             <Grid
                                 container
                                 sx={{
@@ -174,11 +197,79 @@ const ProfileDashboard = () => {
                                     backgroundColor: "#4B4171",
                                     margin: "0 auto",
                                     marginTop: "10px",
+                                    boder: '1px solid red'
                                 }}
                             >
+                                {userDetail.posts?.map((p) => {
+                                    // console.log(p.id)
+                                    return (
+                                        <Grid container
+                                            key={p.id}
+                                            sx={{
+                                                height: "40px",
+                                                marginLeft: '10px',
+                                                marginTop: '10px'
+                                            }}
+                                        >
+                                            {" "}
+
+                                            <Grid sx={{ width: "10%" }}>
+                                                {/* <Button
+                                                    onClick={(e) => handleChange(e, p.id)}
+                                                    variant="contained"
+                                                >Contained</Button> */}
+                                                {
+                                                    /* <FormControl component="fieldset" variant="standard">
+    
+                                                        <FormGroup>
+                                                            <FormControlLabel
+                                                                control={
+                                                                    <Switch checked={finishedC.finished} onChange={(e) => handleChange(e, p.id)} name='finished' />
+                                                                } />
+                                                        </FormGroup>
+                                                    </FormControl>
+                                                     */
+                                                }
+                                            </Grid>
+
+                                            <Grid
+                                                sx={{ width: "10%" }}
+                                            >
+                                                <CardMedia
+                                                    sx={{
+                                                        position: "absolute",
+                                                        width: "35px",
+                                                        height: "35px",
+                                                        borderRadius: "75px",
+                                                        marginLeft: "4px",
+                                                        marginRight: '20px',
+                                                        border: "2px solid",
+                                                        marginTop: "-2px",
+                                                        color: "text.btnEdit"
+                                                    }}
+                                                    component="img"
+                                                    // height="294"
+                                                    image={user.image}
+                                                    alt="Paella dish"
+                                                />
+                                                {/* {user.image} */}
+                                            </Grid>
+                                            <Grid sx={{ width: "30%" }}> {p.title} </Grid>
+                                            <Grid sx={{ width: "30%" }}> {p.message} </Grid>
+                                            <Grid sx={{ width: "10%" }}> Respuestas </Grid>
+                                            <Grid sx={{ width: "10%" }}> Likes/Views </Grid>
+                                        </Grid>
+                                    )
+                                })}
+
+
                                 {" "}
                                 {/* CONTAINER RENGLONES DE ACTIVIDAD */}
-                                <Grid container sx={{ height: "40px", border: "1px solid red" }}>
+                                <Grid container
+                                    sx={{
+                                        height: "40px",
+                                        border: "1px solid red"
+                                    }}>
                                     {" "}
                                     {/* CADA RENGLON    -------- esto se deberia mapear*/}
                                     <Grid sx={{ width: "10%" }}> Abierto </Grid>
@@ -188,6 +279,8 @@ const ProfileDashboard = () => {
                                     <Grid sx={{ width: "10%" }}> Respuestas </Grid>
                                     <Grid sx={{ width: "10%" }}> Likes/Views </Grid>
                                 </Grid>
+
+
                                 <Grid
                                     container
                                     sx={{
