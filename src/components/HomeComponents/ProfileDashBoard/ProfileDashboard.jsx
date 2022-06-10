@@ -5,7 +5,7 @@ import { Button, Typography, Box, List, CardMedia, FormLabel, FormControl, FormG
 
 import Grid from "@mui/material/Grid";
 
-
+import { IconButton } from "@mui/material";
 
 import { name, img } from "../../../Controllers/styleUserProfile/styleUserProfile";
 import { EditUserProfile } from "../UserProfile/EditUserProfile";
@@ -127,19 +127,19 @@ const ProfileDashboard = () => {
 
 
                                         </Grid>
-                                        
+
                                         {/* {aca esta la rueda de de datos cargados} */}
-                                        <Box  sx={{ position: 'absolute', p: 2, ml: 71}}> <CircularStatic /></Box>
-                                        <Grid  sx={{  bgcolor: 'background.white' }}>
-                                            <Typography sx={{position: 'absolute', p:1, ml:9, marginTop:'100px', fontSize:'10px', color:'text.secondary'}}> Perfil de usuario</Typography>    
-                                             
-                                            
-
-                                            
-                                            
+                                        <Box sx={{ position: 'absolute', p: 2, ml: 71 }}> <CircularStatic /></Box>
+                                        <Grid sx={{ bgcolor: 'background.white' }}>
+                                            <Typography sx={{ position: 'absolute', p: 1, ml: 9, marginTop: '100px', fontSize: '10px', color: 'text.secondary' }}> Perfil de usuario</Typography>
 
 
-                                        </Grid> 
+
+
+
+
+
+                                        </Grid>
                                     </Grid>
 
                                     <Grid container sx={{}}>
@@ -157,18 +157,18 @@ const ProfileDashboard = () => {
                                             <Box>aca va el Linkedin</Box>
 
                                             {/* {PersonalInformation(user)} */}
-                                            
+
 
 
                                         </Grid>
 
-                                       
+
                                         <Grid sx={{ marginTop: 4, bgcolor: 'background.white' }}>
-                                            
-                                            <Typography sx={{position: 'absolute', p:1, ml:8, marginTop:'15px', fontSize:'12px', color:'text.btnEdit'}}> 50% completado... </Typography>  
+
+                                            <Typography sx={{ position: 'absolute', p: 1, ml: 8, marginTop: '15px', fontSize: '12px', color: 'text.btnEdit' }}> 50% completado... </Typography>
 
                                             {/* {PersonalInformation(user)} */}
-                                            
+
 
 
                                         </Grid>
@@ -192,25 +192,25 @@ const ProfileDashboard = () => {
 
                                         </Grid>
 
-                                        
 
 
 
-                                        
-                                        <Box  sx={{ position: 'absolute'}}></Box>
-                                        <Grid item xs={2} sx={{ p: 1, ml: 7, marginTop: 2  }}>
-                                            
-                                            <IconButton size="small"  sx = {{ color: 'text.secondary', "&:hover": { color: "text.btnEdit" }  }} >
+
+
+                                        <Box sx={{ position: 'absolute' }}></Box>
+                                        <Grid item xs={2} sx={{ p: 1, ml: 7, marginTop: 2 }}>
+
+                                            <IconButton size="small" sx={{ color: 'text.secondary', "&:hover": { color: "text.btnEdit" } }} >
                                                 <TwitterIcon />
-                                                 </IconButton>
+                                            </IconButton>
 
-                                                 <IconButton size="small"  sx = {{ color: 'text.secondary', "&:hover": { color: "text.btnEdit" } }}>
+                                            <IconButton size="small" sx={{ color: 'text.secondary', "&:hover": { color: "text.btnEdit" } }}>
                                                 <LinkedInIcon />
-                                                 </IconButton>
+                                            </IconButton>
 
-                                                 <IconButton size="small"  sx = {{ color: 'text.secondary', "&:hover": { color: "text.btnEdit" } }}>
-                                                <GitHubIcon/>
-                                                 </IconButton>
+                                            <IconButton size="small" sx={{ color: 'text.secondary', "&:hover": { color: "text.btnEdit" } }}>
+                                                <GitHubIcon />
+                                            </IconButton>
 
                                             {/* {PersonalInformation(user)} */}
 
