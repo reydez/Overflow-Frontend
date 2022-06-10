@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+
 import { Button, Typography, Box, List, CardMedia, FormLabel, FormControl, FormGroup, FormControlLabel, FormHelperText, Switch } from "@mui/material";
+
 import Grid from "@mui/material/Grid";
 
 
@@ -10,8 +12,13 @@ import { EditUserProfile } from "../UserProfile/EditUserProfile";
 
 import { PersonalInformation } from '../../../Controllers/styleUserProfile/informationProfile';
 import TwitterIcon from "@mui/icons-material/Twitter";
+
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import CircularStatic from './CircularWithLabel'
 import { getUserProfile, finishedPost } from "../../../redux/actions/user"
 import PaginationProfile from './paginationOfProfileDashboard/PaginationProfile'
+
 
 const ProfileDashboard = () => {
     const user = useSelector((state) => state.userReducer.user);
@@ -120,6 +127,19 @@ const ProfileDashboard = () => {
 
 
                                         </Grid>
+                                        
+                                        {/* {aca esta la rueda de de datos cargados} */}
+                                        <Box  sx={{ position: 'absolute', p: 2, ml: 71}}> <CircularStatic /></Box>
+                                        <Grid  sx={{  bgcolor: 'background.white' }}>
+                                            <Typography sx={{position: 'absolute', p:1, ml:9, marginTop:'100px', fontSize:'10px', color:'text.secondary'}}> Perfil de usuario</Typography>    
+                                             
+                                            
+
+                                            
+                                            
+
+
+                                        </Grid> 
                                     </Grid>
 
                                     <Grid container sx={{}}>
@@ -137,6 +157,18 @@ const ProfileDashboard = () => {
                                             <Box>aca va el Linkedin</Box>
 
                                             {/* {PersonalInformation(user)} */}
+                                            
+
+
+                                        </Grid>
+
+                                       
+                                        <Grid sx={{ marginTop: 4, bgcolor: 'background.white' }}>
+                                            
+                                            <Typography sx={{position: 'absolute', p:1, ml:8, marginTop:'15px', fontSize:'12px', color:'text.btnEdit'}}> 50% completado... </Typography>  
+
+                                            {/* {PersonalInformation(user)} */}
+                                            
 
 
                                         </Grid>
@@ -159,6 +191,32 @@ const ProfileDashboard = () => {
 
 
                                         </Grid>
+
+                                        
+
+
+
+                                        
+                                        <Box  sx={{ position: 'absolute'}}></Box>
+                                        <Grid item xs={2} sx={{ p: 1, ml: 7, marginTop: 2  }}>
+                                            
+                                            <IconButton size="small"  sx = {{ color: 'text.secondary', "&:hover": { color: "text.btnEdit" }  }} >
+                                                <TwitterIcon />
+                                                 </IconButton>
+
+                                                 <IconButton size="small"  sx = {{ color: 'text.secondary', "&:hover": { color: "text.btnEdit" } }}>
+                                                <LinkedInIcon />
+                                                 </IconButton>
+
+                                                 <IconButton size="small"  sx = {{ color: 'text.secondary', "&:hover": { color: "text.btnEdit" } }}>
+                                                <GitHubIcon/>
+                                                 </IconButton>
+
+                                            {/* {PersonalInformation(user)} */}
+
+
+                                        </Grid>
+
 
                                     </Grid>
 
