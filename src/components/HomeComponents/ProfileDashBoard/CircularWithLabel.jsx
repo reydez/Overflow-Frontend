@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 
 function CircularProgressWithLabel(props) {
   return (
-    <Box  sx={{ position: 'relative', display: 'inline-flex'}}>
-      <CircularProgress  sx={{color: 'text.btnEdit',    }} variant="buffer" size='80px'  {...props} />
+    <Box sx={{ position: 'relative', display: 'inline-flex' }}>
+      <CircularProgress sx={{ color: 'text.btnEdit', }} variant="buffer" size='80px'  {...props} />
       {/* <Box
         sx={{
           top: 0,
@@ -40,9 +40,9 @@ CircularProgressWithLabel.propTypes = {
 };
 
 
-export default function CircularStatic({informationProfile, setInformationProfile}) {
- let complete;
-  
+export default function CircularStatic({ informationProfile, setInformationProfile }) {
+  let complete;
+
   // useEffect(() => {
   //   console.log("Fase de Montaje")
 
@@ -52,22 +52,44 @@ export default function CircularStatic({informationProfile, setInformationProfil
   //     completePerfil()
   // })
 
+  const validarCircle = (informationProfile) => {
+    let number = 0;
+
+    if (informationProfile.firstName) {
+      number = + 16.6;
+    } else if (informationProfile.lastName) {
+      number = + 16.6;
+    } else if (informationProfile.role) {
+      number = + 16.6;
+    } else if (informationProfile.twitter) {
+      number = + 16.6;
+    } else if (informationProfile.github) {
+      number = + 16.6;
+    } else if (informationProfile.portfolio) {
+      number = + 16.6;
+    } else if (informationProfile.linkedin) {
+      number = + 16.6;
+    }
+
+    return Math.ceil(number)
+  }
+
   useEffect(() => {
     console.log("Fase de Actualizar")
     const perfilComplete = () => setInformationProfile('')
-    
-   
-    
-  }, [informationProfile] );
 
-// useEffect(() => {
-//     const timer = setInterval(() => {
-//       setInformationProfile((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 10));
-//     }, 800);
-//     return () => {
-//       clearInterval(timer);
-//     };
-//   },[]);
+
+
+  }, [informationProfile]);
+
+  // useEffect(() => {
+  //     const timer = setInterval(() => {
+  //       setInformationProfile((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 10));
+  //     }, 800);
+  //     return () => {
+  //       clearInterval(timer);
+  //     };
+  //   },[]);
 
   return <CircularProgressWithLabel value={informationProfile} />;
 }
