@@ -78,21 +78,6 @@ export function updateUserProfile(form, idUser) {
   }
 };
 
-
-export function getUsers () {
-  return (dispatch) => {
-    axios.get(`${URL}/users`)
-    .then(response => {dispatch({
-      type: user.GET_USERS,
-      payload: response.data
-    })})
-    .catch(error =>{
-      console.log(error)
-    })
-  }
-}
-
-
 export function finishedPost(idPost, finishedPost) {
 
   // console.log('id:', idPost, 'esta en:', finishedPost)
