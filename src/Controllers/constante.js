@@ -57,9 +57,7 @@ const ButtonLogOut = () => {
           Cerrar Sesión
         </button>
       </ButtonLogOutDiv>
-      {/* <Plan1/>
-      <Plan2/>
-      <Plan3/> */}
+      
       <Link to='/donar'><button className='volver'>Donar</button></Link>
     </>
   );

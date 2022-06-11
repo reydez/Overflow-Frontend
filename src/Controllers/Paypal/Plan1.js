@@ -1,6 +1,4 @@
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
-import axios from "axios";
-import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
 import ButtonWrapper from "./Suscription1";
 
