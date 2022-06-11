@@ -87,8 +87,8 @@ const ProfileDashboard = () => {
                             // border: 'solid 1px red'
                         }}
                     >
-                        <Box sx={{ ml: 8, color: 'text.secondary' }}>
-                            <Typography sx={{ position: "absolute", }}>Perfil del Usuario</Typography>
+                        <Box sx={{ ml: 10, color: 'text.secondary' }}>
+                            <Typography sx={{ position: "absolute", marginTop: '5px' }}>Perfil del Usuario</Typography>
                         </Box>
                         <Grid container sx={{ backgroundColor: 'background.fondoPerfil' }}> {/* CONTAINER GRAL */}
 
@@ -96,7 +96,7 @@ const ProfileDashboard = () => {
                                 {/* CONTAINER FOTO + INFO USER */}
                                 <Grid sx={{ width: '20%', height: '260px', backgroundColor: 'background.profilePhotos' }}>
                                     <Box sx={{ position: 'absolute', marginTop: 1, marginLeft: '5px', color: 'primary' }}>
-                                        <Typography variant="caption" sx={{ position: 'relative', p: 1, m: 18, fontSize: "14px", color: 'text.btnEdit' }}>
+                                        <Typography variant="caption" sx={{ position: 'relative', p: 1, m: 20, fontSize: "14px", color: 'text.btnEdit' }}>
                                             Editar
                                         </Typography>
                                     </Box>
@@ -105,7 +105,7 @@ const ProfileDashboard = () => {
                                             onClick={changeToFalse}
                                             variant="caption"
                                             size="small"
-                                            sx={{ position: 'relative', p: 0, ml: 18, fontSize: "10px", fontWeight: 1000, color: 'text.btnEdit', marginBottom: '5px' }}>...</Button>
+                                            sx={{ position: 'relative', p: 0, ml: 20, fontSize: "10px", fontWeight: 1000, color: 'text.btnEdit', marginBottom: '5px' }}>...</Button>
                                     </Box>
 
                                     {img(user.image)}
@@ -113,7 +113,10 @@ const ProfileDashboard = () => {
 
                                     {/* <Typography sx={{ padding: '10px', border: 'solid 1px red', color: 'text.secondary', display: 'flex', textAlign: 'center', alignItems: 'left' }}> */}
                                     {/* {user.full_name} */}
-                                    {name(user.first_name)}
+                                    <Box sx={{  m:6, marginTop: '200px', textAlign: 'center', color: 'text.secondary' }}>
+
+                                    <Typography h1="h1">{informationProfile.role} Technical Assitance</Typography>
+                                    </Box>
 
                                     {/* </Typography> */}
                                     {/* <p style={{ textAlign: 'center' }}></p> */}
@@ -121,15 +124,15 @@ const ProfileDashboard = () => {
                                 </Grid>
                                 <Box sx={{ flexGrow: 1, bgcolor: 'background.profilePhotos', ml: 4 }}>
                                     <Grid container sx={{}}>
-                                        <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 2, color: 'text.btnEdit', fontWeight: 500 }}>GitHub Usuario</Box>
+                                        <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 2, color: 'text.btnEdit', fontWeight: 500 }}>Portfolio</Box>
                                         <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, backgroundColor: 'background.informationProfile' }}>
-                                            <Box sx={{ height: '20px' }}>github</Box>
+                                            <Box sx={{ height: '20px' }}>{informationProfile.gi}</Box>
 
                                             {/* {PersonalInformation(user)} */}
 
 
                                         </Grid>
-                                        <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 32, color: 'text.btnEdit', fontWeight: 500 }}>GitHub link</Box>
+                                        <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 34, color: 'text.btnEdit', fontWeight: 500 }}>GitHub</Box>
                                         <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, backgroundColor: 'background.informationProfile' }}>
                                             <Box sx={{ height: '20px' }}>{informationProfile.github}</Box>
 
@@ -139,7 +142,7 @@ const ProfileDashboard = () => {
                                         </Grid>
 
                                         {/* {aca esta la rueda de de datos cargados} */}
-                                        <Box sx={{ position: 'absolute', p: 2, ml: 71 }}> <CircularStatic /></Box>
+                                        <Box sx={{ position: 'absolute', p: 2, ml: 71 }}> <CircularStatic informationProfile={informationProfile} setInformationProfile={setInformationProfile} /></Box>
                                         <Grid sx={{ bgcolor: 'background.white' }}>
                                             <Typography sx={{ position: 'absolute', p: 1, ml: 9, marginTop: '100px', fontSize: '10px', color: 'text.secondary' }}> Perfil de usuario</Typography>
 
@@ -162,7 +165,7 @@ const ProfileDashboard = () => {
 
                                         </Grid>
 
-                                        <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 32, color: 'text.btnEdit', fontWeight: 500 }}>Linkedin</Box>
+                                        <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 34, color: 'text.btnEdit', fontWeight: 500 }}>Linkedin</Box>
                                         <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, backgroundColor: 'background.informationProfile' }}>
                                             <Box sx={{ height: '20px' }}>{informationProfile.linkedin}</Box>
 
@@ -187,15 +190,15 @@ const ProfileDashboard = () => {
                                     <Grid container sx={{}}>
                                         <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 2, color: 'text.btnEdit', fontWeight: 500 }}>Apellido</Box>
                                         <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, backgroundColor: 'background.informationProfile' }}>
-                                            <Box>aca va el apellido</Box>
+                                            <Box>{informationProfile.lastName}</Box>
 
                                             {/* {PersonalInformation(user)} */}
 
 
                                         </Grid>
-                                        <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 32, color: 'text.btnEdit', fontWeight: 500 }}>Twitter</Box>
+                                        <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 34, color: 'text.btnEdit', fontWeight: 500 }}>Twitter</Box>
                                         <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, backgroundColor: 'background.informationProfile' }}>
-                                            <Box>aca va el Twitter</Box>
+                                            <Box>{informationProfile.twitter}</Box>
 
                                             {/* {PersonalInformation(user)} */}
 
