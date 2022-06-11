@@ -38,27 +38,7 @@ const ProfileDashboard = () => {
     })
 
 
-    const validarCircle = (informationProfile) => {
-        let number = 0;
-
-        if (informationProfile.firstName) {
-            number = + 16.6;
-        } else if (informationProfile.lastName) {
-            number = + 16.6;
-        } else if (informationProfile.role) {
-            number = + 16.6;
-        } else if (informationProfile.twitter) {
-            number = + 16.6;
-        } else if (informationProfile.github) {
-            number = + 16.6;
-        } else if (informationProfile.portfolio) {
-            number = + 16.6;
-        } else if (informationProfile.linkedin) {
-            number = + 16.6;
-        }
-
-        return Math.ceil(number)
-    }
+   
 
     // const [valueCircle, setValueCircle] = useState({
 
