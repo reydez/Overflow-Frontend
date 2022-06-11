@@ -24,7 +24,6 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { useSelector } from "react-redux";
 
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-import Paypal from "./Paypal/Paypal";
 
 const ButtonLogOut = () => {
   const { logout } = useAuth0();
@@ -52,7 +51,15 @@ const ButtonLogOut = () => {
           Cerrar Sesión
         </button>
       </ButtonLogOutDiv>
-      <Paypal />
+      
+      <Link to='/donar' style={{ textDecoration: "none" }}>
+          <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" } }}>
+            <FavoriteIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
+            Danos Amor $$
+            <FavoriteIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
+          </Button>
+        </Link>,
+      
     </>
   );
 };
