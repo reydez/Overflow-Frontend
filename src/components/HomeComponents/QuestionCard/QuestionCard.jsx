@@ -19,8 +19,8 @@ import Checkbox from "@mui/material/Checkbox";
 // import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import { pink, green, red } from "@mui/material/colors";
 import Favorite from "@mui/icons-material/Favorite";
-import FlagIcon from '@mui/icons-material/Flag';
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import FlagIcon from "@mui/icons-material/Flag";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import { Link as RouterLink } from "react-router-dom";
 import {
   getModuleColor,
@@ -30,15 +30,35 @@ import Swal from "sweetalert2";
 
 export const QuestionCard = ({ question }) => {
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
-  const [chan, setChan] = useState(false)
+  const [chan, setChan] = useState(false);
 
-  const cambiar = () => {
-    setChan(!chan)
-  }
+  const cambiar = async () => {
+    const inputOptions = {
+      spam: "spam",
+    };
 
+    var radioValue;
+    var textValue;
 
+    const { value: formValues } = await Swal.fire({
+      title: "Cual es el problema con esta publicacion?",
+      html: '<input id="swal-input1" class="swal2-input">',
+      input: "radio",
+      inputOptions: inputOptions,
+      focusConfirm: false,
+      inputValidator: (value) => {
+        if (!value) {
+          return "Tienes que elegir una opción!";
+        }
+      },
+      preConfirm: (radioValue) => {
+        var problema = document.getElementById("swal-input1").value;
+        console.log(radioValue, problema);
+      },
+    });
 
-
+    setChan(!chan);
+  };
 
   const extras = {
     vote: 1,
@@ -256,8 +276,7 @@ export const QuestionCard = ({ question }) => {
               // icon={<FlagIcon sx={true? { color: "#A8A3B5" } : { color: "#f44336" }} />}
               // checkedIcon={<FlagIcon sx={{ color: "#f44336" }} />}
               onClick={cambiar}
-              sx={
-                {
+              sx={{
                 color: red[800],
                 "&.Mui-checked": {
                   color: red[600],
@@ -266,7 +285,9 @@ export const QuestionCard = ({ question }) => {
                 left: -50,
               }}
             >
-              <FlagIcon sx={chan? { color: "#A8A3B5" } : { color: "#f44336" }} />
+              <FlagIcon
+                sx={chan ? { color: "#A8A3B5" } : { color: "#f44336" }}
+              />
             </Button>
           </Grid>
           <Grid item>
