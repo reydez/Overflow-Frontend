@@ -1,6 +1,9 @@
 const initialState = {
   user: {},
   users:[]
+  isLogin: 0,
+  userDetail: {}
+
 };
 
 const userReducer = (state = initialState, action) => {
@@ -9,7 +12,14 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.payload.user,
+        isLogin: 1
       };
+    case "GET_USER_PROFILE":
+      return {
+        ...state,
+        userDetail: action.payload
+      };
+
 
     case "GET_USERS":
       return {
@@ -40,6 +50,7 @@ const userReducer = (state = initialState, action) => {
         })
       }
   
+
     default:
       return {
         ...state,

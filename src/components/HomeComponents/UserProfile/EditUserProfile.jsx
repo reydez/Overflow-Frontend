@@ -15,6 +15,8 @@ import {
 import { Formik, Form, Field } from "formik"
 import * as Yup from "yup"
 import { TextField } from "formik-material-ui"
+import { updateUserProfile } from '../../../redux/actions/user';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const initialValues = {
@@ -24,7 +26,7 @@ const initialValues = {
   twitter: "",
   github: "",
   portfolio: "",
-  linkedin: "",
+  linkedin: ""
 }
 
 const options = [
@@ -45,10 +47,10 @@ const options = [
 
 //validation schema
 let validationSchema = Yup.object().shape({
-  firstName: Yup.string().required("Required"),
-  lastName: Yup.string().required("Required"),
-  portfolio: Yup.string().required("Required"),
-  linkedin: Yup.string().required("Required!"),
+  firstName: Yup.string(),
+  lastName: Yup.string(),
+  portfolio: Yup.string(),
+  linkedin: Yup.string(),
   // .matches(
   //   lowercaseRegEx,
   //   "Must contain one lowercase alphabetical character!"
@@ -64,11 +66,23 @@ let validationSchema = Yup.object().shape({
 
 
 
-export const EditUserProfile = ({ changeToFalse, setEditMode }) => {
+export const EditUserProfile = ({ changeToFalse, setEditMode, setInformationProfile }) => {
+ const dispatch = useDispatch()
 
+ const user = useSelector((state) => state.userReducer.user);
 
   const onSubmit = (values) => {
     console.log(values)
+    setInformationProfile(values)
+    dispatch(
+      updateUserProfile(
+        {
+          values
+        },
+        user.id
+      )
+    );
+
   }
 
   const cancelEdit = () => {
@@ -174,7 +188,7 @@ export const EditUserProfile = ({ changeToFalse, setEditMode }) => {
                       </Grid>
                       <Grid item xs={12} sm={6} md={6}>
                         <Field
-                          label="linkedin"
+                          label="Linkedin"
                           variant="outlined"
                           fullWidth
                           name="linkedin"

@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 // import Button from "@mui/material/Button";
+// import Switch from "@mui/material/Switch";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { Typography } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { userInbox } from "../../redux/actions/inboxes";
 
 export default function DetailsComponent({
   question,
@@ -18,33 +20,75 @@ export default function DetailsComponent({
   const [comentarioText, setComentarioText] = useState("");
   const user = useSelector((state) => state.userReducer.user);
   const isTextareaDisabled = comentarioText.length === 0;
+  const [checked, setChecked] = useState(true);
+  const dispatch = useDispatch()
+
+  console.log(question);
+  console.log(user);
 
   let history = useHistory();
   const Return = () => {
     history.goBack();
   };
+  
+  React.useEffect(() => {
+    dispatch(userInbox(user.id))
+  }, [checked, dispatch, user])
 
   const onInputChange = (e) => {
     e.preventDefault();
     setComentarioText(e.target.value);
   };
 
+  // const handleChange = (event) => {
+  //   setChecked(event.target.checked);
+  // };
+
+  /* const switchComponent =
+    user.id === question.user.id ? (
+      <div
+        style={{
+          position: "absolute",
+          top: "-0px",
+          right: "-0px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        <h6 style={{ margin: 0, paddingTop: ".5em" }}>Resuelto</h6>
+        <Switch
+          checked={checked}
+          onChange={handleChange}
+          inputProps={{ "aria-label": "controlled" }}
+          sx={{
+            background: "transparent",
+            color: "white",
+          }}
+        />
+      </div>
+    ) : null; */
+
   const onSubmitHandler = () => {
     axios
-      .post(`http://localhost:3001/comments/${question.id}/${user.id}`, {
-        message: comentarioText,
-      }, {
-        headers: {
-          "authorization":
-            user.id,
+      .post(
+        `http://localhost:3001/comments/${question.id}/${user.id}`,
+        {
+          message: comentarioText.trim(),
         },
-      })
+        {
+          headers: {
+            authorization: user.id,
+          },
+        }
+      )
       .then((response) => {
         setComments([...commentsARenderizar, response.data]);
         setComentarioText("");
       })
       .catch((error) => {
-        if (error.response.status === 500) {
+        if (error.response.status === 400) {
           Swal.fire(
             "Comentario repetido!",
             "Por favor ingrese un comentario que no se repita",
@@ -60,6 +104,8 @@ export default function DetailsComponent({
           });
         }, 50);
       });
+      setTimeout(() => {checked ? setChecked(false) : setChecked(true)}, 500)
+      // checked ? setChecked(false) : setChecked(true)
   };
 
   return (
@@ -72,13 +118,14 @@ export default function DetailsComponent({
             width: "70%",
             background: "#ecf0f3",
             borderRadius: "10px",
-
+            position: "relative",
             /* margin: "0 auto", */
           }}
         >
           <h1 style={{ color: "#413a66", fontSize: "22px" }}>
             {question.title}
           </h1>
+          {/*  {switchComponent} */}
           <Typography
             variant="body2"
             sx={{
@@ -244,13 +291,13 @@ const ButtonsDetail = styled.div`
     border: none;
     border-radius: 5px;
     background-color: ${(props) =>
-    props.lila
-      ? "#e2e6f7"
-      : props.rosa
+      props.lila
+        ? "#e2e6f7"
+        : props.rosa
         ? "#fadafa"
         : props.grey
-          ? "#392e57"
-          : "#aca9fa"};
+        ? "#392e57"
+        : "#aca9fa"};
     color: ${(props) => (props.blanco ? "#817094" : "#fafafa")};
     cursor: pointer;
     font-size: 17px;

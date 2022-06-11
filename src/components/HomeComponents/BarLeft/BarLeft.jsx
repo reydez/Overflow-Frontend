@@ -77,6 +77,7 @@ export default function BarLeft(props) {
               </Button>
             )}
           </Link>
+
           {location.pathname !== "/questions" ? null : <SearchBar />}
           <PerfilIcon />
         </Toolbar>

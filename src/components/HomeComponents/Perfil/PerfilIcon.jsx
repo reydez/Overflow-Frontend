@@ -6,9 +6,30 @@ import { ColorModeContext } from "../../../darkMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { useContext } from "react";
 import IconButton from "@mui/material/IconButton";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { userInbox } from "../../../redux/actions/inboxes";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function PerfilIcon() {
   const { mode, toggleMode } = useContext(ColorModeContext);
+  const dispatch = useDispatch()
+  const userlogin = useSelector(state => state.userReducer.user)
+  const isLogin = useSelector(state => state.userReducer.isLogin)
+  const inbox = useSelector(state => state.inboxesReducer.inbox)
+  const pending = inbox.reduce((prev, curr) => curr.isActive? prev + 1 : prev, 0)
+
+
+  React.useEffect(() => {
+    const getInboxFromUser = () => {
+      if (!!isLogin) {
+        dispatch(userInbox(userlogin.id));
+      }
+    };
+    getInboxFromUser();
+  }, [userlogin, isLogin, dispatch]);
+
+
   return (
     <div
       style={{
@@ -29,11 +50,14 @@ export default function PerfilIcon() {
           size="small"
           sx={{ bgcolor: "background.default", borderRadius: "30%" }}
         >
-          <NotificationsIcon
-            size="small"
-            onClick={() => console.log("si se puede")}
-            sx={{ cursor: "pointer" }}
-          />
+          <Link to={"/inbox-user"}>
+            <NotificationsIcon
+              size="small"
+              onClick={() => console.log("si se puede")}
+              sx={{ cursor: "pointer" }}
+            />
+            {pending ? <p>{pending}</p> : null}
+          </Link>
         </IconButton>
       </Badge>
       <Badge
