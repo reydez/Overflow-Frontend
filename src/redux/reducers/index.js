@@ -5,6 +5,7 @@ import modulesReducer from "./modulesReducer";
 import tagsReducer from "./tagsReduces";
 import commentsReducer from "./commentsReducer";
 import favouritesReducer from "./favouritesReducer.js";
+import inboxesReducer from "./InboxesReducer.js";
 
 const rootReducer = combineReducers({
   questionsReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   tagsReducer,
   commentsReducer,
   favouritesReducer,
+  inboxesReducer,
 });
 
 export default rootReducer;
