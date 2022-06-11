@@ -13,13 +13,13 @@ export const PaypalC = () => {
       </div>
       <div>
         Plan Trimestral
-        <ul>Dona 5 USD por tres meses</ul>
+        <ul>Dona 15 USD cada 3 meses</ul>
         <ul>Anula tu suscripción cuando quieras</ul>
         <ul><Plan3/></ul>
       </div>
       <div>
         Plan Anual 
-        <ul>Dona 5 USD por un año</ul>
+        <ul>Dona 60 USD por un año</ul>
         <ul>Anula tu suscripción cuando quieras</ul>
         <ul><Plan2/></ul>
       </div>
