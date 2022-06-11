@@ -17,6 +17,8 @@ import ProfileDashboard from "./components/HomeComponents/ProfileDashBoard/Profi
 import { AllUsers } from "./components/HomeComponents/AllUsers/AllUsers";
 import { AdminContainer } from "./views/AdminContainer";
 import { AdminEditTags } from "./components/HomeComponents/Admin/AdminEditTags";
+
+import { AdminBanUser } from "./components/HomeComponents/Admin/AdminBanUser";
 import { PaypalC } from "./components/Paypal/PaypalC";
 import InboxUser from "./views/InboxUser";
 
@@ -132,16 +134,33 @@ function App() {
         )}
       </Route>
 
-      <Route exact={true} patch="/admin/edit-tags">
-        {isAuthenticated && userRedux.isAdmin ? (
-          <BarLeft>
-            <AdminContainer />
-            <AdminEditTags />
-          </BarLeft>
-        ) : (
-          <Redirect to="/questions" />
-        )}
+
+        <Route exact={true} path='/admin/users'>
+        {!isAuthenticated
+          ? (<Redirect to="/" />)
+          : (
+            <BarLeft>
+              <AdminContainer />
+              <AdminBanUser />
+            </BarLeft>
+          )
+        }
       </Route>
+
+      <Route exact={true} path='/admin/tags'>
+        {!isAuthenticated
+          ? (<Redirect to="/" />)
+          : (
+            <BarLeft>
+              <AdminContainer />
+              <AdminEditTags />
+            </BarLeft>
+          )
+        }
+
+      </Route>
+      
+    
 
       <Route path="*" exact={true} component={Component404} />
     </Switch>
