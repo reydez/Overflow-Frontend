@@ -37,6 +37,33 @@ const ProfileDashboard = () => {
         linkedin: "",
     })
 
+
+    const validarCircle = (informationProfile) => {
+        let number = 0;
+
+        if (informationProfile.firstName) {
+            number = + 16.6;
+        } else if (informationProfile.lastName) {
+            number = + 16.6;
+        } else if (informationProfile.role) {
+            number = + 16.6;
+        } else if (informationProfile.twitter) {
+            number = + 16.6;
+        } else if (informationProfile.github) {
+            number = + 16.6;
+        } else if (informationProfile.portfolio) {
+            number = + 16.6;
+        } else if (informationProfile.linkedin) {
+            number = + 16.6;
+        }
+
+        return Math.ceil(number)
+    }
+
+    // const [valueCircle, setValueCircle] = useState({
+
+    // })
+
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -251,14 +278,16 @@ const ProfileDashboard = () => {
                             <Grid
                                 container
                                 sx={{
-                                    width: "96%",
-                                    backgroundColor: "background.default",
-                                    margin: "0 auto",
-                                    marginTop: "10px",
-                                    position: 'absolute',
-                                    marginTop: '370px',
-                                    marginLeft: '26px'
-                                    // boder: '1px solid red'
+                                    // border: "2px solid",
+                                    // width: "1110px",
+                                    // backgroundColor: "background.default",
+                                    padding: "10px",
+                                    boder: '10px solid'
+                                    // position: 'absolute',
+                                    // marginTop: '370px',
+                                    // marginLeft: '20px',
+
+                                    // marginRight: '200px'
                                 }}
                             >
                                 {questionsProfile?.map((p) => {
@@ -319,8 +348,8 @@ const ProfileDashboard = () => {
                                                 />
                                                 {/* {user.image} */}
                                             </Grid>
-                                            <Grid sx={{ width: "30%" }}> {p.title} </Grid>
-                                            <Grid sx={{ width: "30%" }}> {p.message} </Grid>
+                                            <Grid sx={{ width: "30%" }}> {p.title.substring(0, 40)} </Grid>
+                                            <Grid sx={{ width: "290px", height: '40px', marginRight: '20px' }}> {p.message.substring(0, 40)} </Grid>
                                             <Grid sx={{ width: "10%" }}> Respuestas </Grid>
                                             <Grid sx={{ width: "10%" }}> Likes/Views </Grid>
                                         </Grid>

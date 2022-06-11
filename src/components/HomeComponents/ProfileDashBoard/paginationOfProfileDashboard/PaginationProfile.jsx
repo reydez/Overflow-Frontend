@@ -68,6 +68,7 @@ const PaginationProfile = ({ posts, setQuestionsProfile }) => {
                 count={Math.ceil(pagination.count / pageSize)}
                 onChange={handlePageChange}
             />
+
         </Box>
     )
 }
