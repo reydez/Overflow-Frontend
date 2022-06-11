@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { Button, Typography, Box, List, CardMedia, FormLabel, FormControl, FormGroup, FormControlLabel, FormHelperText, Switch } from "@mui/material";
+import { Button, Typography, Box, List, CardMedia, /* FormLabel, FormControl, FormGroup, FormControlLabel, FormHelperText, Switch*/ } from "@mui/material";
 
 import Grid from "@mui/material/Grid";
 
 import { IconButton } from "@mui/material";
 
-import { name, img } from "../../../Controllers/styleUserProfile/styleUserProfile";
+import { img } from "../../../Controllers/styleUserProfile/styleUserProfile";
 import { EditUserProfile } from "../UserProfile/EditUserProfile";
 
-import { PersonalInformation } from '../../../Controllers/styleUserProfile/informationProfile';
+// import { PersonalInformation } from '../../../Controllers/styleUserProfile/informationProfile';
 import TwitterIcon from "@mui/icons-material/Twitter";
 
+import ContactPageIcon from '@mui/icons-material/ContactPage';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import CircularStatic from './CircularWithLabel'
@@ -38,18 +39,11 @@ const ProfileDashboard = () => {
     })
 
 
-   
-
-    // const [valueCircle, setValueCircle] = useState({
-
-    // })
-
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getUserProfile(user.id))
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [dispatch]);
+        dispatch(getUserProfile(user.id));
+    }, [dispatch, user.id]);
 
 
 
@@ -58,10 +52,6 @@ const ProfileDashboard = () => {
     const changeToFalse = () => {
         setEditMode(true);
     };
-
-
-
-    console.log('usuario info', questionsProfile)
 
     return (
         <>
@@ -79,7 +69,7 @@ const ProfileDashboard = () => {
                 : (
                     <Box
                         sx={{
-                            width: '1200px',
+                            width: '1100px',
                             height: '600px',
                             backgroundColor: 'background.profilePhotos'
                         }}
@@ -94,7 +84,7 @@ const ProfileDashboard = () => {
                                 <Grid sx={{ width: '20%', height: '260px', backgroundColor: 'background.profilePhotos' }}>
                                     <Box sx={{ position: 'absolute', marginTop: 1, marginLeft: '5px', color: 'primary' }}>
                                         <Typography variant="caption" sx={{ position: 'relative', p: 1, m: 20, fontSize: "14px", color: 'text.btnEdit' }}>
-                                            Editar
+                                            {/* Editar */}
                                         </Typography>
                                     </Box>
                                     <Box sx={{ position: 'absolute', marginTop: "20px", }}>
@@ -108,30 +98,26 @@ const ProfileDashboard = () => {
                                     {img(user.image)}
 
 
-                                    {/* <Typography sx={{ padding: '10px', border: 'solid 1px red', color: 'text.secondary', display: 'flex', textAlign: 'center', alignItems: 'left' }}> */}
-                                    {/* {user.full_name} */}
-                                    <Box sx={{  m:6, marginTop: '200px', textAlign: 'center', color: 'text.secondary' }}>
+                                    <Box sx={{ m: 6, marginTop: '200px', textAlign: 'center', color: 'text.secondary' }}>
 
-                                    <Typography h1="h1">{informationProfile.role} Technical Assitance</Typography>
+                                        <Typography h1="h1">{userDetail?.role || 'Rellena los datos'}</Typography>
                                     </Box>
 
-                                    {/* </Typography> */}
-                                    {/* <p style={{ textAlign: 'center' }}></p> */}
-                                    {/* {name(user.full_name)} */}
+
                                 </Grid>
                                 <Box sx={{ flexGrow: 1, bgcolor: 'background.profilePhotos', ml: 4 }}>
                                     <Grid container sx={{}}>
                                         <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 2, color: 'text.btnEdit', fontWeight: 500 }}>Portfolio</Box>
-                                        <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, backgroundColor: 'background.informationProfile' }}>
-                                            <Box sx={{ height: '20px' }}>{informationProfile.gi}</Box>
+                                        <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, backgroundColor: 'background.informationProfile', height: '45px' }}>
+                                            <Box sx={{ height: '20px' }}>{!userDetail?.portfolio ? 'Rellena los datos' : 'Dato completado'}</Box>
 
                                             {/* {PersonalInformation(user)} */}
 
 
                                         </Grid>
                                         <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 34, color: 'text.btnEdit', fontWeight: 500 }}>GitHub</Box>
-                                        <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, backgroundColor: 'background.informationProfile' }}>
-                                            <Box sx={{ height: '20px' }}>{informationProfile.github}</Box>
+                                        <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, backgroundColor: 'background.informationProfile', height: '45px' }}>
+                                            <Box sx={{ height: '20px' }}>{!userDetail?.github ? 'Rellena los datos' : 'Dato completado'}</Box>
 
                                             {/* {PersonalInformation(user)} */}
 
@@ -139,9 +125,14 @@ const ProfileDashboard = () => {
                                         </Grid>
 
                                         {/* {aca esta la rueda de de datos cargados} */}
-                                        <Box sx={{ position: 'absolute', p: 2, ml: 71 }}> <CircularStatic informationProfile={informationProfile} setInformationProfile={setInformationProfile} /></Box>
+                                        <Box sx={{ position: 'absolute', marginLeft: '535px', marginTop: '40px' }}>
+                                            <CircularStatic
+                                                informationProfile={informationProfile}
+                                                userDetail={userDetail}
+                                            />
+                                        </Box>
                                         <Grid sx={{ bgcolor: 'background.white' }}>
-                                            <Typography sx={{ position: 'absolute', p: 1, ml: 9, marginTop: '100px', fontSize: '10px', color: 'text.secondary' }}> Perfil de usuario</Typography>
+
 
 
 
@@ -154,8 +145,8 @@ const ProfileDashboard = () => {
 
                                     <Grid container sx={{}}>
                                         <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 2, color: 'text.btnEdit', fontWeight: 500 }}>Nombre</Box>
-                                        <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, bgcolor: 'background.informationProfile' }}>
-                                            <Box sx={{ height: '20px' }}>{informationProfile.firstName}</Box>
+                                        <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, bgcolor: 'background.informationProfile', height: '45px' }}>
+                                            <Box sx={{ height: '20px' }}>{userDetail?.first_name || 'Rellena los datos'}</Box>
 
                                             {/* {PersonalInformation(user)} */}
 
@@ -163,8 +154,8 @@ const ProfileDashboard = () => {
                                         </Grid>
 
                                         <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 34, color: 'text.btnEdit', fontWeight: 500 }}>Linkedin</Box>
-                                        <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, backgroundColor: 'background.informationProfile' }}>
-                                            <Box sx={{ height: '20px' }}>{informationProfile.linkedin}</Box>
+                                        <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, backgroundColor: 'background.informationProfile', height: '45px' }}>
+                                            <Box sx={{ height: '20px' }}>{!userDetail?.linkedin ? 'Rellena los datos' : 'Dato completado'}</Box>
 
                                             {/* {PersonalInformation(user)} */}
 
@@ -175,7 +166,7 @@ const ProfileDashboard = () => {
 
                                         <Grid sx={{ marginTop: 4, bgcolor: 'background.white' }}>
 
-                                            <Typography sx={{ position: 'absolute', p: 1, ml: 8, marginTop: '15px', fontSize: '12px', color: 'text.btnEdit' }}> 50% completado... </Typography>
+                                            <Typography sx={{ position: 'absolute', p: 1, ml: 8, marginTop: '15px', fontSize: '12px', color: 'text.btnEdit' }}></Typography>
 
                                             {/* {PersonalInformation(user)} */}
 
@@ -186,16 +177,16 @@ const ProfileDashboard = () => {
 
                                     <Grid container sx={{}}>
                                         <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 2, color: 'text.btnEdit', fontWeight: 500 }}>Apellido</Box>
-                                        <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, backgroundColor: 'background.informationProfile' }}>
-                                            <Box>{informationProfile.lastName}</Box>
+                                        <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, backgroundColor: 'background.informationProfile', height: '45px' }}>
+                                            <Box sx={{ height: '20px' }}>{userDetail?.last_name || 'Rellena los datos'}</Box>
 
                                             {/* {PersonalInformation(user)} */}
 
 
                                         </Grid>
                                         <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 34, color: 'text.btnEdit', fontWeight: 500 }}>Twitter</Box>
-                                        <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, backgroundColor: 'background.informationProfile' }}>
-                                            <Box>{informationProfile.twitter}</Box>
+                                        <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, backgroundColor: 'background.informationProfile', height: '45px' }}>
+                                            <Box sx={{ height: '20px' }}>{!userDetail?.twitter ? 'Rellena los datos' : 'Dato completado'}</Box>
 
                                             {/* {PersonalInformation(user)} */}
 
@@ -210,16 +201,19 @@ const ProfileDashboard = () => {
                                         <Box sx={{ position: 'absolute' }}></Box>
                                         <Grid item xs={2} sx={{ p: 1, ml: 7, marginTop: 2 }}>
 
-                                            <IconButton size="small" sx={{ color: 'text.secondary', "&:hover": { color: "text.btnEdit" } }} >
+                                            <IconButton size="small" href={userDetail?.twitter} sx={{ color: 'text.secondary', "&:hover": { color: "text.btnEdit" } }} >
                                                 <TwitterIcon />
                                             </IconButton>
 
-                                            <IconButton size="small" sx={{ color: 'text.secondary', "&:hover": { color: "text.btnEdit" } }}>
+                                            <IconButton size="small" href={userDetail?.linkedin} sx={{ color: 'text.secondary', "&:hover": { color: "text.btnEdit" } }}>
                                                 <LinkedInIcon />
                                             </IconButton>
 
-                                            <IconButton size="small" sx={{ color: 'text.secondary', "&:hover": { color: "text.btnEdit" } }}>
+                                            <IconButton size="small" href={userDetail?.github} sx={{ color: 'text.secondary', "&:hover": { color: "text.btnEdit" } }}>
                                                 <GitHubIcon />
+                                            </IconButton>
+                                            <IconButton size="small" href={userDetail?.portfolio} sx={{ marginLeft: '35px', color: 'text.secondary', "&:hover": { color: "text.btnEdit" } }}>
+                                                <ContactPageIcon />
                                             </IconButton>
 
                                             {/* {PersonalInformation(user)} */}
@@ -252,7 +246,6 @@ const ProfileDashboard = () => {
                                     <Button sx={{ color: "text.btnEdit", backgroundColor: 'background.buttons', marginLeft: '15px', border: 'solid 1px ' }}>Preguntas Realizadas</Button>
                                     <Button sx={{ color: "text.btnEdit", backgroundColor: 'background.buttons', marginLeft: '15px', border: 'solid 1px ' }}>Respuestas Realizadas</Button>
                                     <Button sx={{ color: "text.btnEdit", backgroundColor: 'background.buttons', marginLeft: '15px', border: 'solid 1px ' }}>Preguntas Favoritas</Button>
-                                    {/* <Button sx={{ color: "text.primary" }}>Usuarios Favoritos</Button> */}
                                     <Button sx={{ color: "text.btnEdit", backgroundColor: 'background.buttons', marginLeft: '15px', border: 'solid 1px ' }}>Likes</Button>
                                 </List>
                             </Grid>
@@ -261,16 +254,8 @@ const ProfileDashboard = () => {
                             <Grid
                                 container
                                 sx={{
-                                    // border: "2px solid",
-                                    // width: "1110px",
-                                    // backgroundColor: "background.default",
                                     padding: "10px",
                                     boder: '10px solid'
-                                    // position: 'absolute',
-                                    // marginTop: '370px',
-                                    // marginLeft: '20px',
-
-                                    // marginRight: '200px'
                                 }}
                             >
                                 {questionsProfile?.map((p) => {
@@ -283,9 +268,7 @@ const ProfileDashboard = () => {
                                                 height: "55px",
                                                 marginLeft: '10px',
                                                 marginTop: '12px',
-                                                // marginBottom: '10px',
                                                 padding: '14px 0px',
-                                                // border: 'solid 1px ',
                                                 borderRadius: '4px',
                                                 backgroundColor: "background.mapeado",
                                                 color: "text.btnEdit"
@@ -294,19 +277,6 @@ const ProfileDashboard = () => {
                                             {" "}
 
                                             <Grid sx={{ width: "10%" }}>
-
-                                                {
-                                                    /* <FormControl component="fieldset" variant="standard">
-    
-                                                        <FormGroup>
-                                                            <FormControlLabel
-                                                                control={
-                                                                    <Switch checked={finishedC.finished} onChange={(e) => handleChange(e, p.id)} name='finished' />
-                                                                } />
-                                                        </FormGroup>
-                                                    </FormControl>
-                                                     */
-                                                }
                                             </Grid>
 
                                             <Grid
@@ -326,14 +296,14 @@ const ProfileDashboard = () => {
                                                     }}
                                                     component="img"
                                                     // height="294"
-                                                    image={user.image}
+                                                    image={user?.image}
                                                     alt="Paella dish"
                                                 />
                                                 {/* {user.image} */}
                                             </Grid>
-                                            <Grid sx={{ width: "30%" }}> {p.title.substring(0, 40)} </Grid>
-                                            <Grid sx={{ width: "290px", height: '40px', marginRight: '20px' }}> {p.message.substring(0, 40)} </Grid>
-                                            <Grid sx={{ width: "10%" }}> Respuestas </Grid>
+                                            <Grid sx={{ width: "22%" }}> {p?.title.substring(0, 40)} </Grid>
+                                            <Grid sx={{ width: "30%" }}> {p?.message.substring(0, 40)} </Grid>
+                                            <Grid sx={{ width: "15%" }}> Respuestas </Grid>
                                             <Grid sx={{ width: "10%" }}> Likes/Views </Grid>
                                         </Grid>
                                     )
@@ -348,8 +318,8 @@ const ProfileDashboard = () => {
 
 
                             </Grid>
-                        </Grid>
-                    </Box>
+                        </Grid >
+                    </Box >
                 )
             }
         </>
