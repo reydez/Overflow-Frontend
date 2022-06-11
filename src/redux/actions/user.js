@@ -63,6 +63,7 @@ export function getUserProfile(idUser) {
 };
 
 export function updateUserProfile(form, idUser) {
+  console.log('from:', form, 'user:', idUser)
   return (dispatch) => {
     axios.put(`${URL}/users/${idUser}`, form)
       .then(response => {

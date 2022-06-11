@@ -8,7 +8,7 @@ import {useEffect, useState} from 'react';
 function CircularProgressWithLabel(props) {
   return (
     <Box  sx={{ position: 'relative', display: 'inline-flex'}}>
-      <CircularProgress  sx={{color: 'text.btnEdit',    }} variant="buffer" size='80px'  {...props} />
+      <CircularProgress  sx={{color: 'text.btnEdit',    }} variant="determinate" size='80px'  {...props} />
       {/* <Box
         sx={{
           top: 0,
@@ -41,24 +41,44 @@ CircularProgressWithLabel.propTypes = {
 
 
 export default function CircularStatic({informationProfile, setInformationProfile}) {
- let complete;
-  
-  // useEffect(() => {
-  //   console.log("Fase de Montaje")
 
-  //   const completePerfil = setInterval(() => {
-  //     setInformationProfile((prevProgress) => (prevProgress >= 10 ? 0 : prevProgress + 10));
-  //   },setInformationProfile);
-  //     completePerfil()
-  // })
+  const validarCircle = (informationProfile) => {
+    let number = 0;
+
+    if (informationProfile.firstName) {
+        number = + 16.6;
+    } else if (informationProfile.lastName) {
+        number = + 16.6;
+    } else if (informationProfile.role) {
+        number = + 16.6;
+    } else if (informationProfile.twitter) {
+        number = + 16.6;
+    } else if (informationProfile.github) {
+        number = + 16.6;
+    } else if (informationProfile.portfolio) {
+        number = + 16.6;
+    } else if (informationProfile.linkedin) {
+        number = + 16.6;
+    }
+
+    return Math.ceil(number)
+}
+
+  
+
+const [valueCircle, setValueCircle] = useState(0)
+
 
   useEffect(() => {
-    console.log("Fase de Actualizar")
-    const perfilComplete = () => setInformationProfile('')
+
+    setValueCircle(validarCircle(informationProfile))
+    // console.log("Fase de Actualizar")
+    // const perfilComplete = () => setInformationProfile('')
     
-   
     
-  }, [informationProfile] );
+    
+  }, [setValueCircle] );
+  console.log(valueCircle)
 
 // useEffect(() => {
 //     const timer = setInterval(() => {
@@ -69,5 +89,5 @@ export default function CircularStatic({informationProfile, setInformationProfil
 //     };
 //   },[]);
 
-  return <CircularProgressWithLabel value={informationProfile} />;
+  return <CircularProgressWithLabel value={valueCircle} />;
 }
