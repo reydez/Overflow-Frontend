@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Button,
   Divider,
@@ -14,10 +14,7 @@ import ListAltIcon from "@mui/icons-material/ListAlt";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-// import MailIcon from "@mui/icons-material/Mail";
-// import InboxIcon from "@mui/icons-material/MoveToInbox";
 import { Link } from "react-router-dom";
-// import { PlayDisabled } from "@mui/icons-material";
 import { useAuth0 } from "@auth0/auth0-react";
 import styled from "@emotion/styled";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -51,15 +48,33 @@ const ButtonLogOut = () => {
           Cerrar Sesión
         </button>
       </ButtonLogOutDiv>
-      
-      <Link to='/donar' style={{ textDecoration: "none" }}>
-          <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" } }}>
-            <FavoriteIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
-            Danos Amor $$
-            <FavoriteIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
-          </Button>
-        </Link>,
-      
+      <Link
+        to="/donar"
+        style={{
+          textDecoration: "none",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Button
+          sx={{
+            color: "#7165A0;",
+            "&:hover": { color: "#F50057", background: "white" },
+            border: "1px solid grey",
+            borderRadius: "10px",
+            boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <FavoriteIcon sx={{ fontSize: "18px" }} />
+          Danos Amor $$
+          <FavoriteIcon sx={{ fontSize: "18px" }} />
+        </Button>
+      </Link>
+      ,
     </>
   );
 };

@@ -21,19 +21,16 @@ export default function DetailsComponent({
   const user = useSelector((state) => state.userReducer.user);
   const isTextareaDisabled = comentarioText.length === 0;
   const [checked, setChecked] = useState(true);
-  const dispatch = useDispatch()
-
-  console.log(question);
-  console.log(user);
+  const dispatch = useDispatch();
 
   let history = useHistory();
   const Return = () => {
     history.goBack();
   };
-  
+
   React.useEffect(() => {
-    dispatch(userInbox(user.id))
-  }, [checked, dispatch, user])
+    dispatch(userInbox(user.id));
+  }, [checked, dispatch, user]);
 
   const onInputChange = (e) => {
     e.preventDefault();
@@ -104,8 +101,10 @@ export default function DetailsComponent({
           });
         }, 50);
       });
-      setTimeout(() => {checked ? setChecked(false) : setChecked(true)}, 500)
-      // checked ? setChecked(false) : setChecked(true)
+    setTimeout(() => {
+      checked ? setChecked(false) : setChecked(true);
+    }, 500);
+    // checked ? setChecked(false) : setChecked(true)
   };
 
   return (
