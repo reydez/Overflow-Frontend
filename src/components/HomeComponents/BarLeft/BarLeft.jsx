@@ -54,6 +54,7 @@ export default function BarLeft(props) {
             {location.pathname !== "/questions" &&
             location.pathname !== "/user-profile" &&
             location.pathname !== "/all-users" &&
+            location.pathname !== "/donar" &&
             location.pathname !== "/favourites-user" ? null : (
               <Button
                 variant="primary"

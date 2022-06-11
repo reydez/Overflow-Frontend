@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Grid,
   Paper,
@@ -22,6 +22,7 @@ import {
   getModuleColor,
   getTagColor,
 } from "../../../Controllers/Helpers/colorsQuestion";
+import Swal from "sweetalert2";
 
 export const QuestionCard = ({ question }) => {
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
