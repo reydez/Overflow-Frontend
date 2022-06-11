@@ -1,23 +1,22 @@
-import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
-import ButtonWrapper from "./Suscription";
+import ButtonWrapper from "./Suscription2";
 
-const Paypal = () => {
-  const user = useSelector((state) => state.userReducer.user);
-
-  return (
-    <div
-      style={{
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-      }}
-    >
-      {/* <PayPalScriptProvider
+const Plan2 = () => {
+    const user = useSelector((state) => state.userReducer.user);
+    return (
+        <div
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        {/* <PayPalScriptProvider
           options={{
             "client-id": process.env.REACT_APP_CLIENT_ID,
           }}
@@ -68,19 +67,22 @@ const Paypal = () => {
           />
         </PayPalScriptProvider>
         <p style={{ margin: "0" }}>Donar $5 USD</p> */}
+      
 
-      <PayPalScriptProvider
-        options={{
-          "client-id": process.env.REACT_APP_CLIENT_ID,
-          components: "buttons",
-          intent: "subscription",
-          vault: true,
-        }}
-      >
-        <ButtonWrapper type="subscription" />
-      </PayPalScriptProvider>
-    </div>
-  );
-};
+        <PayPalScriptProvider
+			options={{
+				"client-id":process.env.REACT_APP_CLIENT_ID,
+				 components: "buttons",
+				intent: "subscription",
+				 vault: true,
+			}}
+		>
+			<ButtonWrapper type="subscription" />
+		</PayPalScriptProvider>
+       
+</div>
+    )
+}
 
-export default Paypal;
+
+export default Plan2;

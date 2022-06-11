@@ -17,7 +17,11 @@ import ProfileDashboard from "./components/HomeComponents/ProfileDashBoard/Profi
 import { AllUsers } from "./components/HomeComponents/AllUsers/AllUsers";
 import { AdminContainer } from "./views/AdminContainer";
 import { AdminEditTags } from "./components/HomeComponents/Admin/AdminEditTags";
+<<<<<<< HEAD
+import { PaypalC } from "./components/Paypal/PaypalC";
+=======
 import InboxUser from "./views/InboxUser";
+>>>>>>> origin
 
 function App() {
   const { isLoading, isAuthenticated, user } = useAuth0();
@@ -86,6 +90,16 @@ function App() {
           </BarLeft>
         ) : (
           <Redirect to="/" />
+        )}
+      </Route>
+
+      <Route exact={true} path="/donar">
+        {!isAuthenticated ? (
+          <Redirect to="/" />
+        ) : (
+          <BarLeft>
+            <PaypalC />
+          </BarLeft>
         )}
       </Route>
 
