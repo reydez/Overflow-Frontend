@@ -15,3 +15,16 @@ export function createUser(loginWithAuth0) {
   }
 };
 
+
+export function getUsers () {
+  return (dispatch) => {
+    axios.get(`${URL}/users`)
+    .then(response => {dispatch({
+      type: user.GET_USERS,
+      payload: response.data
+    })})
+    .catch(error =>{
+      console.log(error)
+    })
+  }
+}

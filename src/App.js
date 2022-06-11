@@ -17,6 +17,7 @@ import ProfileDashboard from "./components/HomeComponents/ProfileDashBoard/Profi
 import { AllUsers } from "./components/HomeComponents/AllUsers/AllUsers";
 import { AdminContainer } from "./views/AdminContainer";
 import { AdminEditTags } from "./components/HomeComponents/Admin/AdminEditTags";
+import { AdminBanUser } from "./components/HomeComponents/Admin/AdminBanUser";
 
 function App() {
   const { isLoading, isAuthenticated, user } = useAuth0();
@@ -111,7 +112,19 @@ function App() {
         }
       </Route>
 
-      <Route exact={true} patch='/admin/edit-tags'>
+        <Route exact={true} path='/admin/users'>
+        {!isAuthenticated
+          ? (<Redirect to="/" />)
+          : (
+            <BarLeft>
+              <AdminContainer />
+              <AdminBanUser />
+            </BarLeft>
+          )
+        }
+      </Route>
+
+      <Route exact={true} path='/admin/tags'>
         {!isAuthenticated
           ? (<Redirect to="/" />)
           : (
@@ -122,6 +135,8 @@ function App() {
           )
         }
       </Route>
+      
+    
 
       <Route path="*" exact={true} component={Component404} />
     </Switch>

@@ -1,5 +1,6 @@
 const initialState = {
     tags: [],
+    filteredTags: []
 };
 
 const tagsReducer = (state = initialState, action) => {
@@ -8,7 +9,15 @@ const tagsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 tags: action.payload,
+                filteredTags: action.payload
             };
+        
+        case "DELETE_TAG" :
+          // console.log('reducer',action.payload)
+          return {
+            ...state,
+            filteredTags: state.filteredTags.filter((tag) => tag.id !== action.payload)
+        }
 
         default:
             return {

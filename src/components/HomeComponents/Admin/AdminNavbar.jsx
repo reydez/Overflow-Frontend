@@ -4,11 +4,10 @@ import { Link } from 'react-router-dom'
 export const AdminNavbar = () => {
   return (
           <>
-            <h2>Panel de administrador</h2>
             <AdminNavBarStyle>
-              <Link> <button> Ver Reportes</button> </Link>
-              <Link to='/admin/edit-tags'> <button> Editar Tags</button></Link>
-              <Link> <button> Banear Usuarios</button></Link>
+              <Link to='/admin/'> <button> Ver Reportes</button> </Link>
+              <Link to='/admin/tags'> <button> Editar Tags</button></Link>
+              <Link to='/admin/users'> <button> Banear Usuarios</button></Link>
             </AdminNavBarStyle>
           </>
   ) 
