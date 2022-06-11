@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 // import Button from "@mui/material/Button";
-import Switch from "@mui/material/Switch";
+// import Switch from "@mui/material/Switch";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { Typography } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { userInbox } from "../../redux/actions/inboxes";
 
 export default function DetailsComponent({
   question,
@@ -20,6 +21,7 @@ export default function DetailsComponent({
   const user = useSelector((state) => state.userReducer.user);
   const isTextareaDisabled = comentarioText.length === 0;
   const [checked, setChecked] = useState(true);
+  const dispatch = useDispatch()
 
   console.log(question);
   console.log(user);
@@ -28,15 +30,19 @@ export default function DetailsComponent({
   const Return = () => {
     history.goBack();
   };
+  
+  React.useEffect(() => {
+    dispatch(userInbox(user.id))
+  }, [checked, dispatch, user])
 
   const onInputChange = (e) => {
     e.preventDefault();
     setComentarioText(e.target.value);
   };
 
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
-  };
+  // const handleChange = (event) => {
+  //   setChecked(event.target.checked);
+  // };
 
   /* const switchComponent =
     user.id === question.user.id ? (
@@ -98,6 +104,8 @@ export default function DetailsComponent({
           });
         }, 50);
       });
+      setTimeout(() => {checked ? setChecked(false) : setChecked(true)}, 500)
+      // checked ? setChecked(false) : setChecked(true)
   };
 
   return (
