@@ -13,7 +13,8 @@ import {
   styled
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteNotification, userInbox, cleanInbox } from "../redux/actions/inboxes";
+import { deleteNotification, userInbox, cleanInbox, viewNotification } from "../redux/actions/inboxes";
+import { Link } from "react-router-dom"
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -52,23 +53,27 @@ export default function InboxUser() {
     const pending = inbox.reduce((prev, curr) => curr.isActive? prev + 1 : prev, 0)
     const [change, setChange] = useState(false)
 
-    console.log(user)
-    const clearNotification = (not) => {
-        dispatch(deleteNotification(user.id, not.target.value));
+    // console.log(user)
+    const clearNotification = (e) => {
+        dispatch(deleteNotification(user.id, e.target.value));
         dispatch(userInbox(user.id))
         change ? setChange(false) : setChange(true)
-        // dispatch(userInbox(user.id))
-    }
+    };
 
     const clearAll = () => {
         dispatch(cleanInbox(user.id));
         dispatch(userInbox(user.id))
         change ? setChange(false) : setChange(true)
-    }
+    };
+
+    const setStateNotification = (e) => {
+        // console.log("ESTO ES LO QUE ESOTY BUSCANDO: ",e.target.attributes[1].nodeValue)
+        dispatch(viewNotification(user.id, e.target.attributes[1].nodeValue))
+    };
 
     React.useEffect(() => {
         dispatch(userInbox(user.id))
-    }, [change])
+    }, [change, dispatch, user])
 
     // console.log("Este es mi buzon de entrada: ", inbox)
     // console.log(`Tienes ${inbox.length} mensajes en tu bandeja`)
@@ -99,10 +104,10 @@ export default function InboxUser() {
                 </List>
             </Grid>
                 {
-                    pending ? 
+                    inbox.length ? 
                     <>
-                    <h3>Tienes {pending} notificaciones sin leer</h3>
-                    <button style={{marginLeft: "1100px"}} onClick={clearAll}>Limiar bandeja</button>
+                    {pending ? <h3>Tienes {pending} notificaciones sin leer</h3> : null}
+                    <button style={{marginLeft: "800px"}} onClick={clearAll}>Limiar bandeja</button>
                     </>
                     : null
                 }
@@ -119,9 +124,9 @@ export default function InboxUser() {
                 >
                 <TableHead>
                     <TableRow sx={{ width: "170%", backgroundColor: "#413A66", }}>
-                        <StyledTableCell align="center">Estado</StyledTableCell>
                         <StyledTableCell align="center">Mensaje</StyledTableCell>
                         <StyledTableCell align="center">Post</StyledTableCell>
+                        <StyledTableCell align="center">Estado</StyledTableCell>
                         <StyledTableCell align="center">Acciones</StyledTableCell>
                     </TableRow>
                 </TableHead>
@@ -130,6 +135,7 @@ export default function InboxUser() {
                         let title;
                         let message;
                         let state;
+                        let link;
                         if(!not.comment && !not.like.comment) {
                             message = `${not.like.user.full_name} le ha dado like a tu Pregunta!`;
                             title = not.like.post.title
@@ -145,13 +151,23 @@ export default function InboxUser() {
                         } else {
                             state = "Leída"
                         }
+                        link = not.comment.post.id;
                         return (
-                        <StyledTableRow>
-                            <StyledTableCell align="center">{state}</StyledTableCell>
-                            <StyledTableCell align="center">{message}</StyledTableCell>
-                            <StyledTableCell align="center">{title}</StyledTableCell>
-                            <button value={not.id} onClick={(not) => clearNotification(not)}>Limpiar</button>
-                        </StyledTableRow>
+                            <StyledTableRow>
+                                    <StyledTableCell align="center">
+                                        <Link 
+                                        to={`/visualize-question/${link}`} 
+                                        style={{ display: 'block' }} 
+                                        value={not.id}
+                                        onClick={(e) => setStateNotification(e)}
+                                        >
+                                            {message}
+                                        </Link> 
+                                    </StyledTableCell>
+                                    <StyledTableCell align="center">{title}</StyledTableCell>
+                                    <StyledTableCell align="center">{state}</StyledTableCell>
+                                    <button value={not.id} onClick={(e) => clearNotification(e)}>Limpiar</button>
+                                </StyledTableRow>
                     )
                     })}
                 </TableBody>
