@@ -16,7 +16,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import CircularStatic from './CircularWithLabel'
-import { getUserProfile, finishedPost } from "../../../redux/actions/user"
+import { getUserProfile,/* finishedPost*/ } from "../../../redux/actions/user"
 import PaginationProfile from './paginationOfProfileDashboard/PaginationProfile'
 
 
@@ -24,9 +24,9 @@ const ProfileDashboard = () => {
     const user = useSelector((state) => state.userReducer.user);
     const userDetail = useSelector((state) => state.userReducer.userDetail);
 
-    // const [finishedC, setFinishedC] = useState({
-    //     finished: false
-    // })
+
+    const [questionsProfile, setQuestionsProfile] = useState([]);
+
     const [informationProfile, setInformationProfile] = useState({
         firstName: "",
         lastName: "",
@@ -36,6 +36,33 @@ const ProfileDashboard = () => {
         portfolio: "",
         linkedin: "",
     })
+
+
+    const validarCircle = (informationProfile) => {
+        let number = 0;
+
+        if (informationProfile.firstName) {
+            number = + 16.6;
+        } else if (informationProfile.lastName) {
+            number = + 16.6;
+        } else if (informationProfile.role) {
+            number = + 16.6;
+        } else if (informationProfile.twitter) {
+            number = + 16.6;
+        } else if (informationProfile.github) {
+            number = + 16.6;
+        } else if (informationProfile.portfolio) {
+            number = + 16.6;
+        } else if (informationProfile.linkedin) {
+            number = + 16.6;
+        }
+
+        return Math.ceil(number)
+    }
+
+    // const [valueCircle, setValueCircle] = useState({
+
+    // })
 
     const dispatch = useDispatch()
 
@@ -52,21 +79,10 @@ const ProfileDashboard = () => {
         setEditMode(true);
     };
 
-    // const handleChange = (event, id) => {
-    //     console.log('he sido clicado', !event.target.clicked)
-
-    //     // setFinishedC({
-    //     //     ...finishedC,
-    //     //     [event.target.name]: event.target.checked
-    //     // });
-
-    //     dispatch(finishedPost(id, !event.target.clicked))
-
-    // };
 
 
-    // console.log('Yo soy el detalle: ', userDetail.posts)
-    // console.log(finishedC.finished)
+    console.log('usuario info', questionsProfile)
+
     return (
         <>
 
@@ -84,7 +100,8 @@ const ProfileDashboard = () => {
                     <Box
                         sx={{
                             width: '1200px',
-                            // border: 'solid 1px red'
+                            height: '600px',
+                            backgroundColor: 'background.profilePhotos'
                         }}
                     >
                         <Box sx={{ ml: 10, color: 'text.secondary' }}>
@@ -264,14 +281,19 @@ const ProfileDashboard = () => {
                             <Grid
                                 container
                                 sx={{
-                                    width: "96%",
-                                    backgroundColor: "background.default",
-                                    margin: "0 auto",
-                                    marginTop: "10px",
-                                    // boder: '1px solid red'
+                                    // border: "2px solid",
+                                    // width: "1110px",
+                                    // backgroundColor: "background.default",
+                                    padding: "10px",
+                                    boder: '10px solid'
+                                    // position: 'absolute',
+                                    // marginTop: '370px',
+                                    // marginLeft: '20px',
+
+                                    // marginRight: '200px'
                                 }}
                             >
-                                {userDetail.posts?.map((p) => {
+                                {questionsProfile?.map((p) => {
 
                                     return (
                                         <Grid container
@@ -329,14 +351,19 @@ const ProfileDashboard = () => {
                                                 />
                                                 {/* {user.image} */}
                                             </Grid>
-                                            <Grid sx={{ width: "30%" }}> {p.title} </Grid>
-                                            <Grid sx={{ width: "30%" }}> {p.message} </Grid>
+                                            <Grid sx={{ width: "30%" }}> {p.title.substring(0, 40)} </Grid>
+                                            <Grid sx={{ width: "290px", height: '40px', marginRight: '20px' }}> {p.message.substring(0, 40)} </Grid>
                                             <Grid sx={{ width: "10%" }}> Respuestas </Grid>
                                             <Grid sx={{ width: "10%" }}> Likes/Views </Grid>
                                         </Grid>
                                     )
                                 })}
-                                <PaginationProfile />
+                                <PaginationProfile
+                                    posts={userDetail.posts}
+                                    setQuestionsProfile={(q) => setQuestionsProfile(q)}
+                                // questionsProfile={questionsProfile}
+                                />
+
 
 
 
