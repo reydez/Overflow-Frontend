@@ -78,8 +78,6 @@ export function updateUserProfile(form, idUser) {
   }
 };
 
-
-
 export function finishedPost(idPost, finishedPost) {
 
   // console.log('id:', idPost, 'esta en:', finishedPost)
@@ -101,4 +99,5 @@ export function finishedPost(idPost, finishedPost) {
 
 // '/:idPost', finishedPost
 //'/:idPost', finishedPost;
+
 
