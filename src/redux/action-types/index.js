@@ -17,13 +17,10 @@ export const comment = {
 };
 
 export const favorite = {
-
-    GET_FAVORITE: "GET_FAVORITE",
-    SET_FAVORITE: "SET_FAVORITE"    
-
+  GET_FAVORITE: "GET_FAVORITE",
+  SET_FAVORITE: "SET_FAVORITE",
   GET_FAVOURITE: "GET_FAVORITE",
   SET_FAVORITE: "SET_FAVORITE",
-
 };
 
 export const inbox = {

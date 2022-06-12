@@ -10,6 +10,7 @@ import {
   Link,
   Button,
   getTableSortLabelUtilityClass,
+  Checkbox,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -18,9 +19,6 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import DoDisturbOnIcon from "@mui/icons-material/DoDisturbOn";
 import FavoriteCheck from "../../Favorite/FavoriteCheck";
 // import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
-
-
-
 
 import { pink, green, red } from "@mui/material/colors";
 import Favorite from "@mui/icons-material/Favorite";
@@ -32,13 +30,6 @@ import {
   getModuleColor,
   getTagColor,
 } from "../../../Controllers/Helpers/colorsQuestion";
-
-import { useSelector } from "react-redux";
-
-export const QuestionCard = ({ question }) => {
- 
-
-
 import Swal from "sweetalert2";
 import { sendReport } from "../../../redux/actions/reports";
 import { getUserProfile } from "../../../redux/actions/user";
@@ -106,7 +97,6 @@ export const QuestionCard = ({ question, reportUser }) => {
     dispatch(sendReport(formReport, question.id, user.id));
   };
 
-
   const extras = {
     vote: 1,
     views: 34,
@@ -115,8 +105,6 @@ export const QuestionCard = ({ question, reportUser }) => {
   //   margin: "0",
   //   textDecoration: "none",
   // };
-
-
 
   // ----------------handleClick REMOVE QUESTION ---------------------------
   const handleRemoveQuestion = (idPost, idUser) => {
@@ -144,7 +132,6 @@ export const QuestionCard = ({ question, reportUser }) => {
       }
     });
   };
-
 
   return (
     <Paper
@@ -182,25 +169,23 @@ export const QuestionCard = ({ question, reportUser }) => {
                       color: "green",
                     }}
                   >
-
                     Respuestas
                   </p>
-                  
                 </Typography>
                 <p
-                    style={{
-                      marginLeft: "-40px",
-                      marginTop: '60px',
-                      fontSize: "9px",
-                      color: "#a8a3b5",
-                    }}
-                  >
-                    {/* VOTOS HACER CONEXION CON BACK */}
-                    <ThumbUpAltIcon sx={{ fontSize: 9 }} />{question.likes.length} Votos
-                  </p>
+                  style={{
+                    marginLeft: "-40px",
+                    marginTop: "60px",
+                    fontSize: "9px",
+                    color: "#a8a3b5",
+                  }}
+                >
+                  {/* VOTOS HACER CONEXION CON BACK */}
+                  <ThumbUpAltIcon sx={{ fontSize: 9 }} />
+                  {question.likes.length} Votos
+                </p>
               </>
             ) : (
-              
               <>
                 <DoDisturbOnIcon sx={{ color: "red" }} />
                 <Typography sx={{ color: "red", fontSize: "18px" }}>
@@ -216,7 +201,6 @@ export const QuestionCard = ({ question, reportUser }) => {
                     Respuestas
                   </p>
 
-                  
                   <p
                     style={{
                       marginLeft: "-30px",
@@ -231,26 +215,21 @@ export const QuestionCard = ({ question, reportUser }) => {
                   </p>
                 </Typography>
                 <p
-                    style={{
-                      marginLeft: "-40px",
-                      marginTop: '60px',
-                      fontSize: "9px",
-                      color: "#a8a3b5",
-                    }}
-                  >
-                    {/* VOTOS HACER CONEXION CON BACK */}
-                    <ThumbUpAltIcon sx={{ fontSize: 9 }} />{question.likes.length} Votos
-                  </p>
-
-                </Typography>
-
+                  style={{
+                    marginLeft: "-40px",
+                    marginTop: "60px",
+                    fontSize: "9px",
+                    color: "#a8a3b5",
+                  }}
+                >
+                  {/* VOTOS HACER CONEXION CON BACK */}
+                  <ThumbUpAltIcon sx={{ fontSize: 9 }} />
+                  {question.likes.length} Votos
+                </p>
               </>
             )}
           </Stack>
         </Grid>
-
-       
-
 
         <Grid item xs={12} sm container>
           <Grid item xs container direction="column" spacing={2}>
@@ -307,7 +286,7 @@ export const QuestionCard = ({ question, reportUser }) => {
                 {question.message}
               </Typography>
             </Grid>
-              
+
             <Grid item>
               {" "}
               {/* TAGs de cada categoría*/}
@@ -341,12 +320,6 @@ export const QuestionCard = ({ question, reportUser }) => {
               </Stack>
             </Grid>
           </Grid>
-
-         
-             <FavoriteCheck idPost={question.id}/>
-            
-             
-
 
           <Grid>
             {/* check de corazon para clickear hacia favoritos */}
