@@ -3,14 +3,9 @@ import {
   Button,
   Divider,
   List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
   Toolbar,
 } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
-import ListAltIcon from "@mui/icons-material/ListAlt";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
@@ -20,7 +15,7 @@ import styled from "@emotion/styled";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useSelector } from "react-redux";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-import logo from "../assets/bgLandingRocket.png";
+import logo from '../assets/bgLandingRocket.png'
 const ButtonLogOut = () => {
   const { logout } = useAuth0();
   const user = useSelector((state) => state.userReducer.user);
@@ -36,22 +31,11 @@ const ButtonLogOut = () => {
       {user.isAdmin === true ? (
         <Link to="/admin" style={{ textDecoration: "none" }}>
           <ButtonAdminPanel>
-            <button className="ButtonAdminPanel">
-              {" "}
-              <AdminPanelSettingsIcon
-                sx={{ marginRight: "5px", fontSize: "18px" }}
-              />
-              PANEL DE ADMIN
-            </button>
+            <button className="ButtonAdminPanel"> <AdminPanelSettingsIcon sx={{ marginRight: "5px", fontSize: "18px" }} />PANEL DE ADMIN</button>
           </ButtonAdminPanel>
         </Link>
       ) : null}
-      <ButtonLogOutDiv>
-        <button className="ButtonLogOut" onClick={() => logout()}>
-          <LogoutIcon sx={{ marginRight: "10px", fontSize: "19px" }} />
-          Cerrar Sesión
-        </button>
-      </ButtonLogOutDiv>
+
       <Link
         to="/donar"
         style={{
@@ -71,6 +55,7 @@ const ButtonLogOut = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            marginTop: '20px'
           }}
         >
           <FavoriteIcon sx={{ fontSize: "18px" }} />
@@ -78,37 +63,44 @@ const ButtonLogOut = () => {
           <FavoriteIcon sx={{ fontSize: "18px" }} />
         </Button>
       </Link>
-      ,
+
+      <ButtonLogOutDiv>
+        <button className="ButtonLogOut" onClick={() => logout()}>
+          <LogoutIcon sx={{ marginRight: "10px", fontSize: "19px" }} />
+          Cerrar Sesión
+        </button>
+      </ButtonLogOutDiv>
     </>
   );
 };
 
 const WelcomeUserMsg = styled.div`
-  h5 {
-    color: #a8a3b5;
+  h5{
+    color: #A8A3B5;
     text-align: center;
     font-style: normal;
     font-weight: 500;
     font-family: Roboto;
     margin-bottom: 0px;
-    font-size: 0.7rem;
-  }
-  h4 {
-    margin-top: 0px;
+    font-size: .7rem;
+  } 
+  h4{
+    margin-top:0px;
     text-align: center;
     font-style: normal;
     font-weight: 500;
-    font-size: 0.8rem;
+    font-size: .8rem;
     font-family: Roboto;
   }
-  img {
+  img{
+
     display: flex;
     margin: 0 auto;
     width: 60px;
     margin-top: -10px;
     margin-bottom: 10px;
   }
-`;
+`
 
 const ButtonLogOutDiv = styled.div`
   .ButtonLogOut {
@@ -119,7 +111,7 @@ const ButtonLogOutDiv = styled.div`
     color: #7165a0;
     cursor: pointer;
     margin: auto;
-    margin-top: 4.8em;
+    margin-top: 100px;
     margin-bottom: 20px;
     padding: 5px 20px;
     font-style: normal;
@@ -130,13 +122,13 @@ const ButtonLogOutDiv = styled.div`
 `;
 
 const ButtonAdminPanel = styled.div`
-  margin-top: 10px;
+margin-top: 10px;
   .ButtonAdminPanel {
     display: flex;
     align-items: center;
     background-color: transparent;
     border: none;
-    color: #d81b60;
+    color: #D81B60;
     cursor: pointer;
     font-style: normal;
     font-weight: 500;
@@ -149,93 +141,54 @@ const ButtonAdminPanel = styled.div`
     :hover {
       border-radius: 15px;
       color: #fafafa;
-      background-color: #d81b60;
+      background-color: #D81B60;
     }
   }
-`;
+`
 
 const drawer = (
   <div>
     <Toolbar sx={{ bgcolor: "background.white" }}>
-      <h3 style={{ display: "flex", margin: "0 auto", letterSpacing: "1px" }}>
-        Henry-Flow
-      </h3>
+      <h3 style={{ display: 'flex', margin:'0 auto', letterSpacing: '1px' }}>Henry-Flow</h3>
     </Toolbar>
     <Divider />
-    <List
-      sx={{
-        bgcolor: "background.white",
-        /* border: '2px solid orange', */ margin: "auto",
-      }}
-    >
-      {[
+    <List sx={{ bgcolor: "background.white" }}>
+      <div style={{ marginTop: '20px' }}>
         <Link to="/questions" style={{ textDecoration: "none" }}>
-          <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" } }}>
+          <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" }, marginLeft: '22%' }}>
             <HomeIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
             Home
           </Button>
-        </Link>,
-        <Divider />,
-
+        </Link>
+      </div>
+      <div style={{ marginTop: '20px' }}>
         <Link to={`/user-profile`} style={{ textDecoration: "none" }}>
-          <Button
-            sx={{
-              color: "#7165A0;",
-              "&:hover": { color: "#F50057" },
-              margin: "auto",
-            }}
-          >
+          <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057"}, marginLeft: '22%' }}>
             <AccountBoxIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
             Mi Perfil
           </Button>
-        </Link>,
-
+        </Link>
+       </div>
+       <div style={{ marginTop: '20px' }}>
         <Link to={`/favourites-user`} style={{ textDecoration: "none" }}>
-          <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" } }}>
+          <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" }, marginLeft: '22%' }}>
             <FavoriteIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
             Mis Favoritos
           </Button>
-        </Link>,
-
+        </Link>
+       </div>
+       <div style={{ marginTop: '20px', marginBottom: '20px' }}>
         <Link to={`/all-users`} style={{ textDecoration: "none" }}>
-          <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" } }}>
+          <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" }, marginLeft: '22%' }}>
             <PeopleAltIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
             Usuarios
           </Button>
-        </Link>,
-      ].map((text, index) => (
-        <ListItem
-          key={text}
-          disablePadding
-          sx={{ color: "rgba(168, 163, 181, 1)" }}
-        >
-          <ListItemButton>
-            <ListItemIcon
-              sx={{ color: "rgba(168, 163, 181, 1)" }}
-            ></ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItemButton>
-        </ListItem>
-      ))}
+        </Link>
+       </div>
+        
     </List>
     <Divider />
-    {/* <List> */}
-    {/*  */}
-    {/*    {["Mi Perfil", "Mis Favoritos"].map((text, index) => (
-        <ListItem
-          key={text}
-          disablePadding
-          sx={{ color: "rgba(168, 163, 181, 1)" }}
-        > */}
-    {/*    <ListItemButton>
-            <ListItemIcon sx={{ color: "rgba(168, 163, 181, 1)" }}>
-              {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} a */}
-    {/*  </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItemButton>
-        </ListItem>
-      ))}
-    </List>  */}
+    
     <List sx={{ bgcolor: "background.white" }}>
       <ButtonLogOut />
     </List>
