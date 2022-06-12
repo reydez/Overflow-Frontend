@@ -19,7 +19,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import styled from "@emotion/styled";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useSelector } from "react-redux";
-
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 
 const ButtonLogOut = () => {
@@ -30,24 +29,19 @@ const ButtonLogOut = () => {
     <>
       {user.isAdmin === true ? (
         <Link to="/admin" style={{ textDecoration: "none" }}>
-          <Button
-            sx={{
-              color: "red;",
-              "&:hover": { color: "#F50057" },
-              margin: "30px",
-            }}
-          >
-            <AdminPanelSettingsIcon sx={{ fontSize: "18px" }} />
-            Panel de Admin
-          </Button>
+          <ButtonAdminPanel>
+            <button className="ButtonAdminPanel"> <AdminPanelSettingsIcon sx={{ marginRight: "5px", fontSize: "18px" }} />PANEL DE ADMIN</button>
+          </ButtonAdminPanel>
         </Link>
       ) : null}
+
       <ButtonLogOutDiv>
         <button className="ButtonLogOut" onClick={() => logout()}>
           <LogoutIcon sx={{ marginRight: "10px", fontSize: "19px" }} />
           Cerrar Sesión
         </button>
       </ButtonLogOutDiv>
+      
       <Link
         to="/donar"
         style={{
@@ -98,12 +92,37 @@ const ButtonLogOutDiv = styled.div`
   }
 `;
 
+const ButtonAdminPanel = styled.div`
+  .ButtonAdminPanel {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    color: #D81B60;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: 500;
+    font-family: Roboto;
+    font-size: 15px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 5px 10px;
+    :hover {
+      border-radius: 15px;
+      color: #fafafa;
+      background-color: #D81B60;
+    }
+  }
+`
+
 const drawer = (
   <div>
-    <Toolbar sx={{ bgcolor: "background.white" }} />
+    <Toolbar sx={{ bgcolor: "background.white" }}>
+      <h3 style={{ display: 'flex', margin:'0 auto', letterSpacing: '1px' }}>Henry-Flow</h3>
+    </Toolbar>
     <Divider />
-    <List sx={{ bgcolor: "background.white" }}>
-      {/* , "Comunidad" */}
+    <List sx={{ bgcolor: "background.white", /* border: '2px solid orange', */ margin:'auto' }}>
       {[
         <Link to="/questions" style={{ textDecoration: "none" }}>
           <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" } }}>
@@ -111,11 +130,10 @@ const drawer = (
             Home
           </Button>
         </Link>,
-
         <Divider />,
 
         <Link to={`/user-profile`} style={{ textDecoration: "none" }}>
-          <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" } }}>
+          <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" }, margin: 'auto' }}>
             <AccountBoxIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
             Mi Perfil
           </Button>
