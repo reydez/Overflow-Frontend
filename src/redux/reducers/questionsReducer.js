@@ -69,6 +69,15 @@ const questionsReducer = (state = initialState, action) => {
         questions: filteredByTag,
       };
 
+
+      case "DELETE_COMMENT":
+        console.log('Comment en tempQuestions:',state.question.comments)
+        return {
+          ...state,
+          questions: state.questions.filter((everyComment) => everyComment.id !== action.payload)
+        }
+
+
     default:
       return {
         ...state,
