@@ -9,7 +9,6 @@ import {
   Avatar,
   Link,
   Button,
-  getTableSortLabelUtilityClass,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -51,10 +50,10 @@ export const QuestionCard = ({ question }) => {
 
   function matchReportId() {
     let found = userDetail.reports.find(elem => elem.postId === question.id)
-    if(found === undefined) found = 0
+    if (found === undefined) found = 0
     return found === 0 ? 0 : found.id
-  }; 
-  
+  };
+
   const exist = user && userDetail && userDetail.reports && matchReportId()
 
   // useEffect(() => {
