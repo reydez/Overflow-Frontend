@@ -20,13 +20,19 @@ import styled from "@emotion/styled";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useSelector } from "react-redux";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-
+import logo from '../assets/bgLandingRocket.png'
 const ButtonLogOut = () => {
   const { logout } = useAuth0();
   const user = useSelector((state) => state.userReducer.user);
 
   return (
     <>
+      <WelcomeUserMsg>
+        <h5>Bienvenido</h5>
+        <h4>{user.full_name}</h4>
+        <img src={logo} alt="User Badge" />
+      </WelcomeUserMsg>
+      <Divider />
       {user.isAdmin === true ? (
         <Link to="/admin" style={{ textDecoration: "none" }}>
           <ButtonAdminPanel>
@@ -73,6 +79,34 @@ const ButtonLogOut = () => {
   );
 };
 
+const WelcomeUserMsg = styled.div`
+  h5{
+    color: #A8A3B5;
+    text-align: center;
+    font-style: normal;
+    font-weight: 500;
+    font-family: Roboto;
+    margin-bottom: 0px;
+    font-size: .7rem;
+  } 
+  h4{
+    margin-top:0px;
+    text-align: center;
+    font-style: normal;
+    font-weight: 500;
+    font-size: .8rem;
+    font-family: Roboto;
+  }
+  img{
+
+    display: flex;
+    margin: 0 auto;
+    width: 60px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+  }
+`
+
 const ButtonLogOutDiv = styled.div`
   .ButtonLogOut {
     display: flex;
@@ -93,6 +127,7 @@ const ButtonLogOutDiv = styled.div`
 `;
 
 const ButtonAdminPanel = styled.div`
+margin-top: 10px;
   .ButtonAdminPanel {
     display: flex;
     align-items: center;
