@@ -23,6 +23,8 @@ export default function DetailsComponent({
   const [checked, setChecked] = useState(true);
   const dispatch = useDispatch();
 
+  console.log(user);
+
   let history = useHistory();
   const Return = () => {
     history.goBack();
@@ -234,16 +236,18 @@ export default function DetailsComponent({
               </button>
             </ButtonsDetail>
 
-            <ButtonsDetail grey corto>
-              <button
-                onClick={onSubmitHandler}
-                className="postCommentButton"
-                size="small"
-                disabled={isTextareaDisabled}
-              >
-                Publica comentario
-              </button>
-            </ButtonsDetail>
+            {!user.isBanned ? (
+              <ButtonsDetail grey corto>
+                <button
+                  onClick={onSubmitHandler}
+                  className="postCommentButton"
+                  size="small"
+                  disabled={isTextareaDisabled}
+                >
+                  Publica comentario
+                </button>
+              </ButtonsDetail>
+            ) : null}
           </div>
         </Box>
         <Box

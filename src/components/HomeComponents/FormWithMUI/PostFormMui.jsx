@@ -22,6 +22,8 @@ const PostFormMui = () => {
   const history = useHistory();
   const user = useSelector((state) => state.userReducer.user);
 
+  console.log(user);
+
   //! ------------------------- CheckBoxes-----------------------
   const [moduleSelected, setModuleSelected] = useState("selectModule");
 
@@ -165,9 +167,11 @@ const PostFormMui = () => {
         {m3TagsSelected && <FormM3Tags setTag={setTag} tag={tag} />}
         {m4TagsSelected && <FormM4Tags setTag={setTag} tag={tag} />}
 
-        <Send type="submit" onClick={handleSubmit}>
-          Enviar
-        </Send>
+        {!user.isBanned ? (
+          <Send type="submit" onClick={handleSubmit}>
+            Enviar
+          </Send>
+        ) : null}
 
         {validate === true && (
           <Success>

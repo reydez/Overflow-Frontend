@@ -1,28 +1,18 @@
+import { loadstate } from "../localstorage/localstorage";
+
 const initialState = {
-  questions: [],
-  tempQuestions: [],
+  questions: loadstate().questions,
+  tempQuestions: loadstate().questions,
   question: {},
 };
 
 const questionsReducer = (state = initialState, action) => {
   switch (action.type) {
     case "GET_QUESTIONS":
-      const copyTempQuestionsTags = action.payload
-        .map((question) => {
-          return {
-            ...question,
-            tags: question.tags.map((tag) => tag.name.toUpperCase()),
-          };
-        })
-        .sort(
-          (a, b) =>
-            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-        );
-
       return {
         ...state,
-        questions: copyTempQuestionsTags,
-        tempQuestions: copyTempQuestionsTags,
+        questions: loadstate().questions,
+        tempQuestions: loadstate().questions,
       };
 
     case "GET_QUESTION_DETAILS":
@@ -47,21 +37,6 @@ const questionsReducer = (state = initialState, action) => {
       return {
         ...state,
         questions: copyTempQuestionsNames,
-      };
-
-    case "ORDER_BY_DATE":
-      const sortByDate = state.questions.slice();
-
-      sortByDate.sort((a, b) => {
-        const date1 = new Date(a.createdAt.split("T")[0]);
-        const date2 = new Date(b.createdAt.split("T")[0]);
-
-        return date2 - date1;
-      });
-
-      return {
-        ...state,
-        questions: sortByDate,
       };
 
     case "ORDER_BY_MODULE":

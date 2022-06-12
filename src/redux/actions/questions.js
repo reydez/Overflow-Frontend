@@ -6,9 +6,21 @@ export function getQuestions() {
     axios
       .get(`${URL}/posts`)
       .then((response) => {
+        const copyTempQuestionsTags = response.data
+          .map((question) => {
+            return {
+              ...question,
+              tags: question.tags.map((tag) => tag.name.toUpperCase()),
+            };
+          })
+          .sort(
+            (a, b) =>
+              new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          );
+
         dispatch({
           type: question.GET_QUESTIONS,
-          payload: response.data,
+          payload: copyTempQuestionsTags,
         });
       })
       .catch((error) => {
