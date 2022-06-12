@@ -10,6 +10,7 @@ import {
   Link,
   Button,
   getTableSortLabelUtilityClass,
+  Checkbox,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -17,10 +18,13 @@ import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import DoDisturbOnIcon from "@mui/icons-material/DoDisturbOn";
 import Checkbox from "@mui/material/Checkbox";
+import FavoriteCheck from "../../Favorite/FavoriteCheck";
+// import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import { pink, green, red } from "@mui/material/colors";
 import Favorite from "@mui/icons-material/Favorite";
 import FlagIcon from "@mui/icons-material/Flag";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+
 import { Link as RouterLink } from "react-router-dom";
 import {
   getModuleColor,
@@ -127,7 +131,7 @@ export const QuestionCard = ({ question }) => {
             {question.module?.name}
           </Avatar>
           <Stack direction="row" spacing={0.5}>
-            {question.comments.length > 0 ? (
+            {question.comments.length || question.likes.length > 0 ? (
               <>
                 <CheckCircleIcon sx={{ color: "green" }} />
                 <Typography sx={{ color: "green", fontSize: "18px" }}>
@@ -143,6 +147,18 @@ export const QuestionCard = ({ question }) => {
                     Respuestas
                   </p>
                 </Typography>
+                <p
+                  style={{
+                    marginLeft: "-40px",
+                    marginTop: "60px",
+                    fontSize: "9px",
+                    color: "#a8a3b5",
+                  }}
+                >
+                  {/* VOTOS HACER CONEXION CON BACK */}
+                  <ThumbUpAltIcon sx={{ fontSize: 9 }} />
+                  {question.likes.length} Votos
+                </p>
               </>
             ) : (
               <>
@@ -159,11 +175,37 @@ export const QuestionCard = ({ question }) => {
                   >
                     Respuestas
                   </p>
+
+                  <p
+                    style={{
+                      marginLeft: "-30px",
+                      marginTop: 0,
+                      fontSize: "9px",
+                      color: "#a8a3b5",
+                    }}
+                  >
+                    {/* VISITAS HACER CONEXION CON BACK */}
+                    <VisibilityIcon sx={{ fontSize: 9 }} /> {extras.views}{" "}
+                    Visitas
+                  </p>
                 </Typography>
+                <p
+                  style={{
+                    marginLeft: "-40px",
+                    marginTop: "60px",
+                    fontSize: "9px",
+                    color: "#a8a3b5",
+                  }}
+                >
+                  {/* VOTOS HACER CONEXION CON BACK */}
+                  <ThumbUpAltIcon sx={{ fontSize: 9 }} />
+                  {question.likes.length} Votos
+                </p>
               </>
             )}
           </Stack>
         </Grid>
+
         <Grid item xs={12} sm container>
           <Grid item xs container direction="column" spacing={2}>
             <Grid item xs>
@@ -312,6 +354,7 @@ export const QuestionCard = ({ question }) => {
             ) : null}
             {/* ----------------- ELIMINAR PREGUNTA -----------------------*/}
           </Grid>
+
           <Grid item>
             <Typography variant="subtitle1" component="div" color="pink">
               {/* Avatar perfil deberia venir desde back */}

@@ -20,6 +20,7 @@ import CircularStatic from './CircularWithLabel'
 import { getUserProfile,/* finishedPost*/ } from "../../../redux/actions/user"
 import PaginationProfile from './paginationOfProfileDashboard/PaginationProfile'
 import PaginadoPreguntas from "./paginationOfProfileDashboard/PaginadoPreguntas";
+import PaginadoRespuestas from "./paginationOfProfileDashboard/paginadoRespuestas";
 
 
 const ProfileDashboard = () => {
@@ -28,9 +29,14 @@ const ProfileDashboard = () => {
 
     const user = useSelector((state) => state.userReducer.user);
     const userDetail = useSelector((state) => state.userReducer.userDetail);
+    const question = useSelector((state) => state.questionsReducer.question)
 
     const [editMode, setEditMode] = useState(false);
     const [questionsProfile, setQuestionsProfile] = useState([]);
+
+    const [commentsProfile, setCommentsProfile] = useState([]);
+    // console.log(questionsProfile, 'soy question', commentsProfile)
+
 
     const [informationProfile, setInformationProfile] = useState({
         firstName: "",
@@ -306,7 +312,12 @@ const ProfileDashboard = () => {
                                     posts={userDetail.posts}
                                     setQuestionsProfile={(q) => setQuestionsProfile(q)}
                                 />}
-                                {/* {comentarios &&} */}
+                                {comentarios && <PaginadoRespuestas 
+                                    commentsProfile={commentsProfile}
+                                    comments={userDetail.comments}
+                                    setCommentsProfile={(q) => setCommentsProfile(q)}
+                                
+                                />}
 
 
                             </Grid>

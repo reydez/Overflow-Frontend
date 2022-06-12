@@ -77,12 +77,12 @@ const questionsReducer = (state = initialState, action) => {
 
       if (newState.toggle) {
         copyTempQuestionsMasComentadas.sort(
-          (a, b) => b.comments.length - a.comments.length
+          (a, b) => a.comments.length - b.comments.length
         );
         newState.toggle = !newState.toggle;
       } else {
         copyTempQuestionsMasComentadas.sort(
-          (a, b) => a.comments.length - b.comments.length
+          (a, b) => b.comments.length - a.comments.length
         );
         newState.toggle = !newState.toggle;
       }
