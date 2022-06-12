@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux"
 import {
   Grid,
   Paper,
@@ -27,34 +28,63 @@ import {
   getTagColor,
 } from "../../../Controllers/Helpers/colorsQuestion";
 import Swal from "sweetalert2";
+import { sendReport } from "../../../redux/actions/reports"
+import { getUserProfile } from "../../../redux/actions/user"
+import "./stylesInputSweet.css"
 
-export const QuestionCard = ({ question }) => {
+export const QuestionCard = ({ question, reportUser }) => {
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.userReducer.user)
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
   const [chan, setChan] = useState(false);
 
-  const cambiar = async () => {
-    const inputOptions = {
-      spam: "spam",
-    };
+  useEffect(() => {
+    dispatch(getUserProfile(user.id))
+  }, [user])
 
-    const { value: formValues } = await Swal.fire({
-      title: "Cual es el problema con esta publicacion?",
-      html: '<input id="swal-input1" class="swal2-input">',
-      input: "radio",
-      inputOptions: inputOptions,
+  // const existReport = reportUser.find(elem => elem.postId === question.id) // --> FALTA HACER FUNCIONAR ESTA LINEA
+  // console.log(existReport)
+
+
+  const sendFormReport = async () => {
+    const formReport = {};
+
+    await Swal.fire({
+      title: "Reportar publicacion",
+      icon: "warning",
+      input: "select",
+      inputPlaceholder: "Motivo (obligatorio)",
+      inputOptions: {
+        spam: "Es spam",
+        inadecuado: "Es inadecuado"
+      },
       focusConfirm: false,
+      confirmButtonText: "Enviar reporte",
+      width: `40%`,
+      html: 
+      `<h3>Cual es el problema con esta publicacion?</h3>
+      <input style="width: 80%" placeholder="Mensaje opcional" id="swal-input1" class="swal2-input"> <br/>`,
+      allowOutsideClick: false,
+      allowEnterKey: false,
+      allowEscapeKey: false,
+      stopKeydownPropagation: true,
+      showCancelButton: true,
+      customClass: {
+        input: 'inputSweet'
+      },
       inputValidator: (value) => {
         if (!value) {
           return "Tienes que elegir una opción!";
         }
-      },
-      preConfirm: (radioValue) => {
-        var problema = document.getElementById("swal-input1").value;
-        console.log(radioValue, problema);
+      },  
+      preConfirm: (inputValue) => {
+        formReport.reason = inputValue;
+        formReport.message = document.getElementById("swal-input1").value
       },
     });
 
     setChan(!chan);
+    dispatch(sendReport(formReport, question.id, user.id))
   };
 
   const extras = {
@@ -248,7 +278,7 @@ export const QuestionCard = ({ question }) => {
               {...label}
               // icon={<FlagIcon sx={true? { color: "#A8A3B5" } : { color: "#f44336" }} />}
               // checkedIcon={<FlagIcon sx={{ color: "#f44336" }} />}
-              onClick={cambiar}
+              onClick={sendFormReport}
               sx={{
                 color: red[800],
                 "&.Mui-checked": {

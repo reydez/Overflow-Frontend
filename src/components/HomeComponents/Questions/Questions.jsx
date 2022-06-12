@@ -18,12 +18,25 @@ import Avatars from "../Avatars/Avatars";
 import PaginationComponent from "../../paginationComponents/PaginationComponent";
 import Footer from "../../../views/Footer";
 import { getTagColor } from "../../../Controllers/Helpers/colorsQuestion";
+import { getUserProfile } from "../../../redux/actions/user"
 
 export const Questions = () => {
   const dispatch = useDispatch();
   const [loading, setLoadin] = useState(false);
+  const user = useSelector((state) => state.userReducer.user);
+  const userDetail = useSelector((state) => state.userReducer.userDetail);
   const questions = useSelector((state) => state.questionsReducer.questions);
   const tags = useSelector((state) => state.tagsReducer.tags);
+
+  // useEffect(() => {
+  //   dispatch(getUserProfile(user.id))
+  // }, [user])
+
+  // if(!!Object.keys(userDetail).length) {
+  //   console.log(userDetail.report)
+  // }
+
+  // console.log(userDetail)
 
   const respuestas = [];
 
@@ -47,6 +60,7 @@ export const Questions = () => {
       setLoadin(true);
       dispatch(getTags());
       dispatch(getQuestions());
+      dispatch(getUserProfile(user.id))
       setLoadin(false);
     };
 
@@ -122,7 +136,7 @@ export const Questions = () => {
               <h4>Loading Questions...</h4>
             ) : (
               currentItems.map((question) => (
-                <QuestionCard question={question} key={question.id} />
+                <QuestionCard question={question} reportUser={userDetail.reports} key={question.id} />
               ))
             )}
           </CardQuestion>
