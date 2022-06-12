@@ -57,18 +57,8 @@ export const QuestionCard = ({ question }) => {
   
   const exist = user && userDetail && userDetail.reports && matchReportId()
 
-  // useEffect(() => {
-  //   if(exist) {
-  //     setTimeout(() => {setChan(!Boolean(exist))}, 3500)
-  //   }
-  // }, [exist])
-
-
-  // console.log(Boolean(exist))
-
   const handleSendReport = () => {
-    sendFormReport(dispatch, question.id, user.id);
-    // setChan(!chan);
+    sendFormReport(dispatch, question.id, user.id, exist);
   };
 
   const extras = {
