@@ -31,6 +31,14 @@ const ButtonLogOut = () => {
 
   return (
     <>
+
+        <Link to='/donar' style={{ textDecoration: "none" }}>
+          <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" } }}>
+            <FavoriteIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
+            Danos Amor $$
+            <FavoriteIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
+          </Button>
+        </Link>,
       {user.isAdmin === true ? (
         <Link to="/admin" style={{ textDecoration: "none" }}>
           <Button
@@ -52,13 +60,7 @@ const ButtonLogOut = () => {
         </button>
       </ButtonLogOutDiv>
       
-      <Link to='/donar' style={{ textDecoration: "none" }}>
-          <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" } }}>
-            <FavoriteIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
-            Danos Amor $$
-            <FavoriteIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
-          </Button>
-        </Link>,
+      
       
     </>
   );
