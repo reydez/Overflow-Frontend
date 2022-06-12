@@ -135,7 +135,7 @@ function App() {
       </Route>
 
 
-        <Route exact={true} path='/admin/users'>
+      <Route exact={true} path='/admin/users'>
         {!isAuthenticated
           ? (<Redirect to="/" />)
           : (
@@ -159,8 +159,8 @@ function App() {
         }
 
       </Route>
-      
-    
+
+
 
       <Route path="*" exact={true} component={Component404} />
     </Switch>
