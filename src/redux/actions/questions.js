@@ -101,3 +101,20 @@ export function orderByDate() {
     type: question.ORDER_BY_DATE,
   };
 }
+
+
+export function deleteQuestion(idPost, idUser) {
+  return (dispatch) => {
+    axios.delete(`${URL}/posts/${idPost}/${idUser}`)
+    .then(response => {dispatch({
+      type: question.DELETE_QUESTION,
+      payload: idPost
+      // payload: response.data
+    })
+    console.log(idPost)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }
+};

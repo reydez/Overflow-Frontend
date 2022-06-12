@@ -32,6 +32,7 @@ import { sendReport } from "../../../redux/actions/reports"
 import { getUserProfile } from "../../../redux/actions/user"
 import "./stylesInputSweet.css"
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { deleteQuestion } from "../../../redux/actions/questions";
 
 export const QuestionCard = ({ question, reportUser }) => {
   const dispatch = useDispatch();
@@ -46,7 +47,9 @@ export const QuestionCard = ({ question, reportUser }) => {
   // const existReport = reportUser.find(elem => elem.postId === question.id) // --> FALTA HACER FUNCIONAR ESTA LINEA
   // console.log(existReport)
 
-
+  console.log('Con el ID:', user.id)
+  console.log('QUESTION ID:', question.id)
+  console.log('QUESTION ID:', question)
   const sendFormReport = async () => {
     const formReport = {};
 
@@ -98,11 +101,31 @@ export const QuestionCard = ({ question, reportUser }) => {
   // };
 
   // ----------------handleClick REMOVE QUESTION --------------------------- 
-  const handleRemoveQuestion = () => {
+  const handleRemoveQuestion = (idPost, idUser) => {
     // console.log('TODO QUESTION:', question)
     console.log('Queres borrar la Pregunta con ID:', question.id)
     console.log('Queres borrar la Pregunta creada por:', question.user.full_name)
     console.log('Con el ID:', user.id)
+    Swal.fire({
+      title: 'La pregunta será eliminada',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirmo'
+    }).then((result) => {
+      if (result.isConfirmed) {
+    dispatch(deleteQuestion(question.id, user.id))
+    Swal.fire(
+      'Borrada!',
+      'Pregunta eliminada correctamente',
+      'success'
+      )
+      // setTimeout(()=> {
+      //   dispatch(getQuestionDetails(questionId))
+      // }, 500)
+  }
+})
   }
 
   return (
@@ -302,15 +325,18 @@ export const QuestionCard = ({ question, reportUser }) => {
               />
             </Button>
             {/* ----------------- ELIMINAR PREGUNTA -----------------------*/}
-
-            <Button
-              {...label}
-              onClick={ handleRemoveQuestion }
-              sx={{ color: '#A8A3B5', top: 10, left: -50 }}
-            >
-              <DeleteForeverIcon  />
-            </Button>
-
+              {user.isAdmin || question.user.id === user.id
+              ? (
+                  <Button
+                  // {...label}
+                  onClick={ handleRemoveQuestion }
+                  sx={{ color: '#A8A3B5', top: 10, left: -50 }}
+                  >
+                  <DeleteForeverIcon  />
+                  </Button>
+                )
+              : null
+              }
             {/* ----------------- ELIMINAR PREGUNTA -----------------------*/}
 
           </Grid>
