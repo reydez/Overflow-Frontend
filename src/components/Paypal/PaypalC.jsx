@@ -1,29 +1,16 @@
-import React from 'react'
-import Plan1 from '../../Controllers/Paypal/Plan1'
-import Plan2 from '../../Controllers/Paypal/Plan2'
-import Plan3 from '../../Controllers/Paypal/Plan3'
+import React from 'react';
+import Plan from '../../Controllers/Paypal/Plan'
 
 export const PaypalC = () => {
   return (
-    <div >
+    <div>
+      <h1 >Danos amor!!</h1>
+      <h2>
+        Con tu donación apoyas a al equipo de HenryOverflow a darle mantenimiento a la página
+      </h2>   
       <div>
-        Plan Mensual
-        <ul>Dona 5 USD</ul>
-        <ul><Plan1/></ul>
+        <Plan/>
       </div>
-      <div>
-        Plan Trimestral
-        <ul>Dona 15 USD cada 3 meses</ul>
-        <ul>Anula tu suscripción cuando quieras</ul>
-        <ul><Plan3/></ul>
-      </div>
-      <div>
-        Plan Anual 
-        <ul>Dona 60 USD por un año</ul>
-        <ul>Anula tu suscripción cuando quieras</ul>
-        <ul><Plan2/></ul>
-      </div>
-      
     </div>
   )
 }
