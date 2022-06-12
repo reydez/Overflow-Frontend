@@ -19,13 +19,17 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import CircularStatic from './CircularWithLabel'
 import { getUserProfile,/* finishedPost*/ } from "../../../redux/actions/user"
 import PaginationProfile from './paginationOfProfileDashboard/PaginationProfile'
+import PaginadoPreguntas from "./paginationOfProfileDashboard/PaginadoPreguntas";
 
 
 const ProfileDashboard = () => {
+
+    const dispatch = useDispatch()
+
     const user = useSelector((state) => state.userReducer.user);
     const userDetail = useSelector((state) => state.userReducer.userDetail);
 
-
+    const [editMode, setEditMode] = useState(false);
     const [questionsProfile, setQuestionsProfile] = useState([]);
 
     const [informationProfile, setInformationProfile] = useState({
@@ -38,20 +42,47 @@ const ProfileDashboard = () => {
         linkedin: "",
     })
 
-
-    const dispatch = useDispatch()
+    const changeToFalse = () => {
+        setEditMode(true);
+    };
 
     useEffect(() => {
         dispatch(getUserProfile(user.id));
     }, [dispatch, user.id]);
 
 
+    //! ------------------------- CheckBoxes-----------------------
 
-    const [editMode, setEditMode] = useState(false);
+    const [moduleSelected, setModuleSelected] = useState("selectModule");
 
-    const changeToFalse = () => {
-        setEditMode(true);
+    const [preguntas, setPreguntas] = useState(false);
+    const [comentarios, setComentarios] = useState(false);
+    const [likeado, setLikeados] = useState(false);
+    const [favoritos, setFavoritos] = useState(false);
+
+    const handleOnChange = (e) => {
+        console.log('he sido clikado hdp: ', e.target.value);
+        setModuleSelected(e.target.value);
     };
+
+
+    useEffect(() => {
+        moduleSelected === "preguntas"
+            ? setPreguntas(true)
+            : setPreguntas(false);
+        moduleSelected === "respuestas"
+            ? setComentarios(true)
+            : setComentarios(false);
+        moduleSelected === "favoritos"
+            ? setLikeados(true)
+            : setLikeados(false);
+        moduleSelected === "likes"
+            ? setFavoritos(true)
+            : setFavoritos(false);
+    }, [moduleSelected]);
+
+    //! ------------------------- CheckBoxes-----------------------
+
 
     return (
         <>
@@ -242,11 +273,23 @@ const ProfileDashboard = () => {
                                 {/* BARRA CONTIENE SUB-MENU */}
                                 <List sx={{ margin: '5px 0px', textAlign: "center" }}>
                                     {" "}
-                                    {/* LISTA DEL SUB-MENU */}
-                                    <Button sx={{ color: "text.btnEdit", backgroundColor: 'background.buttons', marginLeft: '15px', border: 'solid 1px ' }}>Preguntas Realizadas</Button>
-                                    <Button sx={{ color: "text.btnEdit", backgroundColor: 'background.buttons', marginLeft: '15px', border: 'solid 1px ' }}>Respuestas Realizadas</Button>
-                                    <Button sx={{ color: "text.btnEdit", backgroundColor: 'background.buttons', marginLeft: '15px', border: 'solid 1px ' }}>Preguntas Favoritas</Button>
-                                    <Button sx={{ color: "text.btnEdit", backgroundColor: 'background.buttons', marginLeft: '15px', border: 'solid 1px ' }}>Likes</Button>
+                                    {/* Botonera*/}
+                                    <Button
+                                        onClick={handleOnChange}
+                                        value={'preguntas'}
+                                        sx={{ color: "text.btnEdit", backgroundColor: 'background.buttons', marginLeft: '15px', border: 'solid 1px ' }}>Preguntas</Button>
+                                    <Button
+                                        onClick={handleOnChange}
+                                        value={'respuestas'}
+                                        sx={{ color: "text.btnEdit", backgroundColor: 'background.buttons', marginLeft: '15px', border: 'solid 1px ' }}>Respuestas</Button>
+                                    <Button
+                                        onClick={handleOnChange}
+                                        value={'favoritos'}
+                                        sx={{ color: "text.btnEdit", backgroundColor: 'background.buttons', marginLeft: '15px', border: 'solid 1px ' }}>Favoritos</Button>
+                                    <Button
+                                        onClick={handleOnChange}
+                                        value={'likes'}
+                                        sx={{ color: "text.btnEdit", backgroundColor: 'background.buttons', marginLeft: '15px', border: 'solid 1px ' }}>Likes</Button>
                                 </List>
                             </Grid>
 
@@ -258,63 +301,12 @@ const ProfileDashboard = () => {
                                     boder: '10px solid'
                                 }}
                             >
-                                {questionsProfile?.map((p) => {
-
-                                    return (
-                                        <Grid container
-                                            key={p.id}
-                                            sx={{
-                                                width: '1133px',
-                                                height: "55px",
-                                                marginLeft: '10px',
-                                                marginTop: '12px',
-                                                padding: '14px 0px',
-                                                borderRadius: '4px',
-                                                backgroundColor: "background.mapeado",
-                                                color: "text.btnEdit"
-                                            }}
-                                        >
-                                            {" "}
-
-                                            <Grid sx={{ width: "10%" }}>
-                                            </Grid>
-
-                                            <Grid
-                                                sx={{ width: "10%" }}
-                                            >
-                                                <CardMedia
-                                                    sx={{
-                                                        position: "absolute",
-                                                        width: "35px",
-                                                        height: "35px",
-                                                        borderRadius: "75px",
-                                                        marginLeft: "4px",
-                                                        marginRight: '20px',
-                                                        border: "2px solid",
-                                                        marginTop: "-6px",
-                                                        color: "text.btnEdit"
-                                                    }}
-                                                    component="img"
-                                                    // height="294"
-                                                    image={user?.image}
-                                                    alt="Paella dish"
-                                                />
-                                                {/* {user.image} */}
-                                            </Grid>
-                                            <Grid sx={{ width: "22%" }}> {p?.title.substring(0, 40)} </Grid>
-                                            <Grid sx={{ width: "30%" }}> {p?.message.substring(0, 40)} </Grid>
-                                            <Grid sx={{ width: "15%" }}> Respuestas </Grid>
-                                            <Grid sx={{ width: "10%" }}> Likes/Views </Grid>
-                                        </Grid>
-                                    )
-                                })}
-                                <PaginationProfile
+                                {preguntas && <PaginadoPreguntas
+                                    questionsProfile={questionsProfile}
                                     posts={userDetail.posts}
                                     setQuestionsProfile={(q) => setQuestionsProfile(q)}
-                                // questionsProfile={questionsProfile}
-                                />
-
-
+                                />}
+                                {/* {comentarios &&} */}
 
 
                             </Grid>
@@ -327,3 +319,62 @@ const ProfileDashboard = () => {
 };
 
 export default ProfileDashboard;
+
+
+// {
+//     questionsProfile?.map((p) => {
+
+//         return (
+//             <Grid container
+//                 key={p.id}
+//                 sx={{
+//                     width: '1133px',
+//                     height: "55px",
+//                     marginLeft: '10px',
+//                     marginTop: '12px',
+//                     padding: '14px 0px',
+//                     borderRadius: '4px',
+//                     backgroundColor: "background.mapeado",
+//                     color: "text.btnEdit"
+//                 }}
+//             >
+
+
+//                 <Grid sx={{ width: "10%" }}>
+//                 </Grid>
+
+//                 <Grid
+//                     sx={{ width: "10%" }}
+//                 >
+//                     <CardMedia
+//                         sx={{
+//                             position: "absolute",
+//                             width: "35px",
+//                             height: "35px",
+//                             borderRadius: "75px",
+//                             marginLeft: "4px",
+//                             marginRight: '20px',
+//                             border: "2px solid",
+//                             marginTop: "-6px",
+//                             color: "text.btnEdit"
+//                         }}
+//                         component="img"
+//                         // height="294"
+//                         image={user?.image}
+//                         alt="Paella dish"
+//                     />
+
+//                 </Grid>
+//                 <Grid sx={{ width: "22%" }}> {p?.title.substring(0, 40)} </Grid>
+//                 <Grid sx={{ width: "30%" }}> {p?.message.substring(0, 40)} </Grid>
+//                 <Grid sx={{ width: "15%" }}> Respuestas </Grid>
+//                 <Grid sx={{ width: "10%" }}> Likes/Views </Grid>
+//             </Grid>
+//         )
+//     })
+// }
+
+// <PaginationProfile
+//     posts={userDetail.posts}
+//     setQuestionsProfile={(q) => setQuestionsProfile(q)}
+// /> 
