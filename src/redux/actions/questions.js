@@ -102,19 +102,26 @@ export function orderByDate() {
   };
 }
 
+export function orderByMasComentadas() {
+  return {
+    type: question.ORDER_BY_MAS_COMENTADAS,
+  };
+}
 
 export function deleteQuestion(idPost, idUser) {
   return (dispatch) => {
-    axios.delete(`${URL}/posts/${idPost}/${idUser}`)
-    .then(response => {dispatch({
-      type: question.DELETE_QUESTION,
-      payload: idPost
-      // payload: response.data
-    })
-    console.log(idPost)
-    })
-    .catch(error => {
-      console.log(error)
-    })
-  }
-};
+    axios
+      .delete(`${URL}/posts/${idPost}/${idUser}`)
+      .then((response) => {
+        dispatch({
+          type: question.DELETE_QUESTION,
+          payload: idPost,
+          // payload: response.data
+        });
+        console.log(idPost);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}

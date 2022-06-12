@@ -117,7 +117,8 @@ export default function BarLeft(props) {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
-              bgcolor: "transparent", //esta parte arreglar no cambia el color de el barleft hasta abajo
+              bgcolor: (theme) =>
+                theme.palette.mode === "dark" ? "#392E57" : "#EBEFFE",
             },
           }}
           open

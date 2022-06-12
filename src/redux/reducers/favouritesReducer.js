@@ -1,16 +1,16 @@
 const initialState = {
-    favourites: [],
+    favorites: []
 
 };
-
 const favouritesReducer =
- (state = initialState, { payload, type }) => {
-    switch (type) {
-        case 'GET_FAVOURITE':
+(state = initialState, action) => {
+    switch (action.type) {
+        
+        case 'GET_FAVORITE':
            
             return {
                 ...state,
-                favourites: payload,
+                favorites: action.payload,
             };
 
         default:

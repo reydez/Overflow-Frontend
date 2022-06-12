@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux";
 import {
   Grid,
   Paper,
@@ -10,46 +10,53 @@ import {
   Link,
   Button,
   getTableSortLabelUtilityClass,
+  Checkbox,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import DoDisturbOnIcon from "@mui/icons-material/DoDisturbOn";
-import Checkbox from "@mui/material/Checkbox";
+import FavoriteCheck from "../../Favorite/FavoriteCheck";
 // import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+
 import { pink, green, red } from "@mui/material/colors";
 import Favorite from "@mui/icons-material/Favorite";
 import FlagIcon from "@mui/icons-material/Flag";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+
 import { Link as RouterLink } from "react-router-dom";
 import {
   getModuleColor,
   getTagColor,
 } from "../../../Controllers/Helpers/colorsQuestion";
 import Swal from "sweetalert2";
-import { sendReport } from "../../../redux/actions/reports"
-import { getUserProfile } from "../../../redux/actions/user"
-import "./stylesInputSweet.css"
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { sendReport } from "../../../redux/actions/reports";
+import { getUserProfile } from "../../../redux/actions/user";
+import "./stylesInputSweet.css";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { deleteQuestion } from "../../../redux/actions/questions";
 
 export const QuestionCard = ({ question, reportUser }) => {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.userReducer.user)
+  const user = useSelector((state) => state.userReducer.user);
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
   const [chan, setChan] = useState(false);
 
+  const d = new Date(question.createdAt);
+
+  var date = d.toLocaleTimeString() + ", " + d.toLocaleDateString("ES");
+
   useEffect(() => {
-    dispatch(getUserProfile(user.id))
-  }, [user])
+    dispatch(getUserProfile(user.id));
+  }, [user]);
 
   // const existReport = reportUser.find(elem => elem.postId === question.id) // --> FALTA HACER FUNCIONAR ESTA LINEA
   // console.log(existReport)
 
-  console.log('Con el ID:', user.id)
+  /* console.log('Con el ID:', user.id)
   console.log('QUESTION ID:', question.id)
-  console.log('QUESTION ID:', question)
+  console.log('QUESTION ID:', question) */
   const sendFormReport = async () => {
     const formReport = {};
 
@@ -60,13 +67,12 @@ export const QuestionCard = ({ question, reportUser }) => {
       inputPlaceholder: "Motivo (obligatorio)",
       inputOptions: {
         spam: "Es spam",
-        inadecuado: "Es inadecuado"
+        inadecuado: "Es inadecuado",
       },
       focusConfirm: false,
       confirmButtonText: "Enviar reporte",
       width: `40%`,
-      html: 
-      `<h3>Cual es el problema con esta publicacion?</h3>
+      html: `<h3>Cual es el problema con esta publicacion?</h3>
       <input style="width: 80%" placeholder="Mensaje opcional" id="swal-input1" class="swal2-input"> <br/>`,
       allowOutsideClick: false,
       allowEnterKey: false,
@@ -74,21 +80,21 @@ export const QuestionCard = ({ question, reportUser }) => {
       stopKeydownPropagation: true,
       showCancelButton: true,
       customClass: {
-        input: 'inputSweet'
+        input: "inputSweet",
       },
       inputValidator: (value) => {
         if (!value) {
           return "Tienes que elegir una opción!";
         }
-      },  
+      },
       preConfirm: (inputValue) => {
         formReport.reason = inputValue;
-        formReport.message = document.getElementById("swal-input1").value
+        formReport.message = document.getElementById("swal-input1").value;
       },
     });
 
     setChan(!chan);
-    dispatch(sendReport(formReport, question.id, user.id))
+    dispatch(sendReport(formReport, question.id, user.id));
   };
 
   const extras = {
@@ -100,33 +106,32 @@ export const QuestionCard = ({ question, reportUser }) => {
   //   textDecoration: "none",
   // };
 
-  // ----------------handleClick REMOVE QUESTION --------------------------- 
+  // ----------------handleClick REMOVE QUESTION ---------------------------
   const handleRemoveQuestion = (idPost, idUser) => {
     // console.log('TODO QUESTION:', question)
-    console.log('Queres borrar la Pregunta con ID:', question.id)
-    console.log('Queres borrar la Pregunta creada por:', question.user.full_name)
-    console.log('Con el ID:', user.id)
+    console.log("Queres borrar la Pregunta con ID:", question.id);
+    console.log(
+      "Queres borrar la Pregunta creada por:",
+      question.user.full_name
+    );
+    console.log("Con el ID:", user.id);
     Swal.fire({
-      title: 'La pregunta será eliminada',
-      icon: 'warning',
+      title: "La pregunta será eliminada",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Confirmo'
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Confirmo",
     }).then((result) => {
       if (result.isConfirmed) {
-    dispatch(deleteQuestion(question.id, user.id))
-    Swal.fire(
-      'Borrada!',
-      'Pregunta eliminada correctamente',
-      'success'
-      )
-      // setTimeout(()=> {
-      //   dispatch(getQuestionDetails(questionId))
-      // }, 500)
-  }
-})
-  }
+        dispatch(deleteQuestion(question.id, user.id));
+        Swal.fire("Borrada!", "Pregunta eliminada correctamente", "success");
+        // setTimeout(()=> {
+        //   dispatch(getQuestionDetails(questionId))
+        // }, 500)
+      }
+    });
+  };
 
   return (
     <Paper
@@ -151,7 +156,7 @@ export const QuestionCard = ({ question, reportUser }) => {
             {question.module?.name}
           </Avatar>
           <Stack direction="row" spacing={0.5}>
-            {question.comments.length > 0 ? (
+            {question.comments.length || question.likes.length > 0 ? (
               <>
                 <CheckCircleIcon sx={{ color: "green" }} />
                 <Typography sx={{ color: "green", fontSize: "18px" }}>
@@ -167,6 +172,18 @@ export const QuestionCard = ({ question, reportUser }) => {
                     Respuestas
                   </p>
                 </Typography>
+                <p
+                  style={{
+                    marginLeft: "-40px",
+                    marginTop: "60px",
+                    fontSize: "9px",
+                    color: "#a8a3b5",
+                  }}
+                >
+                  {/* VOTOS HACER CONEXION CON BACK */}
+                  <ThumbUpAltIcon sx={{ fontSize: 9 }} />
+                  {question.likes.length} Votos
+                </p>
               </>
             ) : (
               <>
@@ -183,11 +200,37 @@ export const QuestionCard = ({ question, reportUser }) => {
                   >
                     Respuestas
                   </p>
+
+                  <p
+                    style={{
+                      marginLeft: "-30px",
+                      marginTop: 0,
+                      fontSize: "9px",
+                      color: "#a8a3b5",
+                    }}
+                  >
+                    {/* VISITAS HACER CONEXION CON BACK */}
+                    <VisibilityIcon sx={{ fontSize: 9 }} /> {extras.views}{" "}
+                    Visitas
+                  </p>
                 </Typography>
+                <p
+                  style={{
+                    marginLeft: "-40px",
+                    marginTop: "60px",
+                    fontSize: "9px",
+                    color: "#a8a3b5",
+                  }}
+                >
+                  {/* VOTOS HACER CONEXION CON BACK */}
+                  <ThumbUpAltIcon sx={{ fontSize: 9 }} />
+                  {question.likes.length} Votos
+                </p>
               </>
             )}
           </Stack>
         </Grid>
+
         <Grid item xs={12} sm container>
           <Grid item xs container direction="column" spacing={2}>
             <Grid item xs>
@@ -226,7 +269,7 @@ export const QuestionCard = ({ question, reportUser }) => {
                 </Link>
                 <h6
                   style={{ marginTop: "0", fontSize: "10px", color: "#A8A3B5" }}
-                >{`${question.createdAt}`}</h6>
+                >{`${date}`}</h6>
               </Typography>
               <Typography
                 variant="body2"
@@ -325,21 +368,18 @@ export const QuestionCard = ({ question, reportUser }) => {
               />
             </Button>
             {/* ----------------- ELIMINAR PREGUNTA -----------------------*/}
-              {user.isAdmin || question.user.id === user.id
-              ? (
-                  <Button
-                  // {...label}
-                  onClick={ handleRemoveQuestion }
-                  sx={{ color: '#A8A3B5', top: 10, left: -50 }}
-                  >
-                  <DeleteForeverIcon  />
-                  </Button>
-                )
-              : null
-              }
+            {user.isAdmin || question.user.id === user.id ? (
+              <Button
+                // {...label}
+                onClick={handleRemoveQuestion}
+                sx={{ color: "#A8A3B5", top: 10, left: -50 }}
+              >
+                <DeleteForeverIcon />
+              </Button>
+            ) : null}
             {/* ----------------- ELIMINAR PREGUNTA -----------------------*/}
-
           </Grid>
+
           <Grid item>
             <Typography variant="subtitle1" component="div" color="pink">
               {/* Avatar perfil deberia venir desde back */}

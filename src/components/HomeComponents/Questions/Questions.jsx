@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getQuestions,
   getQuestionsByName,
+  orderByMasComentadas,
   orderByModule,
   orderByTag,
 } from "../../../redux/actions/questions";
@@ -18,7 +19,7 @@ import Avatars from "../Avatars/Avatars";
 import PaginationComponent from "../../paginationComponents/PaginationComponent";
 import Footer from "../../../views/Footer";
 import { getTagColor } from "../../../Controllers/Helpers/colorsQuestion";
-import { getUserProfile } from "../../../redux/actions/user"
+import { getUserProfile } from "../../../redux/actions/user";
 
 export const Questions = () => {
   const dispatch = useDispatch();
@@ -60,7 +61,7 @@ export const Questions = () => {
       setLoadin(true);
       dispatch(getTags());
       dispatch(getQuestions());
-      dispatch(getUserProfile(user.id))
+      dispatch(getUserProfile(user.id));
       setLoadin(false);
     };
 
@@ -90,6 +91,11 @@ export const Questions = () => {
     setCurrentPage(1);
   };
 
+  const handleOrderByMasComentadas = () => {
+    dispatch(orderByMasComentadas());
+    setCurrentPage(1);
+  };
+
   return (
     <div>
       <MainContainer>
@@ -98,7 +104,7 @@ export const Questions = () => {
             <Avatars orderByModule={handleOrderByModule} />
             <Button
               sx={{
-                color: "#a8a3b5",
+                color: "#F50057",
                 "&:hover": { color: "#F50057" },
                 boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
                 borderRadius: "10px",
@@ -110,10 +116,16 @@ export const Questions = () => {
             </Button>
 
             <Button
-              sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }}
+              sx={{
+                color: "#F50057",
+                "&:hover": { color: "#F50057" },
+                boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+                borderRadius: "10px",
+              }}
               className="buttonFilter"
+              onClick={handleOrderByMasComentadas}
             >
-              Mejores Calificadas
+              Preguntas mas Comentadas
             </Button>
           </div>
 
@@ -136,7 +148,11 @@ export const Questions = () => {
               <h4>Loading Questions...</h4>
             ) : (
               currentItems.map((question) => (
-                <QuestionCard question={question} reportUser={userDetail.reports} key={question.id} />
+                <QuestionCard
+                  question={question}
+                  reportUser={userDetail.reports}
+                  key={question.id}
+                />
               ))
             )}
           </CardQuestion>
@@ -278,7 +294,7 @@ const CardQuestionContainer = styled.div`
   margin-bottom: 10px;
   .CardQuestionTitle {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
   }
   .CardQuestionTitle button {
