@@ -14,8 +14,8 @@ import Classes from "./PostFormMui.module.css";
 import InputForm from "./StylesForm/InputForm";
 import { NameDiv } from "./StylesForm/styles";
 import InputFormArea from "./StylesForm/InputFormArea";
-import { useHistory, Link } from "react-router-dom";
-import home from "./StylesForm/home.svg";
+import { useHistory } from "react-router-dom";
+
 
 const PostFormMui = () => {
   const dispatch = useDispatch();
@@ -35,12 +35,16 @@ const PostFormMui = () => {
   const handleOnChange = (e) => {
     setModuleSelected(e.target.value);
 
+    //* formulario de back
     setModulo({
       ...modulo,
       [e.target.name]: e.target.value,
     });
+    //* formulario de back
   };
 
+
+  //? Escribir
   const makeCheckboxesModule = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
