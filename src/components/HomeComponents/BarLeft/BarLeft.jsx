@@ -54,6 +54,7 @@ export default function BarLeft(props) {
             {location.pathname !== "/questions" &&
             location.pathname !== "/user-profile" &&
             location.pathname !== "/all-users" &&
+            location.pathname !== "/donar" &&
             location.pathname !== "/favourites-user" ? null : (
               <Button
                 variant="primary"
@@ -108,6 +109,7 @@ export default function BarLeft(props) {
         >
           {drawer}
         </Drawer>
+        
         <Drawer
           variant="permanent"
           sx={{
@@ -115,12 +117,13 @@ export default function BarLeft(props) {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
-              bgcolor: "transparent", //esta parte arreglar no cambia el color de el barleft hasta abajo
+              bgcolor: (theme) =>
+                theme.palette.mode === "dark" ? "#392E57" : "#EBEFFE",
             },
           }}
           open
         >
-          {drawer}
+        {drawer}
         </Drawer>
       </Box>
       <Box

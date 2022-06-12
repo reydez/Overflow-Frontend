@@ -28,10 +28,14 @@ export function deleteTag(idTag, idAdmin) {
         })
         .then(response => {dispatch({
             type: admin.DELETE_TAG,
-            payload: response.data
-        })})
-        .catch(error => {
+            payload: idTag
+          }
+          )
+          // console.log('action',idTag)
+        }
+          )
+          .catch(error => {
             console.log(error)
-        })
+          })
     }
 };

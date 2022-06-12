@@ -6,9 +6,21 @@ export function getQuestions() {
     axios
       .get(`${URL}/posts`)
       .then((response) => {
+        const copyTempQuestionsTags = response.data
+          .map((question) => {
+            return {
+              ...question,
+              tags: question.tags.map((tag) => tag.name.toUpperCase()),
+            };
+          })
+          .sort(
+            (a, b) =>
+              new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          );
+
         dispatch({
           type: question.GET_QUESTIONS,
-          payload: response.data,
+          payload: copyTempQuestionsTags,
         });
       })
       .catch((error) => {
@@ -45,7 +57,7 @@ export function getQuestionsByName(name) {
         });
       })
       .catch((error) => {
-        console.log(error);
+        alert("No existe esa pregunta!");
       });
   };
 }
@@ -87,5 +99,29 @@ export function orderByTag(tag) {
 export function orderByDate() {
   return {
     type: question.ORDER_BY_DATE,
+  };
+}
+
+export function orderByMasComentadas() {
+  return {
+    type: question.ORDER_BY_MAS_COMENTADAS,
+  };
+}
+
+export function deleteQuestion(idPost, idUser) {
+  return (dispatch) => {
+    axios
+      .delete(`${URL}/posts/${idPost}/${idUser}`)
+      .then((response) => {
+        dispatch({
+          type: question.DELETE_QUESTION,
+          payload: idPost,
+          // payload: response.data
+        });
+        console.log(idPost);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 }

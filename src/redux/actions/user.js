@@ -63,6 +63,7 @@ export function getUserProfile(idUser) {
 };
 
 export function updateUserProfile(form, idUser) {
+  console.log('from:', form, 'user:', idUser)
   return (dispatch) => {
     axios.put(`${URL}/users/${idUser}`, form)
       .then(response => {
@@ -77,11 +78,9 @@ export function updateUserProfile(form, idUser) {
   }
 };
 
-
-
 export function finishedPost(idPost, finishedPost) {
 
-  console.log('id:', idPost, 'esta en:', finishedPost)
+  // console.log('id:', idPost, 'esta en:', finishedPost)
 
   return (dispatch) => {
     axios.put(`${URL}/${idPost}`, finishedPost)
@@ -100,3 +99,5 @@ export function finishedPost(idPost, finishedPost) {
 
 // '/:idPost', finishedPost
 //'/:idPost', finishedPost;
+
+

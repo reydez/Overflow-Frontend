@@ -2,14 +2,18 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 // import Button from "@mui/material/Button";
 // import Switch from "@mui/material/Switch";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { userInbox } from "../../redux/actions/inboxes";
-
+import { deleteComment } from "../../redux/actions/comments";
+import { getQuestionDetails } from "../../redux/actions/questions";
+import FlagIcon from "@mui/icons-material/Flag";
+import { sendFormReport } from "../../Controllers/Helpers/formReport";
+import { Button } from "@mui/material"
 export default function DetailsComponent({
   question,
   loading,
@@ -21,19 +25,20 @@ export default function DetailsComponent({
   const user = useSelector((state) => state.userReducer.user);
   const isTextareaDisabled = comentarioText.length === 0;
   const [checked, setChecked] = useState(true);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const { questionId } = useParams();
 
-  console.log(question);
   console.log(user);
 
   let history = useHistory();
   const Return = () => {
     history.goBack();
   };
-  
+
   React.useEffect(() => {
-    dispatch(userInbox(user.id))
-  }, [checked, dispatch, user])
+    dispatch(userInbox(user.id));
+    dispatch(getQuestionDetails(questionId));
+  }, [checked, dispatch, user, questionId]);
 
   const onInputChange = (e) => {
     e.preventDefault();
@@ -104,10 +109,39 @@ export default function DetailsComponent({
           });
         }, 50);
       });
-      setTimeout(() => {checked ? setChecked(false) : setChecked(true)}, 500)
-      // checked ? setChecked(false) : setChecked(true)
+    setTimeout(() => {
+      checked ? setChecked(false) : setChecked(true);
+    }, 500);
+    // checked ? setChecked(false) : setChecked(true)
   };
 
+  // ------------------------- DELETE COMMENT -----------------------
+
+  const handleRemoveComment = (idComment, idUser) => {
+    Swal.fire({
+      title: "El comentario será eliminado",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Confirmo",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteComment(idComment, idUser));
+        Swal.fire("Borrado!", "Comentario eliminado correctamente", "success");
+        setTimeout(() => {
+          dispatch(getQuestionDetails(questionId));
+        }, 500);
+      }
+    });
+  };
+
+// ------------------------- REPORT COMMENT -----------------------
+  const handleSendReport = (idComment) => {
+    sendFormReport(dispatch, idComment, user.id);
+  };
+
+  console.log(commentsARenderizar);
   return (
     <div>
       <MainContainer>
@@ -178,7 +212,39 @@ export default function DetailsComponent({
                       fontSize: "16px",
                       color: "#413a66",
                     }}
-                  >{`${comment.user.first_name} ${comment.user.last_name}:`}</p>
+                  >
+                    {`${comment.user.first_name} ${comment.user.last_name}:`}
+
+                    {/* ----------------------- BORRAR COMENTARIO ---------------------- */}
+                    {user.isAdmin || comment.user.id === user.id ? (
+                      <button
+                        className="delCommentButton"
+                        onClick={() => handleRemoveComment(comment.id, user.id)}
+                      >
+                        Borrar Comentario
+                      </button>
+                    ) : null}
+                    <br/>
+
+                    {/* ----------------------- REPORTAR COMENTARIO ---------------------- */}
+                    {comment.user.id == user.id ? (
+                    <Button
+                    onClick={() => handleSendReport(comment.id)}
+                    sx={{
+                    // top: 10,
+                    // left: 650,
+                    // paddingBottom: 10
+                    borderRadius: "10px",
+                    float: "right",
+                    }}
+                    >
+                      <FlagIcon
+                      sx={{ color: "#A8A3B5" }}
+                      />
+                    </Button>
+                    ) : null}
+
+                  </p>
                   <span
                     style={{
                       fontSize: "14px",
@@ -189,7 +255,9 @@ export default function DetailsComponent({
                   >
                     {comment.message}
                   </span>
+
                   <div ref={dummy}></div>
+                  <hr />
                 </div>
               ))
             ) : (
@@ -235,16 +303,18 @@ export default function DetailsComponent({
               </button>
             </ButtonsDetail>
 
-            <ButtonsDetail grey corto>
-              <button
-                onClick={onSubmitHandler}
-                className="postCommentButton"
-                size="small"
-                disabled={isTextareaDisabled}
-              >
-                Publica comentario
-              </button>
-            </ButtonsDetail>
+            {!user.isBanned ? (
+              <ButtonsDetail grey corto>
+                <button
+                  onClick={onSubmitHandler}
+                  className="postCommentButton"
+                  size="small"
+                  disabled={isTextareaDisabled}
+                >
+                  Publica comentario
+                </button>
+              </ButtonsDetail>
+            ) : null}
           </div>
         </Box>
         <Box
@@ -340,4 +410,16 @@ const ButtonsDetail = styled.div`
 const MainContainer = styled.div`
   width: 100%;
   display: flex;
+  .delCommentButton {
+    color: red;
+    border-radius: 10px;
+    border: 1px solid;
+    background-color: transparent;
+    float: right;
+    cursor: pointer;
+    :hover {
+      color: white;
+      background-color: red;
+    }
+  }
 `;

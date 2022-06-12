@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -7,6 +7,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { Button, Grid, List } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { getFavorite } from "../redux/actions/favourite";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -25,27 +27,35 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#413A66" : "#A8A3B5",
     color: theme.palette.mode === "dark" ? "#A8A3B5" : "#413A66",
   },
-  
+
   // hide last border
   "&:last-child td, &:last-child th": {
     border: 0,
   },
 }));
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0),
-  createData("Ice cream sandwich", 237, 9.0),
-  createData("Eclair", 262, 16.0),
-  createData("Cupcake", 305, 3.7),
-];
-
-console.log()
-
 function FavouritesUser() {
+  const favorite = useSelector((state) => state.favouritesReducer.favorites);
+
+
+  const user = useSelector((state) => state.userReducer.user);
+  
+/* console.log(user) */
+
+
+  /* const [favouriteUser, setFavoriteUser]= useState(); */
+
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    /*  e.preventDefault(); */
+    dispatch(getFavorite(user.id));
+  }, [dispatch]);
+  
+
+ /*  console.log(favorite) */
+ /* console.log(favorite.Favorites) */
+/*   console.log(Object.keys(favorite).map(item => item.favorite)); */
   return (
     <div>
       <Grid
@@ -60,7 +70,7 @@ function FavouritesUser() {
       >
         {" "}
         {/* BARRA CONTIENE SUB-MENU */}
-        <List sx={{  textAlign: "center" }}>
+        <List sx={{ textAlign: "center" }}>
           {" "}
           {/* LISTA DEL SUB-MENU */}
           {/* <Button sx={{ color: '#D81B60' }}>Preguntas Realizadas</Button> */}
@@ -82,27 +92,31 @@ function FavouritesUser() {
           aria-label="customized table"
         >
           <TableHead>
-            <TableRow sx={{ width: "170%", backgroundColor: "#413A66", }}>
-              <StyledTableCell align="center">Posteos Favoritos</StyledTableCell>
+            <TableRow sx={{ width: "170%", backgroundColor: "#413A66" }}>
+              <StyledTableCell align="center">
+                Posteos Favoritos
+              </StyledTableCell>
               <StyledTableCell align="center">
                 Nombre de Usuarios
               </StyledTableCell>
-              <StyledTableCell align="center">Posteos Favoritos</StyledTableCell>
+              <StyledTableCell align="center">
+                Posteos Favoritos
+              </StyledTableCell>
               <StyledTableCell align="center">Likes Totales</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <StyledTableRow key={row.name}>
+           {/*  {favorite.Favorites.map((el, index) => (
+              <StyledTableRow key={el.id}>
                 <StyledTableCell align="center">
-                  {row.name}
+               {el.commentOrPost}
                 </StyledTableCell>
-                <StyledTableCell align="center">{row.calories}</StyledTableCell>
-                <StyledTableCell align="center">{row.fat}</StyledTableCell>
-                <StyledTableCell align="center">{row.calories}</StyledTableCell>
-                
+                 <StyledTableCell align="center">{el.user.full_name}</StyledTableCell>
+                <StyledTableCell align="center">{el.user.full_name}</StyledTableCell>
+                <StyledTableCell align="center">{el.user.length}</StyledTableCell>
+               
               </StyledTableRow>
-            ))}
+            ))} */}
           </TableBody>
         </Table>
       </TableContainer>

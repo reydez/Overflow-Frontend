@@ -60,7 +60,7 @@ const themeObj = {
       fondoPerfil: '#392E57',
       profileGrid: '#4B4171', // recuadros del profile
       profilePhotos: '#423B67', // recuadros del profile
-      mapeado: "#392E57",
+      mapeado: "#423B67",
       informationProfile: '#392E57',
       buttons: '#392E57'
     },
