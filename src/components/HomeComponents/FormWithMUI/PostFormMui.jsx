@@ -126,17 +126,6 @@ const PostFormMui = () => {
               regularExpresion={/^[a-zA-ZÀ-ÿ\s?.,0-9]{4,100}$/}
             />
           </NameDiv>
-
-          {/* <InputForm
-            // type="url"
-            state={code}
-            changeState={setCode}
-            name="code"
-            placeholder="Imagen de tu código..."
-            label="Imagen de código"
-            error="Muéstranos una imagen sobre tu problema."
-            regularExpresion={/(https?:\/\/.*\.(?:png|jpg))/i}
-          /> */}
           <InputFormArea
             state={description}
             changeState={setDescription}

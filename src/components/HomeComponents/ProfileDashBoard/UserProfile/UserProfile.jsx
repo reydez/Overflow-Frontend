@@ -21,7 +21,7 @@ import {
   btnSix,
   editButton,
   vipButton,
-} from "../../../Controllers/styleUserProfile/styleUserProfile";
+} from "../../../../Controllers/styleUserProfile/styleUserProfile";
 
 import { EditUserProfile } from "./EditUserProfile";
 import { useSelector } from "react-redux";
