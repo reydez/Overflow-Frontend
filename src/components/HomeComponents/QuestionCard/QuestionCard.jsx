@@ -22,9 +22,11 @@ import {
   getModuleColor,
   getTagColor,
 } from "../../../Controllers/Helpers/colorsQuestion";
+import { useSelector } from "react-redux";
 
 export const QuestionCard = ({ question }) => {
-  
+ 
+
 
   const extras = {
     vote: 1,
@@ -34,6 +36,7 @@ export const QuestionCard = ({ question }) => {
   //   margin: "0",
   //   textDecoration: "none",
   // };
+
 
   return (
     <Paper
@@ -58,7 +61,7 @@ export const QuestionCard = ({ question }) => {
             {question.module?.name}
           </Avatar>
           <Stack direction="row" spacing={0.5}>
-            {question.comments.length > 0 ? (
+            {question.comments.length || question.likes.length > 0 ? (
               <>
                 <CheckCircleIcon sx={{ color: "green" }} />
                 <Typography sx={{ color: "green", fontSize: "18px" }}>
@@ -71,11 +74,25 @@ export const QuestionCard = ({ question }) => {
                       color: "green",
                     }}
                   >
+
                     Respuestas
                   </p>
+                  
                 </Typography>
+                <p
+                    style={{
+                      marginLeft: "-40px",
+                      marginTop: '60px',
+                      fontSize: "9px",
+                      color: "#a8a3b5",
+                    }}
+                  >
+                    {/* VOTOS HACER CONEXION CON BACK */}
+                    <ThumbUpAltIcon sx={{ fontSize: 9 }} />{question.likes.length} Votos
+                  </p>
               </>
             ) : (
+              
               <>
                 <DoDisturbOnIcon sx={{ color: "red" }} />
                 <Typography sx={{ color: "red", fontSize: "18px" }}>
@@ -90,17 +107,7 @@ export const QuestionCard = ({ question }) => {
                   >
                     Respuestas
                   </p>
-                  <p
-                    style={{
-                      marginLeft: "-30px",
-                      marginTop: 0,
-                      fontSize: "9px",
-                      color: "#a8a3b5",
-                    }}
-                  >
-                    {/* VOTOS HACER CONEXION CON BACK */}
-                    <ThumbUpAltIcon sx={{ fontSize: 9 }} /> {extras.vote} Votos
-                  </p>
+                  
                   <p
                     style={{
                       marginLeft: "-30px",
@@ -114,6 +121,17 @@ export const QuestionCard = ({ question }) => {
                     Visitas
                   </p>
                 </Typography>
+                <p
+                    style={{
+                      marginLeft: "-40px",
+                      marginTop: '60px',
+                      fontSize: "9px",
+                      color: "#a8a3b5",
+                    }}
+                  >
+                    {/* VOTOS HACER CONEXION CON BACK */}
+                    <ThumbUpAltIcon sx={{ fontSize: 9 }} />{question.likes.length} Votos
+                  </p>
               </>
             )}
           </Stack>
@@ -209,7 +227,8 @@ export const QuestionCard = ({ question }) => {
             </Grid>
           </Grid>
          
-             <FavoriteCheck />
+             <FavoriteCheck idPost={question.id}/>
+            
              
           <Grid item>
             <Typography variant="subtitle1" component="div" color="pink">

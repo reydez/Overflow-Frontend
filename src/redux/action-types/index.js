@@ -18,7 +18,7 @@ export const comment = {
 };
 
 export const favorite = {
-    GET_FAVOURITE: "GET_FAVORITE",
+    GET_FAVORITE: "GET_FAVORITE",
     SET_FAVORITE: "SET_FAVORITE"    
 };
 
