@@ -17,7 +17,6 @@ import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import DoDisturbOnIcon from "@mui/icons-material/DoDisturbOn";
 import Checkbox from "@mui/material/Checkbox";
-// import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import { pink, green, red } from "@mui/material/colors";
 import Favorite from "@mui/icons-material/Favorite";
 import FlagIcon from "@mui/icons-material/Flag";
@@ -27,71 +26,46 @@ import {
   getModuleColor,
   getTagColor,
 } from "../../../Controllers/Helpers/colorsQuestion";
-import Swal from "sweetalert2";
-import { sendReport } from "../../../redux/actions/reports";
-import { getUserProfile } from "../../../redux/actions/user";
-import "./stylesInputSweet.css";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { deleteQuestion } from "../../../redux/actions/questions";
+import Swal from "sweetalert2";
+import { sendFormReport } from "../../../Controllers/Helpers/formReport"
 
-export const QuestionCard = ({ question, reportUser }) => {
+export const QuestionCard = ({ question }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userReducer.user);
+  const userDetail = useSelector((state => state.userReducer.userDetail))
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
-  const [chan, setChan] = useState(false);
+  const [activeColor, setActiveColor] = useState({
+    like: false,
+    favorite: false,
+    report: false
+  });
 
   const d = new Date(question.createdAt);
 
   var date = d.toLocaleTimeString() + ", " + d.toLocaleDateString("ES");
 
-  useEffect(() => {
-    dispatch(getUserProfile(user.id));
-  }, [user]);
+  function matchReportId() {
+    let found = userDetail.reports.find(elem => elem.postId === question.id)
+    if(found === undefined) found = 0
+    return found === 0 ? 0 : found.id
+  }; 
+  
+  const exist = user && userDetail && userDetail.reports && matchReportId()
 
-  // const existReport = reportUser.find(elem => elem.postId === question.id) // --> FALTA HACER FUNCIONAR ESTA LINEA
-  // console.log(existReport)
+  // useEffect(() => {
+  //   if(exist) {
+  //     setTimeout(() => {setChan(!Boolean(exist))}, 3500)
+  //   }
+  // }, [exist])
 
-  /* console.log('Con el ID:', user.id)
-  console.log('QUESTION ID:', question.id)
-  console.log('QUESTION ID:', question) */
-  const sendFormReport = async () => {
-    const formReport = {};
 
-    await Swal.fire({
-      title: "Reportar publicacion",
-      icon: "warning",
-      input: "select",
-      inputPlaceholder: "Motivo (obligatorio)",
-      inputOptions: {
-        spam: "Es spam",
-        inadecuado: "Es inadecuado",
-      },
-      focusConfirm: false,
-      confirmButtonText: "Enviar reporte",
-      width: `40%`,
-      html: `<h3>Cual es el problema con esta publicacion?</h3>
-      <input style="width: 80%" placeholder="Mensaje opcional" id="swal-input1" class="swal2-input"> <br/>`,
-      allowOutsideClick: false,
-      allowEnterKey: false,
-      allowEscapeKey: false,
-      stopKeydownPropagation: true,
-      showCancelButton: true,
-      customClass: {
-        input: "inputSweet",
-      },
-      inputValidator: (value) => {
-        if (!value) {
-          return "Tienes que elegir una opción!";
-        }
-      },
-      preConfirm: (inputValue) => {
-        formReport.reason = inputValue;
-        formReport.message = document.getElementById("swal-input1").value;
-      },
-    });
+  // console.log(Boolean(exist))
 
-    setChan(!chan);
-    dispatch(sendReport(formReport, question.id, user.id));
+  const handleSendReport = () => {
+    sendFormReport(dispatch, question.id, user.id);
+    // setChan(!chan);
   };
 
   const extras = {
@@ -106,12 +80,12 @@ export const QuestionCard = ({ question, reportUser }) => {
   // ----------------handleClick REMOVE QUESTION ---------------------------
   const handleRemoveQuestion = (idPost, idUser) => {
     // console.log('TODO QUESTION:', question)
-    console.log("Queres borrar la Pregunta con ID:", question.id);
-    console.log(
-      "Queres borrar la Pregunta creada por:",
-      question.user.full_name
-    );
-    console.log("Con el ID:", user.id);
+    // console.log("Queres borrar la Pregunta con ID:", question.id);
+    // console.log(
+    //   "Queres borrar la Pregunta creada por:",
+    //   question.user.full_name
+    // );
+    // console.log("Con el ID:", user.id);
     Swal.fire({
       title: "La pregunta será eliminada",
       icon: "warning",
@@ -312,7 +286,7 @@ export const QuestionCard = ({ question, reportUser }) => {
               {...label}
               // icon={<FlagIcon sx={true? { color: "#A8A3B5" } : { color: "#f44336" }} />}
               // checkedIcon={<FlagIcon sx={{ color: "#f44336" }} />}
-              onClick={sendFormReport}
+              onClick={handleSendReport}
               sx={{
                 color: red[800],
                 "&.Mui-checked": {
@@ -323,7 +297,7 @@ export const QuestionCard = ({ question, reportUser }) => {
               }}
             >
               <FlagIcon
-                sx={chan ? { color: "#A8A3B5" } : { color: "#f44336" }}
+                sx={activeColor.report ? { color: "#f44336" } : { color: "#A8A3B5" }}
               />
             </Button>
             {/* ----------------- ELIMINAR PREGUNTA -----------------------*/}

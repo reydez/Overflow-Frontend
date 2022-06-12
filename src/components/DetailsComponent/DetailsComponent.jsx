@@ -11,7 +11,9 @@ import Swal from "sweetalert2";
 import { userInbox } from "../../redux/actions/inboxes";
 import { deleteComment } from "../../redux/actions/comments";
 import { getQuestionDetails } from "../../redux/actions/questions";
-
+import FlagIcon from "@mui/icons-material/Flag";
+import { sendFormReport } from "../../Controllers/Helpers/formReport";
+import { Button } from "@mui/material"
 export default function DetailsComponent({
   question,
   loading,
@@ -133,6 +135,12 @@ export default function DetailsComponent({
       }
     });
   };
+
+// ------------------------- REPORT COMMENT -----------------------
+  const handleSendReport = (idComment) => {
+    sendFormReport(dispatch, idComment, user.id);
+  };
+
   console.log(commentsARenderizar);
   return (
     <div>
@@ -216,6 +224,26 @@ export default function DetailsComponent({
                         Borrar Comentario
                       </button>
                     ) : null}
+                    <br/>
+
+                    {/* ----------------------- REPORTAR COMENTARIO ---------------------- */}
+                    {comment.user.id == user.id ? (
+                    <Button
+                    onClick={() => handleSendReport(comment.id)}
+                    sx={{
+                    // top: 10,
+                    // left: 650,
+                    // paddingBottom: 10
+                    borderRadius: "10px",
+                    float: "right",
+                    }}
+                    >
+                      <FlagIcon
+                      sx={{ color: "#A8A3B5" }}
+                      />
+                    </Button>
+                    ) : null}
+
                   </p>
                   <span
                     style={{

@@ -15,7 +15,6 @@ import { getTags } from "../../../redux/actions/tags";
 import { Chip, Stack } from "@mui/material";
 import { Box } from "@mui/system";
 import Avatars from "../Avatars/Avatars";
-
 import PaginationComponent from "../../paginationComponents/PaginationComponent";
 import Footer from "../../../views/Footer";
 import { getTagColor } from "../../../Controllers/Helpers/colorsQuestion";
@@ -29,16 +28,6 @@ export const Questions = () => {
   const questions = useSelector((state) => state.questionsReducer.questions);
   const tags = useSelector((state) => state.tagsReducer.tags);
 
-  // useEffect(() => {
-  //   dispatch(getUserProfile(user.id))
-  // }, [user])
-
-  // if(!!Object.keys(userDetail).length) {
-  //   console.log(userDetail.report)
-  // }
-
-  // console.log(userDetail)
-
   const respuestas = [];
 
   for (let i = 0; i < questions.length; i++) {
@@ -47,7 +36,7 @@ export const Questions = () => {
         respuestas.push(questions[i].comments[j]);
       }
     }
-  }
+  };
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
@@ -56,17 +45,23 @@ export const Questions = () => {
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5);
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
 
+  
   useEffect(() => {
     const loadQuestions = () => {
       setLoadin(true);
       dispatch(getTags());
       dispatch(getQuestions());
-      dispatch(getUserProfile(user.id));
       setLoadin(false);
+    };
+    const createUserFromDispatch = () => {
+      if (user.id !== undefined) {
+        dispatch(getUserProfile(user.id));
+      };
     };
 
     loadQuestions();
-  }, [dispatch]);
+    createUserFromDispatch();
+  }, [dispatch, user]);
 
   if (questions.error) {
     alert(questions.error);

@@ -6,8 +6,7 @@ import BarLeft from "./components/HomeComponents/BarLeft/BarLeft";
 import PostFormMui from "./components/HomeComponents/FormWithMUI/PostFormMui";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Redirect } from "react-router-dom";
-import { useState, useEffect } from "react";
-// import { UserProfile } from "./components/HomeComponents/UserProfile/UserProfile";
+import { useEffect } from "react";
 import Component404 from "./components/404/Component404";
 import { useDispatch, useSelector } from "react-redux";
 import { createUser } from "./redux/actions/user";
@@ -17,7 +16,6 @@ import ProfileDashboard from "./components/HomeComponents/ProfileDashBoard/Profi
 import { AllUsers } from "./components/HomeComponents/AllUsers/AllUsers";
 import { AdminContainer } from "./views/AdminContainer";
 import { AdminEditTags } from "./components/HomeComponents/Admin/AdminEditTags";
-
 import { AdminBanUser } from "./components/HomeComponents/Admin/AdminBanUser";
 import { PaypalC } from "./components/Paypal/PaypalC";
 import InboxUser from "./views/InboxUser";
@@ -36,7 +34,8 @@ function App() {
     createUserFromDispatch();
   }, [user, isAuthenticated, isLoading, dispatch]);
 
-  if (isLoading && userRedux) {
+
+  if (isLoading && !Object.keys(userRedux).length) {
     return <Spinner />;
   }
 
