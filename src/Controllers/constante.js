@@ -22,6 +22,8 @@ const ButtonLogOut = () => {
 
   return (
     <>
+
+        
       <WelcomeUserMsg>
         <h5>Bienvenido</h5>
         <h4>{user.full_name}</h4>
