@@ -20,7 +20,7 @@ import styled from "@emotion/styled";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useSelector } from "react-redux";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-import logo from '../assets/bgLandingRocket.png'
+import logo from "../assets/bgLandingRocket.png";
 const ButtonLogOut = () => {
   const { logout } = useAuth0();
   const user = useSelector((state) => state.userReducer.user);
@@ -36,18 +36,22 @@ const ButtonLogOut = () => {
       {user.isAdmin === true ? (
         <Link to="/admin" style={{ textDecoration: "none" }}>
           <ButtonAdminPanel>
-            <button className="ButtonAdminPanel"> <AdminPanelSettingsIcon sx={{ marginRight: "5px", fontSize: "18px" }} />PANEL DE ADMIN</button>
+            <button className="ButtonAdminPanel">
+              {" "}
+              <AdminPanelSettingsIcon
+                sx={{ marginRight: "5px", fontSize: "18px" }}
+              />
+              PANEL DE ADMIN
+            </button>
           </ButtonAdminPanel>
         </Link>
       ) : null}
-
       <ButtonLogOutDiv>
         <button className="ButtonLogOut" onClick={() => logout()}>
           <LogoutIcon sx={{ marginRight: "10px", fontSize: "19px" }} />
           Cerrar Sesión
         </button>
       </ButtonLogOutDiv>
-      
       <Link
         to="/donar"
         style={{
@@ -80,32 +84,31 @@ const ButtonLogOut = () => {
 };
 
 const WelcomeUserMsg = styled.div`
-  h5{
-    color: #A8A3B5;
+  h5 {
+    color: #a8a3b5;
     text-align: center;
     font-style: normal;
     font-weight: 500;
     font-family: Roboto;
     margin-bottom: 0px;
-    font-size: .7rem;
-  } 
-  h4{
-    margin-top:0px;
+    font-size: 0.7rem;
+  }
+  h4 {
+    margin-top: 0px;
     text-align: center;
     font-style: normal;
     font-weight: 500;
-    font-size: .8rem;
+    font-size: 0.8rem;
     font-family: Roboto;
   }
-  img{
-
+  img {
     display: flex;
     margin: 0 auto;
     width: 60px;
     margin-top: -10px;
     margin-bottom: 10px;
   }
-`
+`;
 
 const ButtonLogOutDiv = styled.div`
   .ButtonLogOut {
@@ -116,7 +119,7 @@ const ButtonLogOutDiv = styled.div`
     color: #7165a0;
     cursor: pointer;
     margin: auto;
-    margin-top: 100px;
+    margin-top: 4.8em;
     margin-bottom: 20px;
     padding: 5px 20px;
     font-style: normal;
@@ -127,13 +130,13 @@ const ButtonLogOutDiv = styled.div`
 `;
 
 const ButtonAdminPanel = styled.div`
-margin-top: 10px;
+  margin-top: 10px;
   .ButtonAdminPanel {
     display: flex;
     align-items: center;
     background-color: transparent;
     border: none;
-    color: #D81B60;
+    color: #d81b60;
     cursor: pointer;
     font-style: normal;
     font-weight: 500;
@@ -146,18 +149,25 @@ margin-top: 10px;
     :hover {
       border-radius: 15px;
       color: #fafafa;
-      background-color: #D81B60;
+      background-color: #d81b60;
     }
   }
-`
+`;
 
 const drawer = (
   <div>
     <Toolbar sx={{ bgcolor: "background.white" }}>
-      <h3 style={{ display: 'flex', margin:'0 auto', letterSpacing: '1px' }}>Henry-Flow</h3>
+      <h3 style={{ display: "flex", margin: "0 auto", letterSpacing: "1px" }}>
+        Henry-Flow
+      </h3>
     </Toolbar>
     <Divider />
-    <List sx={{ bgcolor: "background.white", /* border: '2px solid orange', */ margin:'auto' }}>
+    <List
+      sx={{
+        bgcolor: "background.white",
+        /* border: '2px solid orange', */ margin: "auto",
+      }}
+    >
       {[
         <Link to="/questions" style={{ textDecoration: "none" }}>
           <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" } }}>
@@ -168,7 +178,13 @@ const drawer = (
         <Divider />,
 
         <Link to={`/user-profile`} style={{ textDecoration: "none" }}>
-          <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" }, margin: 'auto' }}>
+          <Button
+            sx={{
+              color: "#7165A0;",
+              "&:hover": { color: "#F50057" },
+              margin: "auto",
+            }}
+          >
             <AccountBoxIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
             Mi Perfil
           </Button>

@@ -40,6 +40,10 @@ export const QuestionCard = ({ question, reportUser }) => {
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
   const [chan, setChan] = useState(false);
 
+  const d = new Date(question.createdAt);
+
+  var date = d.getHours() + ":" + d.getMinutes() + ", " + d.toDateString();
+
   useEffect(() => {
     dispatch(getUserProfile(user.id));
   }, [user]);
@@ -224,7 +228,7 @@ export const QuestionCard = ({ question, reportUser }) => {
                 </Link>
                 <h6
                   style={{ marginTop: "0", fontSize: "10px", color: "#A8A3B5" }}
-                >{`${question.createdAt}`}</h6>
+                >{`${date}`}</h6>
               </Typography>
               <Typography
                 variant="body2"
