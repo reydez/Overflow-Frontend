@@ -109,6 +109,7 @@ export default function BarLeft(props) {
         >
           {drawer}
         </Drawer>
+        
         <Drawer
           variant="permanent"
           sx={{
@@ -121,7 +122,7 @@ export default function BarLeft(props) {
           }}
           open
         >
-          {drawer}
+        {drawer}
         </Drawer>
       </Box>
       <Box
