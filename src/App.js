@@ -130,15 +130,17 @@ function App() {
         )}
       </Route>
 
-      <Route exact={true} path="/admin/users">
-        {!isAuthenticated ? (
-          <Redirect to="/" />
-        ) : (
-          <BarLeft>
-            <AdminContainer />
-            <AdminBanUser />
-          </BarLeft>
-        )}
+
+      <Route exact={true} path='/admin/users'>
+        {!isAuthenticated
+          ? (<Redirect to="/" />)
+          : (
+            <BarLeft>
+              <AdminContainer />
+              <AdminBanUser />
+            </BarLeft>
+          )
+        }
       </Route>
 
       <Route exact={true} path="/admin/tags">
@@ -151,6 +153,8 @@ function App() {
           </BarLeft>
         )}
       </Route>
+
+
 
       <Route path="*" exact={true} component={Component404} />
     </Switch>

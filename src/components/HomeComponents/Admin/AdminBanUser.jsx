@@ -26,8 +26,8 @@ export const AdminBanUser = () => {
 
   const handleBanUser = (id) => {
     dispatch(banUser(id, user.id))
-    console.log('userId',id)
-    console.log('Admin',user.id)
+    console.log('userId', id)
+    console.log('Admin', user.id)
   }
 
   return (
@@ -42,24 +42,24 @@ export const AdminBanUser = () => {
       <div>
         {users.map((user) => {
           let idSelected = user.id;
-          return !user.isAdmin 
-          ? (
+          return !user.isAdmin
+            ? (
               <NameAndButtonStyle>
-                {user.isBanned 
-              ? (
-                  <button key={user.id} onClick={() => handleBanUser(idSelected)}>
-                    Desbanear
-                  </button>
-                ) 
-              : (
-                <button key={user.id} onClick={() => handleBanUser(idSelected)}>
-                  Banear
-                </button>
-               )}
-              <span> {user.full_name}</span>
-            </NameAndButtonStyle>
-            ) 
-          : null;
+                {user.isBanned
+                  ? (
+                    <button key={user.id} onClick={() => handleBanUser(idSelected)}>
+                      Desbanear
+                    </button>
+                  )
+                  : (
+                    <button key={user.id} onClick={() => handleBanUser(idSelected)}>
+                      Banear
+                    </button>
+                  )}
+                <span> {user.full_name}</span>
+              </NameAndButtonStyle>
+            )
+            : null;
         })}
       </div>
     </>

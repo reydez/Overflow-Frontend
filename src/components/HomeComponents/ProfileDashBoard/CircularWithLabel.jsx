@@ -16,7 +16,6 @@ function CircularProgressWithLabel(props) {
     </Box>
   );
 }
-// 
 
 CircularProgressWithLabel.propTypes = {
   value: PropTypes.number.isRequired,
@@ -28,46 +27,51 @@ export default function CircularStatic({ userDetail, informationProfile }) {
 
   const [number, setNumber] = useState(0)
 
+
   const validarCircle = (obj) => {
-
     let count = 0;
-
     for (const properties in obj) {
-
       if (obj[properties]?.length >= 8) {
         count = count + 1
-        setNumber(count)
       }
     }
-
     return validacionDos(count)
   }
 
 
   const validacionDos = (entero) => {
-    if (entero === 7) {
-      setNumber(51)
+    if (entero === 6) {
+      setNumber(35)
+    } else if (entero === 7) {
+      setNumber(43)
     } else if (entero === 8) {
-      setNumber(58)
+      setNumber(51)
     } else if (entero === 9) {
-      setNumber(66)
+      setNumber(58)
     } else if (entero === 10) {
-      setNumber(75)
+      setNumber(66)
     } else if (entero === 11) {
-      setNumber(83)
+      setNumber(75)
     } else if (entero === 12) {
-      setNumber(90)
+      setNumber(83)
     } else if (entero === 13) {
+      setNumber(90)
+    } else if (entero === 14) {
+      setNumber(100)
+    } else if (entero === 15) {
+      setNumber(100)
+    } else if (entero === 16) {
+      setNumber(100)
+    } else if (entero === 17) {
       setNumber(100)
     }
   }
 
   useEffect(() => {
     validarCircle(userDetail);
-    // validacionDos(number)
   }, [validarCircle])
 
-  console.log('este es el number', number)
+
 
   return (
     <div>
