@@ -76,6 +76,12 @@ const questionsReducer = (state = initialState, action) => {
           ...state,
           questions: state.questions.filter((everyComment) => everyComment.id !== action.payload)
         }
+      
+        case "DELETE_QUESTION":
+        return {
+          ...state,
+          questions: state.questions.filter((everyPost) => everyPost.id !== action.payload)
+        }
 
 
     default:
