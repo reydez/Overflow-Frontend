@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 // import Button from "@mui/material/Button";
 // import Switch from "@mui/material/Switch";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { userInbox } from "../../redux/actions/inboxes";
+import { deleteComment } from "../../redux/actions/comments";
+import { getQuestionDetails } from "../../redux/actions/questions";
 
 export default function DetailsComponent({
   question,
@@ -22,6 +24,9 @@ export default function DetailsComponent({
   const isTextareaDisabled = comentarioText.length === 0;
   const [checked, setChecked] = useState(true);
   const dispatch = useDispatch();
+  const { questionId } = useParams();
+  
+  console.log(user)
 
   let history = useHistory();
   const Return = () => {
@@ -30,7 +35,8 @@ export default function DetailsComponent({
 
   React.useEffect(() => {
     dispatch(userInbox(user.id));
-  }, [checked, dispatch, user]);
+    dispatch(getQuestionDetails(questionId))
+  }, [checked, dispatch, user, questionId]);
 
   const onInputChange = (e) => {
     e.preventDefault();
@@ -107,6 +113,31 @@ export default function DetailsComponent({
     // checked ? setChecked(false) : setChecked(true)
   };
 
+  // ------------------------- DELETE COMMENT -----------------------
+ 
+  const handleRemoveComment = (idComment, idUser) => {
+    Swal.fire({
+      title: 'El comentario será eliminado',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirmo'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteComment(idComment, idUser))
+        Swal.fire(
+          'Borrado!',
+          'Comentario eliminado correctamente',
+          'success'
+          )
+          setTimeout(()=> {
+            dispatch(getQuestionDetails(questionId))
+          }, 500)
+      }
+    })
+  }
+  console.log(commentsARenderizar)
   return (
     <div>
       <MainContainer>
@@ -163,21 +194,35 @@ export default function DetailsComponent({
             {commentsARenderizar?.length > 0 ? (
               commentsARenderizar.map((comment, index) => (
                 <div
-                  key={index}
+                key={index}
                   style={{
                     // border: "1px solid black",
                     borderRadius: "20px",
                     padding: ".2em 1em",
                     margin: ".5em 0 .5em 0",
                   }}
-                >
+                  >
                   <p
                     style={{
                       margin: "0",
                       fontSize: "16px",
                       color: "#413a66",
                     }}
-                  >{`${comment.user.first_name} ${comment.user.last_name}:`}</p>
+                  >{`${comment.user.first_name} ${comment.user.last_name}:`}
+                  
+                    {/* ----------------------- BORRAR COMENTARIO ---------------------- */}
+                    {user.isAdmin || comment.user.id === user.id
+                      ? (
+                        <button
+                          className="delCommentButton"
+                          onClick={ ()=> handleRemoveComment(comment.id, user.id) }
+                        >
+                          Borrar Comentario
+                        </button>
+                        )
+                      : null
+                    }
+                  </p>
                   <span
                     style={{
                       fontSize: "14px",
@@ -188,7 +233,9 @@ export default function DetailsComponent({
                   >
                     {comment.message}
                   </span>
+                 
                   <div ref={dummy}></div>
+                  <hr />
                 </div>
               ))
             ) : (
@@ -234,16 +281,18 @@ export default function DetailsComponent({
               </button>
             </ButtonsDetail>
 
-            <ButtonsDetail grey corto>
-              <button
-                onClick={onSubmitHandler}
-                className="postCommentButton"
-                size="small"
-                disabled={isTextareaDisabled}
-              >
-                Publica comentario
-              </button>
-            </ButtonsDetail>
+            {!user.isBanned ? (
+              <ButtonsDetail grey corto>
+                <button
+                  onClick={onSubmitHandler}
+                  className="postCommentButton"
+                  size="small"
+                  disabled={isTextareaDisabled}
+                >
+                  Publica comentario
+                </button>
+              </ButtonsDetail>
+            ) : null}
           </div>
         </Box>
         <Box
@@ -339,4 +388,16 @@ const ButtonsDetail = styled.div`
 const MainContainer = styled.div`
   width: 100%;
   display: flex;
+  .delCommentButton {
+    color: red;
+    border-radius: 10px;
+    border: 1px solid;
+    background-color: transparent;
+    float: right;
+    cursor: pointer;
+    :hover{
+      color: white;
+      background-color: red;
+    }
+  }
 `;

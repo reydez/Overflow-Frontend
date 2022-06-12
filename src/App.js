@@ -22,7 +22,6 @@ import { AdminBanUser } from "./components/HomeComponents/Admin/AdminBanUser";
 import { PaypalC } from "./components/Paypal/PaypalC";
 import InboxUser from "./views/InboxUser";
 
-
 function App() {
   const { isLoading, isAuthenticated, user } = useAuth0();
   const dispatch = useDispatch();
@@ -40,8 +39,6 @@ function App() {
   if (isLoading && userRedux) {
     return <Spinner />;
   }
-
-  console.log(userRedux.isAdmin);
 
   return (
     <Switch>
@@ -114,14 +111,13 @@ function App() {
       </Route>
 
       <Route exact={true} path="/inbox-user">
-        {!isAuthenticated
-          ? (<Redirect to="/" />)
-          : (
-            <BarLeft>
-              <InboxUser />
-            </BarLeft>
-          )
-        }
+        {!isAuthenticated ? (
+          <Redirect to="/" />
+        ) : (
+          <BarLeft>
+            <InboxUser />
+          </BarLeft>
+        )}
       </Route>
 
       <Route exact={true} path="/admin">
@@ -147,17 +143,15 @@ function App() {
         }
       </Route>
 
-      <Route exact={true} path='/admin/tags'>
-        {!isAuthenticated
-          ? (<Redirect to="/" />)
-          : (
-            <BarLeft>
-              <AdminContainer />
-              <AdminEditTags />
-            </BarLeft>
-          )
-        }
-
+      <Route exact={true} path="/admin/tags">
+        {!isAuthenticated ? (
+          <Redirect to="/" />
+        ) : (
+          <BarLeft>
+            <AdminContainer />
+            <AdminEditTags />
+          </BarLeft>
+        )}
       </Route>
 
 

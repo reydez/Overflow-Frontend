@@ -37,8 +37,11 @@ export function deleteComment(idComment, idUser) {
     axios.delete(`${URL}/comments/${idComment}/${idUser}`)
     .then(response => {dispatch({
       type: comment.DELETE_COMMENT,
-      payload: response.data
-    })})
+      payload: idComment
+      // payload: response.data
+    })
+    console.log(idComment)
+    })
     .catch(error => {
       console.log(error)
     })

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux"
 import {
   Grid,
   Paper,
@@ -27,37 +28,67 @@ import {
   getTagColor,
 } from "../../../Controllers/Helpers/colorsQuestion";
 import Swal from "sweetalert2";
+import { sendReport } from "../../../redux/actions/reports"
+import { getUserProfile } from "../../../redux/actions/user"
+import "./stylesInputSweet.css"
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { deleteQuestion } from "../../../redux/actions/questions";
 
-export const QuestionCard = ({ question }) => {
+export const QuestionCard = ({ question, reportUser }) => {
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.userReducer.user)
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
   const [chan, setChan] = useState(false);
 
-  const cambiar = async () => {
-    const inputOptions = {
-      spam: "spam",
-    };
+  useEffect(() => {
+    dispatch(getUserProfile(user.id))
+  }, [user])
 
-    var radioValue;
-    var textValue;
+  // const existReport = reportUser.find(elem => elem.postId === question.id) // --> FALTA HACER FUNCIONAR ESTA LINEA
+  // console.log(existReport)
 
-    const { value: formValues } = await Swal.fire({
-      title: "Cual es el problema con esta publicacion?",
-      html: '<input id="swal-input1" class="swal2-input">',
-      input: "radio",
-      inputOptions: inputOptions,
+  console.log('Con el ID:', user.id)
+  console.log('QUESTION ID:', question.id)
+  console.log('QUESTION ID:', question)
+  const sendFormReport = async () => {
+    const formReport = {};
+
+    await Swal.fire({
+      title: "Reportar publicacion",
+      icon: "warning",
+      input: "select",
+      inputPlaceholder: "Motivo (obligatorio)",
+      inputOptions: {
+        spam: "Es spam",
+        inadecuado: "Es inadecuado"
+      },
       focusConfirm: false,
+      confirmButtonText: "Enviar reporte",
+      width: `40%`,
+      html: 
+      `<h3>Cual es el problema con esta publicacion?</h3>
+      <input style="width: 80%" placeholder="Mensaje opcional" id="swal-input1" class="swal2-input"> <br/>`,
+      allowOutsideClick: false,
+      allowEnterKey: false,
+      allowEscapeKey: false,
+      stopKeydownPropagation: true,
+      showCancelButton: true,
+      customClass: {
+        input: 'inputSweet'
+      },
       inputValidator: (value) => {
         if (!value) {
           return "Tienes que elegir una opción!";
         }
-      },
-      preConfirm: (radioValue) => {
-        var problema = document.getElementById("swal-input1").value;
-        console.log(radioValue, problema);
+      },  
+      preConfirm: (inputValue) => {
+        formReport.reason = inputValue;
+        formReport.message = document.getElementById("swal-input1").value
       },
     });
 
     setChan(!chan);
+    dispatch(sendReport(formReport, question.id, user.id))
   };
 
   const extras = {
@@ -68,6 +99,34 @@ export const QuestionCard = ({ question }) => {
   //   margin: "0",
   //   textDecoration: "none",
   // };
+
+  // ----------------handleClick REMOVE QUESTION --------------------------- 
+  const handleRemoveQuestion = (idPost, idUser) => {
+    // console.log('TODO QUESTION:', question)
+    console.log('Queres borrar la Pregunta con ID:', question.id)
+    console.log('Queres borrar la Pregunta creada por:', question.user.full_name)
+    console.log('Con el ID:', user.id)
+    Swal.fire({
+      title: 'La pregunta será eliminada',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirmo'
+    }).then((result) => {
+      if (result.isConfirmed) {
+    dispatch(deleteQuestion(question.id, user.id))
+    Swal.fire(
+      'Borrada!',
+      'Pregunta eliminada correctamente',
+      'success'
+      )
+      // setTimeout(()=> {
+      //   dispatch(getQuestionDetails(questionId))
+      // }, 500)
+  }
+})
+  }
 
   return (
     <Paper
@@ -124,35 +183,11 @@ export const QuestionCard = ({ question }) => {
                   >
                     Respuestas
                   </p>
-                  <p
-                    style={{
-                      marginLeft: "-30px",
-                      marginTop: 0,
-                      fontSize: "9px",
-                      color: "#a8a3b5",
-                    }}
-                  >
-                    {/* VOTOS HACER CONEXION CON BACK */}
-                    <ThumbUpAltIcon sx={{ fontSize: 9 }} /> {extras.vote} Votos
-                  </p>
-                  <p
-                    style={{
-                      marginLeft: "-30px",
-                      marginTop: 0,
-                      fontSize: "9px",
-                      color: "#a8a3b5",
-                    }}
-                  >
-                    {/* VISITAS HACER CONEXION CON BACK */}
-                    <VisibilityIcon sx={{ fontSize: 9 }} /> {extras.views}{" "}
-                    Visitas
-                  </p>
                 </Typography>
               </>
             )}
           </Stack>
         </Grid>
-
         <Grid item xs={12} sm container>
           <Grid item xs container direction="column" spacing={2}>
             <Grid item xs>
@@ -275,7 +310,7 @@ export const QuestionCard = ({ question }) => {
               {...label}
               // icon={<FlagIcon sx={true? { color: "#A8A3B5" } : { color: "#f44336" }} />}
               // checkedIcon={<FlagIcon sx={{ color: "#f44336" }} />}
-              onClick={cambiar}
+              onClick={sendFormReport}
               sx={{
                 color: red[800],
                 "&.Mui-checked": {
@@ -289,6 +324,21 @@ export const QuestionCard = ({ question }) => {
                 sx={chan ? { color: "#A8A3B5" } : { color: "#f44336" }}
               />
             </Button>
+            {/* ----------------- ELIMINAR PREGUNTA -----------------------*/}
+              {user.isAdmin || question.user.id === user.id
+              ? (
+                  <Button
+                  // {...label}
+                  onClick={ handleRemoveQuestion }
+                  sx={{ color: '#A8A3B5', top: 10, left: -50 }}
+                  >
+                  <DeleteForeverIcon  />
+                  </Button>
+                )
+              : null
+              }
+            {/* ----------------- ELIMINAR PREGUNTA -----------------------*/}
+
           </Grid>
           <Grid item>
             <Typography variant="subtitle1" component="div" color="pink">

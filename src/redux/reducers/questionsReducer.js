@@ -1,28 +1,19 @@
+import { loadstate } from "../localstorage/localstorage";
+
 const initialState = {
-  questions: [],
-  tempQuestions: [],
+  questions: loadstate() === undefined ? [] : loadstate().questions,
+  tempQuestions: loadstate() === undefined ? [] : loadstate().questions,
   question: {},
 };
 
 const questionsReducer = (state = initialState, action) => {
   switch (action.type) {
     case "GET_QUESTIONS":
-      const copyTempQuestionsTags = action.payload
-        .map((question) => {
-          return {
-            ...question,
-            tags: question.tags.map((tag) => tag.name.toUpperCase()),
-          };
-        })
-        .sort(
-          (a, b) =>
-            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-        );
-
       return {
         ...state,
-        questions: copyTempQuestionsTags,
-        tempQuestions: copyTempQuestionsTags,
+        questions:
+          loadstate() === undefined ? action.payload : loadstate().questions,
+        tempQuestions: action.payload,
       };
 
     case "GET_QUESTION_DETAILS":
@@ -49,26 +40,11 @@ const questionsReducer = (state = initialState, action) => {
         questions: copyTempQuestionsNames,
       };
 
-    case "ORDER_BY_DATE":
-      const sortByDate = state.questions.slice();
-
-      sortByDate.sort((a, b) => {
-        const date1 = new Date(a.createdAt.split("T")[0]);
-        const date2 = new Date(b.createdAt.split("T")[0]);
-
-        return date2 - date1;
-      });
-
-      return {
-        ...state,
-        questions: sortByDate,
-      };
-
     case "ORDER_BY_MODULE":
       const copyTempQuestions = state.tempQuestions.map((question) => {
         return {
           ...question,
-          module: question.module === null ? { name: "M1" } : question.module,
+          module: question.module,
         };
       });
 
@@ -92,6 +68,21 @@ const questionsReducer = (state = initialState, action) => {
         ...state,
         questions: filteredByTag,
       };
+
+
+      case "DELETE_COMMENT":
+        console.log('Comment en tempQuestions:',state.question.comments)
+        return {
+          ...state,
+          questions: state.questions.filter((everyComment) => everyComment.id !== action.payload)
+        }
+      
+        case "DELETE_QUESTION":
+        return {
+          ...state,
+          questions: state.questions.filter((everyPost) => everyPost.id !== action.payload)
+        }
+
 
     default:
       return {

@@ -183,7 +183,7 @@ export default function InboxUser() {
               } else {
                 state = "Leída";
               }
-              link = not.comment.post.id;
+              link = not.comment ? not.comment.post.id : null;
               return (
                 <StyledTableRow>
                   <StyledTableCell align="center">
