@@ -31,6 +31,7 @@ import Swal from "sweetalert2";
 import { sendReport } from "../../../redux/actions/reports"
 import { getUserProfile } from "../../../redux/actions/user"
 import "./stylesInputSweet.css"
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 export const QuestionCard = ({ question, reportUser }) => {
   const dispatch = useDispatch();
@@ -95,6 +96,14 @@ export const QuestionCard = ({ question, reportUser }) => {
   //   margin: "0",
   //   textDecoration: "none",
   // };
+
+  // ----------------handleClick REMOVE QUESTION --------------------------- 
+  const handleRemoveQuestion = () => {
+    // console.log('TODO QUESTION:', question)
+    console.log('Queres borrar la Pregunta con ID:', question.id)
+    console.log('Queres borrar la Pregunta creada por:', question.user.full_name)
+    console.log('Con el ID:', user.id)
+  }
 
   return (
     <Paper
@@ -292,6 +301,18 @@ export const QuestionCard = ({ question, reportUser }) => {
                 sx={chan ? { color: "#A8A3B5" } : { color: "#f44336" }}
               />
             </Button>
+            {/* ----------------- ELIMINAR PREGUNTA -----------------------*/}
+
+            <Button
+              {...label}
+              onClick={ handleRemoveQuestion }
+              sx={{ color: '#A8A3B5', top: 10, left: -50 }}
+            >
+              <DeleteForeverIcon  />
+            </Button>
+
+            {/* ----------------- ELIMINAR PREGUNTA -----------------------*/}
+
           </Grid>
           <Grid item>
             <Typography variant="subtitle1" component="div" color="pink">
