@@ -53,6 +53,10 @@ export const Questions = () => {
     loadQuestions();
   }, [dispatch]);
 
+  if (questions.error) {
+    alert(questions.error);
+  }
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = questions.slice(indexOfFirstItem, indexOfLastItem);
@@ -79,7 +83,12 @@ export const Questions = () => {
           <div className="CardQuestionTitle">
             <Avatars orderByModule={handleOrderByModule} />
             <Button
-              sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }}
+              sx={{
+                color: "#a8a3b5",
+                "&:hover": { color: "#F50057" },
+                boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+                borderRadius: "10px",
+              }}
               className="buttonFilter"
               onClick={refreshPage}
             >

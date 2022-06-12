@@ -57,7 +57,7 @@ export function getQuestionsByName(name) {
         });
       })
       .catch((error) => {
-        console.log(error);
+        alert("No existe esa pregunta!");
       });
   };
 }
