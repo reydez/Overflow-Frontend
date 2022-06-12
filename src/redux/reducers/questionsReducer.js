@@ -1,8 +1,8 @@
 import { loadstate } from "../localstorage/localstorage";
 
 const initialState = {
-  questions: loadstate() === undefined ? [] : loadstate().questions,
-  tempQuestions: loadstate() === undefined ? [] : loadstate().questions,
+  questions: [],
+  tempQuestions: [],
   question: {},
 };
 
@@ -11,8 +11,7 @@ const questionsReducer = (state = initialState, action) => {
     case "GET_QUESTIONS":
       return {
         ...state,
-        questions:
-          loadstate() === undefined ? action.payload : loadstate().questions,
+        questions: action.payload,
         tempQuestions: action.payload,
       };
 
@@ -69,20 +68,34 @@ const questionsReducer = (state = initialState, action) => {
         questions: filteredByTag,
       };
 
+    case "ORDER_BY_MAS_COMENTADAS":
+      const copyTempQuestionsMasComentadas = state.tempQuestions.slice();
 
-      case "DELETE_COMMENT":
-        console.log('Comment en tempQuestions:',state.question.comments)
-        return {
-          ...state,
-          questions: state.questions.filter((everyComment) => everyComment.id !== action.payload)
-        }
-      
-        case "DELETE_QUESTION":
-        return {
-          ...state,
-          questions: state.questions.filter((everyPost) => everyPost.id !== action.payload)
-        }
+      copyTempQuestionsMasComentadas.sort(
+        (a, b) => b.comments.length - a.comments.length
+      );
 
+      return {
+        ...state,
+        questions: copyTempQuestionsMasComentadas,
+      };
+
+    case "DELETE_COMMENT":
+      console.log("Comment en tempQuestions:", state.question.comments);
+      return {
+        ...state,
+        questions: state.questions.filter(
+          (everyComment) => everyComment.id !== action.payload
+        ),
+      };
+
+    case "DELETE_QUESTION":
+      return {
+        ...state,
+        questions: state.questions.filter(
+          (everyPost) => everyPost.id !== action.payload
+        ),
+      };
 
     default:
       return {

@@ -25,8 +25,8 @@ export default function DetailsComponent({
   const [checked, setChecked] = useState(true);
   const dispatch = useDispatch();
   const { questionId } = useParams();
-  
-  console.log(user)
+
+  console.log(user);
 
   let history = useHistory();
   const Return = () => {
@@ -35,7 +35,7 @@ export default function DetailsComponent({
 
   React.useEffect(() => {
     dispatch(userInbox(user.id));
-    dispatch(getQuestionDetails(questionId))
+    dispatch(getQuestionDetails(questionId));
   }, [checked, dispatch, user, questionId]);
 
   const onInputChange = (e) => {
@@ -114,30 +114,26 @@ export default function DetailsComponent({
   };
 
   // ------------------------- DELETE COMMENT -----------------------
- 
+
   const handleRemoveComment = (idComment, idUser) => {
     Swal.fire({
-      title: 'El comentario será eliminado',
-      icon: 'warning',
+      title: "El comentario será eliminado",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Confirmo'
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Confirmo",
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(deleteComment(idComment, idUser))
-        Swal.fire(
-          'Borrado!',
-          'Comentario eliminado correctamente',
-          'success'
-          )
-          setTimeout(()=> {
-            dispatch(getQuestionDetails(questionId))
-          }, 500)
+        dispatch(deleteComment(idComment, idUser));
+        Swal.fire("Borrado!", "Comentario eliminado correctamente", "success");
+        setTimeout(() => {
+          dispatch(getQuestionDetails(questionId));
+        }, 500);
       }
-    })
-  }
-  console.log(commentsARenderizar)
+    });
+  };
+  console.log(commentsARenderizar);
   return (
     <div>
       <MainContainer>
@@ -194,34 +190,32 @@ export default function DetailsComponent({
             {commentsARenderizar?.length > 0 ? (
               commentsARenderizar.map((comment, index) => (
                 <div
-                key={index}
+                  key={index}
                   style={{
                     // border: "1px solid black",
                     borderRadius: "20px",
                     padding: ".2em 1em",
                     margin: ".5em 0 .5em 0",
                   }}
-                  >
+                >
                   <p
                     style={{
                       margin: "0",
                       fontSize: "16px",
                       color: "#413a66",
                     }}
-                  >{`${comment.user.first_name} ${comment.user.last_name}:`}
-                  
+                  >
+                    {`${comment.user.first_name} ${comment.user.last_name}:`}
+
                     {/* ----------------------- BORRAR COMENTARIO ---------------------- */}
-                    {user.isAdmin || comment.user.id === user.id
-                      ? (
-                        <button
-                          className="delCommentButton"
-                          onClick={ ()=> handleRemoveComment(comment.id, user.id) }
-                        >
-                          Borrar Comentario
-                        </button>
-                        )
-                      : null
-                    }
+                    {user.isAdmin || comment.user.id === user.id ? (
+                      <button
+                        className="delCommentButton"
+                        onClick={() => handleRemoveComment(comment.id, user.id)}
+                      >
+                        Borrar Comentario
+                      </button>
+                    ) : null}
                   </p>
                   <span
                     style={{
@@ -233,7 +227,7 @@ export default function DetailsComponent({
                   >
                     {comment.message}
                   </span>
-                 
+
                   <div ref={dummy}></div>
                   <hr />
                 </div>
@@ -395,7 +389,7 @@ const MainContainer = styled.div`
     background-color: transparent;
     float: right;
     cursor: pointer;
-    :hover{
+    :hover {
       color: white;
       background-color: red;
     }
