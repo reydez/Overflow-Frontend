@@ -42,7 +42,7 @@ export const QuestionCard = ({ question, reportUser }) => {
 
   const d = new Date(question.createdAt);
 
-  var date = d.getHours() + ":" + d.getMinutes() + ", " + d.toDateString();
+  var date = d.toLocaleTimeString() + ", " + d.toLocaleDateString("ES");
 
   useEffect(() => {
     dispatch(getUserProfile(user.id));
