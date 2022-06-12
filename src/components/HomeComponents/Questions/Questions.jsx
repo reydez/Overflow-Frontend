@@ -93,6 +93,7 @@ export const Questions = () => {
 
   const handleOrderByMasComentadas = () => {
     dispatch(orderByMasComentadas());
+    setCurrentPage(1);
   };
 
   return (
@@ -124,7 +125,7 @@ export const Questions = () => {
               className="buttonFilter"
               onClick={handleOrderByMasComentadas}
             >
-              Preguntas mas Camentadas
+              Preguntas mas Comentadas
             </Button>
           </div>
 

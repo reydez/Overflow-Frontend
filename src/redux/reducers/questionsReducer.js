@@ -1,9 +1,11 @@
+import { appendOwnerState } from "@mui/base";
 import { loadstate } from "../localstorage/localstorage";
 
 const initialState = {
   questions: [],
   tempQuestions: [],
   question: {},
+  toggle: false,
 };
 
 const questionsReducer = (state = initialState, action) => {
@@ -71,12 +73,23 @@ const questionsReducer = (state = initialState, action) => {
     case "ORDER_BY_MAS_COMENTADAS":
       const copyTempQuestionsMasComentadas = state.tempQuestions.slice();
 
-      copyTempQuestionsMasComentadas.sort(
-        (a, b) => b.comments.length - a.comments.length
-      );
+      var newState = Object.assign({}, state);
+
+      if (newState.toggle) {
+        copyTempQuestionsMasComentadas.sort(
+          (a, b) => b.comments.length - a.comments.length
+        );
+        newState.toggle = !newState.toggle;
+      } else {
+        copyTempQuestionsMasComentadas.sort(
+          (a, b) => a.comments.length - b.comments.length
+        );
+        newState.toggle = !newState.toggle;
+      }
 
       return {
         ...state,
+        toggle: newState.toggle,
         questions: copyTempQuestionsMasComentadas,
       };
 
