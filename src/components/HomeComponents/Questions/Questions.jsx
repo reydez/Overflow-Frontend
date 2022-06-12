@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getQuestions,
   getQuestionsByName,
-  orderByDate,
+  orderByMasComentadas,
   orderByModule,
   orderByTag,
 } from "../../../redux/actions/questions";
@@ -19,12 +19,35 @@ import Avatars from "../Avatars/Avatars";
 import PaginationComponent from "../../paginationComponents/PaginationComponent";
 import Footer from "../../../views/Footer";
 import { getTagColor } from "../../../Controllers/Helpers/colorsQuestion";
+import { getUserProfile } from "../../../redux/actions/user";
 
 export const Questions = () => {
   const dispatch = useDispatch();
   const [loading, setLoadin] = useState(false);
+  const user = useSelector((state) => state.userReducer.user);
+  const userDetail = useSelector((state) => state.userReducer.userDetail);
   const questions = useSelector((state) => state.questionsReducer.questions);
   const tags = useSelector((state) => state.tagsReducer.tags);
+
+  // useEffect(() => {
+  //   dispatch(getUserProfile(user.id))
+  // }, [user])
+
+  // if(!!Object.keys(userDetail).length) {
+  //   console.log(userDetail.report)
+  // }
+
+  // console.log(userDetail)
+
+  const respuestas = [];
+
+  for (let i = 0; i < questions.length; i++) {
+    if (questions[i].comments.length > 0) {
+      for (let j = 0; j < questions[i].comments.length; j++) {
+        respuestas.push(questions[i].comments[j]);
+      }
+    }
+  }
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
@@ -38,11 +61,16 @@ export const Questions = () => {
       setLoadin(true);
       dispatch(getTags());
       dispatch(getQuestions());
+      dispatch(getUserProfile(user.id));
       setLoadin(false);
     };
 
     loadQuestions();
   }, [dispatch]);
+
+  if (questions.error) {
+    alert(questions.error);
+  }
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -50,11 +78,6 @@ export const Questions = () => {
 
   const refreshPage = () => {
     dispatch(getQuestionsByName(""));
-    setCurrentPage(1);
-  };
-
-  const orderByDateHandler = () => {
-    dispatch(orderByDate());
     setCurrentPage(1);
   };
 
@@ -68,6 +91,11 @@ export const Questions = () => {
     setCurrentPage(1);
   };
 
+  const handleOrderByMasComentadas = () => {
+    dispatch(orderByMasComentadas());
+    setCurrentPage(1);
+  };
+
   return (
     <div>
       <MainContainer>
@@ -75,7 +103,12 @@ export const Questions = () => {
           <div className="CardQuestionTitle">
             <Avatars orderByModule={handleOrderByModule} />
             <Button
-              sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }}
+              sx={{
+                color: "#F50057",
+                "&:hover": { color: "#F50057" },
+                boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+                borderRadius: "10px",
+              }}
               className="buttonFilter"
               onClick={refreshPage}
             >
@@ -83,10 +116,16 @@ export const Questions = () => {
             </Button>
 
             <Button
-              sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }}
+              sx={{
+                color: "#F50057",
+                "&:hover": { color: "#F50057" },
+                boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+                borderRadius: "10px",
+              }}
               className="buttonFilter"
+              onClick={handleOrderByMasComentadas}
             >
-              Mejores Calificadas
+              Preguntas mas Comentadas
             </Button>
           </div>
 
@@ -109,7 +148,11 @@ export const Questions = () => {
               <h4>Loading Questions...</h4>
             ) : (
               currentItems.map((question) => (
-                <QuestionCard question={question} key={question.id} />
+                <QuestionCard
+                  question={question}
+                  reportUser={userDetail.reports}
+                  key={question.id}
+                />
               ))
             )}
           </CardQuestion>
@@ -128,9 +171,11 @@ export const Questions = () => {
                 borderRadius: 1,
               }}
               className="nums"
-            ></Box>
+            >
+              {/* {respuestas.length} variable de todas las respuestas/comentarios */}
+            </Box>
             <Box sx={{ color: "#A8A3B5", marginTop: 1, marginLeft: 4 }}>
-              Respuestas{" "}
+              Respuestas
             </Box>
             <Box sx={{ marginTop: 3, marginLeft: 0, textAlign: "center" }}>
               Tags mas usados
@@ -225,7 +270,7 @@ const CounterSideBar = styled.div`
       --num: 0;
     }
     to {
-      --num: 327;
+      --num: 534;
     }
   }
 `;
@@ -249,7 +294,7 @@ const CardQuestionContainer = styled.div`
   margin-bottom: 10px;
   .CardQuestionTitle {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
   }
   .CardQuestionTitle button {

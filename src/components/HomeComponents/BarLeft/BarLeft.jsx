@@ -53,7 +53,9 @@ export default function BarLeft(props) {
           <Link to={"/create-question"} style={{ textDecoration: "none" }}>
             {location.pathname !== "/questions" &&
             location.pathname !== "/user-profile" &&
-            location.pathname !== "/all-users" ? null : (
+            location.pathname !== "/all-users" &&
+            location.pathname !== "/donar" &&
+            location.pathname !== "/favourites-user" ? null : (
               <Button
                 variant="primary"
                 size="large" /* disableRipple  */
@@ -76,6 +78,7 @@ export default function BarLeft(props) {
               </Button>
             )}
           </Link>
+
           {location.pathname !== "/questions" ? null : <SearchBar />}
           <PerfilIcon />
         </Toolbar>
@@ -106,6 +109,7 @@ export default function BarLeft(props) {
         >
           {drawer}
         </Drawer>
+        
         <Drawer
           variant="permanent"
           sx={{
@@ -118,7 +122,7 @@ export default function BarLeft(props) {
           }}
           open
         >
-          {drawer}
+        {drawer}
         </Drawer>
       </Box>
       <Box

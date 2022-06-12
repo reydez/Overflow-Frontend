@@ -15,66 +15,72 @@ import {
 import { Formik, Form, Field } from "formik"
 import * as Yup from "yup"
 import { TextField } from "formik-material-ui"
+import { updateUserProfile } from '../../../redux/actions/user';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 
 const initialValues = {
-  firstName: "",
-  lastName: "",
+  first_name: "",
+  last_name: "",
   role: "",
   twitter: "",
   github: "",
   portfolio: "",
-  linkedin: "",
+  linkedin: ""
 }
 
 const options = [
-  { label: "Student", value: "student" },
-  { label: "Henry Hero", value: "henry_hero", },
-  { label: "Technical Assitance", value: "technical_assitance" },
-  { label: "Henry Mentor", value: "henry_mentor" },
-  { label: "Instructor", value: "instructor" },
-  { label: "Staff Henry", value: "staff_henry" },
-  { label: "Graduate", value: "graduate" },
+  { label: "Student", value: "Student" },
+  { label: "Henry Hero", value: "Henry hero", },
+  { label: "Technical Assitance", value: "Technical assitance" },
+  { label: "Henry Mentor", value: "Henry mentor" },
+  { label: "Instructor", value: "Instructor" },
+  { label: "Staff Henry", value: "Staff henry" },
+  { label: "Graduate", value: "Graduate" },
 ]
 
-//linkedin validation
-// const lowercaseRegEx = /(?=.*[a-z])/
-// const uppercaseRegEx = /(?=.*[A-Z])/
-// const numericRegEx = /(?=.*[0-9])/
-// const lengthRegEx = /(?=.{6,})/
-
-//validation schema
 let validationSchema = Yup.object().shape({
-  firstName: Yup.string().required("Required"),
-  lastName: Yup.string().required("Required"),
-  portfolio: Yup.string().required("Required"),
-  linkedin: Yup.string().required("Required!"),
-  // .matches(
-  //   lowercaseRegEx,
-  //   "Must contain one lowercase alphabetical character!"
-  // )
-  // .matches(
-  //   uppercaseRegEx,
-  //   "Must contain one uppercase alphabetical character!"
-  // )
-  // .matches(numericRegEx, "Must contain one numeric character!")
-  // .matches(lengthRegEx, "Must contain 6 characters!")
-
+  first_name: Yup.string(),
+  last_name: Yup.string(),
+  portfolio: Yup.string().matches(
+    /^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$/,
+    'Enter correct url!'
+  ),
+  linkedin: Yup.string().matches(
+    /^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$/,
+    'Enter correct url!'
+  ),
+  twitter: Yup.string().matches(
+    /^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$/,
+    'Enter correct url!'
+  ),
+  github: Yup.string().matches(
+    /^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$/,
+    'Enter correct url!'
+  ),
 })
 
+// ((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_-]+=[a-zA-Z0-9-%]+&?)?$
+
+export const EditUserProfile = ({ setEditMode, setInformationProfile }) => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.userReducer.user);
 
 
-export const EditUserProfile = ({ changeToFalse, setEditMode }) => {
+  // Object.keys(dog).length
 
 
   const onSubmit = (values) => {
-    console.log(values)
+    setInformationProfile(values);
+    dispatch(updateUserProfile(values, user.id));
+    setEditMode(false);
   }
 
   const cancelEdit = () => {
     setEditMode(false)
-    console.log('he sido clikeado')
   }
+
   return (
 
 
@@ -101,21 +107,21 @@ export const EditUserProfile = ({ changeToFalse, setEditMode }) => {
                     <Grid item container spacing={1} justify="center">
                       <Grid item xs={12} sm={6} md={6}>
                         <Field
-                          label="First Name"
+                          label="Nombres"
                           variant="outlined"
                           fullWidth
-                          name="firstName"
-                          value={values.firstName}
+                          name="first_name"
+                          value={values.first_name}
                           component={TextField}
                         />
                       </Grid>
                       <Grid item xs={12} sm={6} md={6}>
                         <Field
-                          label="Last Name"
+                          label="Apellido"
                           variant="outlined"
                           fullWidth
-                          name="lastName"
-                          value={values.lastName}
+                          name="last_name"
+                          value={values.last_name}
                           component={TextField}
                         />
                       </Grid>
@@ -123,16 +129,16 @@ export const EditUserProfile = ({ changeToFalse, setEditMode }) => {
                       <Grid item xs={12} sm={6} md={12}>
                         <FormControl fullWidth variant="outlined">
                           <InputLabel id="demo-simple-select-outlined-label">
-                            role
+                            Role
                           </InputLabel>
                           <Select
                             labelId="demo-simple-select-outlined-label"
                             id="demo-simple-select-outlined"
-                            label="Occupation"
+                            label="Role"
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            value={values.occupation}
-                            name="occupation">
+                            value={values.role}
+                            name="role">
                             <MenuItem>None</MenuItem>
                             {options.map((item) => (
                               <MenuItem key={item.value} value={item.value}>
@@ -174,12 +180,11 @@ export const EditUserProfile = ({ changeToFalse, setEditMode }) => {
                       </Grid>
                       <Grid item xs={12} sm={6} md={6}>
                         <Field
-                          label="linkedin"
+                          label="Linkedin"
                           variant="outlined"
                           fullWidth
                           name="linkedin"
                           value={values.linkedin}
-                          // type="linkedin"
                           component={TextField}
                         />
                       </Grid>
@@ -195,7 +200,7 @@ export const EditUserProfile = ({ changeToFalse, setEditMode }) => {
                         padding: '1px'
                       }}
                     >
-                      REGISTER
+                      Registrar
                     </Button>
                     <Button
                       onClick={cancelEdit}

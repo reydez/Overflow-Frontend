@@ -6,19 +6,26 @@ import BarLeft from "./components/HomeComponents/BarLeft/BarLeft";
 import PostFormMui from "./components/HomeComponents/FormWithMUI/PostFormMui";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Redirect } from "react-router-dom";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 // import { UserProfile } from "./components/HomeComponents/UserProfile/UserProfile";
 import Component404 from "./components/404/Component404";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createUser } from "./redux/actions/user";
-import FavoritesUser from "./views/FavouritesUser"
+import FavoritesUser from "./views/FavouritesUser";
 import Spinner from "./components/spinner/Spinner";
 import ProfileDashboard from "./components/HomeComponents/ProfileDashBoard/ProfileDashboard";
 import { AllUsers } from "./components/HomeComponents/AllUsers/AllUsers";
+import { AdminContainer } from "./views/AdminContainer";
+import { AdminEditTags } from "./components/HomeComponents/Admin/AdminEditTags";
+
+import { AdminBanUser } from "./components/HomeComponents/Admin/AdminBanUser";
+import { PaypalC } from "./components/Paypal/PaypalC";
+import InboxUser from "./views/InboxUser";
 
 function App() {
   const { isLoading, isAuthenticated, user } = useAuth0();
   const dispatch = useDispatch();
+  const userRedux = useSelector((state) => state.userReducer.user);
 
   useEffect(() => {
     const createUserFromDispatch = () => {
@@ -29,7 +36,7 @@ function App() {
     createUserFromDispatch();
   }, [user, isAuthenticated, isLoading, dispatch]);
 
-  if (isLoading) {
+  if (isLoading && userRedux) {
     return <Spinner />;
   }
 
@@ -39,64 +46,115 @@ function App() {
         {isAuthenticated ? <Redirect to="/questions" /> : <LandingPage />}
       </Route>
 
-      {/* <Route exact path="/questions">
-        {!isAuthenticated ? <Redirect to="/" /> : <Home />}
-      </Route> */}
-
       <Route exact path="/questions">
-        {!isAuthenticated ? <Redirect to="/" /> : <Home />}
+        {isAuthenticated ? <Home /> : <Redirect to="/" />}
       </Route>
 
       <Route exact={true} path="/visualize-question/:questionId">
-        {!isAuthenticated ? (
-          <Redirect to="/" />
-        ) : (
+        {isAuthenticated ? (
           <BarLeft>
             <VisualizeQuestion />
           </BarLeft>
+        ) : (
+          <Redirect to="/" />
         )}
       </Route>
 
       <Route exact={true} path="/create-question">
-        {!isAuthenticated ? (
-          <Redirect to="/" />
-        ) : (
+        {isAuthenticated ? (
           <BarLeft>
             <PostFormMui />
           </BarLeft>
+        ) : (
+          <Redirect to="/" />
         )}
       </Route>
 
       <Route exact={true} path="/user-profile">
-        {!isAuthenticated ? (
-          <Redirect to="/" />
-        ) : (
+        {isAuthenticated ? (
           <BarLeft>
             <ProfileDashboard />
           </BarLeft>
+        ) : (
+          <Redirect to="/" />
         )}
       </Route>
 
       <Route exact={true} path="/all-users">
+        {isAuthenticated ? (
+          <BarLeft>
+            <AllUsers />
+          </BarLeft>
+        ) : (
+          <Redirect to="/" />
+        )}
+      </Route>
+
+      <Route exact={true} path="/donar">
         {!isAuthenticated ? (
           <Redirect to="/" />
         ) : (
           <BarLeft>
-            <AllUsers />
+            <PaypalC />
           </BarLeft>
         )}
       </Route>
 
       <Route exact={true} path="/favourites-user">
+        {isAuthenticated ? (
+          <BarLeft>
+            <FavoritesUser />
+          </BarLeft>
+        ) : (
+          <Redirect to="/" />
+        )}
+      </Route>
+
+      <Route exact={true} path="/inbox-user">
+        {!isAuthenticated ? (
+          <Redirect to="/" />
+        ) : (
+          <BarLeft>
+            <InboxUser />
+          </BarLeft>
+        )}
+      </Route>
+
+      <Route exact={true} path="/admin">
+        {isAuthenticated && userRedux.isAdmin ? (
+          <BarLeft>
+            <AdminContainer />
+          </BarLeft>
+        ) : (
+          <Redirect to="/questions" />
+        )}
+      </Route>
+
+
+      <Route exact={true} path='/admin/users'>
         {!isAuthenticated
           ? (<Redirect to="/" />)
           : (
             <BarLeft>
-              <FavoritesUser />
+              <AdminContainer />
+              <AdminBanUser />
             </BarLeft>
           )
         }
       </Route>
+
+      <Route exact={true} path="/admin/tags">
+        {!isAuthenticated ? (
+          <Redirect to="/" />
+        ) : (
+          <BarLeft>
+            <AdminContainer />
+            <AdminEditTags />
+          </BarLeft>
+        )}
+      </Route>
+
+
 
       <Route path="*" exact={true} component={Component404} />
     </Switch>
