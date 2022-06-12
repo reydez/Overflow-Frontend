@@ -1,8 +1,8 @@
 import { loadstate } from "../localstorage/localstorage";
 
 const initialState = {
-  questions: loadstate().questions,
-  tempQuestions: loadstate().questions,
+  questions: loadstate() === undefined ? [] : loadstate().questions,
+  tempQuestions: loadstate() === undefined ? [] : loadstate().questions,
   question: {},
 };
 
@@ -11,8 +11,9 @@ const questionsReducer = (state = initialState, action) => {
     case "GET_QUESTIONS":
       return {
         ...state,
-        questions: loadstate().questions,
-        tempQuestions: loadstate().questions,
+        questions:
+          loadstate() === undefined ? action.payload : loadstate().questions,
+        tempQuestions: action.payload,
       };
 
     case "GET_QUESTION_DETAILS":
@@ -43,7 +44,7 @@ const questionsReducer = (state = initialState, action) => {
       const copyTempQuestions = state.tempQuestions.map((question) => {
         return {
           ...question,
-          module: question.module === null ? { name: "M1" } : question.module,
+          module: question.module,
         };
       });
 

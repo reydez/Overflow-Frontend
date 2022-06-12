@@ -37,9 +37,6 @@ export const QuestionCard = ({ question }) => {
       spam: "spam",
     };
 
-    var radioValue;
-    var textValue;
-
     const { value: formValues } = await Swal.fire({
       title: "Cual es el problema con esta publicacion?",
       html: '<input id="swal-input1" class="swal2-input">',
@@ -124,35 +121,11 @@ export const QuestionCard = ({ question }) => {
                   >
                     Respuestas
                   </p>
-                  <p
-                    style={{
-                      marginLeft: "-30px",
-                      marginTop: 0,
-                      fontSize: "9px",
-                      color: "#a8a3b5",
-                    }}
-                  >
-                    {/* VOTOS HACER CONEXION CON BACK */}
-                    <ThumbUpAltIcon sx={{ fontSize: 9 }} /> {extras.vote} Votos
-                  </p>
-                  <p
-                    style={{
-                      marginLeft: "-30px",
-                      marginTop: 0,
-                      fontSize: "9px",
-                      color: "#a8a3b5",
-                    }}
-                  >
-                    {/* VISITAS HACER CONEXION CON BACK */}
-                    <VisibilityIcon sx={{ fontSize: 9 }} /> {extras.views}{" "}
-                    Visitas
-                  </p>
                 </Typography>
               </>
             )}
           </Stack>
         </Grid>
-
         <Grid item xs={12} sm container>
           <Grid item xs container direction="column" spacing={2}>
             <Grid item xs>
