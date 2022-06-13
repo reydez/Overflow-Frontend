@@ -56,17 +56,17 @@ export const QuestionCard = ({ question }) => {
 
   function matchLikeId() {
     let found = userDetail.likes.find(elem => elem.postId === question.id)
-    if(found === undefined) found = 0
+    if (found === undefined) found = 0
     return found === 0 ? 0 : found.id
   };
 
   function matchFavoriteId() {
     let found = userDetail.favorites.find(elem => elem.postId === question.id)
-    if(found === undefined) found = 0
+    if (found === undefined) found = 0
 
     return found === 0 ? 0 : found.id
-  }; 
-  
+  };
+
   const existReport = user && userDetail && userDetail.reports && Boolean(matchReportId());
   const existLike = user && userDetail && userDetail.likes && Boolean(matchLikeId());
   const existFavorite = user && userDetail && userDetail.favorites && Boolean(matchFavoriteId());
@@ -74,7 +74,7 @@ export const QuestionCard = ({ question }) => {
   const handleLike = () => {
     dispatch(setLikesByUser(question.id, user.id));
     dispatch(setDinamix(!dinamix))
-    
+
   };
 
 
@@ -83,7 +83,7 @@ export const QuestionCard = ({ question }) => {
     dispatch(setDinamix(!dinamix))
   };
 
-  const handleSendReport = async() => {
+  const handleSendReport = async () => {
     await sendFormReport(dispatch, question.id, user.id, existReport);
     dispatch(setDinamix(!dinamix))
   };
@@ -98,7 +98,7 @@ export const QuestionCard = ({ question }) => {
   const d = new Date(question.createdAt);
 
   var date = d.toLocaleTimeString() + ", " + d.toLocaleDateString("ES");
-  
+
   const extras = {
     vote: 1,
     views: 34,
@@ -140,7 +140,7 @@ export const QuestionCard = ({ question }) => {
         flexGrow: 1,
         // bgcolor: "background.default",
         bgcolor: (theme) =>
-        theme.palette.mode === "dark" ? "#2C284A" : "#fff",
+          theme.palette.mode === "dark" ? "#2C284A" : "#fff",
       }}
     >
       <Grid container spacing={2}>
@@ -264,7 +264,7 @@ export const QuestionCard = ({ question }) => {
                         theme.palette.mode === "dark" ? "#fff" : "#7165A0",
                     }}
                   >
-                    {question.closed ? <><b>Pregunta cerrada</b> <br/></> : null}
+                    {question.closed ? <><b>Pregunta cerrada</b> <br /></> : null}
                     {question.title}
                   </Typography>
                 </Link>
@@ -337,7 +337,7 @@ export const QuestionCard = ({ question }) => {
               }}
             >
               <ThumbUpIcon
-                sx={activeColor.like ? { color: "#4caf50" } : { color: "#A8A3B5" }} 
+                sx={activeColor.like ? { color: "#4caf50" } : { color: "#A8A3B5" }}
               />
             </Button>
             <Button
@@ -353,7 +353,7 @@ export const QuestionCard = ({ question }) => {
               }}
             >
               <Favorite
-                sx={activeColor.favorite ? { color: "#D81B60" } : { color: "#A8A3B5" }} 
+                sx={activeColor.favorite ? { color: "#D81B60" } : { color: "#A8A3B5" }}
               />
             </Button>
             <Button

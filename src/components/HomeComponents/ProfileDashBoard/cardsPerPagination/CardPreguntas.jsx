@@ -1,29 +1,10 @@
-import React, { useState } from 'react'
-import { Grid, CardMedia, Switch } from "@mui/material";
-import { useDispatch } from 'react-redux';
-import { finishedPost } from '../../../../redux/actions/user';
+import React from 'react'
+import { Link, Grid, CardMedia } from "@mui/material";
 
-const CardPreguntas = ({ p, idPost, user }) => {
-    const dispatch = useDispatch()
+import { Link as RouterLink } from "react-router-dom";
 
-    const [checked, setChecked] = useState(true);
-    const [disable, setDisable] = useState(false);
-
-
-    const handleChange = (event) => {
-        setDisable(true)
-        setChecked(event.target.checked);
-        // console.log('Hola he sido seteado', checked);
-        dispatch(finishedPost(
-            idPost,
-            {
-                finished: checked
-            },
-            user.id
-        ))
-    };
-
-    // console.log(`Hola soy: ${checked}`)
+const CardPreguntas = ({ p, user }) => {
+    // console.log(p);
     return (
         <Grid
             container
@@ -36,18 +17,12 @@ const CardPreguntas = ({ p, idPost, user }) => {
                 padding: '14px 0px',
                 borderRadius: '4px',
                 backgroundColor: "background.mapeado",
-                color: "text.btnEdit"
+                color: "text.btnEdit",
+                border: '2px solid',
             }}
         >
 
-            <Grid sx={{ width: "10%" }}>
-                <Switch
-                    disabled={disable}
-                    checked={checked}
-                    onChange={handleChange}
-                    inputProps={{ 'aria-label': 'controlled' }}
-                />
-            </Grid>
+
 
             <Grid
                 sx={{ width: "10%" }}
@@ -58,7 +33,7 @@ const CardPreguntas = ({ p, idPost, user }) => {
                         width: "35px",
                         height: "35px",
                         borderRadius: "75px",
-                        marginLeft: "4px",
+                        marginLeft: "20px",
                         marginRight: '20px',
                         border: "2px solid",
                         marginTop: "-6px",
@@ -69,8 +44,27 @@ const CardPreguntas = ({ p, idPost, user }) => {
                     alt={user?.name}
                 />
             </Grid>
-            <Grid sx={{ width: "22%" }}> {p?.title.substring(0, 20)} </Grid>
-            <Grid sx={{ width: "30%" }}> {p?.message.substring(0, 30)} </Grid>
+            <Grid sx={{ width: "22%" }}>
+                <Link
+                    to={`/visualize-question/${p.id}`}
+                    component={RouterLink}
+                    color="inherit"
+                    underline="none"
+                >
+                    {p?.title.substring(0, 20)}
+                </Link>
+            </Grid>
+            <Grid sx={{ width: "30%" }}>
+                <Link
+                    to={`/visualize-question/${p.id}`}
+                    component={RouterLink}
+                    color="inherit"
+                    underline="none"
+                >
+
+                    {p?.message.substring(0, 30)}
+                </Link>
+            </Grid>
             <Grid sx={{ width: "15%" }}> Respuestas </Grid>
             <Grid sx={{ width: "10%" }}> Likes/Views </Grid>
         </Grid>
