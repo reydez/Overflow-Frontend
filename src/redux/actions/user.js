@@ -63,7 +63,7 @@ export function getUserProfile(idUser) {
 };
 
 export function updateUserProfile(form, idUser) {
-  console.log('from:', form, 'user:', idUser)
+  // console.log('from:', form, 'user:', idUser)
   return (dispatch) => {
     axios.put(`${URL}/users/${idUser}`, form)
       .then(response => {
@@ -78,12 +78,12 @@ export function updateUserProfile(form, idUser) {
   }
 };
 
-export function finishedPost(idPost, finishedPost) {
+export function finishedPost(idPost, finishedPost, idUser) {
 
-  console.log('id:', idPost, 'esta en:', finishedPost)
+  console.log('id del post:', idPost, 'esta en:', finishedPost, 'el cual tiene un user id:', idUser)
 
   return (dispatch) => {
-    axios.put(`${URL}/posts/${idPost}`, finishedPost)
+    axios.put(`${URL}/posts/${idPost}/${idUser}`, finishedPost)
       .then(response => {
         dispatch({
           type: user.FINISHED_POST,
