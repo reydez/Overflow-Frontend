@@ -63,16 +63,16 @@ let validationSchema = Yup.object().shape({
 
 // ((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_-]+=[a-zA-Z0-9-%]+&?)?$
 
-export const EditUserProfile = ({ setEditMode, setInformationProfile }) => {
+export const EditUserProfile = ({ setEditMode }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userReducer.user);
 
 
-  // Object.keys(dog).length
+
 
 
   const onSubmit = (values) => {
-    setInformationProfile(values);
+
     dispatch(updateUserProfile(values, user.id));
     window.location.reload()
     setEditMode(false);
