@@ -54,9 +54,9 @@ const themeObj = {
   },
   dark: {
     background: {
-      default: "#413A66",
-      violet: "#392E57",
-      white: "#392E57",
+      default: "#413A66",  // Fondo Principal
+      violet: "#392E57", // Eh Home solo para el fondo de M1-M2-M3-M4
+      white: "#392E57", // LefBar Background
       fondoPerfil: '#392E57',
       profileGrid: '#4B4171', // recuadros del profile
       profilePhotos: '#423B67', // recuadros del profile

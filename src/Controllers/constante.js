@@ -157,7 +157,13 @@ const drawer = (
     <List sx={{ bgcolor: "background.white" }}>
       <div style={{ marginTop: '20px' }}>
         <Link to="/questions" style={{ textDecoration: "none" }}>
-          <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" }, marginLeft: '22%' }}>
+          <Button 
+            sx={{ 
+              color: (theme) =>
+                theme.palette.mode === "dark" ? "#A8A3B5" : "#7165A0",
+              "&:hover": { color: "#F50057" },
+              marginLeft: '22%'
+            }}>
             <HomeIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
             Home
           </Button>
@@ -165,7 +171,12 @@ const drawer = (
       </div>
       <div style={{ marginTop: '20px' }}>
         <Link to={`/user-profile`} style={{ textDecoration: "none" }}>
-          <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057"}, marginLeft: '22%' }}>
+          <Button 
+            sx={{ 
+              color: (theme) =>
+                theme.palette.mode === "dark" ? "#A8A3B5" : "#7165A0",
+                "&:hover": { color: "#F50057"}, marginLeft: '22%'
+            }}>
             <AccountBoxIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
             Mi Perfil
           </Button>
@@ -173,7 +184,12 @@ const drawer = (
        </div>
        <div style={{ marginTop: '20px' }}>
         <Link to={`/favourites-user`} style={{ textDecoration: "none" }}>
-          <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" }, marginLeft: '22%' }}>
+          <Button  
+            sx={{ 
+              color: (theme) =>
+                theme.palette.mode === "dark" ? "#A8A3B5" : "#7165A0",
+                "&:hover": { color: "#F50057"}, marginLeft: '22%'
+            }}> 
             <FavoriteIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
             Mis Favoritos
           </Button>
@@ -181,7 +197,12 @@ const drawer = (
        </div>
        <div style={{ marginTop: '20px', marginBottom: '20px' }}>
         <Link to={`/all-users`} style={{ textDecoration: "none" }}>
-          <Button sx={{ color: "#7165A0;", "&:hover": { color: "#F50057" }, marginLeft: '22%' }}>
+          <Button 
+            sx={{ 
+              color: (theme) =>
+                theme.palette.mode === "dark" ? "#A8A3B5" : "#7165A0",
+                "&:hover": { color: "#F50057"}, marginLeft: '22%'
+            }}>  
             <PeopleAltIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
             Usuarios
           </Button>
