@@ -2,8 +2,9 @@ const initialState = {
   user: {},
   users:[],
   isLogin: 0,
-  userDetail: {}
-
+  userDetail: {},
+  dinamix: false,
+  userDinamix: []
 };
 
 const userReducer = (state = initialState, action) => {
@@ -19,7 +20,18 @@ const userReducer = (state = initialState, action) => {
         ...state,
         userDetail: action.payload
       };
+      
+    case "USER_DINAMIX": 
+      return {
+        ...state,
+        userDinamix: action.payload
+      };
 
+    case "SET_DINAMIX": 
+      return {
+        ...state,
+        dinamix: action.payload
+      };
 
     case "GET_USERS":
       return {

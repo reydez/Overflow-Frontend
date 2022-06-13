@@ -34,19 +34,18 @@ import Swal from "sweetalert2";
 import { sendFormReport } from "../../../Controllers/Helpers/formReport"
 import { setLikesByUser } from "../../../redux/actions/likes"
 import { setFavorite } from "../../../redux/actions/favourite"
-import { getUserProfile } from "../../../redux/actions/user"
+import { setDinamix } from "../../../redux/actions/user"
 
 export const QuestionCard = ({ question }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userReducer.user);
   const userDetail = useSelector((state => state.userReducer.userDetail))
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
+  const dinamix = useSelector(state => state.userReducer.dinamix)
   const [activeColor, setActiveColor] = useState({
     like: false,
     favorite: false,
-    // report: false
   });
-  const [update, setUpdate] = useState(false)
 
   function matchReportId() {
     let found = userDetail.reports.find(elem => elem.postId === question.id)
@@ -70,55 +69,36 @@ export const QuestionCard = ({ question }) => {
   const existLike = user && userDetail && userDetail.likes && Boolean(matchLikeId());
   const existFavorite = user && userDetail && userDetail.favorites && Boolean(matchFavoriteId());
 
-  // console.log("este es el like: ", existLike)
-  // console.log("este es el favorito: ", existFavorite)
-  // console.log("este es el reporte: ", existReport)
-
-  // console.log(activeColor)
-
   const handleLike = () => {
     dispatch(setLikesByUser(question.id, user.id));
-    setUpdate(!update)
+    dispatch(setDinamix(!dinamix))
   };
 
   const handleFavorites = () => {
     dispatch(setFavorite(question.id, user.id));
-    setUpdate(!update)
+    dispatch(setDinamix(!dinamix))
   };
 
   const handleSendReport = async() => {
     await sendFormReport(dispatch, question.id, user.id, existReport);
-    setUpdate(!update)
+    dispatch(setDinamix(!dinamix))
   };
-
-  // console.log(update)
-
-  const extras = {
-    vote: 1,
-    views: 34,
-  };
-
-  
 
   useEffect(() => {
     setActiveColor({
       like: existLike,
       favorite: existFavorite,
-      // report: existReport,
     });
-    setTimeout(() => {    
-    if(user.id) {
-      dispatch(getUserProfile(user.id))
-    }}, 100);
-  }, [user, update, existLike, existFavorite, existReport])
-
-
-
+  }, [user, existLike, existFavorite])
 
   const d = new Date(question.createdAt);
 
   var date = d.toLocaleTimeString() + ", " + d.toLocaleDateString("ES");
-
+  
+  const extras = {
+    vote: 1,
+    views: 34,
+  };
 
   // ----------------handleClick REMOVE QUESTION ---------------------------
   const handleRemoveQuestion = (idPost, idUser) => {

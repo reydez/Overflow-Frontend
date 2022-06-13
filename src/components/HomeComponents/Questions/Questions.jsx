@@ -19,14 +19,17 @@ import PaginationComponent from "../../paginationComponents/PaginationComponent"
 import Footer from "../../../views/Footer";
 import { getTagColor } from "../../../Controllers/Helpers/colorsQuestion";
 import { getUserProfile } from "../../../redux/actions/user";
+import { userInbox } from "../../../redux/actions/inboxes"
 
 export const Questions = () => {
   const dispatch = useDispatch();
-  const [loading, setLoadin] = useState(false);
+  const [loading, setLoading] = useState(false);
   const user = useSelector((state) => state.userReducer.user);
   const userDetail = useSelector((state) => state.userReducer.userDetail);
   const questions = useSelector((state) => state.questionsReducer.questions);
   const tags = useSelector((state) => state.tagsReducer.tags);
+  const dinamix = useSelector((state) => state.userReducer.dinamix)
+
 
   const respuestas = [];
 
@@ -45,23 +48,25 @@ export const Questions = () => {
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5);
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
 
-  
   useEffect(() => {
-    const loadQuestions = () => {
-      setLoadin(true);
-      dispatch(getTags());
-      dispatch(getQuestions());
-      setLoadin(false);
-    };
     const createUserFromDispatch = () => {
       if (user.id !== undefined) {
         dispatch(getUserProfile(user.id));
+        dispatch(userInbox(user.id));
       };
     };
-
-    loadQuestions();
     createUserFromDispatch();
-  }, [dispatch, user]);
+  }, [dispatch, user, dinamix]);
+
+  useEffect(() => {
+    const loadQuestions = () => {
+        setLoading(true);
+        dispatch(getTags());
+        dispatch(getQuestions());
+        setLoading(false);
+    };
+    loadQuestions();
+  }, [])
 
   if (questions.error) {
     alert(questions.error);
