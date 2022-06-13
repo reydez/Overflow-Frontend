@@ -134,7 +134,9 @@ export const QuestionCard = ({ question }) => {
         margin: "auto",
         marginTop: "4px",
         flexGrow: 1,
-        bgcolor: "background.default",
+        // bgcolor: "background.default",
+        bgcolor: (theme) =>
+        theme.palette.mode === "dark" ? "#2C284A" : "#fff",
       }}
     >
       <Grid container spacing={2}>
