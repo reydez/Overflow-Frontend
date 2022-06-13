@@ -42,14 +42,14 @@ const questionsReducer = (state = initialState, action) => {
       };
 
     case "ORDER_BY_MODULE":
-      const copyTempQuestions = state.tempQuestions.map((question) => {
+      /* const copyTempQuestions = state.tempQuestions.map((question) => {
         return {
           ...question,
           module: question.module,
         };
-      });
+      }); */
 
-      const filtered = copyTempQuestions.filter(
+      const filtered = state.tempQuestions.filter(
         (question) => question.module.name === action.payload
       );
 

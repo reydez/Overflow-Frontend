@@ -2,35 +2,32 @@ import React, { useState, useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import styled, { css } from "styled-components";
-
 import { postQuestion } from "../../../redux/actions/questions";
-
 import FormM1Tags from "./FormTags/FormM1Tags";
-import FormM2Tags from "./FormTags/FormM2Tags";
-import FormM3Tags from "./FormTags/FormM3Tags";
-import FormM4Tags from "./FormTags/FormM4Tags";
-
 import Classes from "./PostFormMui.module.css";
 import InputForm from "./StylesForm/InputForm";
 import { NameDiv } from "./StylesForm/styles";
 import InputFormArea from "./StylesForm/InputFormArea";
 import { useHistory } from "react-router-dom";
-
+import { getModules } from "../../../redux/actions/module";
+import axios from "axios";
 
 const PostFormMui = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state) => state.userReducer.user);
+  const allModules = useSelector((state) => state.modulesReducer.modules);
+  const [checked, setChecked] = useState([]);
+  const [tag, setTag] = useState({ tags: [] });
 
-  console.log(user);
+  allModules.sort((a, b) => {
+    const valueA = a.name;
+    const valueB = b.name;
+    return valueA < valueB ? -1 : valueA > valueB ? 1 : 0;
+  });
 
   //! ------------------------- CheckBoxes-----------------------
   const [moduleSelected, setModuleSelected] = useState("selectModule");
-
-  const [m1TagsSelected, setM1TagsSelected] = useState(false);
-  const [m2TagsSelected, setM2TagsSelected] = useState(false);
-  const [m3TagsSelected, setM3TagsSelected] = useState(false);
-  const [m4TagsSelected, setM4TagsSelected] = useState(false);
 
   const handleOnChange = (e) => {
     setModuleSelected(e.target.value);
@@ -41,8 +38,9 @@ const PostFormMui = () => {
       [e.target.name]: e.target.value,
     });
     //* formulario de back
+    setChecked([]);
+    setTag({ tags: [] });
   };
-
 
   //? Escribir
   const makeCheckboxesModule = (str) => {
@@ -58,19 +56,8 @@ const PostFormMui = () => {
   };
 
   useEffect(() => {
-    moduleSelected === "M1"
-      ? setM1TagsSelected(true)
-      : setM1TagsSelected(false);
-    moduleSelected === "M2"
-      ? setM2TagsSelected(true)
-      : setM2TagsSelected(false);
-    moduleSelected === "M3"
-      ? setM3TagsSelected(true)
-      : setM3TagsSelected(false);
-    moduleSelected === "M4"
-      ? setM4TagsSelected(true)
-      : setM4TagsSelected(false);
-  }, [moduleSelected]);
+    dispatch(getModules());
+  }, [dispatch]);
   //! ------------------------- CheckBoxes-----------------------
 
   //? ------------------------- FORM - 'NUEVA IMPLEMENTACIÓN' -----------------------
@@ -78,7 +65,6 @@ const PostFormMui = () => {
   const [title, setTitle] = useState({ field: "", validate: null });
   const [description, setDescription] = useState({ field: "", validate: null });
   const [modulo, setModulo] = useState({ field: "" });
-  const [tag, setTag] = useState({ tags: [] });
 
   const [validate, setValidate] = useState(null);
 
@@ -97,12 +83,19 @@ const PostFormMui = () => {
             title: title.field,
             message: description.field,
             module: modulo.field,
-            tag: tag.tags,
+            tag: tag.tags.map((t) => t.name),
           },
           user.id
         )
       );
 
+      for (let i = 0; i < tag.tags.length; i++) {
+        axios
+          .put(`http://localhost:3001/tags/mas-uno/${tag.tags[i].id}`)
+          .then((res) => {
+            console.log("");
+          });
+      }
       history.push("/questions");
     } else {
       setValidate(false);
@@ -146,19 +139,23 @@ const PostFormMui = () => {
               value={moduleSelected}
               name="field"
             >
-              <option value={"selectModule"}>MODULES</option>
-              <option value={"M1"}>M1</option>
-              <option value={"M2"}>M2</option>
-              <option value={"M3"}>M3</option>
-              <option value={"M4"}>M4</option>
+              <option>MODULES</option>
+              {allModules.map((module) => {
+                return <option>{module.name}</option>;
+              })}
             </Seleccionador>
           </label>
         </div>
 
-        {m1TagsSelected && <FormM1Tags setTag={setTag} tag={tag} />}
-        {m2TagsSelected && <FormM2Tags setTag={setTag} tag={tag} />}
-        {m3TagsSelected && <FormM3Tags setTag={setTag} tag={tag} />}
-        {m4TagsSelected && <FormM4Tags setTag={setTag} tag={tag} />}
+        {moduleSelected && (
+          <FormM1Tags
+            setTag={setTag}
+            moduleSelected={moduleSelected}
+            tag={tag}
+            checked={checked}
+            setChecked={setChecked}
+          />
+        )}
 
         {!user.isBanned ? (
           <Send type="submit" onClick={handleSubmit}>

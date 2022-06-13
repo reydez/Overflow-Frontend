@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { userInbox } from "../../../redux/actions/inboxes";
 import { useAuth0 } from "@auth0/auth0-react";
+import Box from "@mui/material/Box"
 
 export default function PerfilIcon() {
   const { mode, toggleMode } = useContext(ColorModeContext);
@@ -45,37 +46,42 @@ export default function PerfilIcon() {
           bgcolor: "background.default",
           borderRadius: "30%",
           marginLeft: "50px",
+          fontSize: "6px",
+          
         }}
       >
         <IconButton
           size="small"
           sx={{
-            bgcolor: "background.default",
+            
             borderRadius: "30%",
             position: "relative",
+            fontSize: "10px",
+            
           }}
         >
           <Link to={"/inbox-user"}>
-            <NotificationsIcon
-              size="small"
+            <NotificationsIcon size="small"
+              sx={{ cursor: "pointer", color: "text.btnEdit" }}
+              
               onClick={() => console.log("si se puede")}
-              sx={{ cursor: "pointer", bgcolor: "background.default" }}
             />
             {pending ? (
-              <p
-                style={{
-                  color: "red",
-                  position: "absolute",
-                  top: -30,
-                  right: -7,
-                  padding: "5px",
-                  zIndex: "5",
-                  background: "transparent",
-                  borderRadius: "50px",
-                }}
+              <Box size="small" sx={{ color: "#F50057;",
+              position: "absolute",
+              top: -18,
+              right: -9,
+              padding: "5px",
+              zIndex: "5",
+              borderRadius: "50px",
+              fontSize: "19px",
+              fontWeight: "900"
+            
+            }}
+              
               >
                 {pending}
-              </p>
+              </Box>
             ) : null}
           </Link>
         </IconButton>
@@ -87,12 +93,19 @@ export default function PerfilIcon() {
           marginLeft: "30px",
         }}
       >
-        <IconButton
+         <IconButton
+          size="small"
+          sx={{ bgcolor: "background.default", borderRadius: "30%", }}
+          onClick={toggleMode}
+        >
+          <DarkModeIcon />
+        </IconButton>
+        {/* <IconButton
           size="small"
           sx={{ bgcolor: "background.default", borderRadius: "30%" }}
         >
           <PersonIcon size="small" sx={{ cursor: "pointer" }} />
-        </IconButton>
+        </IconButton> */}
       </Badge>
       <Badge
         sx={{
@@ -101,13 +114,7 @@ export default function PerfilIcon() {
           marginLeft: "30px",
         }}
       >
-        <IconButton
-          size="small"
-          sx={{ bgcolor: "background.default", borderRadius: "30%" }}
-          onClick={toggleMode}
-        >
-          <DarkModeIcon />
-        </IconButton>
+       
       </Badge>
     </div>
   );
