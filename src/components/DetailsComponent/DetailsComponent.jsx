@@ -38,7 +38,6 @@ export default function DetailsComponent({
 
   // console.log('Hola soy un user', user);
   // console.log('Hola soy una question', question);  
-
   // console.log(user.id === question.user.id ? console.log('hola') : console.log('puto'))
 
   let history = useHistory();
