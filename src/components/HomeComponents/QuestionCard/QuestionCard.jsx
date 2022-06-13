@@ -16,7 +16,6 @@ import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import DoDisturbOnIcon from "@mui/icons-material/DoDisturbOn";
 import Checkbox from "@mui/material/Checkbox";
-import FavoriteCheck from "../../Favorite/FavoriteCheck";
 // import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import { pink, green, red } from "@mui/material/colors";
 import Favorite from "@mui/icons-material/Favorite";
@@ -35,6 +34,8 @@ import { sendFormReport } from "../../../Controllers/Helpers/formReport"
 import { setLikesByUser } from "../../../redux/actions/likes"
 import { setFavorite } from "../../../redux/actions/favourite"
 import { setDinamix } from "../../../redux/actions/user"
+
+
 
 export const QuestionCard = ({ question }) => {
   const dispatch = useDispatch();
@@ -62,6 +63,7 @@ export const QuestionCard = ({ question }) => {
   function matchFavoriteId() {
     let found = userDetail.favorites.find(elem => elem.postId === question.id)
     if(found === undefined) found = 0
+
     return found === 0 ? 0 : found.id
   }; 
   
@@ -72,7 +74,9 @@ export const QuestionCard = ({ question }) => {
   const handleLike = () => {
     dispatch(setLikesByUser(question.id, user.id));
     dispatch(setDinamix(!dinamix))
+    
   };
+
 
   const handleFavorites = () => {
     dispatch(setFavorite(question.id, user.id));

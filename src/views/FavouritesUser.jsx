@@ -6,9 +6,11 @@ import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { Button, Grid, List } from "@mui/material";
+import { Button, Container, Grid, List, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { getFavorite } from "../redux/actions/favourite";
+import { Link } from "react-router-dom";
+import { Favorite } from "@mui/icons-material";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -40,22 +42,15 @@ function FavouritesUser() {
 
   const user = useSelector((state) => state.userReducer.user);
   
-/* console.log(user) */
-
-
-  /* const [favouriteUser, setFavoriteUser]= useState(); */
-
   const dispatch = useDispatch();
   
   useEffect(() => {
-    /*  e.preventDefault(); */
+   
     dispatch(getFavorite(user.id));
-  }, [dispatch]);
+  }, []);
   
+console.log(favorite)
 
- /*  console.log(favorite) */
- /* console.log(favorite.Favorites) */
-/*   console.log(Object.keys(favorite).map(item => item.favorite)); */
   return (
     <div>
       <Grid
@@ -73,14 +68,13 @@ function FavouritesUser() {
         <List sx={{ textAlign: "center" }}>
           {" "}
           {/* LISTA DEL SUB-MENU */}
-          {/* <Button sx={{ color: '#D81B60' }}>Preguntas Realizadas</Button> */}
-          <Button sx={{ color: "#fff" }}>Respuestas Realizadas</Button>
-          <Button sx={{ color: "#fff" }}>Preguntas Favoritas</Button>
-          <Button sx={{ color: "#fff" }}>Usuarios Favoritos</Button>
-          {/* <Button sx={{ color: '#fff'}}>Likes</Button> */}
+          {/* <Button sx={{ color: "#fff" }}>A DEFINIR</Button> */}
+          <Typography variant="h4" component="div" gutterBottom>
+          Mis Favoritos <Favorite size="large" sx={{color: "#D81B60" }}/>
+      </Typography>
         </List>
       </Grid>
-      <TableContainer component={TableRow}>
+      <TableContainer component={TableRow} sx={{ display: "flex", paddingTop: 0 }}>
         <Table
           sx={{
             width: "170%",
@@ -94,29 +88,42 @@ function FavouritesUser() {
           <TableHead>
             <TableRow sx={{ width: "170%", backgroundColor: "#413A66" }}>
               <StyledTableCell align="center">
-                Posteos Favoritos
+                Titulo de Post
               </StyledTableCell>
               <StyledTableCell align="center">
-                Nombre de Usuarios
+                Creador
               </StyledTableCell>
               <StyledTableCell align="center">
-                Posteos Favoritos
+                   Fecha de posteo
               </StyledTableCell>
-              <StyledTableCell align="center">Likes Totales</StyledTableCell>
+              <StyledTableCell align="center">Resuelto</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-           {/*  {favorite.Favorites.map((el, index) => (
+            {favorite.Favorites?.map((el, index) =>  {
+              const d = new Date(el.post.createdAt);
+
+           var date = d.toLocaleDateString("ES");
+              console.log(el)
+                let state;
+                if(el.post.close){
+                  state = "si";
+                }else{
+                  state ="no";
+                }
+            return(
               <StyledTableRow key={el.id}>
-                <StyledTableCell align="center">
-               {el.commentOrPost}
+                <StyledTableCell align="center" >
+               <Link to={`/visualize-question/${el.post.id}`}
+                style={{ display: "block", color: "white" }}
+               >{el.post.title}</Link>
                 </StyledTableCell>
-                 <StyledTableCell align="center">{el.user.full_name}</StyledTableCell>
-                <StyledTableCell align="center">{el.user.full_name}</StyledTableCell>
-                <StyledTableCell align="center">{el.user.length}</StyledTableCell>
-               
+                <StyledTableCell align="center">{el.post.user.nick}</StyledTableCell>
+                 <StyledTableCell align="center">{date}</StyledTableCell>
+                <StyledTableCell align="center">{state}
+                </StyledTableCell>
               </StyledTableRow>
-            ))} */}
+            )})}
           </TableBody>
         </Table>
       </TableContainer>
