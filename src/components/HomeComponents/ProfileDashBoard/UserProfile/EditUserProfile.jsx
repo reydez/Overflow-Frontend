@@ -74,7 +74,9 @@ export const EditUserProfile = ({ setEditMode, setInformationProfile }) => {
   const onSubmit = (values) => {
     setInformationProfile(values);
     dispatch(updateUserProfile(values, user.id));
+    window.location.reload()
     setEditMode(false);
+
   }
 
   const cancelEdit = () => {
