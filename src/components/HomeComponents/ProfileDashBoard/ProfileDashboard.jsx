@@ -8,17 +8,16 @@ import Grid from "@mui/material/Grid";
 import { IconButton } from "@mui/material";
 
 import { img } from "../../../Controllers/styleUserProfile/styleUserProfile";
-import { EditUserProfile } from "../UserProfile/EditUserProfile";
+import { EditUserProfile } from "./UserProfile/EditUserProfile";
 
 // import { PersonalInformation } from '../../../Controllers/styleUserProfile/informationProfile';
 import TwitterIcon from "@mui/icons-material/Twitter";
-
 import ContactPageIcon from '@mui/icons-material/ContactPage';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import CircularStatic from './CircularWithLabel'
 import { getUserProfile,/* finishedPost*/ } from "../../../redux/actions/user"
-import PaginationProfile from './paginationOfProfileDashboard/PaginationProfile'
+// import PaginationProfile from './paginationOfProfileDashboard/PaginationProfile'
 import PaginadoPreguntas from "./paginationOfProfileDashboard/PaginadoPreguntas";
 import PaginadoRespuestas from "./paginationOfProfileDashboard/paginadoRespuestas";
 
@@ -312,11 +311,11 @@ const ProfileDashboard = () => {
                                     posts={userDetail.posts}
                                     setQuestionsProfile={(q) => setQuestionsProfile(q)}
                                 />}
-                                {comentarios && <PaginadoRespuestas 
+                                {comentarios && <PaginadoRespuestas
                                     commentsProfile={commentsProfile}
                                     comments={userDetail.comments}
                                     setCommentsProfile={(q) => setCommentsProfile(q)}
-                                
+
                                 />}
 
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 // import Button from "@mui/material/Button";
-// import Switch from "@mui/material/Switch";
+import Switch from "@mui/material/Switch";
 import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Typography } from "@mui/material";
@@ -14,6 +14,8 @@ import { getQuestionDetails } from "../../redux/actions/questions";
 import FlagIcon from "@mui/icons-material/Flag";
 import { sendFormReport } from "../../Controllers/Helpers/formReport";
 import { Button } from "@mui/material"
+import { finishedPost } from "../../redux/actions/user";
+
 export default function DetailsComponent({
   question,
   loading,
@@ -25,11 +27,16 @@ export default function DetailsComponent({
   const user = useSelector((state) => state.userReducer.user);
   const userDetail = useSelector((state) => state.userReducer.userDetail);
   const isTextareaDisabled = comentarioText.length === 0;
-  const [checked, setChecked] = useState(true);
   const dispatch = useDispatch();
   const { questionId } = useParams();
+  const [checked, setChecked] = useState({
+    finished: ""
+  });
 
-  console.log(user);
+  // console.log('Hola soy un user', user);
+  // console.log('Hola soy una question', question);
+
+  // console.log(user.id === question.user.id ? console.log('hola') : console.log('puto'))
 
   let history = useHistory();
   const Return = () => {
@@ -46,35 +53,15 @@ export default function DetailsComponent({
     setComentarioText(e.target.value);
   };
 
-  // const handleChange = (event) => {
-  //   setChecked(event.target.checked);
-  // };
 
-  /* const switchComponent =
-    user.id === question.user.id ? (
-      <div
-        style={{
-          position: "absolute",
-          top: "-0px",
-          right: "-0px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-        }}
-      >
-        <h6 style={{ margin: 0, paddingTop: ".5em" }}>Resuelto</h6>
-        <Switch
-          checked={checked}
-          onChange={handleChange}
-          inputProps={{ "aria-label": "controlled" }}
-          sx={{
-            background: "transparent",
-            color: "white",
-          }}
-        />
-      </div>
-    ) : null; */
+  //! ----------- Resolve -------------- 
+  const handleChange = (event) => {
+    // setChecked(event.target.checked);
+    console.log('hola soy el switch', checked)
+    dispatch(finishedPost(question.user.id, checked))
+  };
+
+  //! ----------- Resolve -------------- 
 
   const onSubmitHandler = () => {
     axios
@@ -113,10 +100,10 @@ export default function DetailsComponent({
     setTimeout(() => {
       checked ? setChecked(false) : setChecked(true);
     }, 500);
-    // checked ? setChecked(false) : setChecked(true)
+
   };
 
-  // ------------------------- DELETE COMMENT -----------------------
+  //todo ------------------------- DELETE COMMENT -----------------------
 
   const handleRemoveComment = (idComment, idUser) => {
     Swal.fire({
@@ -151,24 +138,45 @@ const handleSendReport = (idComment) => {
     sendFormReport(dispatch, idComment, user.id, exist);
   };
 
-  console.log(commentsARenderizar);
+  // console.log(commentsARenderizar);
   return (
     <div>
+
       <MainContainer>
         <Box
           sx={{
             p: 2,
             border: "1px solid black",
             width: "70%",
-            background: "#ecf0f3",
+            background: "#fafafa",
             borderRadius: "10px",
             position: "relative",
-            /* margin: "0 auto", */
+            color: '#413a66'
           }}
         >
-          <h1 style={{ color: "#413a66", fontSize: "22px" }}>
+          {
+            (user.id === question.user.id)
+              ? (
+                <div style={{ position: "absolute", top: "-0px", right: "-0px", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}  >
+                  <h6 style={{ margin: 0, paddingTop: ".5em" }}>Resuelto</h6>
+
+                  <Switch
+                    checked={checked}
+                    onChange={handleChange}
+                    // inputProps={{ "aria-label": "controlled" }}
+                    sx={{
+                      background: "transparent",
+                      color: "white",
+                    }}
+                  />
+                </div>
+              ) : (
+                null
+              )
+          }
+          <Typography sx={{ color: "#413a66", fontSize: "32px", paddingBottom: '10px' }}>
             {question.title}
-          </h1>
+          </Typography>
           {/*  {switchComponent} */}
           <Typography
             variant="body2"
@@ -234,7 +242,7 @@ const handleSendReport = (idComment) => {
                         Borrar Comentario
                       </button>
                     ) : null}
-                    <br/>
+                    <br />
 
                     {/* ----------------------- REPORTAR COMENTARIO ---------------------- */}
                     {comment.user.id == user.id ? (
@@ -354,7 +362,7 @@ const handleSendReport = (idComment) => {
           </Typography>
         </Box>
       </MainContainer>
-    </div>
+    </div >
   );
 }
 
@@ -371,13 +379,13 @@ const ButtonsDetail = styled.div`
     border: none;
     border-radius: 5px;
     background-color: ${(props) =>
-      props.lila
-        ? "#e2e6f7"
-        : props.rosa
+    props.lila
+      ? "#e2e6f7"
+      : props.rosa
         ? "#fadafa"
         : props.grey
-        ? "#392e57"
-        : "#aca9fa"};
+          ? "#392e57"
+          : "#aca9fa"};
     color: ${(props) => (props.blanco ? "#817094" : "#fafafa")};
     cursor: pointer;
     font-size: 17px;

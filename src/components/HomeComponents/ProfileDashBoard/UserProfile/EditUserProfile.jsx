@@ -15,7 +15,7 @@ import {
 import { Formik, Form, Field } from "formik"
 import * as Yup from "yup"
 import { TextField } from "formik-material-ui"
-import { updateUserProfile } from '../../../redux/actions/user';
+import { updateUserProfile } from '../../../../redux/actions/user';
 import { useDispatch, useSelector } from 'react-redux';
 
 
