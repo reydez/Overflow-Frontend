@@ -100,7 +100,7 @@ console.log(favorite)
             </TableRow>
           </TableHead>
           <TableBody>
-            {favorite.Favorites.map((el, index) =>  {
+            {favorite.Favorites?.map((el, index) =>  {
               const d = new Date(el.post.createdAt);
 
            var date = d.toLocaleDateString("ES");
