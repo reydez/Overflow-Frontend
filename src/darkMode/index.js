@@ -37,7 +37,7 @@ const themeObj = {
   },
   light: {
     background: {
-      default: "#F9FAFE",
+      default: "#F9FAFE", 
       white: '#EBEFFE', // color del barleft
       violet: '#7165A0', // color del avatar
       fondoPerfil: '#f4f4f4',
