@@ -34,7 +34,22 @@ export function getUsers() {
 
 export function getUsersByName(search) {
   return (dispatch) => {
-    axios.get(`${URL}/users/${search}`)
+    axios.get(`${URL}/users?fullname=${search}`)
+      .then(response => {
+        dispatch({
+          type: user.GET_USERS_BY_NAME,
+          payload: response.data
+        })
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+};
+
+export function userDinamix(idUser) {
+  return (dispatch) => {
+    axios.get(`${URL}/users/${idUser}?dinamix=true`)
       .then(response => {
         dispatch({
           type: user.GET_USERS_BY_NAME,
