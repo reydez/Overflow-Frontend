@@ -20,6 +20,7 @@ import Footer from "../../../views/Footer";
 import { getTagColor } from "../../../Controllers/Helpers/colorsQuestion";
 import { getUserProfile } from "../../../redux/actions/user";
 import { userInbox } from "../../../redux/actions/inboxes";
+import "./scrollBar.css";
 
 export const Questions = () => {
   const dispatch = useDispatch();
@@ -202,6 +203,7 @@ export const Questions = () => {
               marginTop: "30px",
               maxHeight: "450px",
               overflow: "auto",
+              padding: "5px",
             }}
           >
             {tags.map((tag) => {
