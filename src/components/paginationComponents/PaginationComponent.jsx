@@ -44,8 +44,8 @@ export default function PaginationComponent({
     setCurrentPage(currentPage - 1);
 
     if ((currentPage - 1) % pageNumberLimit === 0) {
-      setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
-      setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit);
+      setMaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
+      setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit);
     }
   };
 
@@ -59,13 +59,13 @@ export default function PaginationComponent({
   };
 
   let pageDecrementBtn = null;
-  if (pages.length > maxPageNumberLimit) {
-    pageDecrementBtn = <li onClick={handlePrevioBtn}> &hellip; </li>;
+  if (minPageNumberLimit >= 1) {
+    pageDecrementBtn = <li> &hellip; </li>;
   }
 
   let pageIncrementBtn = null;
   if (pages.length > maxPageNumberLimit) {
-    pageIncrementBtn = <li onClick={handleSiguienteBtn}> &hellip; </li>;
+    pageIncrementBtn = <li> &hellip; </li>;
   }
 
   return (
@@ -74,7 +74,7 @@ export default function PaginationComponent({
         {currentItems.length > 0 ? (
           <button
             onClick={handlePrevioBtn}
-            disabled={currentPage === pages[0] ? true : false}
+            disabled={currentPage == pages[0] ? true : false}
           >
             {`< Previo`}
           </button>
@@ -89,7 +89,7 @@ export default function PaginationComponent({
         {currentItems.length > 0 ? (
           <button
             onClick={handleSiguienteBtn}
-            disabled={currentPage === pages[pages.length - 1] ? true : false}
+            disabled={currentPage == pages[pages.length - 1] ? true : false}
           >
             {`Siguiente >`}
           </button>

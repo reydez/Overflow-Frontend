@@ -6,15 +6,15 @@ const initialState = {
 const tagsReducer = (state = initialState, action) => {
   switch (action.type) {
     case "GET_TAGS":
-      const copyTempTags = action.payload.sort((a, b) => {
+      /* const copyTempTags = action.payload.sort((a, b) => {
         const valueA = a.name;
         const valueB = b.name;
         return valueA < valueB ? -1 : valueA > valueB ? 1 : 0;
-      });
+      }); */
 
       return {
         ...state,
-        tags: copyTempTags,
+        tags: action.payload,
         filteredTags: action.payload,
       };
 
