@@ -25,6 +25,7 @@ export default function DetailsComponent({
 }) {
   const [comentarioText, setComentarioText] = useState("");
   const user = useSelector((state) => state.userReducer.user);
+  const userDetail = useSelector((state) => state.userReducer.userDetail);
   const isTextareaDisabled = comentarioText.length === 0;
   const dispatch = useDispatch();
   const { questionId } = useParams();
@@ -123,9 +124,18 @@ export default function DetailsComponent({
     });
   };
 
-  //! ------------------------- REPORT COMMENT -----------------------
-  const handleSendReport = (idComment) => {
-    sendFormReport(dispatch, idComment, user.id);
+// ------------------------- REPORT COMMENT -----------------------
+
+const handleSendReport = (idComment) => {
+    function matchReportId() {
+      let found = userDetail.reports.find(elem => elem.commentId === idComment)
+      if(found === undefined) found = 0
+      return found === 0 ? 0 : found.id
+    }; 
+    
+    const exist = user && userDetail && userDetail.reports && matchReportId()
+
+    sendFormReport(dispatch, idComment, user.id, exist);
   };
 
   // console.log(commentsARenderizar);
@@ -236,20 +246,20 @@ export default function DetailsComponent({
 
                     {/* ----------------------- REPORTAR COMENTARIO ---------------------- */}
                     {comment.user.id == user.id ? (
-                      <Button
-                        onClick={() => handleSendReport(comment.id)}
-                        sx={{
-                          // top: 10,
-                          // left: 650,
-                          // paddingBottom: 10
-                          borderRadius: "10px",
-                          float: "right",
-                        }}
-                      >
-                        <FlagIcon
-                          sx={{ color: "#A8A3B5" }}
-                        />
-                      </Button>
+                    <Button
+                    onClick={() => handleSendReport(comment.id)}
+                    sx={{
+                    // top: 10,
+                    // left: 650,
+                    // paddingBottom: 10
+                    borderRadius: "10px",
+                    float: "right",
+                    }}
+                    >
+                      <FlagIcon
+                      sx={{ color: "#A8A3B5"}}
+                      />
+                    </Button>
                     ) : null}
 
                   </p>

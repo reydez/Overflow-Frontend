@@ -32,6 +32,9 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { deleteQuestion } from "../../../redux/actions/questions";
 import Swal from "sweetalert2";
 import { sendFormReport } from "../../../Controllers/Helpers/formReport"
+import { setLikesByUser } from "../../../redux/actions/likes"
+import { setFavorite } from "../../../redux/actions/favourite"
+import { getUserProfile } from "../../../redux/actions/user"
 
 export const QuestionCard = ({ question }) => {
   const dispatch = useDispatch();
@@ -43,10 +46,12 @@ export const QuestionCard = ({ question }) => {
     favorite: false,
     report: false
   });
+  const [update, setUpdate] = useState(false)
 
   const d = new Date(question.createdAt);
 
   var date = d.toLocaleTimeString() + ", " + d.toLocaleDateString("ES");
+
 
   function matchReportId() {
     let found = userDetail.reports.find(elem => elem.postId === question.id)
@@ -54,30 +59,60 @@ export const QuestionCard = ({ question }) => {
     return found === 0 ? 0 : found.id
   };
 
-  const exist = user && userDetail && userDetail.reports && matchReportId()
+  function matchLikeId() {
+    let found = userDetail.likes.find(elem => elem.postId === question.id)
+    if(found === undefined) found = 0
+    return found === 0 ? 0 : found.id
+  };
 
-  // useEffect(() => {
-  //   if(exist) {
-  //     setTimeout(() => {setChan(!Boolean(exist))}, 3500)
-  //   }
-  // }, [exist])
+  function matchFavoriteId() {
+    let found = userDetail.favorites.find(elem => elem.postId === question.id)
+    if(found === undefined) found = 0
+    return found === 0 ? 0 : found.id
+  }; 
+  
+  const existReport = user && userDetail && userDetail.reports && matchReportId();
+  const existLike = user && userDetail && userDetail.likes && matchLikeId();
+  const existFavorite = user && userDetail && userDetail.favorites && matchFavoriteId();
 
+  console.log("este es el like: ", existLike)
+  console.log("este es el favorito: ", existFavorite)
+  console.log("este es el reporte: ", existReport)
 
-  // console.log(Boolean(exist))
+  // console.log(activeColor)
+
+  const handleLike = () => {
+    dispatch(setLikesByUser(question.id, user.id));
+    setUpdate(!update)
+  };
+
+  const handleFavorites = () => {
+    dispatch(setFavorite(question.id, user.id));
+    setUpdate(!update)
+  };
 
   const handleSendReport = () => {
-    sendFormReport(dispatch, question.id, user.id);
-    // setChan(!chan);
+    sendFormReport(dispatch, question.id, user.id, existReport);
+    setUpdate(!update)
   };
+
+  console.log(update)
 
   const extras = {
     vote: 1,
     views: 34,
   };
-  // const linkStyle = {
-  //   margin: "0",
-  //   textDecoration: "none",
-  // };
+
+  useEffect(() => {
+    setActiveColor({
+      like: Boolean(existLike),
+      favorite: Boolean(existFavorite),
+      report: Boolean(existReport),
+    });
+    if(user.id) {
+      dispatch(getUserProfile(user.id))
+    }
+  }, [user, update, existLike, existFavorite, existReport])
 
   // ----------------handleClick REMOVE QUESTION ---------------------------
   const handleRemoveQuestion = (idPost, idUser) => {
@@ -295,24 +330,10 @@ export const QuestionCard = ({ question }) => {
           </Grid>
 
           <Grid>
-            {/* check de corazon para clickear hacia favoritos */}
-            <Checkbox
+            {/* BUTTONS Like, Favorites and Report */}
+            <Button
               {...label}
-              icon={<ThumbUpIcon sx={{ color: "#A8A3B5" }} />}
-              checkedIcon={<ThumbUpIcon sx={{ color: "#4caf50" }} />}
-              sx={{
-                color: green[800],
-                "&.Mui-checked": {
-                  color: green[600],
-                },
-                top: 10,
-                left: -50,
-              }}
-            />
-            <Checkbox
-              {...label}
-              icon={<Favorite sx={{ color: "#A8A3B5" }} />}
-              checkedIcon={<Favorite sx={{ color: "#D81B60" }} />}
+              onClick={handleLike}
               sx={{
                 color: pink[800],
                 "&.Mui-checked": {
@@ -321,11 +342,29 @@ export const QuestionCard = ({ question }) => {
                 top: 10,
                 left: -50,
               }}
-            />
+            >
+              <ThumbUpIcon
+                sx={activeColor.like ? { color: "#4caf50" } : { color: "#A8A3B5" }} 
+              />
+            </Button>
             <Button
               {...label}
-              // icon={<FlagIcon sx={true? { color: "#A8A3B5" } : { color: "#f44336" }} />}
-              // checkedIcon={<FlagIcon sx={{ color: "#f44336" }} />}
+              onClick={handleFavorites}
+              sx={{
+                color: pink[800],
+                "&.Mui-checked": {
+                  color: pink[600],
+                },
+                top: 10,
+                left: -50,
+              }}
+            >
+              <Favorite
+                sx={activeColor.favorite ? { color: "#D81B60" } : { color: "#A8A3B5" }} 
+              />
+            </Button>
+            <Button
+              {...label}
               onClick={handleSendReport}
               sx={{
                 color: red[800],
