@@ -47,7 +47,6 @@ export const QuestionCard = ({ question }) => {
     // report: false
   });
   const [update, setUpdate] = useState(false)
-  const [time, setTime] = useState(true)
 
   function matchReportId() {
     let found = userDetail.reports.find(elem => elem.postId === question.id)
@@ -107,14 +106,10 @@ export const QuestionCard = ({ question }) => {
       favorite: existFavorite,
       // report: existReport,
     });
-    if(time) {
-      setTime(false)
-      setTimeout(() => {    
-        if(user.id) {
-          dispatch(getUserProfile(user.id))
-        }}, 100);
-      setTime(true) 
-    }
+    setTimeout(() => {    
+    if(user.id) {
+      dispatch(getUserProfile(user.id))
+    }}, 100);
   }, [user, update, existLike, existFavorite, existReport])
 
 
