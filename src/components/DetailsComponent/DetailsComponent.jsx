@@ -13,8 +13,11 @@ import { deleteComment } from "../../redux/actions/comments";
 import { getQuestionDetails } from "../../redux/actions/questions";
 import FlagIcon from "@mui/icons-material/Flag";
 import { sendFormReport } from "../../Controllers/Helpers/formReport";
-import { Button } from "@mui/material"
+import { Button } from "@mui/material";
+import CheckIcon from '@mui/icons-material/Check';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { finishedPost } from "../../redux/actions/user";
+import { isCorrectAnswer } from "../../redux/actions/comments"
 
 export default function DetailsComponent({
   question,
@@ -34,7 +37,7 @@ export default function DetailsComponent({
   });
 
   // console.log('Hola soy un user', user);
-  // console.log('Hola soy una question', question);
+  // console.log('Hola soy una question', question);  
 
   // console.log(user.id === question.user.id ? console.log('hola') : console.log('puto'))
 
@@ -139,6 +142,28 @@ const handleSendReport = (idComment) => {
   };
 
   // console.log(commentsARenderizar);
+
+// ------------------------- IS CORRECT ANSWER -----------------------
+
+const isCorrect = (idComment, idUser) => {
+  Swal.fire({
+    title: "Esta respuesta ayudo a solucionar tu pregunta?",
+    icon: "question",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Confirmo",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      dispatch(isCorrectAnswer(idComment, idUser));
+      Swal.fire("Respuesta seleccionada como correcta!", "", "success");
+      setTimeout(() => {
+        dispatch(getQuestionDetails(questionId));
+      }, 500);
+    }
+  });
+};
+
   return (
     <div>
 
@@ -228,7 +253,7 @@ const handleSendReport = (idComment) => {
                     style={{
                       margin: "0",
                       fontSize: "16px",
-                      color: "#413a66",
+                      color: "#43a66",
                     }}
                   >
                     {`${comment.user.first_name} ${comment.user.last_name}:`}
@@ -262,6 +287,37 @@ const handleSendReport = (idComment) => {
                     </Button>
                     ) : null}
 
+                    {/* ----------------------- ELEGIR RESPUESTA CORRECTA ---------------------- */}
+                    {!question.closed ? (
+                    <Button
+                    onClick={() => isCorrect(comment.id, user.id)}
+                    sx={{
+                    // top: 10,
+                    // left: 650,
+                    // paddingBottom: 10
+                    borderRadius: "10px",
+                    float: "right",
+                  }}
+                    >
+                      <CheckIcon
+                      sx={{ color: "#A8A3B5"}}
+                      />
+                    </Button>
+                    ) :
+                    <>
+                      {/* <Button
+                      > */}
+                        <CheckCircleIcon
+                        sx={{
+                        borderRadius: "10px",
+                        float: "right",
+                        color: "#4caf50",
+                        }}
+                        />
+                      {/* </Button> */}
+                    </>
+                    }
+
                   </p>
                   <span
                     style={{
@@ -293,20 +349,34 @@ const handleSendReport = (idComment) => {
               justifyContent: "flex-end",
             }}
           >
-            <p style={{ margin: 0, marginBottom: "1rem", marginTop: "1rem" }}>
-              Hacer un comentario
-            </p>
-            <textarea
-              value={comentarioText}
-              onChange={onInputChange}
-              style={{
-                resize: "none",
-                outline: "none",
-                width: "100%",
-                height: "150px",
-              }}
-              placeholder="Escribe su comentario..."
-            />
+            {question.closed ? 
+             <>
+             <br />
+              <p style={{ margin: "auto", marginBottom: "1rem", marginTop: "1rem" }}>
+               <b>
+                PREGUNTA CERRADA POR EL USUARIO!
+               </b>
+             </p>
+             <br />
+             </>
+             :
+             <>
+             <p style={{ margin: 0, marginBottom: "1rem", marginTop: "1rem" }}>
+               Hacer un comentario
+             </p>
+             <textarea
+               value={comentarioText}
+               onChange={onInputChange}
+               style={{
+                 resize: "none",
+                 outline: "none",
+                 width: "100%",
+                 height: "150px",
+               }}
+               placeholder="Escribe su comentario..."
+             />
+             </>
+            }
           </div>
           <div
             style={{
