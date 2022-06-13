@@ -55,7 +55,7 @@ export default function InboxUser() {
   );
   const [change, setChange] = useState(false);
 
-  // console.log(user)
+  // console.log(inbox)
   const clearNotification = (e) => {
     dispatch(deleteNotification(user.id, e.target.value));
     dispatch(userInbox(user.id));
@@ -74,7 +74,12 @@ export default function InboxUser() {
   };
 
   React.useEffect(() => {
-    dispatch(userInbox(user.id));
+    const existUser = () => {
+      if(user.id) {
+        dispatch(userInbox(user.id));
+      }
+    };
+    existUser()
   }, [change, dispatch, user]);
 
   // console.log("Este es mi buzon de entrada: ", inbox)
@@ -163,7 +168,7 @@ export default function InboxUser() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {inbox.map((not) => {
+            {user.id && inbox.length ? inbox.map((not) => {
               let title;
               let message;
               let state;
@@ -176,19 +181,20 @@ export default function InboxUser() {
                 title = not.like.comment.post.title;
               } else if (!not.like) {
                 message = `${not.comment.user.full_name} ha respondido tu pregunta`;
-                title = not.comment.post.title;
+                title = not.comment.post ? not.comment.post.title : "ELIMINADO";
               }
               if (not.isActive) {
                 state = "Activa";
               } else {
                 state = "Leída";
               }
-              link = not.comment ? not.comment.post.id : not.like.post ? not.like.post.id : not.like.comment.id;
+              // console.log(not.comment)
+              link = not.comment ? not.comment.post ? not.comment.post.id : null : not.like.post ? not.like.post.id : not.like.comment.id;
               return (
                 <StyledTableRow>
                   <StyledTableCell align="center">
                     <Link
-                      to={`/visualize-question/${link}`}
+                      to={link === null ? `/questions` : `/visualize-question/${link}`}
                       style={{ display: "block", color: "white" }}
                       value={not.id}
                       onClick={(e) => setStateNotification(e)}
@@ -216,7 +222,7 @@ export default function InboxUser() {
                   </StyledTableCell>
                 </StyledTableRow>
               );
-            })}
+            }) : null}
           </TableBody>
         </Table>
       </TableContainer>
