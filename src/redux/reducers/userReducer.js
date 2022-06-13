@@ -61,7 +61,12 @@ const userReducer = (state = initialState, action) => {
           }
         })
       }
-  
+      
+      case "GET_USERS_BY_NAME":
+      return {
+        ...state,
+        users: action.payload
+      }
 
     default:
       return {
