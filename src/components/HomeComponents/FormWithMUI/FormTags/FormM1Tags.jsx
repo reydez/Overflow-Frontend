@@ -5,29 +5,30 @@ import { useDispatch, useSelector } from "react-redux";
 import Classes from "./FormM1Tags.module.css";
 import styled from "styled-components";
 
-const FormM1Tags = ({ setTag, tag }) => {
+const FormM1Tags = ({ setTag, tag, moduleSelected, checked, setChecked }) => {
   const dispatch = useDispatch();
-  const allTags = useSelector((state) => state.tagsReducer.tags);
+  const allModules = useSelector((state) => state.modulesReducer.modules);
 
-  const [checked, setChecked] = useState([]);
-  const mtags = allTags.slice(0, 8);
+  const tags = allModules
+    .find((module) => module.name === moduleSelected)
+    ?.tags.sort((a, b) => b.usado - a.usado);
 
   useEffect(() => {
     dispatch(getTags());
   }, [dispatch]);
 
-  const checkChange = (e, value) => {
+  const checkChange = (e, value, tagInfo) => {
     if (checked.indexOf(value) !== -1) {
       setChecked(checked.filter((checkBox) => checkBox !== value));
       setTag({
         ...tag,
-        tags: tag.tags.filter((p) => p !== e.target.value),
+        tags: tag.tags.filter((p) => p.name !== e.target.value),
       });
     } else {
       setChecked([...checked, value]);
       setTag({
         ...tag,
-        tags: [...tag.tags, e.target.value],
+        tags: [...tag.tags, { name: e.target.value, id: tagInfo.id }],
       });
     }
   };
@@ -35,18 +36,18 @@ const FormM1Tags = ({ setTag, tag }) => {
   return (
     <React.Fragment>
       <div className={Classes.tags}>
-        {mtags.map((g, index) => (
+        {tags?.map((g, index) => (
           <div key={g.id}>
             <input
               type="checkbox"
               value={g.name}
               name="tags"
               key={g.id}
-              onChange={(e) => checkChange(e, index)}
+              onChange={(e) => checkChange(e, index, g)}
               checked={checked.includes(index)}
               disabled={!checked.includes(index) && checked.length > 1}
             />
-            {g.name}
+            {g.name} - {`(${g.usado})`}
           </div>
         ))}
       </div>

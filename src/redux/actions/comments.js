@@ -48,6 +48,19 @@ export function deleteComment(idComment, idUser) {
   }
 };
 
+export function isCorrectAnswer(idComment, idUser) {
+  return (dispatch) => {
+    axios.put(`${URL}/comments/${idComment}/${idUser}?is_correct=true`, null)
+      .then(response => {dispatch({
+        type: "IS_CORRECT_ANSWER",
+        payload: response.data
+      })})
+      .catch(error => {
+        console.log(error)
+      })
+  }
+};
+
 export function orderByDate() {
   return {
     type: comment.ORDER_BY_DATE

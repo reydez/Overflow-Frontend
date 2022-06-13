@@ -260,6 +260,7 @@ export const QuestionCard = ({ question }) => {
                         theme.palette.mode === "dark" ? "#fff" : "#7165A0",
                     }}
                   >
+                    {question.closed ? <><b>Pregunta cerrada</b> <br/></> : null}
                     {question.title}
                   </Typography>
                 </Link>

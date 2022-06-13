@@ -19,7 +19,7 @@ import PaginationComponent from "../../paginationComponents/PaginationComponent"
 import Footer from "../../../views/Footer";
 import { getTagColor } from "../../../Controllers/Helpers/colorsQuestion";
 import { getUserProfile } from "../../../redux/actions/user";
-import { userInbox } from "../../../redux/actions/inboxes"
+import { userInbox } from "../../../redux/actions/inboxes";
 
 export const Questions = () => {
   const dispatch = useDispatch();
@@ -28,8 +28,9 @@ export const Questions = () => {
   const userDetail = useSelector((state) => state.userReducer.userDetail);
   const questions = useSelector((state) => state.questionsReducer.questions);
   const tags = useSelector((state) => state.tagsReducer.tags);
-  const dinamix = useSelector((state) => state.userReducer.dinamix)
+  const dinamix = useSelector((state) => state.userReducer.dinamix);
 
+  tags.sort((a, b) => b.usado - a.usado);
 
   const respuestas = [];
 
@@ -39,7 +40,7 @@ export const Questions = () => {
         respuestas.push(questions[i].comments[j]);
       }
     }
-  };
+  }
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
@@ -53,20 +54,20 @@ export const Questions = () => {
       if (user.id !== undefined) {
         dispatch(getUserProfile(user.id));
         dispatch(userInbox(user.id));
-      };
+      }
     };
     createUserFromDispatch();
   }, [dispatch, user, dinamix]);
 
   useEffect(() => {
     const loadQuestions = () => {
-        setLoading(true);
-        dispatch(getTags());
-        dispatch(getQuestions());
-        setLoading(false);
+      setLoading(true);
+      dispatch(getTags());
+      dispatch(getQuestions());
+      setLoading(false);
     };
     loadQuestions();
-  }, [])
+  }, [dispatch]);
 
   if (questions.error) {
     alert(questions.error);
@@ -79,21 +80,33 @@ export const Questions = () => {
   const refreshPage = () => {
     dispatch(getQuestionsByName(""));
     setCurrentPage(1);
+    setPageNumberLimit(5);
+    setMaxPageNumberLimit(5);
+    setMinPageNumberLimit(0);
   };
 
   const orderByTagHandler = (tag) => {
     dispatch(orderByTag(tag));
     setCurrentPage(1);
+    setPageNumberLimit(5);
+    setMaxPageNumberLimit(5);
+    setMinPageNumberLimit(0);
   };
 
   const handleOrderByModule = (e) => {
     dispatch(orderByModule(e.target.innerText));
     setCurrentPage(1);
+    setPageNumberLimit(5);
+    setMaxPageNumberLimit(5);
+    setMinPageNumberLimit(0);
   };
 
   const handleOrderByMasComentadas = () => {
     dispatch(orderByMasComentadas());
     setCurrentPage(1);
+    setPageNumberLimit(5);
+    setMaxPageNumberLimit(5);
+    setMinPageNumberLimit(0);
   };
 
   return (
@@ -125,7 +138,7 @@ export const Questions = () => {
               className="buttonFilter"
               onClick={handleOrderByMasComentadas}
             >
-              Preguntas mas Comentadas
+              Mas Comentadas ASC/DSC
             </Button>
           </div>
 
@@ -201,7 +214,11 @@ export const Questions = () => {
                   variant="outlined"
                   key={tag.id}
                   // backgroundcolor={getTagColor(tag.name)}
-                  label={<Box>{tag.name}</Box>}
+                  label={
+                    <Box>
+                      {tag.name} {`(${tag.usado})`}
+                    </Box>
+                  }
                   onClick={() => orderByTagHandler(upperCase)}
                 />
               );
