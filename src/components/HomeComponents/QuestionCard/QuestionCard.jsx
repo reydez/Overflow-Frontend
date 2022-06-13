@@ -47,11 +47,7 @@ export const QuestionCard = ({ question }) => {
     report: false
   });
   const [update, setUpdate] = useState(false)
-
-  const d = new Date(question.createdAt);
-
-  var date = d.toLocaleTimeString() + ", " + d.toLocaleDateString("ES");
-
+  const [loading, setLoading] = useState(true)
 
   function matchReportId() {
     let found = userDetail.reports.find(elem => elem.postId === question.id)
@@ -71,9 +67,9 @@ export const QuestionCard = ({ question }) => {
     return found === 0 ? 0 : found.id
   }; 
   
-  const existReport = user && userDetail && userDetail.reports && matchReportId();
-  const existLike = user && userDetail && userDetail.likes && matchLikeId();
-  const existFavorite = user && userDetail && userDetail.favorites && matchFavoriteId();
+  const existReport = user && userDetail && userDetail.reports && Boolean(matchReportId());
+  const existLike = user && userDetail && userDetail.likes && Boolean(matchLikeId());
+  const existFavorite = user && userDetail && userDetail.favorites && Boolean(matchFavoriteId());
 
   console.log("este es el like: ", existLike)
   console.log("este es el favorito: ", existFavorite)
@@ -104,15 +100,25 @@ export const QuestionCard = ({ question }) => {
   };
 
   useEffect(() => {
+    setLoading(true)
     setActiveColor({
-      like: Boolean(existLike),
-      favorite: Boolean(existFavorite),
-      report: Boolean(existReport),
+      like: existLike,
+      favorite: existFavorite,
+      report: existReport,
     });
-    if(user.id) {
+    setTimeout(() => {    if(user.id) {
       dispatch(getUserProfile(user.id))
-    }
+    }}, 300)
+    setLoading(false)
   }, [user, update, existLike, existFavorite, existReport])
+
+
+
+
+  const d = new Date(question.createdAt);
+
+  var date = d.toLocaleTimeString() + ", " + d.toLocaleDateString("ES");
+
 
   // ----------------handleClick REMOVE QUESTION ---------------------------
   const handleRemoveQuestion = (idPost, idUser) => {
@@ -334,6 +340,7 @@ export const QuestionCard = ({ question }) => {
             <Button
               {...label}
               onClick={handleLike}
+              disabled={loading}
               sx={{
                 color: pink[800],
                 "&.Mui-checked": {
@@ -350,6 +357,7 @@ export const QuestionCard = ({ question }) => {
             <Button
               {...label}
               onClick={handleFavorites}
+              disabled={loading}
               sx={{
                 color: pink[800],
                 "&.Mui-checked": {
@@ -366,6 +374,7 @@ export const QuestionCard = ({ question }) => {
             <Button
               {...label}
               onClick={handleSendReport}
+              disabled={loading}
               sx={{
                 color: red[800],
                 "&.Mui-checked": {

@@ -55,11 +55,11 @@ export default function DetailsComponent({
 
 
   //! ----------- Resolve -------------- 
-  const handleChange = (event) => {
-    // setChecked(event.target.checked);
-    console.log('hola soy el switch', checked)
-    dispatch(finishedPost(question.user.id, checked))
-  };
+  // const handleChange = (event) => {
+  //   // setChecked(event.target.checked);
+  //   console.log('hola soy el switch', checked)
+  //   dispatch(finishedPost(question.user.id, checked))
+  // };
 
   //! ----------- Resolve -------------- 
 
@@ -154,7 +154,7 @@ const handleSendReport = (idComment) => {
             color: '#413a66'
           }}
         >
-          {
+          {/* {
             (user.id === question.user.id)
               ? (
                 <div style={{ position: "absolute", top: "-0px", right: "-0px", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}  >
@@ -173,7 +173,7 @@ const handleSendReport = (idComment) => {
               ) : (
                 null
               )
-          }
+          } */}
           <Typography sx={{ color: "#413a66", fontSize: "32px", paddingBottom: '10px' }}>
             {question.title}
           </Typography>
