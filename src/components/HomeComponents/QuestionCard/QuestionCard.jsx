@@ -35,6 +35,7 @@ import Swal from "sweetalert2";
 import { sendFormReport } from "../../../Controllers/Helpers/formReport"
 import { setLikesByUser } from "../../../redux/actions/likes"
 import { setFavorite } from "../../../redux/actions/favourite"
+import { getUserProfile } from "../../../redux/actions/user"
 
 export const QuestionCard = ({ question }) => {
   const dispatch = useDispatch();
@@ -51,6 +52,7 @@ export const QuestionCard = ({ question }) => {
   const d = new Date(question.createdAt);
 
   var date = d.toLocaleTimeString() + ", " + d.toLocaleDateString("ES");
+
 
   function matchReportId() {
     let found = userDetail.reports.find(elem => elem.postId === question.id)
@@ -107,8 +109,11 @@ export const QuestionCard = ({ question }) => {
       like: Boolean(existLike),
       favorite: Boolean(existFavorite),
       report: Boolean(existReport),
-    })
-  }, [update])
+    });
+    if(user.id) {
+      dispatch(getUserProfile(user.id))
+    }
+  }, [user, update, existLike, existFavorite, existReport])
 
   // ----------------handleClick REMOVE QUESTION ---------------------------
   const handleRemoveQuestion = (idPost, idUser) => {
