@@ -44,10 +44,9 @@ export const QuestionCard = ({ question }) => {
   const [activeColor, setActiveColor] = useState({
     like: false,
     favorite: false,
-    report: false
+    // report: false
   });
   const [update, setUpdate] = useState(false)
-  const [loading, setLoading] = useState(true)
 
   function matchReportId() {
     let found = userDetail.reports.find(elem => elem.postId === question.id)
@@ -71,9 +70,9 @@ export const QuestionCard = ({ question }) => {
   const existLike = user && userDetail && userDetail.likes && Boolean(matchLikeId());
   const existFavorite = user && userDetail && userDetail.favorites && Boolean(matchFavoriteId());
 
-  console.log("este es el like: ", existLike)
-  console.log("este es el favorito: ", existFavorite)
-  console.log("este es el reporte: ", existReport)
+  // console.log("este es el like: ", existLike)
+  // console.log("este es el favorito: ", existFavorite)
+  // console.log("este es el reporte: ", existReport)
 
   // console.log(activeColor)
 
@@ -87,29 +86,30 @@ export const QuestionCard = ({ question }) => {
     setUpdate(!update)
   };
 
-  const handleSendReport = () => {
-    sendFormReport(dispatch, question.id, user.id, existReport);
+  const handleSendReport = async() => {
+    await sendFormReport(dispatch, question.id, user.id, existReport);
     setUpdate(!update)
   };
 
-  console.log(update)
+  // console.log(update)
 
   const extras = {
     vote: 1,
     views: 34,
   };
 
+  
+
   useEffect(() => {
-    setLoading(true)
     setActiveColor({
       like: existLike,
       favorite: existFavorite,
-      report: existReport,
+      // report: existReport,
     });
-    setTimeout(() => {    if(user.id) {
+    setTimeout(() => {    
+    if(user.id) {
       dispatch(getUserProfile(user.id))
-    }}, 300)
-    setLoading(false)
+    }}, 100);
   }, [user, update, existLike, existFavorite, existReport])
 
 
@@ -340,7 +340,6 @@ export const QuestionCard = ({ question }) => {
             <Button
               {...label}
               onClick={handleLike}
-              disabled={loading}
               sx={{
                 color: pink[800],
                 "&.Mui-checked": {
@@ -357,7 +356,6 @@ export const QuestionCard = ({ question }) => {
             <Button
               {...label}
               onClick={handleFavorites}
-              disabled={loading}
               sx={{
                 color: pink[800],
                 "&.Mui-checked": {
@@ -374,7 +372,6 @@ export const QuestionCard = ({ question }) => {
             <Button
               {...label}
               onClick={handleSendReport}
-              disabled={loading}
               sx={{
                 color: red[800],
                 "&.Mui-checked": {
@@ -385,7 +382,7 @@ export const QuestionCard = ({ question }) => {
               }}
             >
               <FlagIcon
-                sx={activeColor.report ? { color: "#f44336" } : { color: "#A8A3B5" }}
+                sx={false ? { color: "#f44336" } : { color: "#A8A3B5" }}
               />
             </Button>
             {/* ----------------- ELIMINAR PREGUNTA -----------------------*/}
