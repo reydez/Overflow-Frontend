@@ -47,7 +47,7 @@ return (
                     marginTop: "-6px",
                     color: "text.btnEdit"
                 }}
-               component="img"
+                component="img"
                 // height="294"
                 image={user?.image}
                 alt="Paella dish"

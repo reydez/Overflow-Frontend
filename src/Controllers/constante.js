@@ -197,7 +197,7 @@ const drawer = (
        </div>
        <div style={{ marginTop: '20px', marginBottom: '20px' }}>
         <Link to={`/all-users`} style={{ textDecoration: "none" }}>
-          <Button 
+          {/* <Button 
             sx={{ 
               color: (theme) =>
                 theme.palette.mode === "dark" ? "#A8A3B5" : "#7165A0",
@@ -205,7 +205,7 @@ const drawer = (
             }}>  
             <PeopleAltIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
             Usuarios
-          </Button>
+          </Button> */}
         </Link>
        </div>
         
