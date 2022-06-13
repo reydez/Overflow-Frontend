@@ -34,7 +34,6 @@ function App() {
     createUserFromDispatch();
   }, [user, isAuthenticated, isLoading, dispatch]);
 
-
   if (isLoading && !Object.keys(userRedux).length) {
     return <Spinner />;
   }
@@ -129,31 +128,27 @@ function App() {
         )}
       </Route>
 
-
-      <Route exact={true} path='/admin/users'>
-        {!isAuthenticated
-          ? (<Redirect to="/" />)
-          : (
-            <BarLeft>
-              <AdminContainer />
-              <AdminBanUser />
-            </BarLeft>
-          )
-        }
+      <Route exact={true} path="/admin/users">
+        {isAuthenticated && userRedux.isAdmin ? (
+          <BarLeft>
+            <AdminContainer />
+            <AdminBanUser />
+          </BarLeft>
+        ) : (
+          <Redirect to="/" />
+        )}
       </Route>
 
       <Route exact={true} path="/admin/tags">
-        {!isAuthenticated ? (
-          <Redirect to="/" />
-        ) : (
+        {isAuthenticated && userRedux.isAdmin ? (
           <BarLeft>
             <AdminContainer />
             <AdminEditTags />
           </BarLeft>
+        ) : (
+          <Redirect to="/" />
         )}
       </Route>
-
-
 
       <Route path="*" exact={true} component={Component404} />
     </Switch>

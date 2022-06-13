@@ -11,14 +11,16 @@ export default function Component404() {
   };
 
   const containerDetailsStyles = {
-    width: "30%",
+    maxWidth: "600px",
     height: "30%",
+    maxHeight: "30%",
     display: "flex",
     background: "white",
     borderRadius: "10px",
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
+    padding: "20px",
     gap: "10px",
     boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
   };
