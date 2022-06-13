@@ -96,6 +96,13 @@ export function finishedPost(idPost, finishedPost) {
   }
 };
 
+export function setDinamix(payload) {
+  return {
+    type: "SET_DINAMIX",
+    payload
+  }
+}
+
 
 // '/:idPost', finishedPost
 //'/:idPost', finishedPost;
