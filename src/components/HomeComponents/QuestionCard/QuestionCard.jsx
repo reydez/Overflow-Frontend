@@ -47,8 +47,8 @@ export const QuestionCard = ({ question }) => {
     favorite: false,
   });
 
-  console.log(question.user.id === user.id)
-  
+  // console.log(question.user.id === user.id)
+
   function matchReportId() {
     let found = userDetail.reports.find(elem => elem.postId === question.id)
     if (found === undefined) found = 0
@@ -139,20 +139,20 @@ export const QuestionCard = ({ question }) => {
             {question.module?.name}
           </Avatar>
           <Stack direction="row" spacing={0.5}>
-                <CheckCircleIcon sx={{ color: question.comments.length ? "green" : "red" }} />
-                <Typography sx={{ color: question.comments.length ? "green" : "red", fontSize: "18px" }}>
-                  <span>{question.comments.length}</span>
-                  <p
-                    style={{
-                      marginLeft: "-30px",
-                      marginTop: 0,
-                      fontSize: "9px",
-                      color: question.comments.length ? "green" : "red",
-                    }}
-                  >
-                    Respuestas
-                  </p>
-                </Typography>
+            <CheckCircleIcon sx={{ color: question.comments.length ? "green" : "red" }} />
+            <Typography sx={{ color: question.comments.length ? "green" : "red", fontSize: "18px" }}>
+              <span>{question.comments.length}</span>
+              <p
+                style={{
+                  marginLeft: "-30px",
+                  marginTop: 0,
+                  fontSize: "9px",
+                  color: question.comments.length ? "green" : "red",
+                }}
+              >
+                Respuestas
+              </p>
+            </Typography>
             <p
               style={{
                 marginLeft: "-40px",
@@ -201,7 +201,7 @@ export const QuestionCard = ({ question }) => {
                         theme.palette.mode === "dark" ? "#fff" : "#7165A0",
                     }}
                   >
-                    {question.closed ? <><LockIcon/><b>Cerrada</b> <br /></> : null}
+                    {question.closed ? <><LockIcon /><b>Cerrada</b> <br /></> : null}
                     {question.title}
                   </Typography>
                 </Link>
@@ -226,7 +226,7 @@ export const QuestionCard = ({ question }) => {
             </Grid>
 
             <Grid item>
-              <br/>
+              <br />
               {/* TAGs de cada categoría*/}
               <Stack direction="row" spacing={1} sx={{ marginTop: "-30px" }}>
                 {question.tags.map((tag) => {
@@ -293,7 +293,7 @@ export const QuestionCard = ({ question }) => {
                 sx={activeColor.favorite ? { color: "#D81B60" } : { color: "#A8A3B5" }}
               />
             </Button>
-            <br/>
+            <br />
             {/* ----------------- ELIMINAR PREGUNTA -----------------------*/}
             {user.isAdmin || question.user.id === user.id ? (
               <Button
@@ -305,7 +305,7 @@ export const QuestionCard = ({ question }) => {
               </Button>
             ) : null}
             {/* ----------------- REPORTAR PREGUNTA -----------------------*/}
-            <br/>
+            <br />
             {question.user.id !== user.id ? <Button
               {...label}
               onClick={handleSendReport}
