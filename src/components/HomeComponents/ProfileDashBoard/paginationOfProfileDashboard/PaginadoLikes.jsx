@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, CardMedia } from '@mui/material';
 import { useSelector } from 'react-redux';
 import PaginationProfile from './PaginationProfile';
-import CardRespuestas from '../cardsPerPagination/CardRespuestas';
+// import CardRespuestas from '../cardsPerPagination/CardRespuestas';
 import CardLikes from '../cardsPerPagination/CardLikes';
 
 const PaginadoLikes = ({ likesProfile, likes, setLikes }) => {
@@ -24,7 +24,7 @@ const PaginadoLikes = ({ likesProfile, likes, setLikes }) => {
                 posts={likes}
             />
             {likesProfile?.map((p) => {
-                console.log(p);
+
                 return (
                     <CardLikes
                         p={p}

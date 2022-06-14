@@ -18,7 +18,7 @@ import EditIcon from "@mui/icons-material/Edit";
 
 import { getUserProfile } from "../../../redux/actions/user";
 import PaginadoPreguntas from "./paginationOfProfileDashboard/PaginadoPreguntas";
-import PaginadoRespuestas from "./paginationOfProfileDashboard/PaginadoPreguntas";
+import PaginadoRespuestas from "./paginationOfProfileDashboard/paginadoRespuestas";
 import CardLikes from "./cardsPerPagination/CardLikes";
 import PaginadoLikes from "./paginationOfProfileDashboard/PaginadoLikes";
 
@@ -29,10 +29,14 @@ const ProfileDashboard = () => {
   const userDetail = useSelector((state) => state.userReducer.userDetail);
 
   const [editMode, setEditMode] = useState(false);
-  const [questionsProfile, setQuestionsProfile] = useState([]);
 
+  //todo ------------------ cards a mapear ---------------------
+
+  const [questionsProfile, setQuestionsProfile] = useState([]);
   const [commentsProfile, setCommentsProfile] = useState([]);
   const [likesProfile, setLikesProfile] = useState([]);
+
+  //todo ------------------ cards a mapear ---------------------
 
   const changeToFalse = () => {
     setEditMode(true);
@@ -55,11 +59,15 @@ const ProfileDashboard = () => {
   };
 
   useEffect(() => {
-    moduleSelected === "preguntas" ? setPreguntas(true) : setPreguntas(false);
+    moduleSelected === "preguntas"
+      ? setPreguntas(true)
+      : setPreguntas(false);
     moduleSelected === "respuestas"
       ? setComentarios(true)
       : setComentarios(false);
-    moduleSelected === "likes" ? setLikes(true) : setLikes(false);
+    moduleSelected === "likes"
+      ? setLikes(true)
+      : setLikes(false);
   }, [moduleSelected]);
 
   //! ------------------------- CheckBoxes-----------------------
@@ -75,7 +83,6 @@ const ProfileDashboard = () => {
         <Box
           sx={{
             width: "1100px",
-            // height: '800px',
             backgroundColor: "background.profilePhotos",
             borderRadius: "12px",
           }}
@@ -92,8 +99,7 @@ const ProfileDashboard = () => {
               borderRadius: "12px",
             }}
           >
-            {" "}
-            {/* CONTAINER GRAL */}
+
             <Grid
               container
               sx={{ width: "96%", margin: "0 auto", marginTop: "30px" }}
