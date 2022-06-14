@@ -303,6 +303,7 @@ const isCorrect = (idComment, idUser) => {
                       />
                     </Button>
                     ) :
+                    comment.isCorrect ? 
                     <>
                       {/* <Button
                       > */}
@@ -315,8 +316,8 @@ const isCorrect = (idComment, idUser) => {
                         />
                       {/* </Button> */}
                     </>
+                    : null
                     }
-
                   </p>
                   <span
                     style={{
