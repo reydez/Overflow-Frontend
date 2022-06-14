@@ -80,7 +80,7 @@ const CardPreguntas = ({ p, user }) => {
             <Grid sx={{ width: "15%" }}> {active ? 'Resuelto' : 'Abierto'} </Grid>
             <Grid sx={{ width: "20%", maginBottom: '20px' }}>
                 <Link
-                    to={`/visualize-question/${p.postId}`}
+                    to={`/visualize-question/${p.id}`}
                     component={RouterLink}
                     color="inherit"
                     underline="none"
