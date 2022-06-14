@@ -13,7 +13,7 @@ import { createUser } from "./redux/actions/user";
 import FavoritesUser from "./views/FavouritesUser";
 import Spinner from "./components/spinner/Spinner";
 import ProfileDashboard from "./components/HomeComponents/ProfileDashBoard/ProfileDashboard";
-import { AllUsers } from "./components/HomeComponents/AllUsers/AllUsers";
+import { Communityrule } from "./views/CommunityRule";
 import { AdminContainer } from "./views/AdminContainer";
 import { AdminEditTags } from "./components/HomeComponents/Admin/AdminEditTags";
 import { AdminBanUser } from "./components/HomeComponents/Admin/AdminBanUser";
@@ -78,15 +78,16 @@ function App() {
         )}
       </Route>
 
-      <Route exact={true} path="/all-users">
+      <Route exact={true} path="/reglas-comunidad">
         {isAuthenticated ? (
           <BarLeft>
-            <AllUsers />
+            <Communityrule />
           </BarLeft>
         ) : (
           <Redirect to="/" />
         )}
       </Route>
+
 
       <Route exact={true} path="/donar">
         {!isAuthenticated ? (

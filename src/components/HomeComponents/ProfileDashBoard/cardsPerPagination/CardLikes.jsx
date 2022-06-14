@@ -4,7 +4,7 @@ import LinkIcon from '@mui/icons-material/Link';
 import { Link as RouterLink } from "react-router-dom";
 
 const CardLikes = ({ p, user }) => {
-    console.log(p);
+    // console.log(p);
     const [active, setActive] = useState(false)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

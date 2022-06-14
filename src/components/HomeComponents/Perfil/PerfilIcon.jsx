@@ -6,15 +6,17 @@ import { ColorModeContext } from "../../../darkMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { useContext } from "react";
 import IconButton from "@mui/material/IconButton";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { userInbox } from "../../../redux/actions/inboxes";
 import { useAuth0 } from "@auth0/auth0-react";
 import Box from "@mui/material/Box"
+import { Button } from "@mui/material";
 
 export default function PerfilIcon() {
   const { mode, toggleMode } = useContext(ColorModeContext);
   const dispatch = useDispatch();
+  const location = useLocation();
   const userlogin = useSelector((state) => state.userReducer.user);
   const isLogin = useSelector((state) => state.userReducer.isLogin);
   const inbox = useSelector((state) => state.inboxesReducer.inbox);
@@ -41,6 +43,35 @@ export default function PerfilIcon() {
         alignItems: "center",
       }}
     >
+  
+  <Link to={"/reglas-comunidad"} style={{ textDecoration: "none" }}>
+            {location.pathname !== "/questions" &&
+            location.pathname !== "/user-profile" &&
+            location.pathname !== "/all-users" &&
+            location.pathname !== "/donar" &&
+            location.pathname !== "/favourites-user" ? null : (
+              <Button
+                variant="primary"
+                size="large" /* disableRipple  */
+                sx={{
+                  width: "198px",
+                  height: "36px",
+                  // marginLeft: "30px",
+                  borderRadius: "25px",
+                  border: "none",
+                  color: "color.letters",
+                  "&:hover": { color: "color.filters" },
+                  cursor: "pointer",
+                  fontSize: "12px",
+                  padding: "5px 13px",
+
+                  bgcolor: "color.filters",
+                }}
+              >
+                Reglas de la comunidad
+              </Button>
+            )}
+          </Link>
       <Badge
         sx={{
           bgcolor: "background.default",
@@ -86,6 +117,7 @@ export default function PerfilIcon() {
           </Link>
         </IconButton>
       </Badge>
+      
       <Badge
         sx={{
           bgcolor: "background.default",
@@ -107,15 +139,7 @@ export default function PerfilIcon() {
           <PersonIcon size="small" sx={{ cursor: "pointer" }} />
         </IconButton> */}
       </Badge>
-      <Badge
-        sx={{
-          bgcolor: "background.default",
-          borderRadius: "30%",
-          marginLeft: "30px",
-        }}
-      >
-       
-      </Badge>
+     
     </div>
   );
 }

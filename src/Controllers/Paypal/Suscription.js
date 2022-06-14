@@ -89,13 +89,13 @@ const ButtonWrapper = ({ type }) => {
                 obj.status = r.status;
                 obj.status_update_time = r.status_update_time;
                 obj.email_address = r.subscriber.email_address;
+                obj.user_email = user.email;
                 let userId = user.id;
 
                 axios
                   .post(`http://localhost:3001/orders/${userId}`, obj)
 
                   .then((response) => {
-                    console.log(response);
                     Swal.fire(
                       "Aviso!",
                       `Donación realizada, muchas gracias.`,
@@ -166,6 +166,7 @@ const ButtonWrapper = ({ type }) => {
                 obj.status = r.status;
                 obj.status_update_time = r.status_update_time;
                 obj.email_address = r.subscriber.email_address;
+                obj.user_email = user.email;
                 let userId = user.id;
 
                 axios
@@ -243,6 +244,7 @@ const ButtonWrapper = ({ type }) => {
                 obj.status = r.status;
                 obj.status_update_time = r.status_update_time;
                 obj.email_address = r.subscriber.email_address;
+                obj.user_email = user.email;
                 let userId = user.id;
 
                 axios

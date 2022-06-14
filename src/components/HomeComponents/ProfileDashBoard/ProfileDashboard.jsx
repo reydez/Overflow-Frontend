@@ -11,10 +11,10 @@ import { img } from "../../../Controllers/styleUserProfile/styleUserProfile";
 import { EditUserProfile } from "./UserProfile/EditUserProfile";
 
 import TwitterIcon from "@mui/icons-material/Twitter";
-import ContactPageIcon from '@mui/icons-material/ContactPage';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import EditIcon from '@mui/icons-material/Edit';
+import ContactPageIcon from "@mui/icons-material/ContactPage";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import EditIcon from "@mui/icons-material/Edit";
 
 import { getUserProfile } from "../../../redux/actions/user";
 import PaginadoPreguntas from "./paginationOfProfileDashboard/PaginadoPreguntas";
@@ -22,20 +22,21 @@ import PaginadoRespuestas from "./paginationOfProfileDashboard/paginadoRespuesta
 import CardLikes from "./cardsPerPagination/CardLikes";
 import PaginadoLikes from "./paginationOfProfileDashboard/PaginadoLikes";
 
-
 const ProfileDashboard = () => {
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const user = useSelector((state) => state.userReducer.user);
   const userDetail = useSelector((state) => state.userReducer.userDetail);
 
   const [editMode, setEditMode] = useState(false);
-  const [questionsProfile, setQuestionsProfile] = useState([]);
 
+  //todo ------------------ cards a mapear ---------------------
+
+  const [questionsProfile, setQuestionsProfile] = useState([]);
   const [commentsProfile, setCommentsProfile] = useState([]);
   const [likesProfile, setLikesProfile] = useState([]);
 
+  //todo ------------------ cards a mapear ---------------------
 
   const changeToFalse = () => {
     setEditMode(true);
@@ -44,7 +45,6 @@ const ProfileDashboard = () => {
   useEffect(() => {
     dispatch(getUserProfile(user.id));
   }, [dispatch, user.id]);
-
 
   //! ------------------------- CheckBoxes-----------------------
 
@@ -57,7 +57,6 @@ const ProfileDashboard = () => {
   const handleOnChange = (e) => {
     setModuleSelected(e.target.value);
   };
-
 
   useEffect(() => {
     moduleSelected === "preguntas"
@@ -152,49 +151,180 @@ const ProfileDashboard = () => {
                   </Grid>
 
                   <Grid container sx={{}}>
-                    <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 2, color: 'text.btnEdit', fontWeight: 500 }}>Nombre</Box>
-                    <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, bgcolor: 'background.informationProfile', height: '45px', borderRadius: '3px' }}>
-                      <Box sx={{ height: '20px' }}>{userDetail?.first_name || 'Rellena los datos'}</Box>
+                    <Box
+                      sx={{
+                        position: "absolute",
+                        fontFamily: "Segoe UI Symbol",
+                        fontSize: "11px",
+                        p: 2,
+                        ml: 2,
+                        color: "text.btnEdit",
+                        fontWeight: 500,
+                      }}
+                    >
+                      Nombre
+                    </Box>
+                    <Grid
+                      item
+                      xs={3}
+                      sx={{
+                        p: 1,
+                        ml: 4,
+                        marginTop: 4,
+                        bgcolor: "background.informationProfile",
+                        height: "45px",
+                        borderRadius: "3px",
+                      }}
+                    >
+                      <Box sx={{ height: "20px" }}>
+                        {userDetail?.first_name || "Rellena los datos"}
+                      </Box>
                     </Grid>
 
-                    <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 34, color: 'text.btnEdit', fontWeight: 500 }}>Linkedin</Box>
-                    <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, backgroundColor: 'background.informationProfile', height: '45px', borderRadius: '3px' }}>
-                      <Box sx={{ height: '20px' }}>{!userDetail?.linkedin ? 'Rellena los datos' : 'Dato completado'}</Box>
+                    <Box
+                      sx={{
+                        position: "absolute",
+                        fontFamily: "Segoe UI Symbol",
+                        fontSize: "11px",
+                        p: 2,
+                        ml: 34,
+                        color: "text.btnEdit",
+                        fontWeight: 500,
+                      }}
+                    >
+                      Linkedin
+                    </Box>
+                    <Grid
+                      item
+                      xs={3}
+                      sx={{
+                        p: 1,
+                        ml: 4,
+                        marginTop: 4,
+                        backgroundColor: "background.informationProfile",
+                        height: "45px",
+                        borderRadius: "3px",
+                      }}
+                    >
+                      <Box sx={{ height: "20px" }}>
+                        {!userDetail?.linkedin
+                          ? "Rellena los datos"
+                          : "Dato completado"}
+                      </Box>
                     </Grid>
                   </Grid>
 
                   <Grid container sx={{}}>
-                    <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 2, color: 'text.btnEdit', fontWeight: 500 }}>Apellido</Box>
-                    <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, backgroundColor: 'background.informationProfile', height: '45px', borderRadius: '3px' }}>
-                      <Box sx={{ height: '20px' }}>{userDetail?.last_name || 'Rellena los datoss'}</Box>
+                    <Box
+                      sx={{
+                        position: "absolute",
+                        fontFamily: "Segoe UI Symbol",
+                        fontSize: "11px",
+                        p: 2,
+                        ml: 2,
+                        color: "text.btnEdit",
+                        fontWeight: 500,
+                      }}
+                    >
+                      Apellido
+                    </Box>
+                    <Grid
+                      item
+                      xs={3}
+                      sx={{
+                        p: 1,
+                        ml: 4,
+                        marginTop: 4,
+                        backgroundColor: "background.informationProfile",
+                        height: "45px",
+                        borderRadius: "3px",
+                      }}
+                    >
+                      <Box sx={{ height: "20px" }}>
+                        {userDetail?.last_name || "Rellena los datoss"}
+                      </Box>
                     </Grid>
 
-                    <Box sx={{ position: 'absolute', fontFamily: 'Segoe UI Symbol', fontSize: '11px', p: 2, ml: 34, color: 'text.btnEdit', fontWeight: 500 }}>Twitter</Box>
-                    <Grid item xs={3} sx={{ p: 1, ml: 4, marginTop: 4, backgroundColor: 'background.informationProfile', height: '45px', borderRadius: '3px' }}>
-                      <Box sx={{ height: '20px' }}>{!userDetail?.twitter ? 'Rellena los datos' : 'Dato completado'}</Box>
+                    <Box
+                      sx={{
+                        position: "absolute",
+                        fontFamily: "Segoe UI Symbol",
+                        fontSize: "11px",
+                        p: 2,
+                        ml: 34,
+                        color: "text.btnEdit",
+                        fontWeight: 500,
+                      }}
+                    >
+                      Twitter
+                    </Box>
+                    <Grid
+                      item
+                      xs={3}
+                      sx={{
+                        p: 1,
+                        ml: 4,
+                        marginTop: 4,
+                        backgroundColor: "background.informationProfile",
+                        height: "45px",
+                        borderRadius: "3px",
+                      }}
+                    >
+                      <Box sx={{ height: "20px" }}>
+                        {!userDetail?.twitter
+                          ? "Rellena los datos"
+                          : "Dato completado"}
+                      </Box>
                     </Grid>
-
 
                     <Grid item xs={2} sx={{ p: 1, ml: 7, marginTop: 2 }}>
-                      <IconButton size="small" href={userDetail?.twitter} sx={{ color: 'text.secondary', "&:hover": { color: "text.btnEdit" } }} >
+                      <IconButton
+                        size="small"
+                        href={userDetail?.twitter}
+                        sx={{
+                          color: "text.secondary",
+                          "&:hover": { color: "text.btnEdit" },
+                        }}
+                      >
                         <TwitterIcon />
                       </IconButton>
 
-                      <IconButton size="small" href={userDetail?.linkedin} sx={{ color: 'text.secondary', "&:hover": { color: "text.btnEdit" } }}>
+                      <IconButton
+                        size="small"
+                        href={userDetail?.linkedin}
+                        sx={{
+                          color: "text.secondary",
+                          "&:hover": { color: "text.btnEdit" },
+                        }}
+                      >
                         <LinkedInIcon />
                       </IconButton>
 
-                      <IconButton size="small" href={userDetail?.github} sx={{ color: 'text.secondary', "&:hover": { color: "text.btnEdit" } }}>
+                      <IconButton
+                        size="small"
+                        href={userDetail?.github}
+                        sx={{
+                          color: "text.secondary",
+                          "&:hover": { color: "text.btnEdit" },
+                        }}
+                      >
                         <GitHubIcon />
                       </IconButton>
-                      <IconButton size="small" href={userDetail?.portfolio} sx={{ marginLeft: '35px', color: 'text.secondary', "&:hover": { color: "text.btnEdit" } }}>
+                      <IconButton
+                        size="small"
+                        href={userDetail?.portfolio}
+                        sx={{
+                          marginLeft: "35px",
+                          color: "text.secondary",
+                          "&:hover": { color: "text.btnEdit" },
+                        }}
+                      >
                         <ContactPageIcon />
                       </IconButton>
                     </Grid>
                   </Grid>
                 </Box>
               </Grid>
-
               <Grid
                 sx={{
                   width: "96%",
@@ -202,58 +332,82 @@ const ProfileDashboard = () => {
                   margin: "0 auto",
                   marginTop: "20px",
                   backgroundColor: "background.profilePhotos",
-                  borderRadius: '6px'
+                  borderRadius: "6px",
                 }}
               >
-                <List sx={{ margin: '5px 0px', textAlign: "center" }}>
-
+                <List sx={{ margin: "5px 0px", textAlign: "center" }}>
                   <Button
                     onClick={handleOnChange}
-                    value={'preguntas'}
-                    sx={{ color: "text.btnEdit", backgroundColor: 'background.buttons', marginLeft: '15px', border: 'solid 1px ' }}>Preguntas</Button>
+                    value={"preguntas"}
+                    sx={{
+                      color: "text.btnEdit",
+                      backgroundColor: "background.buttons",
+                      marginLeft: "15px",
+                      border: "solid 1px ",
+                    }}
+                  >
+                    Preguntas
+                  </Button>
                   <Button
                     onClick={handleOnChange}
-                    value={'respuestas'}
-                    sx={{ color: "text.btnEdit", backgroundColor: 'background.buttons', marginLeft: '15px', border: 'solid 1px ' }}>Respuestas</Button>
+                    value={"respuestas"}
+                    sx={{
+                      color: "text.btnEdit",
+                      backgroundColor: "background.buttons",
+                      marginLeft: "15px",
+                      border: "solid 1px ",
+                    }}
+                  >
+                    Respuestas
+                  </Button>
                   <Button
                     onClick={handleOnChange}
-                    value={'likes'}
-                    sx={{ color: "text.btnEdit", backgroundColor: 'background.buttons', marginLeft: '15px', border: 'solid 1px ' }}>Likes</Button>
+                    value={"likes"}
+                    sx={{
+                      color: "text.btnEdit",
+                      backgroundColor: "background.buttons",
+                      marginLeft: "15px",
+                      border: "solid 1px ",
+                    }}
+                  >
+                    Likes
+                  </Button>
                 </List>
               </Grid>
-
-
               <Grid
                 // container
                 sx={{
-                  height: '252px',
-                  width: '1060px',
-                  paddingLeft: '12px',
-                  background: 'background.map'
+                  height: "252px",
+                  width: "1060px",
+                  paddingLeft: "12px",
+                  background: "background.map",
                 }}
               >
-                {preguntas && <PaginadoPreguntas
-                  questionsProfile={questionsProfile}
-                  posts={userDetail.posts}
-                  setQuestionsProfile={(q) => setQuestionsProfile(q)}
-                />}
-                {comentarios && <PaginadoRespuestas
-                  commentsProfile={commentsProfile}
-                  comments={userDetail.comments}
-                  setCommentsProfile={(q) => setCommentsProfile(q)}
-                />}
-                {likes && <PaginadoLikes
-                  likesProfile={likesProfile}
-                  likes={userDetail.likes}
-                  setLikes={(q) => setLikesProfile(q)}
-                />}
-
-
+                {preguntas && (
+                  <PaginadoPreguntas
+                    questionsProfile={questionsProfile}
+                    posts={userDetail.posts}
+                    setQuestionsProfile={(q) => setQuestionsProfile(q)}
+                  />
+                )}
+                {comentarios && (
+                  <PaginadoRespuestas
+                    commentsProfile={commentsProfile}
+                    comments={userDetail.comments}
+                    setCommentsProfile={(q) => setCommentsProfile(q)}
+                  />
+                )}
+                {likes && (
+                  <PaginadoLikes
+                    likesProfile={likesProfile}
+                    likes={userDetail.likes}
+                    setLikes={(q) => setLikesProfile(q)}
+                  />
+                )}
               </Grid>
-            </Grid >
-          </Box >
-        )
-      }
+            </Grid>
+          </Box>
+        )}
     </>
   );
 };

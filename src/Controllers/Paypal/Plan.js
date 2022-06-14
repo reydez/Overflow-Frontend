@@ -3,8 +3,6 @@ import { useSelector } from "react-redux";
 import ButtonWrapper from "./Suscription";
 
 const Plan = () => {
-  const user = useSelector((state) => state.userReducer.user);
-
   return (
     <div
       style={{

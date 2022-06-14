@@ -55,6 +55,7 @@ export const Questions = () => {
       if (user.id !== undefined) {
         dispatch(getUserProfile(user.id));
         dispatch(userInbox(user.id));
+        dispatch(getQuestions());
       }
     };
     createUserFromDispatch();
@@ -64,7 +65,6 @@ export const Questions = () => {
     const loadQuestions = () => {
       setLoading(true);
       dispatch(getTags());
-      dispatch(getQuestions());
       setLoading(false);
     };
     loadQuestions();
@@ -118,9 +118,9 @@ export const Questions = () => {
             <Avatars orderByModule={handleOrderByModule} />
             <Button
               sx={{
-                color: "#F50057",
+                color: "color.filters",
                 "&:hover": { color: "#F50057" },
-                boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+                boxShadow: "rgba(0, 0, 0, 0.35) 0px 4px 8px",
                 borderRadius: "10px",
               }}
               className="buttonFilter"
@@ -131,9 +131,9 @@ export const Questions = () => {
 
             <Button
               sx={{
-                color: "#F50057",
+                color: "color.filters",
                 "&:hover": { color: "#F50057" },
-                boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+                boxShadow: "rgba(0, 0, 0, 0.35) 0px 4px 8px",
                 borderRadius: "10px",
               }}
               className="buttonFilter"

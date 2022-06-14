@@ -4,11 +4,14 @@ import { useSelector } from 'react-redux';
 import PaginationProfile from './PaginationProfile';
 import CardRespuestas from '../cardsPerPagination/CardRespuestas';
 
+
 const PaginadoRespuestas = ({ commentsProfile, comments, setCommentsProfile }) => {
     const user = useSelector((state) => state.userReducer.user);
 
 
-
+    // console.log('Hola soy comments: ', comments)
+    // console.log('Hola soy commentsProfile: ', commentsProfile)
+    // console.log('Hola soy: ', comments)
     return (
 
         <Grid

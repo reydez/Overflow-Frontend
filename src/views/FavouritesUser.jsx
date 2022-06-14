@@ -43,7 +43,9 @@ function FavouritesUser() {
 
   useEffect(() => {
     dispatch(getFavorite(user.id));
-  }, [dispatch, user.id]);
+  }, []);
+  
+
 
   return (
     <div>
@@ -62,10 +64,12 @@ function FavouritesUser() {
         <List sx={{ textAlign: "center" }}>
           {" "}
           {/* LISTA DEL SUB-MENU */}
+
           {/* <Button sx={{ color: "#fff" }}>A DEFINIR</Button> */}
           <Typography variant="h4" component="div" gutterBottom>
             Mis Favoritos <Favorite size="large" sx={{ color: "#D81B60" }} />
           </Typography>
+
         </List>
       </Grid>
       <TableContainer
@@ -94,9 +98,8 @@ function FavouritesUser() {
             {favorite.Favorites?.map((el, index) => {
               const d = new Date(el.post.createdAt);
               var date = d.toLocaleDateString("ES");
-
               let state;
-              if (el.post.close) {
+              if (el.post.closed) {
                 state = "si";
               } else {
                 state = "no";

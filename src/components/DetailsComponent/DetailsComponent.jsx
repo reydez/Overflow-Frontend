@@ -17,7 +17,8 @@ import { Button } from "@mui/material";
 import CheckIcon from '@mui/icons-material/Check';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { finishedPost } from "../../redux/actions/user";
-import { isCorrectAnswer } from "../../redux/actions/comments"
+import { isCorrectAnswer } from "../../redux/actions/comments";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 export default function DetailsComponent({
   question,
@@ -211,13 +212,69 @@ const isCorrect = (idComment, idUser) => {
               color: "#413a66",
               marginTop: "-15px",
             }}
-          >
+            >
+            <hr></hr>
             {question.message}
           </Typography>
-          <hr />
+          {commentsARenderizar?.length > 0 && commentsARenderizar.find((a) => a.isCorrect) ? 
+           (commentsARenderizar.map((comment, index) => comment.isCorrect ? (
+             <>
+                <p
+                  style={{
+                    marginTop: "35px",
+                    fontSize: "16px",
+                    color: "#43a66",
+                  }}
+                >
+                  <b>
+                    Respuesta seleccionada por el usuario
+                  </b>
+                </p>
+                <div
+                  key={index}
+                  style={{
+                    border: "1px solid black",
+                    borderRadius: "10px",
+                    padding: "1.5em 1em",
+                    margin: "-0.5em 0em .5em 0",
+                  }}
+                >
+                  <CheckCircleIcon
+                  sx={{
+                    borderRadius: "10px",
+                    float: "right",
+                    marginTop: "-15px",
+                    color: "#4caf50",
+                    fontSize: 35
+                  }}
+                  />
+                  <p
+                    style={{
+                      margin: "0",
+                      fontSize: "16px",
+                      color: "#43a66",
+                    }}
+                  >
+                    {`${comment.user.full_name}:`}
+                  </p>
+                  <span
+                    style={{
+                      fontSize: "14px",
+                      width: "inhert",
+                      overflowWrap: "break-word",
+                      color: "#8c81a7",
+                    }}
+                  >
+                    {comment.message}
+                  </span>
+                </div>
+              </>
+            ) : null)) : null}
           <p
             style={{
-              margin: "0",
+              // margin: "0",
+              marginBottom: "1em",
+              marginTop: "2.8em",
               padding: "0 10px",
               borderRadius: "10px",
               backgroundColor: "#413a66",
@@ -227,25 +284,28 @@ const isCorrect = (idComment, idUser) => {
           >
             Comentarios:
           </p>
+          {/* <hr /> */}
           <div
             style={{
-              maxHeight: "340px",
+              maxHeight: "500px",
               overflow: "auto",
               backgroundColor: "#fafafa",
-              marginTop: "10px",
-              borderRadius: "20px",
+              // marginTop: "0.9em",
+              // borderRadius: "20px",
+              borderTop: "1px solid black",
+              borderBottom: "1px solid black",
             }}
           >
             {loading && <h3>Loading Question Details...</h3>}
             {commentsARenderizar?.length > 0 ? (
-              commentsARenderizar.map((comment, index) => (
+              commentsARenderizar.map((comment, index) => !comment.isCorrect? (
                 <div
                   key={index}
                   style={{
-                    // border: "1px solid black",
-                    borderRadius: "20px",
-                    padding: ".2em 1em",
-                    margin: ".5em 0 .5em 0",
+                    border: "1px solid black",
+                    borderRadius: "10px",
+                    padding: "1.2em 1em",
+                    margin: ".5em 1em .5em 0",
                   }}
                 >
                   <p
@@ -259,17 +319,24 @@ const isCorrect = (idComment, idUser) => {
 
                     {/* ----------------------- BORRAR COMENTARIO ---------------------- */}
                     {user.isAdmin || comment.user.id === user.id ? (
-                      <button
-                        className="delCommentButton"
-                        onClick={() => handleRemoveComment(comment.id, user.id)}
-                      >
-                        Borrar Comentario
-                      </button>
+                      <Button
+                      onClick={() => handleRemoveComment(comment.id, user.id)}
+                      sx={{
+                       color: "#A8A3B5",
+                       borderRadius: "10px",
+                       float: "right",
+                       cursor: "pointer",
+                       ":hover": {
+                         color: "red"
+                       }}
+                      }
+                     >
+                       <DeleteForeverIcon />
+                     </Button>
                     ) : null}
-                    <br />
 
                     {/* ----------------------- REPORTAR COMENTARIO ---------------------- */}
-                    {comment.user.id == user.id ? (
+                    {comment.user.id !== user.id ? (
                     <Button
                     onClick={() => handleSendReport(comment.id)}
                     sx={{
@@ -296,27 +363,14 @@ const isCorrect = (idComment, idUser) => {
                     // paddingBottom: 10
                     borderRadius: "10px",
                     float: "right",
-                  }}
+                    }}
                     >
                       <CheckIcon
-                      sx={{ color: "#A8A3B5"}}
+                      sx={{ color: "#A8A3B5" }}
                       />
                     </Button>
-                    ) :
-                    <>
-                      {/* <Button
-                      > */}
-                        <CheckCircleIcon
-                        sx={{
-                        borderRadius: "10px",
-                        float: "right",
-                        color: "#4caf50",
-                        }}
-                        />
-                      {/* </Button> */}
-                    </>
+                    ) : null
                     }
-
                   </p>
                   <span
                     style={{
@@ -330,9 +384,13 @@ const isCorrect = (idComment, idUser) => {
                   </span>
 
                   <div ref={dummy}></div>
-                  <hr />
+                  {/* <hr 
+                    style={{
+                      marginTop: "20px"
+                    }}
+                  /> */}
                 </div>
-              ))
+              ) : null)
             ) : (
               <h3
                 style={{ color: "grey", fontSize: "14px", paddingLeft: "10px" }}
@@ -353,7 +411,7 @@ const isCorrect = (idComment, idUser) => {
              <br />
               <p style={{ margin: "auto", marginBottom: "1rem", marginTop: "1rem" }}>
                <b>
-                PREGUNTA CERRADA POR EL USUARIO!
+                PREGUNTA CERRADA!
                </b>
              </p>
              <br />
@@ -510,3 +568,16 @@ const MainContainer = styled.div`
     }
   }
 `;
+{/* <Button
+onClick={() => handleRemoveComment(comment.id, user.id)}
+sx={{
+   color: "#A8A3B5",
+   float: "right",
+   cursor: "pointer",
+   ":hover": {
+     color: "red"
+   } 
+   }}
+>
+ <DeleteForeverIcon />
+</Button> */}
