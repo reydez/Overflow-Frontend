@@ -7,7 +7,7 @@ export const getModuleColor = (question) => {
     } else if (question.module?.name === "M3") {
         colorModule = "#D81B60"
     } else if (question.module?.name === "M4") {
-        colorModule = "#42A5F5"
+        colorModule = " #42A5F5"
     }
     return colorModule
 }
