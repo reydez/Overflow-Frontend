@@ -49,7 +49,6 @@ function FavouritesUser() {
     dispatch(getFavorite(user.id));
   }, []);
   
-console.log(favorite)
 
   return (
     <div>
@@ -68,10 +67,11 @@ console.log(favorite)
         <List sx={{ textAlign: "center" }}>
           {" "}
           {/* LISTA DEL SUB-MENU */}
-          {/* <Button sx={{ color: "#fff" }}>A DEFINIR</Button> */}
-          <Typography variant="h4" component="div" gutterBottom>
+        
+          <Typography variant="h4" component="div" gutterBottom align="initial">
           Mis Favoritos <Favorite size="large" sx={{color: "#D81B60" }}/>
-      </Typography>
+          <Button sx={{ color: "#fff", marginLeft: '70%' }}>A DEFINIR</Button>
+     </Typography>
         </List>
       </Grid>
       <TableContainer component={TableRow} sx={{ display: "flex", paddingTop: 0 }}>
@@ -96,20 +96,20 @@ console.log(favorite)
               <StyledTableCell align="center">
                    Fecha de posteo
               </StyledTableCell>
-              <StyledTableCell align="center">Resuelto</StyledTableCell>
+              <StyledTableCell align="center">Estado</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {favorite.Favorites?.map((el, index) =>  {
+              console.log(el)
               const d = new Date(el.post.createdAt);
 
            var date = d.toLocaleDateString("ES");
-              console.log(el)
                 let state;
                 if(el.post.close){
-                  state = "si";
+                  state = "resuelto";
                 }else{
-                  state ="no";
+                  state ="sin resolver";
                 }
             return(
               <StyledTableRow key={el.id}>
