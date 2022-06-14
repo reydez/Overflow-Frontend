@@ -51,12 +51,12 @@ const PaginationProfile = ({ posts, setQuestionsProfile }) => {
   return (
     <Box
       sx={{
-        position: "absolute",
-        display: "flex",
-        marginTop: "230px",
+        // position: "static",
+        // display: 'block',
+        marginTop: '20px',
         marginLeft: "450px",
-        justifyContent: "center",
-        alignItems: "center",
+        // justifyContent: "center",
+        // alignItems: "center",
       }}
     >
       <Pagination

@@ -112,7 +112,8 @@ export const quantityAnswers = (
 
 export const img = (image) => {
   return (
-    <Card>
+    <Card
+    >
       <CardMedia
         sx={{
 
@@ -120,7 +121,7 @@ export const img = (image) => {
           width: "150px",
           height: "150px",
           borderRadius: "75px",
-          marginLeft: "38px",
+          marginLeft: "32px",
           marginRight: '20px',
           border: "3px solid",
           p: 0,

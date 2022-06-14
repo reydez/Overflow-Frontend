@@ -79,12 +79,12 @@ const themeObj = {
 
 
 export const ColorContextProvider = ({ children }) => {
-  const [mode, setMode] = useState("light");
+  const [mode, setMode] = useState("dark");
 
   const colorMode = useMemo(
     () => ({
       toggleMode: () =>
-        setMode((prevMode) => (prevMode === "light" ? "dark" : "light")),
+        setMode((prevMode) => (prevMode === "dark" ? "light" : "dark")),
       mode,
     }),
     [mode]
