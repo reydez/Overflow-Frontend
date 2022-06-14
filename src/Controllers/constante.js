@@ -4,7 +4,8 @@ import {
   Divider,
   List,
   Toolbar,
-  Typography
+  Typography,
+  Box
 } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
@@ -17,9 +18,11 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { useSelector } from "react-redux";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import logo from '../assets/bgLandingRocket.png'
+import Letra from '../assets/logo.png'
 const ButtonLogOut = () => {
   const { logout } = useAuth0();
   const user = useSelector((state) => state.userReducer.user);
+  
 
   return (
     <>
@@ -152,7 +155,15 @@ margin-top: 10px;
 const drawer = (
   <div>
     <Toolbar sx={{ bgcolor: "background.white" }}>
-      <h3 style={{ display: 'flex', margin: '0 auto', letterSpacing: '1px' }}>Henry-Flow</h3>
+    {/* <Box sx={{ width: '100%', maxWidth: 500, textAlign: 'center', marginLeft: '10px', color: 'text.btnEdit', fontFamily:'cursive'  }}>
+      <Typography variant="h5"  component="div" gutterBottom><span>Henry</span><span>Flow</span></Typography>
+    </Box> */}
+   
+
+      <img src={Letra} style={{ padding:'1px', width:'180px',  marginLeft:'10px', bgcolor: 'white', }} />
+      
+      
+      {/* <h3 style={{ display: 'flex', margin: '0 auto', letterSpacing: '1px' }}>Henry-Flow</h3> */}
     </Toolbar>
     <Divider />
     <List sx={{ bgcolor: "background.white" }}>
