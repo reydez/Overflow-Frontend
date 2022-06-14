@@ -11,14 +11,18 @@ const PaginadoPreguntas = ({ questionsProfile, posts, setQuestionsProfile }) => 
     return (
         <Grid
             sx={{
-                height: '200px',
+                height: '230px',
                 width: '1060px',
                 marginLeft: '5px',
                 borderRadius: '4px',
                 marginBottom: '5px',
-                backgroundColor: "background.violet",
+                backgroundColor: "background.map",
             }}
         >
+            <PaginationProfile
+                setQuestionsProfile={setQuestionsProfile}
+                posts={posts}
+            />
             {questionsProfile?.map((p) => {
                 return (
                     <CardPreguntas
@@ -29,10 +33,7 @@ const PaginadoPreguntas = ({ questionsProfile, posts, setQuestionsProfile }) => 
                     />
                 )
             })}
-            <PaginationProfile
-                setQuestionsProfile={setQuestionsProfile}
-                posts={posts}
-            />
+
         </Grid>
     )
 }
