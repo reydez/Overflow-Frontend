@@ -13,9 +13,9 @@ export default function VisualizeQuestion() {
   const dummy = useRef(null);
 
   useEffect(() => {
-    const loadQuestionDetails = async () => {
+    const loadQuestionDetails = () => {
       setLoadin(true);
-      await dispatch(getQuestionDetails(questionId));
+      dispatch(getQuestionDetails(questionId));
       setLoadin(false);
     };
 
@@ -29,6 +29,13 @@ export default function VisualizeQuestion() {
   let comentsARenderizar = comments?.sort(
     (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
   );
+
+  let isCorrect = comentsARenderizar ? comentsARenderizar.find(a => a.isCorrect) : false
+
+  if(question.closed && isCorrect && comments.includes(isCorrect)) {
+    let coments = comentsARenderizar.filter(a => !a.isCorrect)
+    comentsARenderizar = [isCorrect ,...coments]
+  }
 
   return (
     <DetailsComponent

@@ -34,6 +34,7 @@ import { sendFormReport } from "../../../Controllers/Helpers/formReport"
 import { setLikesByUser } from "../../../redux/actions/likes"
 import { setFavorite } from "../../../redux/actions/favourite"
 import { setDinamix } from "../../../redux/actions/user"
+import LockIcon from '@mui/icons-material/Lock';
 
 
 
@@ -264,7 +265,7 @@ export const QuestionCard = ({ question }) => {
                         theme.palette.mode === "dark" ? "#fff" : "#7165A0",
                     }}
                   >
-                    {question.closed ? <><b>Pregunta cerrada</b> <br /></> : null}
+                    {question.closed ? <><LockIcon/><b>Cerrada</b> <br /></> : null}
                     {question.title}
                   </Typography>
                 </Link>
