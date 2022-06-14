@@ -51,15 +51,14 @@ const PaginationProfile = ({ posts, setQuestionsProfile }) => {
   return (
     <Box
       sx={{
-        position: "absolute",
-        display: "flex",
-        marginTop: "230px",
-        marginLeft: "450px",
-        justifyContent: "center",
-        alignItems: "center",
+        marginTop: '10px',
+        marginLeft: "470px",
+        // justifyContent: "center",
+        // alignItems: "center",
       }}
     >
       <Pagination
+        size="small"
         count={Math.ceil(pagination.count / pageSize)}
         onChange={handlePageChange}
       />

@@ -1,26 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react'
 import { Link, Grid, CardMedia, Button } from "@mui/material";
 import LinkIcon from '@mui/icons-material/Link';
 import { Link as RouterLink } from "react-router-dom";
 
-const CardPreguntas = ({ p, user }) => {
-
+const CardLikes = ({ p, user }) => {
+    console.log(p);
     const [active, setActive] = useState(false)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const seeClose = () => {
-        if (p.closed) setActive(true)
+        if (p.post.closed) setActive(true)
     }
 
     useEffect(() => {
         seeClose()
     }, [seeClose])
-
-
     return (
+
         <Grid
             container
-            key={p.id}
+            key={p.post.id}
             sx={{
                 width: '1045px',
                 height: "55px",
@@ -58,29 +57,29 @@ const CardPreguntas = ({ p, user }) => {
             </Grid>
             <Grid sx={{ width: "22%" }}>
                 <Link
-                    to={`/visualize-question/${p.id}`}
+                    to={`/visualize-question/${p.postId}`}
                     component={RouterLink}
                     color="inherit"
                     underline="none"
                 >
-                    {p?.title.substring(0, 20)}
+                    {p?.post.title.substring(0, 20)}
                 </Link>
             </Grid>
             <Grid sx={{ width: "30%" }}>
                 <Link
-                    to={`/visualize-question/${p.id}`}
+                    to={`/visualize-question/${p.postId}`}
                     component={RouterLink}
                     color="inherit"
                     underline="none"
                 >
 
-                    {p?.message.substring(0, 30)}
+                    {p?.post.message.substring(0, 30)}
                 </Link>
             </Grid>
             <Grid sx={{ width: "15%" }}> {active ? 'Resuelto' : 'Abierto'} </Grid>
             <Grid sx={{ width: "20%", maginBottom: '20px' }}>
                 <Link
-                    to={`/visualize-question/${p.id}`}
+                    to={`/visualize-question/${p.postId}`}
                     component={RouterLink}
                     color="inherit"
                     underline="none"
@@ -93,4 +92,4 @@ const CardPreguntas = ({ p, user }) => {
     )
 }
 
-export default CardPreguntas
+export default CardLikes

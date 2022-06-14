@@ -1,22 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react'
 import { Link, Grid, CardMedia, Button } from "@mui/material";
 import LinkIcon from '@mui/icons-material/Link';
 import { Link as RouterLink } from "react-router-dom";
 
-const CardPreguntas = ({ p, user }) => {
-
-    const [active, setActive] = useState(false)
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    const seeClose = () => {
-        if (p.closed) setActive(true)
-    }
-
-    useEffect(() => {
-        seeClose()
-    }, [seeClose])
-
-
+const CardRespuestas = ({ p, user }) => {
+    // console.log(p);
     return (
         <Grid
             container
@@ -34,7 +22,8 @@ const CardPreguntas = ({ p, user }) => {
             }}
         >
 
-
+            <Grid sx={{ width: "10%" }}>
+            </Grid>
 
             <Grid
                 sx={{ width: "10%" }}
@@ -45,7 +34,7 @@ const CardPreguntas = ({ p, user }) => {
                         width: "35px",
                         height: "35px",
                         borderRadius: "75px",
-                        marginLeft: "20px",
+                        marginLeft: "4px",
                         marginRight: '20px',
                         border: "2px solid",
                         marginTop: "-6px",
@@ -56,41 +45,25 @@ const CardPreguntas = ({ p, user }) => {
                     alt={user?.name}
                 />
             </Grid>
-            <Grid sx={{ width: "22%" }}>
-                <Link
-                    to={`/visualize-question/${p.id}`}
-                    component={RouterLink}
-                    color="inherit"
-                    underline="none"
-                >
-                    {p?.title.substring(0, 20)}
-                </Link>
-            </Grid>
             <Grid sx={{ width: "30%" }}>
-                <Link
-                    to={`/visualize-question/${p.id}`}
-                    component={RouterLink}
-                    color="inherit"
-                    underline="none"
-                >
-
-                    {p?.message.substring(0, 30)}
-                </Link>
+                {p?.message.substring(0, 30)}
             </Grid>
-            <Grid sx={{ width: "15%" }}> {active ? 'Resuelto' : 'Abierto'} </Grid>
             <Grid sx={{ width: "20%", maginBottom: '20px' }}>
                 <Link
-                    to={`/visualize-question/${p.id}`}
+                    to={`/visualize-question/${p.postId}`}
                     component={RouterLink}
                     color="inherit"
                     underline="none"
+                // color="text.btnEdit"
                 >
                     <Button size="small" variant="outlined" color="success" endIcon={<LinkIcon fontSize="small" />}
                     >   ir</Button>
                 </Link>
             </Grid>
-        </Grid>
+
+
+        </Grid >
     )
 }
 
-export default CardPreguntas
+export default CardRespuestas
