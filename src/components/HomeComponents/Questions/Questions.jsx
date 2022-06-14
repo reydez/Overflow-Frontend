@@ -186,9 +186,16 @@ export const Questions = () => {
               }}
               className="nums"
             >
-              {/* {respuestas.length} variable de todas las respuestas/comentarios */}
+              <div style={{ fontSize: "40px" }}>{respuestas.length}</div>
             </Box>
-            <Box sx={{ color: "#A8A3B5", marginTop: 1, marginLeft: 4 }}>
+            <Box
+              sx={{
+                color: "#A8A3B5",
+                marginTop: 0.5,
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
               Respuestas
             </Box>
             <Box sx={{ marginTop: 3, marginLeft: 0, textAlign: "center" }}>
@@ -234,16 +241,15 @@ export const Questions = () => {
 
 const CounterSideBar = styled.div`
   /*COUNTER              CHEQUAR ESTE PROPERTY*/
-  @property --num {
-    syntax: "<integer>";
-    inherits: false;
-    initial-value: 0;
-  }
+
   .nums {
     position: relative;
     display: flex;
+    justify-content: center;
+    align-items: center;
     padding-top: 5px;
     margin: 0 auto;
+    text-size: 50px
 
     text-align: center;
     animation-name: counter;
@@ -257,7 +263,6 @@ const CounterSideBar = styled.div`
   .nums::before {
     width: 2em;
     font: 400 2.5em system-ui;
-    content: counter(num);
 
     display: flex;
     margin: 0 auto;
@@ -282,15 +287,6 @@ const CounterSideBar = styled.div`
     max-width: 100px;
     top: 80%;
     transform: translateY(-50%);
-  }
-
-  @keyframes counter {
-    from {
-      --num: 0;
-    }
-    to {
-      --num: 534;
-    }
   }
 `;
 
