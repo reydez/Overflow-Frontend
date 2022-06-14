@@ -17,7 +17,8 @@ import { Button } from "@mui/material";
 import CheckIcon from '@mui/icons-material/Check';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { finishedPost } from "../../redux/actions/user";
-import { isCorrectAnswer } from "../../redux/actions/comments"
+import { isCorrectAnswer } from "../../redux/actions/comments";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 export default function DetailsComponent({
   question,
@@ -318,17 +319,24 @@ const isCorrect = (idComment, idUser) => {
 
                     {/* ----------------------- BORRAR COMENTARIO ---------------------- */}
                     {user.isAdmin || comment.user.id === user.id ? (
-                      <button
-                        className="delCommentButton"
-                        onClick={() => handleRemoveComment(comment.id, user.id)}
-                      >
-                        Borrar Comentario
-                      </button>
+                      <Button
+                      onClick={() => handleRemoveComment(comment.id, user.id)}
+                      sx={{
+                       color: "#A8A3B5",
+                       borderRadius: "10px",
+                       float: "right",
+                       cursor: "pointer",
+                       ":hover": {
+                         color: "red"
+                       }}
+                      }
+                     >
+                       <DeleteForeverIcon />
+                     </Button>
                     ) : null}
-                    <br />
 
                     {/* ----------------------- REPORTAR COMENTARIO ---------------------- */}
-                    {comment.user.id == user.id ? (
+                    {comment.user.id !== user.id ? (
                     <Button
                     onClick={() => handleSendReport(comment.id)}
                     sx={{
@@ -403,7 +411,7 @@ const isCorrect = (idComment, idUser) => {
              <br />
               <p style={{ margin: "auto", marginBottom: "1rem", marginTop: "1rem" }}>
                <b>
-                PREGUNTA CERRADA POR EL USUARIO!
+                PREGUNTA CERRADA!
                </b>
              </p>
              <br />
@@ -560,3 +568,16 @@ const MainContainer = styled.div`
     }
   }
 `;
+{/* <Button
+onClick={() => handleRemoveComment(comment.id, user.id)}
+sx={{
+   color: "#A8A3B5",
+   float: "right",
+   cursor: "pointer",
+   ":hover": {
+     color: "red"
+   } 
+   }}
+>
+ <DeleteForeverIcon />
+</Button> */}

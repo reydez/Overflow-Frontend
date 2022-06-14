@@ -36,19 +36,19 @@ import { setFavorite } from "../../../redux/actions/favourite"
 import { setDinamix } from "../../../redux/actions/user"
 import LockIcon from '@mui/icons-material/Lock';
 
-
-
 export const QuestionCard = ({ question }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userReducer.user);
   const userDetail = useSelector((state => state.userReducer.userDetail))
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
-  const dinamix = useSelector(state => state.userReducer.dinamix)
+  const dinamix = useSelector(state => state.userReducer.dinamix);
   const [activeColor, setActiveColor] = useState({
     like: false,
     favorite: false,
   });
 
+  console.log(question.user.id === user.id)
+  
   function matchReportId() {
     let found = userDetail.reports.find(elem => elem.postId === question.id)
     if (found === undefined) found = 0
@@ -64,7 +64,6 @@ export const QuestionCard = ({ question }) => {
   function matchFavoriteId() {
     let found = userDetail.favorites.find(elem => elem.postId === question.id)
     if (found === undefined) found = 0
-
     return found === 0 ? 0 : found.id
   };
 
@@ -75,9 +74,7 @@ export const QuestionCard = ({ question }) => {
   const handleLike = () => {
     dispatch(setLikesByUser(question.id, user.id));
     dispatch(setDinamix(!dinamix))
-
   };
-
 
   const handleFavorites = () => {
     dispatch(setFavorite(question.id, user.id));
@@ -96,24 +93,12 @@ export const QuestionCard = ({ question }) => {
     });
   }, [user, existLike, existFavorite])
 
+
   const d = new Date(question.createdAt);
-
-  var date = d.toLocaleTimeString() + ", " + d.toLocaleDateString("ES");
-
-  const extras = {
-    vote: 1,
-    views: 34,
-  };
+  const date = d.toLocaleTimeString() + ", " + d.toLocaleDateString("ES");
 
   // ----------------handleClick REMOVE QUESTION ---------------------------
-  const handleRemoveQuestion = (idPost, idUser) => {
-    // console.log('TODO QUESTION:', question)
-    // console.log("Queres borrar la Pregunta con ID:", question.id);
-    // console.log(
-    //   "Queres borrar la Pregunta creada por:",
-    //   question.user.full_name
-    // );
-    // console.log("Con el ID:", user.id);
+  const handleRemoveQuestion = () => {
     Swal.fire({
       title: "La pregunta será eliminada",
       icon: "warning",
@@ -125,9 +110,6 @@ export const QuestionCard = ({ question }) => {
       if (result.isConfirmed) {
         dispatch(deleteQuestion(question.id, user.id));
         Swal.fire("Borrada!", "Pregunta eliminada correctamente", "success");
-        // setTimeout(()=> {
-        //   dispatch(getQuestionDetails(questionId))
-        // }, 500)
       }
     });
   };
@@ -157,78 +139,32 @@ export const QuestionCard = ({ question }) => {
             {question.module?.name}
           </Avatar>
           <Stack direction="row" spacing={0.5}>
-            {question.comments.length || question.likes.length > 0 ? (
-              <>
-                <CheckCircleIcon sx={{ color: "green" }} />
-                <Typography sx={{ color: "green", fontSize: "18px" }}>
+                <CheckCircleIcon sx={{ color: question.comments.length ? "green" : "red" }} />
+                <Typography sx={{ color: question.comments.length ? "green" : "red", fontSize: "18px" }}>
                   <span>{question.comments.length}</span>
                   <p
                     style={{
                       marginLeft: "-30px",
                       marginTop: 0,
                       fontSize: "9px",
-                      color: "green",
+                      color: question.comments.length ? "green" : "red",
                     }}
                   >
                     Respuestas
                   </p>
                 </Typography>
-                <p
-                  style={{
-                    marginLeft: "-40px",
-                    marginTop: "60px",
-                    fontSize: "9px",
-                    color: "#a8a3b5",
-                  }}
-                >
-                  {/* VOTOS HACER CONEXION CON BACK */}
-                  <ThumbUpAltIcon sx={{ fontSize: 9 }} />
-                  {question.likes.length} Votos
-                </p>
-              </>
-            ) : (
-              <>
-                <DoDisturbOnIcon sx={{ color: "red" }} />
-                <Typography sx={{ color: "red", fontSize: "18px" }}>
-                  <span>{question.comments.length}</span>
-                  <p
-                    style={{
-                      marginLeft: "-30px",
-                      marginTop: 0,
-                      fontSize: "9px",
-                      color: "red",
-                    }}
-                  >
-                    Respuestas
-                  </p>
-
-                  <p
-                    style={{
-                      marginLeft: "-30px",
-                      marginTop: 0,
-                      fontSize: "9px",
-                      color: "#a8a3b5",
-                    }}
-                  >
-                    {/* VISITAS HACER CONEXION CON BACK */}
-                    <VisibilityIcon sx={{ fontSize: 9 }} /> {extras.views}{" "}
-                    Visitas
-                  </p>
-                </Typography>
-                <p
-                  style={{
-                    marginLeft: "-40px",
-                    marginTop: "60px",
-                    fontSize: "9px",
-                    color: "#a8a3b5",
-                  }}
-                >
-                  {/* VOTOS HACER CONEXION CON BACK */}
-                  <ThumbUpAltIcon sx={{ fontSize: 9 }} />
-                  {question.likes.length} Votos
-                </p>
-              </>
-            )}
+            <p
+              style={{
+                marginLeft: "-40px",
+                marginTop: "55px",
+                fontSize: "15px",
+                color: "#a8a3b5",
+              }}
+            >
+              {/* VOTOS HACER CONEXION CON BACK */}
+              <ThumbUpAltIcon sx={{ fontSize: 17 }} /> {" "}
+              {question.likes.length}
+            </p>
           </Stack>
         </Grid>
 
@@ -285,14 +221,14 @@ export const QuestionCard = ({ question }) => {
                   fontWeight: "400",
                 }}
               >
-                {question.message}
+                {question.message.slice(0, 30) + "..."}
               </Typography>
             </Grid>
 
             <Grid item>
-              {" "}
+              <br/>
               {/* TAGs de cada categoría*/}
-              <Stack direction="row" spacing={1} sx={{ marginTop: "-35px" }}>
+              <Stack direction="row" spacing={1} sx={{ marginTop: "-30px" }}>
                 {question.tags.map((tag) => {
                   // console.log(tag)
                   return (
@@ -357,7 +293,20 @@ export const QuestionCard = ({ question }) => {
                 sx={activeColor.favorite ? { color: "#D81B60" } : { color: "#A8A3B5" }}
               />
             </Button>
-            <Button
+            <br/>
+            {/* ----------------- ELIMINAR PREGUNTA -----------------------*/}
+            {user.isAdmin || question.user.id === user.id ? (
+              <Button
+                // {...label}
+                onClick={handleRemoveQuestion}
+                sx={{ color: "#A8A3B5", top: 15, left: 15 }}
+              >
+                <DeleteForeverIcon />
+              </Button>
+            ) : null}
+            {/* ----------------- REPORTAR PREGUNTA -----------------------*/}
+            <br/>
+            {question.user.id !== user.id ? <Button
               {...label}
               onClick={handleSendReport}
               sx={{
@@ -366,24 +315,13 @@ export const QuestionCard = ({ question }) => {
                   color: red[600],
                 },
                 top: 10,
-                left: -50,
+                left: 95,
               }}
             >
               <FlagIcon
                 sx={false ? { color: "#f44336" } : { color: "#A8A3B5" }}
               />
-            </Button>
-            {/* ----------------- ELIMINAR PREGUNTA -----------------------*/}
-            {user.isAdmin || question.user.id === user.id ? (
-              <Button
-                // {...label}
-                onClick={handleRemoveQuestion}
-                sx={{ color: "#A8A3B5", top: 10, left: -50 }}
-              >
-                <DeleteForeverIcon />
-              </Button>
-            ) : null}
-            {/* ----------------- ELIMINAR PREGUNTA -----------------------*/}
+            </Button> : null}
           </Grid>
 
           <Grid item>

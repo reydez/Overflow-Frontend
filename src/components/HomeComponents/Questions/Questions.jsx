@@ -55,6 +55,7 @@ export const Questions = () => {
       if (user.id !== undefined) {
         dispatch(getUserProfile(user.id));
         dispatch(userInbox(user.id));
+        dispatch(getQuestions());
       }
     };
     createUserFromDispatch();
@@ -64,7 +65,6 @@ export const Questions = () => {
     const loadQuestions = () => {
       setLoading(true);
       dispatch(getTags());
-      dispatch(getQuestions());
       setLoading(false);
     };
     loadQuestions();
