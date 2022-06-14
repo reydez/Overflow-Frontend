@@ -45,10 +45,6 @@ export default function DetailsComponent({
     finished: "",
   });
 
-  // console.log('Hola soy un user', user);
-  // console.log('Hola soy una question', question);
-  // console.log(user.id === question.user.id ? console.log('hola') : console.log('puto'))
-
   let history = useHistory();
   const Return = () => {
     history.goBack();
@@ -63,6 +59,7 @@ export default function DetailsComponent({
     e.preventDefault();
     setComentarioText(e.target.value);
   };
+
 
   const [open, setOpen] = React.useState(true);
   const [open2, setOpen2] = React.useState(true);
@@ -170,7 +167,6 @@ export default function DetailsComponent({
     sendFormReport(dispatch, idComment, user.id, exist);
   };
 
-  // console.log(commentsARenderizar);
 
   // ------------------------- IS CORRECT ANSWER -----------------------
 
@@ -207,38 +203,16 @@ export default function DetailsComponent({
             color: "#413a66",
           }}
         >
-          {/* {
-            (user.id === question.user.id)
-              ? (
-                <div style={{ position: "absolute", top: "-0px", right: "-0px", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}  >
-                  <h6 style={{ margin: 0, paddingTop: ".5em" }}>Resuelto</h6>
-
-                  <Switch
-                    checked={checked}
-                    onChange={handleChange}
-                    // inputProps={{ "aria-label": "controlled" }}
-                    sx={{
-                      background: "transparent",
-                      color: "white",
-                    }}
-                  />
-                </div>
-              ) : (
-                null
-              )
-          } */}
           <Typography
             sx={{ color: "#413a66", fontSize: "32px", paddingBottom: "10px" }}
           >
             {question.title}
           </Typography>
-          {/*  {switchComponent} */}
           <Typography
             variant="body2"
             sx={{
               fontSize: "14px",
               letterSpacing: 0.5,
-              // width: "75%",
               color: "#413a66",
               marginTop: "-15px",
             }}
@@ -499,6 +473,7 @@ export default function DetailsComponent({
             ) : null}
           </div>
         </Box>
+        {/* -----------------------------sector de consejo de preguntas---------------------> */}
         <Box
           sx={{
             p: 2,

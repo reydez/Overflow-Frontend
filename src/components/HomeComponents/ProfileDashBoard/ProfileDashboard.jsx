@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Button, Typography, Box, List } from "@mui/material";
 
 import Grid from "@mui/material/Grid";
-
+import { Link } from "react-router-dom"
 import { IconButton } from "@mui/material";
 
 import { img } from "../../../Controllers/styleUserProfile/styleUserProfile";
@@ -360,18 +360,40 @@ const ProfileDashboard = () => {
                   >
                     Respuestas
                   </Button>
-                  <Button
-                    onClick={handleOnChange}
-                    value={"likes"}
-                    sx={{
-                      color: "text.btnEdit",
-                      backgroundColor: "background.buttons",
-                      marginLeft: "15px",
-                      border: "solid 1px ",
-                    }}
-                  >
-                    Likes
-                  </Button>
+
+                  {(userDetail?.isSubscribed)
+                    ? (<Button Button
+                      onClick={handleOnChange}
+                      value={"likes"}
+                      sx={{
+                        color: "text.btnEdit",
+                        backgroundColor: "background.buttons",
+                        marginLeft: "15px",
+                        border: "solid 1px ",
+                      }}
+                    >
+                      Likes
+                    </Button>)
+                    : (
+                      <Link
+                        to="/donar"
+                        style={{ textDecoration: "none" }}
+                      >
+                        <Button Button
+                          sx={{
+                            color: "text.btnEdit",
+                            backgroundColor: "background.buttons",
+                            marginLeft: "15px",
+                            border: "solid 1px ",
+                          }}
+                        >
+                          Suscríbete
+                        </Button>
+                      </Link>
+                    )
+
+                  }
+
                 </List>
               </Grid>
               <Grid
@@ -407,9 +429,38 @@ const ProfileDashboard = () => {
               </Grid>
             </Grid>
           </Box>
-        )}
+        )
+      }
     </>
   );
 };
 
 export default ProfileDashboard;
+
+//  <Link
+//   to="/donar"
+//   style={{
+//     textDecoration: "none",
+//     display: "flex",
+//     justifyContent: "center",
+//     alignItems: "center",
+//   }}
+// >
+//   <Button
+//     sx={{
+//       color: "#7165A0;",
+//       "&:hover": { color: "#F50057", background: "white" },
+//       border: "1px solid grey",
+//       borderRadius: "10px",
+//       boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+//       display: "flex",
+//       justifyContent: "center",
+//       alignItems: "center",
+//       marginTop: '20px'
+//     }}
+//   >
+//     <FavoriteIcon sx={{ fontSize: "18px" }} />
+//     Danos Amor $$
+//     <FavoriteIcon sx={{ fontSize: "18px" }} />
+//   </Button>
+// </Link> 
