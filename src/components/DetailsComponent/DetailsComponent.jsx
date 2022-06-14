@@ -21,7 +21,7 @@ import { isCorrectAnswer } from "../../redux/actions/comments";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 export default function DetailsComponent({
-  question,
+  questionDetail,
   loading,
   setComments,
   commentsARenderizar,
@@ -69,7 +69,7 @@ export default function DetailsComponent({
   const onSubmitHandler = () => {
     axios
       .post(
-        `http://localhost:3001/comments/${question.id}/${user.id}`,
+        `http://localhost:3001/comments/${questionDetail.id}/${user.id}`,
         {
           message: comentarioText.trim(),
         },
@@ -200,7 +200,7 @@ const isCorrect = (idComment, idUser) => {
               )
           } */}
           <Typography sx={{ color: "#413a66", fontSize: "32px", paddingBottom: '10px' }}>
-            {question.title}
+            {questionDetail.title}
           </Typography>
           {/*  {switchComponent} */}
           <Typography
@@ -208,13 +208,13 @@ const isCorrect = (idComment, idUser) => {
             sx={{
               fontSize: "14px",
               letterSpacing: 0.5,
-              // width: "75%",
               color: "#413a66",
               marginTop: "-15px",
+              overflowWrap: "break-word"
             }}
             >
             <hr></hr>
-            {question.message}
+            {questionDetail.message}
           </Typography>
           {commentsARenderizar?.length > 0 && commentsARenderizar.find((a) => a.isCorrect) ? 
            (commentsARenderizar.map((comment, index) => comment.isCorrect ? (
@@ -354,7 +354,7 @@ const isCorrect = (idComment, idUser) => {
                     ) : null}
 
                     {/* ----------------------- ELEGIR RESPUESTA CORRECTA ---------------------- */}
-                    {!question.closed ? (
+                    {!questionDetail.closed ? (
                     <Button
                     onClick={() => isCorrect(comment.id, user.id)}
                     sx={{
@@ -406,7 +406,7 @@ const isCorrect = (idComment, idUser) => {
               justifyContent: "flex-end",
             }}
           >
-            {question.closed ? 
+            {questionDetail.closed ? 
              <>
              <br />
               <p style={{ margin: "auto", marginBottom: "1rem", marginTop: "1rem" }}>

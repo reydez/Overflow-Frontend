@@ -8,6 +8,7 @@ import {
   getQuestions,
   getQuestionsByName,
   orderByMasComentadas,
+  orderByLikes,
   orderByModule,
   orderByTag,
 } from "../../../redux/actions/questions";
@@ -110,6 +111,14 @@ export const Questions = () => {
     setMinPageNumberLimit(0);
   };
 
+  const handleOrderByLikes = () => {
+    dispatch(orderByLikes());
+    setCurrentPage(1);
+    setPageNumberLimit(5);
+    setMaxPageNumberLimit(5);
+    setMinPageNumberLimit(0);
+  };
+
   return (
     <div>
       <MainContainer>
@@ -129,6 +138,18 @@ export const Questions = () => {
               Refresh preguntas
             </Button>
 
+            <Button
+              sx={{
+                color: "color.filters",
+                "&:hover": { color: "#F50057" },
+                boxShadow: "rgba(0, 0, 0, 0.35) 0px 4px 8px",
+                borderRadius: "10px",
+              }}
+              className="buttonFilter"
+              onClick={handleOrderByLikes}
+            >
+              Con mas Likes
+            </Button>
             <Button
               sx={{
                 color: "color.filters",

@@ -4,8 +4,10 @@ import { loadstate } from "../localstorage/localstorage";
 const initialState = {
   questions: [],
   tempQuestions: [],
-  question: {},
+  questionDetail: {},
   toggle: false,
+  filter: "",
+  order: ""
 };
 
 const questionsReducer = (state = initialState, action) => {
@@ -20,7 +22,7 @@ const questionsReducer = (state = initialState, action) => {
     case "GET_QUESTION_DETAILS":
       return {
         ...state,
-        question: action.payload,
+        questionDetail: action.payload,
       };
 
     case "GET_QUESTIONS_BY_NAME":
@@ -42,13 +44,7 @@ const questionsReducer = (state = initialState, action) => {
       };
 
     case "ORDER_BY_MODULE":
-      /* const copyTempQuestions = state.tempQuestions.map((question) => {
-        return {
-          ...question,
-          module: question.module,
-        };
-      }); */
-
+    
       const filtered = state.tempQuestions.filter(
         (question) => question.module.name === action.payload
       );
@@ -56,6 +52,7 @@ const questionsReducer = (state = initialState, action) => {
       return {
         ...state,
         questions: filtered,
+        filter: "module"
       };
 
     case "ORDER_BY_TAG":
@@ -68,6 +65,7 @@ const questionsReducer = (state = initialState, action) => {
       return {
         ...state,
         questions: filteredByTag,
+        filter: "tag"
       };
 
     case "ORDER_BY_MAS_COMENTADAS":
@@ -91,10 +89,25 @@ const questionsReducer = (state = initialState, action) => {
         ...state,
         toggle: newState.toggle,
         questions: copyTempQuestionsMasComentadas,
+        order: "comments"
+      };
+
+    case "ORDER_BY_LIKES":
+      const copyTempQuestionsLikes = state.tempQuestions.slice();   
+
+      copyTempQuestionsLikes.sort(
+        (a, b) => b.likes.length - a.likes.length
+      );
+
+      return {
+        ...state,
+        toggle: false,
+        questions: copyTempQuestionsLikes,
+        order: "likes"
       };
 
     case "DELETE_COMMENT":
-      console.log("Comment en tempQuestions:", state.question.comments);
+      console.log("Comment en tempQuestions:", state.questionDetail.comments);
       return {
         ...state,
         questions: state.questions.filter(

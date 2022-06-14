@@ -50,6 +50,7 @@ export const question = {
   ORDER_BY_MODULE: "ORDER_BY_MODULE",
   ORDER_BY_TAG: "ORDER_BY_TAG",
   ORDER_BY_MAS_COMENTADAS: "ORDER_BY_MAS_COMENTADAS",
+  ORDER_BY_LIKES: "ORDER_BY_LIKES"
 };
 
 export const report = {

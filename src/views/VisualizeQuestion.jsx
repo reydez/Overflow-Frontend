@@ -7,7 +7,7 @@ import { getQuestionDetails } from "../redux/actions/questions";
 export default function VisualizeQuestion() {
   const { questionId } = useParams();
   const dispatch = useDispatch();
-  const question = useSelector((state) => state.questionsReducer.question);
+  const questionDetail = useSelector((state) => state.questionsReducer.questionDetail);
   const [loading, setLoadin] = useState(false);
   const [comments, setComments] = useState([]);
   const dummy = useRef(null);
@@ -23,8 +23,8 @@ export default function VisualizeQuestion() {
   }, [dispatch, questionId]);
 
   useEffect(() => {
-    setComments(question.comments);
-  }, [question.comments]);
+    setComments(questionDetail.comments);
+  }, [questionDetail.comments]);
 
   let comentsARenderizar = comments?.sort(
     (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
@@ -32,14 +32,14 @@ export default function VisualizeQuestion() {
 
   let isCorrect = comentsARenderizar ? comentsARenderizar.find(a => a.isCorrect) : false
 
-  if(question.closed && isCorrect && comments.includes(isCorrect)) {
+  if(questionDetail.closed && isCorrect && comments.includes(isCorrect)) {
     let coments = comentsARenderizar.filter(a => !a.isCorrect)
     comentsARenderizar = [isCorrect ,...coments]
   }
 
   return (
     <DetailsComponent
-      question={question}
+      questionDetail={questionDetail}
       commentsARenderizar={comentsARenderizar}
       setComments={setComments}
       loading={loading}
