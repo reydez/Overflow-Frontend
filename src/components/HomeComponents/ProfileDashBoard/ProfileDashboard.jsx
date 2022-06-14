@@ -18,7 +18,7 @@ import EditIcon from "@mui/icons-material/Edit";
 
 import { getUserProfile } from "../../../redux/actions/user";
 import PaginadoPreguntas from "./paginationOfProfileDashboard/PaginadoPreguntas";
-import PaginadoRespuestas from "./paginationOfProfileDashboard/PaginadoRespuestas";
+import PaginadoRespuestas from "./paginationOfProfileDashboard/PaginadoPreguntas";
 import CardLikes from "./cardsPerPagination/CardLikes";
 import PaginadoLikes from "./paginationOfProfileDashboard/PaginadoLikes";
 
