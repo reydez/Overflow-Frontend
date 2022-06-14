@@ -462,6 +462,7 @@ const isCorrect = (idComment, idUser) => {
             ) : null}
           </div>
         </Box>
+        {/* -----------------------------sector de consejo de preguntas---------------------> */}
         <Box
           sx={{
             p: 2,
