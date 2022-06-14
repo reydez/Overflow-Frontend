@@ -75,6 +75,7 @@ export default function PaginationComponent({
           <button
             onClick={handlePrevioBtn}
             disabled={currentPage == pages[0] ? true : false}
+            style={currentPage == pages[0] ? {visibility: 'hidden'} : null}
           >
             {`<`}
           </button>
@@ -90,6 +91,7 @@ export default function PaginationComponent({
           <button
             onClick={handleSiguienteBtn}
             disabled={currentPage == pages[pages.length - 1] ? true : false}
+            style={currentPage == pages[pages.length - 1] ? {visibility: 'hidden'} : null}
           >
             {`>`}
           </button>

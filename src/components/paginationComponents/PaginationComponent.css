@@ -15,9 +15,12 @@
     cursor: pointer;  
 }
 
+.pageNumbers li{
+    color:#A8A3B5;
+}
 .pageNumbers li.active{
     
-    color:#A8A3B5;
+    color:#fff;
 }
 
 .pageNumbers li:first-child, .pageNumbers li:last-child{
@@ -34,7 +37,8 @@
 }
 
 .pageNumbers li button:hover{
-    color: #F50057;
+    font-weight: bold;
+    color: #fff;
 }
 
 .pageNumbers li button:focus{
