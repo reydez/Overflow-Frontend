@@ -18,7 +18,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { useSelector } from "react-redux";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import logo from '../assets/bgLandingRocket.png'
-import Letra from '../assets/logo.png'
+import Letra from '../assets/Henry.png'
 const ButtonLogOut = () => {
   const { logout } = useAuth0();
   const user = useSelector((state) => state.userReducer.user);
@@ -160,7 +160,7 @@ const drawer = (
     </Box> */}
    
 
-      <img src={Letra} style={{ padding:'1px', width:'180px',  marginLeft:'10px', bgcolor: 'white', }} />
+      <img src={Letra} style={{ padding:'1px', width:'180px',  marginLeft:'10px', bgcolor: 'white', }} alt="letra" />
       
       
       {/* <h3 style={{ display: 'flex', margin: '0 auto', letterSpacing: '1px' }}>Henry-Flow</h3> */}
