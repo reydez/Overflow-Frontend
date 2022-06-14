@@ -76,7 +76,7 @@ export default function PaginationComponent({
             onClick={handlePrevioBtn}
             disabled={currentPage == pages[0] ? true : false}
           >
-            {`< Previo`}
+            {`<`}
           </button>
         ) : (
           <button>No existen registros...</button>
@@ -91,7 +91,7 @@ export default function PaginationComponent({
             onClick={handleSiguienteBtn}
             disabled={currentPage == pages[pages.length - 1] ? true : false}
           >
-            {`Siguiente >`}
+            {`>`}
           </button>
         ) : null}
       </li>

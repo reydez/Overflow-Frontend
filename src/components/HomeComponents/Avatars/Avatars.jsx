@@ -17,37 +17,44 @@ export default function Avatars({ orderByModule }) {
           <Avatar
             onClick={orderByModule}
             size="small"
-            sx={{ bgcolor: "background.violet", color: "#FBC02D" }}
+            sx={{ bgcolor: "background.white", color: "#FBC02D" }}
           >
-            M1
+            <b>
+              M1
+            </b>
           </Avatar>
         </Button>
         <Button>
           <Avatar
             onClick={orderByModule}
-            sx={{ bgcolor: "background.violet", color: "#43A047" }}
+            sx={{ bgcolor: "background.white", color: "#43A047" }}
           >
-            M2
+            <b>
+              M2
+            </b>
           </Avatar>
         </Button>
         <Button>
           <Avatar
             onClick={orderByModule}
-            sx={{ bgcolor: "background.violet", color: "#D81B60" }}
+            sx={{ bgcolor: "background.white", color: "#D81B60" }}
           >
-            M3
+            <b>
+              M3
+            </b>
           </Avatar>
         </Button>
         <Button>
           <Avatar
             onClick={orderByModule}
-            sx={{ bgcolor: "background.violet", color: "#42A5F5" }}
+            sx={{ bgcolor: "background.white", color: "#42A5F5" }}
           >
-            M4
+            <b>
+              M4
+            </b>
           </Avatar>
         </Button>
       </ButtonGroup>
-      {/* <Button disableRipple >Hacer una pregunta</Button> */}
     </Stack>
   );
 }

@@ -65,13 +65,13 @@ export default function BarLeft(props) {
                   marginLeft: "30px",
                   borderRadius: "25px",
                   border: "none",
-                  color: "black",
-                  "&:hover": { color: "#BDD96C" },
+                  color: "color.letters",
+                  "&:hover": { color: "color.filters" },
                   cursor: "pointer",
                   fontSize: "12px",
                   padding: "5px 13px",
 
-                  bgcolor: "#BDD96C",
+                  bgcolor: "color.filters",
                 }}
               >
                 Hacer una pregunta

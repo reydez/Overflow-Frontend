@@ -59,6 +59,10 @@ const themeObj = {
       primary: "#7165A0",
       secondary: "#7165A0", //color de texto en el nombre del perfil
       btnEdit: "#7165A0"
+    },
+    color: {
+      filters: "#7165A0",
+      letters: "white"
     }
   },
   dark: {
@@ -83,6 +87,10 @@ const themeObj = {
       secondary: '#A8A3B5',
       btnEdit: '#BDD96C',       //boton de editar el perfil
 
+    },
+    color: {
+      filters: "#BDD96C",
+      letters: "black"
     }
   }
 }

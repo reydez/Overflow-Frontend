@@ -25,20 +25,19 @@
 }
 
 .pageNumbers li button{
-    background: #392E57;
+    background: none;
     border: none;
     color: #A8A3B5;
-    font-size: 1.5;
+    font-size: 20px;
     cursor: pointer;
     border-radius: 5px;
 }
 
 .pageNumbers li button:hover{
-    
     color: #F50057;
 }
 
 .pageNumbers li button:focus{
-    outline: none;   
+    outline: none;  
 }
 

@@ -54,18 +54,18 @@ export default function PerfilIcon() {
                 variant="primary"
                 size="large" /* disableRipple  */
                 sx={{
-                  width: "176px",
+                  width: "198px",
                   height: "36px",
-                  marginLeft: "30px",
+                  // marginLeft: "30px",
                   borderRadius: "25px",
                   border: "none",
-                  color: "black",
-                  "&:hover": { color: "#BDD96C" },
+                  color: "color.letters",
+                  "&:hover": { color: "color.filters" },
                   cursor: "pointer",
                   fontSize: "12px",
                   padding: "5px 13px",
 
-                  bgcolor: "#BDD96C",
+                  bgcolor: "color.filters",
                 }}
               >
                 Reglas de la comunidad
