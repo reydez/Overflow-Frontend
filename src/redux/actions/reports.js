@@ -22,7 +22,6 @@ export function sendReport(formReport, idOf, idUser) {
                         icon: 'error',
                         title: 'No puedes reportar tu propia publicacion!',
                         text: 'Si crees que existe algun error en tu post prueba editando tu mismo el comentario o eliminarlo definitivamente.',
-                        footer: '<p>Si estas probando la pagina usa Postman dale</p>'
                     };
                 };
                 if(error.request.status === 401) {
