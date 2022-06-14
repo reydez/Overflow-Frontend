@@ -1,4 +1,4 @@
-import { List, ListItemText, Typography } from "@mui/material";
+import { List, ListItemText, Typography, Box, Button } from "@mui/material";
 import { Container } from "@mui/system";
 import React from "react";
 import { HashLink as Link } from "react-router-hash-link";
@@ -71,16 +71,33 @@ export function Communityrule() {
         
         <Typography>
           <List>
-          <Link smooth to={'/reglas-comunidad#Respeto'} >
+          <Link smooth to={'/reglas-comunidad#Respeto'} style={{ textDecoration: 'none' }} >
+            <Button sx={{ color: "text.btnEdit",
+                      backgroundColor: "background.buttons",
+                      marginLeft: "15px",
+                      border: "solid 1px ",}}>
           1. Respeto a los Usuarios
+
+            </Button>
             </Link>
-            <Link smooth to={"/reglas-comunidad#Lenguaje"}>
-            <ListItemText >
+            <Link smooth to={"/reglas-comunidad#Lenguaje"} style={{ textDecoration: 'none' }}>
+              <ListItemText>
+            <Button sx={{ color: "text.btnEdit",
+                      backgroundColor: "background.buttons",
+                      marginLeft: "15px",
+                      border: "solid 1px ",}}>
               2. Lenguaje que incita al odio/Hate speech
+            </Button>
             </ListItemText>
             </Link>
-            <Link smooth to={"/reglas-comunidad#Acoso"}>
-            <ListItemText >3. Acoso/Bullying</ListItemText>
+            <Link smooth to={"/reglas-comunidad#Acoso"} style={{ textDecoration: 'none' }}>
+              <Button sx={{ color: "text.btnEdit",
+                      backgroundColor: "background.buttons",
+                      marginLeft: "15px",
+                      border: "solid 1px ",}}>
+                
+               <ListItemText >3. Acoso/Bullying</ListItemText>
+                </Button>
             </Link>
           </List>
         </Typography>
