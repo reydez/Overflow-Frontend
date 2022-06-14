@@ -29,6 +29,7 @@ const PaginadoRespuestas = ({ commentsProfile, comments, setCommentsProfile }) =
 
                 return (
                     <CardRespuestas
+                        key={p.id}
                         p={p}
                         user={user}
                     />
