@@ -233,25 +233,29 @@ export const QuestionCard = ({ question }) => {
                   // console.log(tag)
                   return (
                     <Chip
-                      label={
-                        <Box
-                          Box
-                          key={tag}
-                          sx={{
-                            bgcolor: "transparent",
-                            color: getTagColor(tag),
-
-                            // border: getTagColor(tag)
-                            // border: `2px solid ${getTagColor(tag)}`,
-                            // padding: '2px 15px',
-                            // borderRadius: "15px"
-                          }}
-                        >
+                    sx={{
+                      // bgcolor: "transparent",
+                      color: 'text.primary',
+                      //borderColor: getTagColor(tag),
+                      
+                       //border: getTagColor(tag),
+                      border: `1px solid ${getTagColor(tag)}`,
+                      padding: '1px 11px',
+                      borderRadius: "15px",
+                      fontSize: "11px",
+                      fontWeight: 600,
+                    }}
+                    variant="outlined" 
+                    key={tag}
+                    label={
+                      <Box >
                           {tag}
                         </Box>
-                      }
-                      variant="outlined"
-                      size="small"
+                   }
+                  
+                       
+                          
+                        
                     />
                   );
                 })}
