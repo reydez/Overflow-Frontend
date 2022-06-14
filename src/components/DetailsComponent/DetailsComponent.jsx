@@ -14,8 +14,8 @@ import { getQuestionDetails } from "../../redux/actions/questions";
 import FlagIcon from "@mui/icons-material/Flag";
 import { sendFormReport } from "../../Controllers/Helpers/formReport";
 import { Button } from "@mui/material";
-import CheckIcon from '@mui/icons-material/Check';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CheckIcon from "@mui/icons-material/Check";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { finishedPost } from "../../redux/actions/user";
 import { isCorrectAnswer } from "../../redux/actions/comments";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
@@ -34,12 +34,8 @@ export default function DetailsComponent({
   const dispatch = useDispatch();
   const { questionId } = useParams();
   const [checked, setChecked] = useState({
-    finished: ""
+    finished: "",
   });
-
-  // console.log('Hola soy un user', user);
-  // console.log('Hola soy una question', question);  
-  // console.log(user.id === question.user.id ? console.log('hola') : console.log('puto'))
 
   let history = useHistory();
   const Return = () => {
@@ -55,16 +51,6 @@ export default function DetailsComponent({
     e.preventDefault();
     setComentarioText(e.target.value);
   };
-
-
-  //! ----------- Resolve -------------- 
-  // const handleChange = (event) => {
-  //   // setChecked(event.target.checked);
-  //   console.log('hola soy el switch', checked)
-  //   dispatch(finishedPost(question.user.id, checked))
-  // };
-
-  //! ----------- Resolve -------------- 
 
   const onSubmitHandler = () => {
     axios
@@ -103,7 +89,6 @@ export default function DetailsComponent({
     setTimeout(() => {
       checked ? setChecked(false) : setChecked(true);
     }, 500);
-
   };
 
   //todo ------------------------- DELETE COMMENT -----------------------
@@ -127,46 +112,45 @@ export default function DetailsComponent({
     });
   };
 
-// ------------------------- REPORT COMMENT -----------------------
+  // ------------------------- REPORT COMMENT -----------------------
 
-const handleSendReport = (idComment) => {
+  const handleSendReport = (idComment) => {
     function matchReportId() {
-      let found = userDetail.reports.find(elem => elem.commentId === idComment)
-      if(found === undefined) found = 0
-      return found === 0 ? 0 : found.id
-    }; 
-    
-    const exist = user && userDetail && userDetail.reports && matchReportId()
+      let found = userDetail.reports.find(
+        (elem) => elem.commentId === idComment
+      );
+      if (found === undefined) found = 0;
+      return found === 0 ? 0 : found.id;
+    }
+
+    const exist = user && userDetail && userDetail.reports && matchReportId();
 
     sendFormReport(dispatch, idComment, user.id, exist);
   };
 
-  // console.log(commentsARenderizar);
+  // ------------------------- IS CORRECT ANSWER -----------------------
 
-// ------------------------- IS CORRECT ANSWER -----------------------
-
-const isCorrect = (idComment, idUser) => {
-  Swal.fire({
-    title: "Esta respuesta ayudo a solucionar tu pregunta?",
-    icon: "question",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Confirmo",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      dispatch(isCorrectAnswer(idComment, idUser));
-      Swal.fire("Respuesta seleccionada como correcta!", "", "success");
-      setTimeout(() => {
-        dispatch(getQuestionDetails(questionId));
-      }, 500);
-    }
-  });
-};
+  const isCorrect = (idComment, idUser) => {
+    Swal.fire({
+      title: "Esta respuesta ayudo a solucionar tu pregunta?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Confirmo",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(isCorrectAnswer(idComment, idUser));
+        Swal.fire("Respuesta seleccionada como correcta!", "", "success");
+        setTimeout(() => {
+          dispatch(getQuestionDetails(questionId));
+        }, 500);
+      }
+    });
+  };
 
   return (
     <div>
-
       <MainContainer>
         <Box
           sx={{
@@ -176,100 +160,82 @@ const isCorrect = (idComment, idUser) => {
             background: "#fafafa",
             borderRadius: "10px",
             position: "relative",
-            color: '#413a66'
+            color: "#413a66",
           }}
         >
-          {/* {
-            (user.id === question.user.id)
-              ? (
-                <div style={{ position: "absolute", top: "-0px", right: "-0px", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}  >
-                  <h6 style={{ margin: 0, paddingTop: ".5em" }}>Resuelto</h6>
-
-                  <Switch
-                    checked={checked}
-                    onChange={handleChange}
-                    // inputProps={{ "aria-label": "controlled" }}
-                    sx={{
-                      background: "transparent",
-                      color: "white",
-                    }}
-                  />
-                </div>
-              ) : (
-                null
-              )
-          } */}
-          <Typography sx={{ color: "#413a66", fontSize: "32px", paddingBottom: '10px' }}>
+          <Typography
+            sx={{ color: "#413a66", fontSize: "32px", paddingBottom: "10px" }}
+          >
             {question.title}
           </Typography>
-          {/*  {switchComponent} */}
           <Typography
             variant="body2"
             sx={{
               fontSize: "14px",
               letterSpacing: 0.5,
-              // width: "75%",
               color: "#413a66",
               marginTop: "-15px",
             }}
-            >
+          >
             <hr></hr>
             {question.message}
           </Typography>
-          {commentsARenderizar?.length > 0 && commentsARenderizar.find((a) => a.isCorrect) ? 
-           (commentsARenderizar.map((comment, index) => comment.isCorrect ? (
-             <>
-                <p
-                  style={{
-                    marginTop: "35px",
-                    fontSize: "16px",
-                    color: "#43a66",
-                  }}
-                >
-                  <b>
-                    Respuesta seleccionada por el usuario
-                  </b>
-                </p>
-                <div
-                  key={index}
-                  style={{
-                    border: "1px solid black",
-                    borderRadius: "10px",
-                    padding: "1.5em 1em",
-                    margin: "-0.5em 0em .5em 0",
-                  }}
-                >
-                  <CheckCircleIcon
-                  sx={{
-                    borderRadius: "10px",
-                    float: "right",
-                    marginTop: "-15px",
-                    color: "#4caf50",
-                    fontSize: 35
-                  }}
-                  />
-                  <p
-                    style={{
-                      margin: "0",
-                      fontSize: "16px",
-                      color: "#43a66",
-                    }}
-                  >
-                    {`${comment.user.full_name}:`}
-                  </p>
-                  <span
-                    style={{
-                      fontSize: "14px",
-                      width: "inhert",
-                      overflowWrap: "break-word",
-                      color: "#8c81a7",
-                    }}
-                  >
-                    {comment.message}
-                  </span>
-                </div>
-              </>
-            ) : null)) : null}
+          {commentsARenderizar?.length > 0 &&
+          commentsARenderizar.find((a) => a.isCorrect)
+            ? commentsARenderizar.map((comment, index) =>
+                comment.isCorrect ? (
+                  <>
+                    <p
+                      style={{
+                        marginTop: "35px",
+                        fontSize: "16px",
+                        color: "#43a66",
+                      }}
+                    >
+                      <b>Respuesta seleccionada por el usuario</b>
+                    </p>
+                    <div
+                      key={index}
+                      style={{
+                        border: "1px solid black",
+                        borderRadius: "10px",
+                        padding: "1.5em 1em",
+                        margin: "-0.5em 0em .5em 0",
+                      }}
+                    >
+                      <CheckCircleIcon
+                        sx={{
+                          borderRadius: "10px",
+                          float: "right",
+                          marginTop: "-15px",
+                          color: "#4caf50",
+                          fontSize: 35,
+                        }}
+                      />
+                      <p
+                        style={{
+                          margin: "0",
+                          fontSize: "16px",
+                          color: "#43a66",
+                        }}
+                      >
+                        {`${comment.user.full_name}:`}
+                      </p>
+                      <span
+                        style={{
+                          fontSize: "14px",
+                          width: "inhert",
+                          overflowWrap: "break-word",
+                          color: "#8c81a7",
+                        }}
+                      >
+                        {comment.message}
+                      </span>
+                    </div>
+                  </>
+                ) : null
+              )
+            : null}
           <p
             style={{
               // margin: "0",
@@ -298,99 +264,98 @@ const isCorrect = (idComment, idUser) => {
           >
             {loading && <h3>Loading Question Details...</h3>}
             {commentsARenderizar?.length > 0 ? (
-              commentsARenderizar.map((comment, index) => !comment.isCorrect? (
-                <div
-                  key={index}
-                  style={{
-                    border: "1px solid black",
-                    borderRadius: "10px",
-                    padding: "1.2em 1em",
-                    margin: ".5em 1em .5em 0",
-                  }}
-                >
-                  <p
+              commentsARenderizar.map((comment, index) =>
+                !comment.isCorrect ? (
+                  <div
+                    key={index}
                     style={{
-                      margin: "0",
-                      fontSize: "16px",
-                      color: "#43a66",
+                      border: "1px solid black",
+                      borderRadius: "10px",
+                      padding: "1.2em 1em",
+                      margin: ".5em 1em .5em 0",
                     }}
                   >
-                    {`${comment.user.first_name} ${comment.user.last_name}:`}
-
-                    {/* ----------------------- BORRAR COMENTARIO ---------------------- */}
-                    {user.isAdmin || comment.user.id === user.id ? (
-                      <Button
-                      onClick={() => handleRemoveComment(comment.id, user.id)}
-                      sx={{
-                       color: "#A8A3B5",
-                       borderRadius: "10px",
-                       float: "right",
-                       cursor: "pointer",
-                       ":hover": {
-                         color: "red"
-                       }}
-                      }
-                     >
-                       <DeleteForeverIcon />
-                     </Button>
-                    ) : null}
-
-                    {/* ----------------------- REPORTAR COMENTARIO ---------------------- */}
-                    {comment.user.id !== user.id ? (
-                    <Button
-                    onClick={() => handleSendReport(comment.id)}
-                    sx={{
-                    // top: 10,
-                    // left: 650,
-                    // paddingBottom: 10
-                    borderRadius: "10px",
-                    float: "right",
-                    }}
+                    <p
+                      style={{
+                        margin: "0",
+                        fontSize: "16px",
+                        color: "#43a66",
+                      }}
                     >
-                      <FlagIcon
-                      sx={{ color: "#A8A3B5"}}
-                      />
-                    </Button>
-                    ) : null}
+                      {`${comment.user.first_name} ${comment.user.last_name}:`}
 
-                    {/* ----------------------- ELEGIR RESPUESTA CORRECTA ---------------------- */}
-                    {!question.closed ? (
-                    <Button
-                    onClick={() => isCorrect(comment.id, user.id)}
-                    sx={{
-                    // top: 10,
-                    // left: 650,
-                    // paddingBottom: 10
-                    borderRadius: "10px",
-                    float: "right",
-                    }}
+                      {/* ----------------------- BORRAR COMENTARIO ---------------------- */}
+                      {user.isAdmin || comment.user.id === user.id ? (
+                        <Button
+                          onClick={() =>
+                            handleRemoveComment(comment.id, user.id)
+                          }
+                          sx={{
+                            color: "#A8A3B5",
+                            borderRadius: "10px",
+                            float: "right",
+                            cursor: "pointer",
+                            ":hover": {
+                              color: "red",
+                            },
+                          }}
+                        >
+                          <DeleteForeverIcon />
+                        </Button>
+                      ) : null}
+
+                      {/* ----------------------- REPORTAR COMENTARIO ---------------------- */}
+                      {comment.user.id !== user.id ? (
+                        <Button
+                          onClick={() => handleSendReport(comment.id)}
+                          sx={{
+                            // top: 10,
+                            // left: 650,
+                            // paddingBottom: 10
+                            borderRadius: "10px",
+                            float: "right",
+                          }}
+                        >
+                          <FlagIcon sx={{ color: "#A8A3B5" }} />
+                        </Button>
+                      ) : null}
+
+                      {/* ----------------------- ELEGIR RESPUESTA CORRECTA ---------------------- */}
+                      {!question.closed ? (
+                        <Button
+                          onClick={() => isCorrect(comment.id, user.id)}
+                          sx={{
+                            // top: 10,
+                            // left: 650,
+                            // paddingBottom: 10
+                            borderRadius: "10px",
+                            float: "right",
+                          }}
+                        >
+                          <CheckIcon sx={{ color: "#A8A3B5" }} />
+                        </Button>
+                      ) : null}
+                    </p>
+                    <span
+                      style={{
+                        fontSize: "14px",
+                        width: "inhert",
+                        overflowWrap: "break-word",
+                        color: "#8c81a7",
+                      }}
                     >
-                      <CheckIcon
-                      sx={{ color: "#A8A3B5" }}
-                      />
-                    </Button>
-                    ) : null
-                    }
-                  </p>
-                  <span
-                    style={{
-                      fontSize: "14px",
-                      width: "inhert",
-                      overflowWrap: "break-word",
-                      color: "#8c81a7",
-                    }}
-                  >
-                    {comment.message}
-                  </span>
+                      {comment.message}
+                    </span>
 
-                  <div ref={dummy}></div>
-                  {/* <hr 
+                    <div ref={dummy}></div>
+                    {/* <hr 
                     style={{
                       marginTop: "20px"
                     }}
                   /> */}
-                </div>
-              ) : null)
+                  </div>
+                ) : null
+              )
             ) : (
               <h3
                 style={{ color: "grey", fontSize: "14px", paddingLeft: "10px" }}
@@ -406,34 +371,40 @@ const isCorrect = (idComment, idUser) => {
               justifyContent: "flex-end",
             }}
           >
-            {question.closed ? 
-             <>
-             <br />
-              <p style={{ margin: "auto", marginBottom: "1rem", marginTop: "1rem" }}>
-               <b>
-                PREGUNTA CERRADA!
-               </b>
-             </p>
-             <br />
-             </>
-             :
-             <>
-             <p style={{ margin: 0, marginBottom: "1rem", marginTop: "1rem" }}>
-               Hacer un comentario
-             </p>
-             <textarea
-               value={comentarioText}
-               onChange={onInputChange}
-               style={{
-                 resize: "none",
-                 outline: "none",
-                 width: "100%",
-                 height: "150px",
-               }}
-               placeholder="Escribe su comentario..."
-             />
-             </>
-            }
+            {question.closed ? (
+              <>
+                <br />
+                <p
+                  style={{
+                    margin: "auto",
+                    marginBottom: "1rem",
+                    marginTop: "1rem",
+                  }}
+                >
+                  <b>PREGUNTA CERRADA!</b>
+                </p>
+                <br />
+              </>
+            ) : (
+              <>
+                <p
+                  style={{ margin: 0, marginBottom: "1rem", marginTop: "1rem" }}
+                >
+                  Hacer un comentario
+                </p>
+                <textarea
+                  value={comentarioText}
+                  onChange={onInputChange}
+                  style={{
+                    resize: "none",
+                    outline: "none",
+                    width: "100%",
+                    height: "150px",
+                  }}
+                  placeholder="Escribe su comentario..."
+                />
+              </>
+            )}
           </div>
           <div
             style={{
@@ -489,7 +460,7 @@ const isCorrect = (idComment, idUser) => {
           </Typography>
         </Box>
       </MainContainer>
-    </div >
+    </div>
   );
 }
 
@@ -506,13 +477,13 @@ const ButtonsDetail = styled.div`
     border: none;
     border-radius: 5px;
     background-color: ${(props) =>
-    props.lila
-      ? "#e2e6f7"
-      : props.rosa
+      props.lila
+        ? "#e2e6f7"
+        : props.rosa
         ? "#fadafa"
         : props.grey
-          ? "#392e57"
-          : "#aca9fa"};
+        ? "#392e57"
+        : "#aca9fa"};
     color: ${(props) => (props.blanco ? "#817094" : "#fafafa")};
     cursor: pointer;
     font-size: 17px;
@@ -568,7 +539,8 @@ const MainContainer = styled.div`
     }
   }
 `;
-{/* <Button
+{
+  /* <Button
 onClick={() => handleRemoveComment(comment.id, user.id)}
 sx={{
    color: "#A8A3B5",
@@ -580,4 +552,5 @@ sx={{
    }}
 >
  <DeleteForeverIcon />
-</Button> */}
+</Button> */
+}
