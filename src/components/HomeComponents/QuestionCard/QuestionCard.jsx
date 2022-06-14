@@ -9,7 +9,7 @@ export const QuestionCard = ({ question }) => {
   return (
     <>
       {
-        (question.user?.isSubscribe)
+        (question.user?.isSubscribed)
           ? (
             <QuestionCardPremium
               question={question}

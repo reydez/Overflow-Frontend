@@ -361,7 +361,7 @@ const ProfileDashboard = () => {
                     Respuestas
                   </Button>
 
-                  {(userDetail?.isSubscribe)
+                  {(userDetail?.isSubscribed)
                     ? (<Button Button
                       onClick={handleOnChange}
                       value={"likes"}
