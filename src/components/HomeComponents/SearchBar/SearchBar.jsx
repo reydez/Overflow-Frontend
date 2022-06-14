@@ -86,7 +86,11 @@ export default function SearchBar() {
       <Toolbar>
         <Search sx={{ bgcolor: "#7165A0", borderRadius: 3 }}>
           <StyledInputBase
-            sx={{ bgcolor: "#7165A0", borderRadius: "10px" }}
+            sx={{ 
+              bgcolor: "background.white", 
+              borderRadius: "10px", 
+              color: "#A8A3B5",
+             }}
             placeholder="Buscar…"
             inputProps={{ "aria-label": "search" }}
             onChange={onInputChange}
@@ -100,10 +104,10 @@ export default function SearchBar() {
           size="small"
           sx={{
             color: "#A8A3B5",
-            bgcolor: "#7165A0",
+            bgcolor: "background.white",
             padding: "9px",
             borderRadius: 3,
-            "&:hover": { color: "#BDD96C" },
+            "&:hover": { color: "color.filters" },
           }}
           type="submit"
           onClick={onSubmit}

@@ -99,7 +99,7 @@ function FavouritesUser() {
               const d = new Date(el.post.createdAt);
               var date = d.toLocaleDateString("ES");
               let state;
-              if (el.post.close) {
+              if (el.post.closed) {
                 state = "si";
               } else {
                 state = "no";
