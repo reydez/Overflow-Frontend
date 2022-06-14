@@ -38,18 +38,12 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 function FavouritesUser() {
   const favorite = useSelector((state) => state.favouritesReducer.favorites);
-
-
   const user = useSelector((state) => state.userReducer.user);
-  
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
-   
     dispatch(getFavorite(user.id));
-  }, []);
-  
-console.log(favorite)
+  }, [dispatch, user.id]);
 
   return (
     <div>
@@ -70,11 +64,14 @@ console.log(favorite)
           {/* LISTA DEL SUB-MENU */}
           {/* <Button sx={{ color: "#fff" }}>A DEFINIR</Button> */}
           <Typography variant="h4" component="div" gutterBottom>
-          Mis Favoritos <Favorite size="large" sx={{color: "#D81B60" }}/>
-      </Typography>
+            Mis Favoritos <Favorite size="large" sx={{ color: "#D81B60" }} />
+          </Typography>
         </List>
       </Grid>
-      <TableContainer component={TableRow} sx={{ display: "flex", paddingTop: 0 }}>
+      <TableContainer
+        component={TableRow}
+        sx={{ display: "flex", paddingTop: 0 }}
+      >
         <Table
           sx={{
             width: "170%",
@@ -87,43 +84,41 @@ console.log(favorite)
         >
           <TableHead>
             <TableRow sx={{ width: "170%", backgroundColor: "#413A66" }}>
-              <StyledTableCell align="center">
-                Titulo de Post
-              </StyledTableCell>
-              <StyledTableCell align="center">
-                Creador
-              </StyledTableCell>
-              <StyledTableCell align="center">
-                   Fecha de posteo
-              </StyledTableCell>
+              <StyledTableCell align="center">Titulo de Post</StyledTableCell>
+              <StyledTableCell align="center">Creador</StyledTableCell>
+              <StyledTableCell align="center">Fecha de posteo</StyledTableCell>
               <StyledTableCell align="center">Resuelto</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {favorite.Favorites?.map((el, index) =>  {
+            {favorite.Favorites?.map((el, index) => {
               const d = new Date(el.post.createdAt);
+              var date = d.toLocaleDateString("ES");
 
-           var date = d.toLocaleDateString("ES");
-              console.log(el)
-                let state;
-                if(el.post.close){
-                  state = "si";
-                }else{
-                  state ="no";
-                }
-            return(
-              <StyledTableRow key={el.id}>
-                <StyledTableCell align="center" >
-               <Link to={`/visualize-question/${el.post.id}`}
-                style={{ display: "block", color: "white" }}
-               >{el.post.title}</Link>
-                </StyledTableCell>
-                <StyledTableCell align="center">{el.post.user.nick}</StyledTableCell>
-                 <StyledTableCell align="center">{date}</StyledTableCell>
-                <StyledTableCell align="center">{state}
-                </StyledTableCell>
-              </StyledTableRow>
-            )})}
+              let state;
+              if (el.post.close) {
+                state = "si";
+              } else {
+                state = "no";
+              }
+              return (
+                <StyledTableRow key={el.id}>
+                  <StyledTableCell align="center">
+                    <Link
+                      to={`/visualize-question/${el.post.id}`}
+                      style={{ display: "block", color: "white" }}
+                    >
+                      {el.post.title}
+                    </Link>
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {el.post.user.nick}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">{date}</StyledTableCell>
+                  <StyledTableCell align="center">{state}</StyledTableCell>
+                </StyledTableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </TableContainer>
