@@ -3,14 +3,12 @@ import { Grid, CardMedia } from '@mui/material';
 import { useSelector } from 'react-redux';
 import PaginationProfile from './PaginationProfile';
 import CardRespuestas from '../cardsPerPagination/CardRespuestas';
+import CardLikes from '../cardsPerPagination/CardLikes';
 
-const PaginadoRespuestas = ({ commentsProfile, comments, setCommentsProfile }) => {
+const PaginadoLikes = ({ likesProfile, likes, setLikes }) => {
     const user = useSelector((state) => state.userReducer.user);
 
-
-
     return (
-
         <Grid
             sx={{
                 height: '230px',
@@ -22,13 +20,13 @@ const PaginadoRespuestas = ({ commentsProfile, comments, setCommentsProfile }) =
             }}
         >
             <PaginationProfile
-                setQuestionsProfile={setCommentsProfile}
-                posts={comments}
+                setQuestionsProfile={setLikes}
+                posts={likes}
             />
-            {commentsProfile?.map((p) => {
-
+            {likesProfile?.map((p) => {
+                console.log(p);
                 return (
-                    <CardRespuestas
+                    <CardLikes
                         p={p}
                         user={user}
                     />
@@ -40,6 +38,4 @@ const PaginadoRespuestas = ({ commentsProfile, comments, setCommentsProfile }) =
     )
 }
 
-
-
-export default PaginadoRespuestas;
+export default PaginadoLikes

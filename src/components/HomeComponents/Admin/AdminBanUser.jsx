@@ -36,10 +36,10 @@ export const AdminBanUser = () => {
     (!search)
       ? alert('Completa con un nombre a buscar')
       : dispatch(getUsersByName(search))
-        setSearch(e.target.value)
-        setSearch('')
+    setSearch(e.target.value)
+    setSearch('')
   }
-  
+
   const onInputChange = (e) => {
     e.preventDefault()
     setSearch(e.target.value)
@@ -49,10 +49,10 @@ export const AdminBanUser = () => {
     <>
       <h2>Panel de Admin - Banear Usuarios</h2>
       <hr />
-        {/* ------------- SEARCHBAR (USERS) ---------- */}
+      {/* ------------- SEARCHBAR (USERS) ---------- */}
       <SearchBarBanStyles>
-        <input type="search" value={ search } placeholder='Nombre a banear...' onChange={onInputChange}/>
-        <button type="submit" onClick={ onSubmit }>Buscar</button>
+        <input type="search" value={search} placeholder='Nombre a banear...' onChange={onInputChange} />
+        <button type="submit" onClick={onSubmit}>Buscar</button>
       </SearchBarBanStyles>
       <div>
         <h3>Todos los usuarios</h3>

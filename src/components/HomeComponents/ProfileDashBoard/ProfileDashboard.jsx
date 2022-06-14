@@ -18,7 +18,9 @@ import EditIcon from '@mui/icons-material/Edit';
 
 import { getUserProfile } from "../../../redux/actions/user";
 import PaginadoPreguntas from "./paginationOfProfileDashboard/PaginadoPreguntas";
-import PaginadoRespuestas from "./paginationOfProfileDashboard/paginadoRespuestas";
+import PaginadoRespuestas from "./paginationOfProfileDashboard/PaginadoRespuestas";
+import CardLikes from "./cardsPerPagination/CardLikes";
+import PaginadoLikes from "./paginationOfProfileDashboard/PaginadoLikes";
 
 
 const ProfileDashboard = () => {
@@ -32,7 +34,7 @@ const ProfileDashboard = () => {
     const [questionsProfile, setQuestionsProfile] = useState([]);
 
     const [commentsProfile, setCommentsProfile] = useState([]);
-
+    const [likesProfile, setLikesProfile] = useState([]);
 
 
     const changeToFalse = () => {
@@ -50,7 +52,7 @@ const ProfileDashboard = () => {
 
     const [preguntas, setPreguntas] = useState(false);
     const [comentarios, setComentarios] = useState(false);
-    const [favoritos, setFavoritos] = useState(false);
+    const [likes, setLikes] = useState(false);
 
     const handleOnChange = (e) => {
         setModuleSelected(e.target.value);
@@ -65,8 +67,8 @@ const ProfileDashboard = () => {
             ? setComentarios(true)
             : setComentarios(false);
         moduleSelected === "likes"
-            ? setFavoritos(true)
-            : setFavoritos(false);
+            ? setLikes(true)
+            : setLikes(false);
     }, [moduleSelected]);
 
     //! ------------------------- CheckBoxes-----------------------
@@ -222,9 +224,12 @@ const ProfileDashboard = () => {
 
 
                             <Grid
-                                container
+                                // container
                                 sx={{
-                                    padding: "10px"
+                                    height: '252px',
+                                    width: '1060px',
+                                    paddingLeft: '12px',
+                                    background: 'background.map'
                                 }}
                             >
                                 {preguntas && <PaginadoPreguntas
@@ -236,7 +241,11 @@ const ProfileDashboard = () => {
                                     commentsProfile={commentsProfile}
                                     comments={userDetail.comments}
                                     setCommentsProfile={(q) => setCommentsProfile(q)}
-
+                                />}
+                                {likes && <PaginadoLikes
+                                    likesProfile={likesProfile}
+                                    likes={userDetail.likes}
+                                    setLikes={(q) => setLikesProfile(q)}
                                 />}
 
 

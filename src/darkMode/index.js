@@ -7,8 +7,13 @@ export const ColorModeContext = createContext({
 });
 
 const themeObj = {
-
+  status: {
+    success: '#BDD96C',
+  },
   components: {
+    status: {
+      success: '#BDD96C',
+    },
     MuiTypography: {
       defaultProps: {
         variantMapping: {
@@ -36,6 +41,9 @@ const themeObj = {
     },
   },
   light: {
+    status: {
+      success: '#BDD96C',
+    },
     background: {
       default: "#F9FAFE",
       white: '#EBEFFE', // color del barleft
@@ -44,7 +52,8 @@ const themeObj = {
       profilePhotos: '#EBEFFE',
       mapeado: "#EBEFFE",
       informationProfile: '#F4F4F4',
-      buttons: '#EBEFFE'
+      buttons: '#EBEFFE',
+      map: '#EBEFFE'
     },
     text: {
       primary: "#7165A0",
@@ -53,16 +62,20 @@ const themeObj = {
     }
   },
   dark: {
+    status: {
+      success: '#BDD96C',
+    },
     background: {
       default: "#413A66",  // Fondo Principal
-      violet: "#392E57", // Eh Home solo para el fondo de M1-M2-M3-M4
+      violet: "#392E57", // Eh Home solo para el fondo de 
       white: "#392E57", // LefBar Background
       fondoPerfil: '#392E57',
       profileGrid: '#4B4171', // recuadros del profile
       profilePhotos: '#423B67', // recuadros del profile
       mapeado: "#423B67",
       informationProfile: '#392E57',
-      buttons: '#392E57'
+      buttons: '#392E57',
+      map: '#392E57'
     },
     // #423B67
     text: {

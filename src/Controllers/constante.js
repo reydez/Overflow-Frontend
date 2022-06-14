@@ -4,6 +4,7 @@ import {
   Divider,
   List,
   Toolbar,
+  Typography
 } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
@@ -23,7 +24,7 @@ const ButtonLogOut = () => {
   return (
     <>
 
-        
+
       <WelcomeUserMsg>
         <h5>Bienvenido</h5>
         <h4>{user.full_name}</h4>
@@ -82,7 +83,7 @@ const WelcomeUserMsg = styled.div`
     text-align: center;
     font-style: normal;
     font-weight: 500;
-    font-family: Roboto;
+    font-family: Segoe UI Symbol;
     margin-bottom: 0px;
     font-size: .7rem;
   } 
@@ -92,7 +93,7 @@ const WelcomeUserMsg = styled.div`
     font-style: normal;
     font-weight: 500;
     font-size: .8rem;
-    font-family: Roboto;
+    font-family: Segoe UI Symbol;
   }
   img{
 
@@ -134,7 +135,7 @@ margin-top: 10px;
     cursor: pointer;
     font-style: normal;
     font-weight: 500;
-    font-family: Roboto;
+    font-family: Segoe UI Symbol;
     font-size: 15px;
     margin: auto;
     margin-top: 10px;
@@ -151,14 +152,14 @@ margin-top: 10px;
 const drawer = (
   <div>
     <Toolbar sx={{ bgcolor: "background.white" }}>
-      <h3 style={{ display: 'flex', margin:'0 auto', letterSpacing: '1px' }}>Henry-Flow</h3>
+      <h3 style={{ display: 'flex', margin: '0 auto', letterSpacing: '1px' }}>Henry-Flow</h3>
     </Toolbar>
     <Divider />
     <List sx={{ bgcolor: "background.white" }}>
       <div style={{ marginTop: '20px' }}>
         <Link to="/questions" style={{ textDecoration: "none" }}>
-          <Button 
-            sx={{ 
+          <Button
+            sx={{
               color: (theme) =>
                 theme.palette.mode === "dark" ? "#A8A3B5" : "#7165A0",
               "&:hover": { color: "#F50057" },
@@ -171,31 +172,31 @@ const drawer = (
       </div>
       <div style={{ marginTop: '20px' }}>
         <Link to={`/user-profile`} style={{ textDecoration: "none" }}>
-          <Button 
-            sx={{ 
+          <Button
+            sx={{
               color: (theme) =>
                 theme.palette.mode === "dark" ? "#A8A3B5" : "#7165A0",
-                "&:hover": { color: "#F50057"}, marginLeft: '22%'
+              "&:hover": { color: "#F50057" }, marginLeft: '22%'
             }}>
             <AccountBoxIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
             Mi Perfil
           </Button>
         </Link>
-       </div>
-       <div style={{ marginTop: '20px' }}>
+      </div>
+      <div style={{ marginTop: '20px' }}>
         <Link to={`/favourites-user`} style={{ textDecoration: "none" }}>
-          <Button  
-            sx={{ 
+          <Button
+            sx={{
               color: (theme) =>
                 theme.palette.mode === "dark" ? "#A8A3B5" : "#7165A0",
-                "&:hover": { color: "#F50057"}, marginLeft: '22%'
-            }}> 
+              "&:hover": { color: "#F50057" }, marginLeft: '22%'
+            }}>
             <FavoriteIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
             Mis Favoritos
           </Button>
         </Link>
-       </div>
-       <div style={{ marginTop: '20px', marginBottom: '20px' }}>
+      </div>
+      <div style={{ marginTop: '20px', marginBottom: '20px' }}>
         <Link to={`/all-users`} style={{ textDecoration: "none" }}>
           {/* <Button 
             sx={{ 
@@ -207,11 +208,11 @@ const drawer = (
             Usuarios
           </Button> */}
         </Link>
-       </div>
-        
+      </div>
+
     </List>
     <Divider />
-    
+
     <List sx={{ bgcolor: "background.white" }}>
       <ButtonLogOut />
     </List>
