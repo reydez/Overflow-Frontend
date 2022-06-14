@@ -218,7 +218,8 @@ export const Questions = () => {
               return (
                 <Chip
                   sx={{
-                    color: getTagColor(tag.name),
+                    color: 'text-primary',
+                    borderColor: getTagColor(tag.name),
                   }}
                   variant="outlined"
                   key={tag.id}

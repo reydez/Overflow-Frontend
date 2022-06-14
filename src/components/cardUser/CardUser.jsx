@@ -5,7 +5,6 @@ import {
   Button,
   Typography,
   Card,
-  Box,
 } from "@mui/material";
 import {
   name,
@@ -26,8 +25,6 @@ import {
 import { useSelector } from "react-redux";
 
 export default function CardUser() {
-  const user = useSelector((state) => state.userReducer.user);
-
   return (
     <Card
       sx={{
