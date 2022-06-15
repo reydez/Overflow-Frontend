@@ -91,8 +91,10 @@ const PostFormMui = () => {
 
       for (let i = 0; i < tag.tags.length; i++) {
         axios
-          .put(`http://localhost:3001/tags/mas-uno/${tag.tags[i].id}`) // DESACTIVAR PARA DEPLOY
-          // .put(`https://henry-overflow-api.herokuapp.com/tags/mas-uno/${tag.tags[i].id}`)  // ACTIVAR PARA DEPLOY
+          //.put(`http://localhost:3001/tags/mas-uno/${tag.tags[i].id}`) // DESACTIVAR PARA DEPLOY
+          .put(
+            `https://henry-overflow-api.herokuapp.com/tags/mas-uno/${tag.tags[i].id}`
+          ) // ACTIVAR PARA DEPLOY
           .then((res) => {
             console.log("");
           });
@@ -120,7 +122,7 @@ const PostFormMui = () => {
               placeholder="Pregunta..."
               label="Pregunta"
               error="Tu pregunta debe llevar más de 10 caracteres."
-            //regularExpresion={/^[a-zA-ZÀ-ÿ\s?.,0-9]{4,100}$/}
+              //regularExpresion={/^[a-zA-ZÀ-ÿ\s?.,0-9]{4,100}$/}
             />
           </NameDiv>
           <InputFormArea
@@ -130,7 +132,7 @@ const PostFormMui = () => {
             placeholder="Describe tu pregunta..."
             label="Descripción y Código"
             error="Háblanos sobre tu problema"
-          //regularExpresion={/^[a-zA-ZÀ-ÿ:<|&*>\s?.,0-9]{20,800}$/}
+            //regularExpresion={/^[a-zA-ZÀ-ÿ:<|&*>\s?.,0-9]{20,800}$/}
           />
         </div>
 
@@ -194,7 +196,7 @@ const Formulario = styled.form`
   text-align: center;
   margin: 10px;
   padding: 20px;
-  background-color: #524C74;
+  background-color: #524c74;
   border-radius: 35px;
   border: solid 1px black;
 

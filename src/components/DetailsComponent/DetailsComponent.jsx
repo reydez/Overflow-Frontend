@@ -57,7 +57,6 @@ export default function DetailsComponent({
     setComentarioText(e.target.value);
   };
 
-
   const [open, setOpen] = React.useState(true);
   const [open2, setOpen2] = React.useState(true);
   const [open3, setOpen3] = React.useState(true);
@@ -82,8 +81,8 @@ export default function DetailsComponent({
   const onSubmitHandler = () => {
     axios
       .post(
-        `http://localhost:3001/comments/${question.id}/${user.id}`, // DESACTIVAR PARA DEPLOY
-        // `https://henry-overflow-api.herokuapp.com/comments/${question.id}/${user.id}`, // ACTIVAR PARA DEPLOY
+        //`http://localhost:3001/comments/${question.id}/${user.id}`, // DESACTIVAR PARA DEPLOY
+        `https://henry-overflow-api.herokuapp.com/comments/${question.id}/${user.id}`, // ACTIVAR PARA DEPLOY
         {
           message: comentarioText.trim(),
         },
@@ -155,7 +154,6 @@ export default function DetailsComponent({
 
     sendFormReport(dispatch, idComment, user.id, exist);
   };
-
 
   // ------------------------- IS CORRECT ANSWER -----------------------
 
@@ -343,7 +341,8 @@ export default function DetailsComponent({
                       ) : null}
 
                       {/* ----------------------- ELEGIR RESPUESTA CORRECTA ---------------------- */}
-                      {!question.closed && comment.user.id === user.id || user.isAdmin ? (
+                      {(!question.closed && comment.user.id === user.id) ||
+                      user.isAdmin ? (
                         <Button
                           onClick={() => isCorrect(comment.id, user.id)}
                           sx={{
@@ -460,7 +459,7 @@ export default function DetailsComponent({
         >
           <Typography
             sx={{
-              fontSize: '12px',
+              fontSize: "12px",
               color: "#413a66",
               marginTop: "30px",
               textAlign: "center",
@@ -479,7 +478,7 @@ export default function DetailsComponent({
                   {/* ---------------primer boton colapse---------------------------------------- */}
                   <ListItemButton>
                     <ListItemText>
-                      <Typography sx={{ fontSize: '10px' }}>
+                      <Typography sx={{ fontSize: "10px" }}>
                         Respetar las normas de convivencia de nuestro blog, como
                         a quienes formulan las preguntas siempre teniendo en
                         cuenta que los creadores de la pagina se reservan el
@@ -498,7 +497,7 @@ export default function DetailsComponent({
                 <List component="div" disablePadding>
                   <ListItemButton>
                     <ListItemText>
-                      <Typography sx={{ fontSize: '10px' }}>
+                      <Typography sx={{ fontSize: "10px" }}>
                         Las respuestas tienen que ser relacionadas a lo que se
                         está preguntando, no puedes responder con cosas
                         relacionadas a otras preguntas o con otras preguntas sin
@@ -516,9 +515,8 @@ export default function DetailsComponent({
               <Collapse in={open3} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                   <ListItemButton>
-                 
                     <ListItemText>
-                      <Typography sx={{ fontSize: '10px' }}>
+                      <Typography sx={{ fontSize: "10px" }}>
                         El código que se puede utilizar en este blog es a través
                         de una imagen, puedes sacar un screenshot de tu Editor
                         de código, o si deseas existen extensiones diseñadas
@@ -537,12 +535,13 @@ export default function DetailsComponent({
                 <List component="div" disablePadding>
                   <ListItemButton>
                     <ListItemText>
-                      <Typography sx={{ fontSize: '10px' }}>
+                      <Typography sx={{ fontSize: "10px" }}>
                         Siempre se amable con las personas que preguntan, ya que
-                        no sabes que nivel de programación tienen y por lo
-                        tanto pueden estar aprendiendo desde lo básico, recuerda
-                        de donde vienes tu y como llegaste a tu conoci- miento
-                        actual, para responder con la mejor de las consideraciones.
+                        no sabes que nivel de programación tienen y por lo tanto
+                        pueden estar aprendiendo desde lo básico, recuerda de
+                        donde vienes tu y como llegaste a tu conoci- miento
+                        actual, para responder con la mejor de las
+                        consideraciones.
                       </Typography>
                     </ListItemText>
                   </ListItemButton>

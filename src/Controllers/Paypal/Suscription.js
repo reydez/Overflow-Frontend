@@ -11,8 +11,8 @@ import {
 const ButtonWrapper = ({ type }) => {
   const [{ options }, dispatch] = usePayPalScriptReducer();
   const user = useSelector((state) => state.userReducer.user);
-  const URL = `http://localhost:3001` // DESACTIVAR PARA DEPLPOY
-  // const URL = `https://henry-overflow-api.herokuapp.com`  // ACTIVAR PARA DEPLOY
+  //const URL = `http://localhost:3001`; // DESACTIVAR PARA DEPLPOY
+  const URL = `https://henry-overflow-api.herokuapp.com`; // ACTIVAR PARA DEPLOY
 
   useEffect(() => {
     setTimeout(() => {
@@ -57,9 +57,7 @@ const ButtonWrapper = ({ type }) => {
               "Has creado una suscripción exitosamente" + data.subscriptionID
             );
             axios
-              .get(
-                `${URL}/payment/suscription-detail/${data.subscriptionID}`
-              )
+              .get(`${URL}/payment/suscription-detail/${data.subscriptionID}`)
               .then((response) => {
                 console.log(response.data);
                 console.log(actions);
@@ -134,9 +132,7 @@ const ButtonWrapper = ({ type }) => {
               "Has creado una suscripción exitosamente" + data.subscriptionID
             );
             axios
-              .get(
-                `${URL}/payment/suscription-detail/${data.subscriptionID}`
-              )
+              .get(`${URL}/payment/suscription-detail/${data.subscriptionID}`)
               .then((response) => {
                 console.log(response.data);
                 console.log(actions);
@@ -171,16 +167,14 @@ const ButtonWrapper = ({ type }) => {
                 obj.user_email = user.email;
                 let userId = user.id;
 
-                axios
-                  .post(`${URL}/orders/${userId}`, obj)
-                  .then((response) => {
-                    console.log(response);
-                    Swal.fire(
-                      "Aviso!",
-                      `Donación realizada, muchas gracias.`,
-                      "success"
-                    );
-                  });
+                axios.post(`${URL}/orders/${userId}`, obj).then((response) => {
+                  console.log(response);
+                  Swal.fire(
+                    "Aviso!",
+                    `Donación realizada, muchas gracias.`,
+                    "success"
+                  );
+                });
               })
               .catch((error) => {
                 console.log(error);
@@ -212,9 +206,7 @@ const ButtonWrapper = ({ type }) => {
             );
 
             axios
-              .get(
-                `${URL}/payment/suscription-detail/${data.subscriptionID}`
-              )
+              .get(`${URL}/payment/suscription-detail/${data.subscriptionID}`)
               .then((response) => {
                 console.log(response.data);
                 console.log(actions);
@@ -249,15 +241,13 @@ const ButtonWrapper = ({ type }) => {
                 obj.user_email = user.email;
                 let userId = user.id;
 
-                axios
-                  .post(`${URL}/orders/${userId}`, obj)
-                  .then((response) => {
-                    Swal.fire(
-                      "Aviso!",
-                      `Donación realizada, muchas gracias.`,
-                      "success"
-                    );
-                  });
+                axios.post(`${URL}/orders/${userId}`, obj).then((response) => {
+                  Swal.fire(
+                    "Aviso!",
+                    `Donación realizada, muchas gracias.`,
+                    "success"
+                  );
+                });
               })
               .catch((error) => {
                 console.log(error);
