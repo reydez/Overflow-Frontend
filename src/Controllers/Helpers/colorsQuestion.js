@@ -12,8 +12,6 @@ export const getModuleColor = (question) => {
     return colorModule
 }
 
-
-
 export const getTagColor = (t) => {
     let tag = t.toUpperCase()
     let colorTag;
