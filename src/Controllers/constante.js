@@ -60,8 +60,8 @@ const ButtonLogOut = () => {
             // boxShadow: "rgba(1, 0, 0, 0.70) 0px 5px 15px",
             alignItems: "center",
             textAlign: 'center',
-            marginTop: '10px',
-            margin: '0 auto'
+            margin: '0 auto',
+            marginTop: '20px',
           }}
         >
           <FavoriteIcon sx={{ fontSize: "18px" }} />
