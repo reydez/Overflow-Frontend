@@ -1,11 +1,9 @@
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 import { Button, ButtonGroup } from "@mui/material";
-import { useDispatch } from "react-redux";
-import { orderByModule } from "../../../redux/actions/questions";
 
 
-export default function Avatars({ orderByModule }) {
+export default function Avatars({ filterByModule }) {
   return (
     <Stack direction="row" spacing={2} sx={{ display: "inline" }}>
       <ButtonGroup
@@ -15,7 +13,7 @@ export default function Avatars({ orderByModule }) {
       >
         <Button size="large">
           <Avatar
-            onClick={orderByModule}
+            onClick={filterByModule}
             size="small"
             sx={{ bgcolor: "background.white", color: "#FBC02D" }}
           >
@@ -26,7 +24,7 @@ export default function Avatars({ orderByModule }) {
         </Button>
         <Button>
           <Avatar
-            onClick={orderByModule}
+            onClick={filterByModule}
             sx={{ bgcolor: "background.white", color: "#43A047" }}
           >
             <b>
@@ -36,7 +34,7 @@ export default function Avatars({ orderByModule }) {
         </Button>
         <Button>
           <Avatar
-            onClick={orderByModule}
+            onClick={filterByModule}
             sx={{ bgcolor: "background.white", color: "#D81B60" }}
           >
             <b>
@@ -46,7 +44,7 @@ export default function Avatars({ orderByModule }) {
         </Button>
         <Button>
           <Avatar
-            onClick={orderByModule}
+            onClick={filterByModule}
             sx={{ bgcolor: "background.white", color: "#42A5F5" }}
           >
             <b>

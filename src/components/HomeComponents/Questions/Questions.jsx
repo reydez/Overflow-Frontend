@@ -7,10 +7,10 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getQuestions,
   getQuestionsByName,
-  orderByMasComentadas,
+  orderByComments,
   orderByLikes,
-  orderByModule,
-  orderByTag,
+  filterByModule,
+  filterByTag,
 } from "../../../redux/actions/questions";
 import { getTags } from "../../../redux/actions/tags";
 import { Chip, Stack } from "@mui/material";
@@ -30,7 +30,12 @@ export const Questions = () => {
   const userDetail = useSelector((state) => state.userReducer.userDetail);
   const questions = useSelector((state) => state.questionsReducer.questions);
   const tags = useSelector((state) => state.tagsReducer.tags);
+  const filter = useSelector((state) => state.questionsReducer.filter)
+  const order = useSelector((state) => state.questionsReducer.order)
   const dinamix = useSelector((state) => state.userReducer.dinamix);
+
+  console.log("ESTE ES EL METODO DE FILTRADO: ", filter)
+  console.log("ESTE ES EL METODO DE ORDENAMIENTO: ", order)
 
   tags.sort((a, b) => b.usado - a.usado);
 
@@ -87,24 +92,24 @@ export const Questions = () => {
     setMinPageNumberLimit(0);
   };
 
-  const orderByTagHandler = (tag) => {
-    dispatch(orderByTag(tag));
+  const filterByTagHandler = (tag) => {
+    dispatch(filterByTag(tag));
     setCurrentPage(1);
     setPageNumberLimit(5);
     setMaxPageNumberLimit(5);
     setMinPageNumberLimit(0);
   };
 
-  const handleOrderByModule = (e) => {
-    dispatch(orderByModule(e.target.innerText));
+  const handleFilterByModule = (e) => {
+    dispatch(filterByModule(e.target.innerText));
     setCurrentPage(1);
     setPageNumberLimit(5);
     setMaxPageNumberLimit(5);
     setMinPageNumberLimit(0);
   };
 
-  const handleOrderByMasComentadas = () => {
-    dispatch(orderByMasComentadas());
+  const handleOrderByComments = () => {
+    dispatch(orderByComments());
     setCurrentPage(1);
     setPageNumberLimit(5);
     setMaxPageNumberLimit(5);
@@ -124,7 +129,7 @@ export const Questions = () => {
       <MainContainer>
         <CardQuestionContainer>
           <div className="CardQuestionTitle">
-            <Avatars orderByModule={handleOrderByModule} />
+            <Avatars filterByModule={handleFilterByModule} />
             <Button
               sx={{
                 color: "color.filters",
@@ -158,7 +163,7 @@ export const Questions = () => {
                 borderRadius: "10px",
               }}
               className="buttonFilter"
-              onClick={handleOrderByMasComentadas}
+              onClick={handleOrderByComments}
             >
               Mas Comentadas ASC/DSC
             </Button>
@@ -242,7 +247,7 @@ export const Questions = () => {
                       {tag.name} {`(${tag.usado})`}
                     </Box>
                   }
-                  onClick={() => orderByTagHandler(upperCase)}
+                  onClick={() => filterByTagHandler(upperCase)}
                 />
               );
             })}

@@ -82,38 +82,6 @@ export function postQuestion(form, idUser) {
   };
 }
 
-export function orderByModule(module) {
-  return {
-    type: question.ORDER_BY_MODULE,
-    payload: module,
-  };
-}
-
-export function orderByTag(tag) {
-  return {
-    type: question.ORDER_BY_TAG,
-    payload: tag,
-  };
-}
-
-export function orderByDate() {
-  return {
-    type: question.ORDER_BY_DATE,
-  };
-}
-
-export function orderByMasComentadas() {
-  return {
-    type: question.ORDER_BY_MAS_COMENTADAS,
-  };
-}
-
-export function orderByLikes() {
-  return {
-    type: question.ORDER_BY_LIKES
-  }
-}
-
 export function deleteQuestion(idPost, idUser) {
   return (dispatch) => {
     axios
@@ -122,7 +90,6 @@ export function deleteQuestion(idPost, idUser) {
         dispatch({
           type: question.DELETE_QUESTION,
           payload: idPost,
-          // payload: response.data
         });
         console.log(idPost);
       })
@@ -131,3 +98,42 @@ export function deleteQuestion(idPost, idUser) {
       });
   };
 }
+
+export function filterByModule(module) {
+  return {
+    type: question.FILTER_BY_MODULE,
+    payload: module,
+  };
+}
+
+export function filterByTag(tag) {
+  return {
+    type: question.FILTER_BY_TAG,
+    payload: tag,
+  };
+}
+
+export function filterByDate() {
+  return {
+    type: question.FILTER_BY_DATE,
+  };
+}
+
+export function filterByResolved() {
+  return {
+    type: question.FILTER_BY_RESOLVED
+  };
+}
+
+export function orderByComments() {
+  return {
+    type: question.ORDER_BY_COMMENTS,
+  };
+}
+
+export function orderByLikes() {
+  return {
+    type: question.ORDER_BY_LIKES
+  };
+}
+

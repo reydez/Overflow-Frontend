@@ -1,6 +1,22 @@
 import axios from "axios";
 import { comment, URL } from "../action-types/index.js";
 
+// export function getQuestionDetails(idPost) {
+//   return (dispatch) => {
+//     axios
+//       .get(`${URL}/posts/${idPost}`)
+//       .then((response) => {
+//         console.log(response.data);
+//         dispatch({
+//           type: question.GET_QUESTION_DETAILS,
+//           payload: response.data,
+//         });
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//       });
+//   };
+// }
 
 export function addComment(message, idPost, idUser) {
   return (dispatch) => {
