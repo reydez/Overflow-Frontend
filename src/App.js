@@ -19,6 +19,7 @@ import { AdminEditTags } from "./components/HomeComponents/Admin/AdminEditTags";
 import { AdminBanUser } from "./components/HomeComponents/Admin/AdminBanUser";
 import { PaypalC } from "./components/Paypal/PaypalC";
 import InboxUser from "./views/InboxUser";
+import { AdminReports } from "./components/HomeComponents/Admin/AdminReports";
 
 function App() {
   const { isLoading, isAuthenticated, user } = useAuth0();
@@ -123,6 +124,7 @@ function App() {
         {isAuthenticated && userRedux.isAdmin ? (
           <BarLeft>
             <AdminContainer />
+            <AdminReports />
           </BarLeft>
         ) : (
           <Redirect to="/questions" />

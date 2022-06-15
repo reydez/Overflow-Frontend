@@ -10,6 +10,7 @@ import {
   orderByMasComentadas,
   orderByModule,
   orderByTag,
+  orderByLikes
 } from "../../../redux/actions/questions";
 import { getTags } from "../../../redux/actions/tags";
 import { Chip, Stack } from "@mui/material";
@@ -110,6 +111,14 @@ export const Questions = () => {
     setMinPageNumberLimit(0);
   };
 
+  const handleOrderByLikes = () => {
+    dispatch(orderByLikes());
+    setCurrentPage(1);
+    setPageNumberLimit(5);
+    setMaxPageNumberLimit(5);
+    setMinPageNumberLimit(0);
+  };
+
   return (
     <div>
       <MainContainer>
@@ -118,23 +127,46 @@ export const Questions = () => {
             <Avatars orderByModule={handleOrderByModule} />
             <Button
               sx={{
-                color: "color.filters",
+                bgcolor: (theme) =>
+                theme.palette.mode === "dark" ? "#392E57" : "#5a4e7c",
                 "&:hover": { color: "#F50057" },
-                boxShadow: "rgba(0, 0, 0, 0.35) 0px 4px 8px",
+                color: (theme) =>
+                theme.palette.mode === "dark" ? "#9791AD" : "#EBEFFE",
+                // boxShadow: "rgba(0, 0, 0, 0.35) 0px 4px 8px",
                 borderRadius: "10px",
+                marginLeft: '20px',
               }}
               className="buttonFilter"
               onClick={refreshPage}
             >
-              Refresh preguntas
+              Todas las Preguntas
             </Button>
-
             <Button
               sx={{
-                color: "color.filters",
+                bgcolor: (theme) =>
+                theme.palette.mode === "dark" ? "#392E57" : "#5a4e7c",
                 "&:hover": { color: "#F50057" },
-                boxShadow: "rgba(0, 0, 0, 0.35) 0px 4px 8px",
+                color: (theme) =>
+                theme.palette.mode === "dark" ? "#9791AD" : "#EBEFFE",
+                // boxShadow: "rgba(0, 0, 0, 0.35) 0px 4px 8px",
                 borderRadius: "10px",
+                marginLeft: '20px',
+              }}
+              className="buttonFilter"
+              onClick={handleOrderByLikes}
+            >
+              Con mas Likes
+            </Button>
+            <Button
+              sx={{
+                bgcolor: (theme) =>
+                theme.palette.mode === "dark" ? "#392E57" : "#5a4e7c",
+                "&:hover": { color: "#F50057" },
+                color: (theme) =>
+                theme.palette.mode === "dark" ? "#9791AD" : "#EBEFFE",
+                // boxShadow: "rgba(0, 0, 0, 0.35) 0px 4px 8px",
+                borderRadius: "10px",
+                marginLeft: '20px'
               }}
               className="buttonFilter"
               onClick={handleOrderByMasComentadas}
@@ -250,8 +282,7 @@ const CounterSideBar = styled.div`
     align-items: center;
     padding-top: 5px;
     margin: 0 auto;
-    text-size: 50px
-
+    font-size: 50px;
     text-align: center;
     animation-name: counter;
     animation-duration: 2s;
@@ -305,23 +336,28 @@ const SideBar = styled.div`
 const CardQuestionContainer = styled.div`
   height: 60px;
   width: 80%;
-
   margin-left: 30px;
   margin-bottom: 10px;
+
   .CardQuestionTitle {
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     align-items: center;
+    
   }
   .CardQuestionTitle button {
-    text-decoration: none;
-    padding-top: 10px;
+    
 
     span {
       padding-left: 100px;
     }
   }
 
+  .buttonFilter {
+    text-decoration: none;
+    border: 1px solid #9791AD;
+    /* text-transform: capitalize; */
+  }
   .buttonFilter:hover {
   }
 

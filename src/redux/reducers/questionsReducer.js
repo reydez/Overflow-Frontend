@@ -59,7 +59,7 @@ const questionsReducer = (state = initialState, action) => {
       };
 
     case "ORDER_BY_TAG":
-      const copyOfQuestion = state.questions.slice();
+      const copyOfQuestion = state.tempQuestions.slice();
 
       const filteredByTag = copyOfQuestion.filter(
         (question) => question.tags.indexOf(action.payload.toUpperCase()) >= 0
@@ -86,12 +86,22 @@ const questionsReducer = (state = initialState, action) => {
         );
         newState.toggle = !newState.toggle;
       }
-
       return {
         ...state,
         toggle: newState.toggle,
         questions: copyTempQuestionsMasComentadas,
       };
+
+      case "ORDER_BY_LIKES":
+        const copyTempQuestionsLikes = state.tempQuestions.slice();   
+        copyTempQuestionsLikes.sort(
+          (a, b) => b.likes.length - a.likes.length
+        );
+        return {
+          ...state,
+          toggle: false,
+          questions: copyTempQuestionsLikes,
+        };
 
     case "DELETE_COMMENT":
       console.log("Comment en tempQuestions:", state.question.comments);

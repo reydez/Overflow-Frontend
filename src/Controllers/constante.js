@@ -23,17 +23,15 @@ const ButtonLogOut = () => {
   const { logout } = useAuth0();
   const user = useSelector((state) => state.userReducer.user);
   
-
   return (
     <>
-
-
       <WelcomeUserMsg>
         <h5>Bienvenido</h5>
         <h4>{user.full_name}</h4>
         <img src={logo} alt="User Badge" />
       </WelcomeUserMsg>
       <Divider />
+      
       {user.isAdmin === true ? (
         <Link to="/admin" style={{ textDecoration: "none" }}>
           <ButtonAdminPanel>
@@ -47,21 +45,23 @@ const ButtonLogOut = () => {
         style={{
           textDecoration: "none",
           display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
+          // justifyContent: "center",
+          // alignItems: "center",
         }}
       >
         <Button
           sx={{
             color: (theme) =>
-                theme.palette.mode === "dark" ? "#A8A3B5" : "#7165A0",
-              "&:hover": { color: "#F50057" }, marginLeft: '5px',  
-              backgroundColor: "background.buttons",
-             border: "solid 2px ",
+            theme.palette.mode === "dark" ? "#A8A3B5" : "#7165A0",
+            "&:hover": { color: "#F50057" }, marginLeft: '5px',  
+            backgroundColor: "background.buttons",
+            border: "solid 2px ",
             borderRadius: "10px",
-            boxShadow: "rgba(1, 0, 0, 0.70) 0px 5px 15px",
+            // boxShadow: "rgba(1, 0, 0, 0.70) 0px 5px 15px",
             alignItems: "center",
-            
+            textAlign: 'center',
+            marginTop: '10px',
+            margin: '0 auto'
           }}
         >
           <FavoriteIcon sx={{ fontSize: "18px" }} />
@@ -70,24 +70,29 @@ const ButtonLogOut = () => {
         </Button>
       </Link>
 
+      <Link to={"/reglas-comunidad"} style={{ textDecoration: "none", display: 'flex' }}>
+      <Button sx={{ color: (theme) =>
+        theme.palette.mode === "dark" ? "#A8A3B5" : "#7165A0",
+        "&:hover": { color: "#F50057" }, marginLeft: '25px',  
+        backgroundColor: "background.buttons",
+        borderRadius: "10px",
+        fontSize: "12px",
+        border: "solid 1px ",
+        textAlign: 'center',
+        margin: '0 auto',
+        marginTop: '40px'
+        }}>
+        Reglas de la Comunidad
+      </Button>
+      </Link>
+
       <ButtonLogOutDiv>
         <button className="ButtonLogOut" onClick={() => logout()}>
           <LogoutIcon sx={{ marginRight: "10px", fontSize: "19px" }} />
           Cerrar Sesión
         </button>
       </ButtonLogOutDiv>
-      <Link to={"/reglas-comunidad"} style={{ textDecoration: "none" }}>
-      <Button sx={{ color: (theme) =>
-                theme.palette.mode === "dark" ? "#A8A3B5" : "#7165A0",
-              "&:hover": { color: "#F50057" }, marginLeft: '25px',  
-              backgroundColor: "background.buttons",
-              borderRadius: "10px",
-              fontSize: "12px",
-            
-              border: "solid 1px ",}}>
-        Reglas de la Comunidad
-      </Button>
-      </Link>
+     
     </>
   );
 };
@@ -171,11 +176,9 @@ const drawer = (
       <Typography variant="h5"  component="div" gutterBottom><span>Henry</span><span>Flow</span></Typography>
     </Box> */}
    
-
-      <img src={Letra} style={{ padding:'1px', width:'180px',  marginLeft:'10px', bgcolor: 'white', }} alt="letra" />
-      
-      
-      {/* <h3 style={{ display: 'flex', margin: '0 auto', letterSpacing: '1px' }}>Henry-Flow</h3> */}
+    {/* 
+      <img src={Letra} style={{ padding:'1px', width:'180px',  marginLeft:'10px', bgcolor: 'white', }} alt="letra" /> */}
+    <h3 style={{ display: 'flex', margin: '0 auto', letterSpacing: '1px' }}>Henry-Flow</h3>
     </Toolbar>
     <Divider />
     <List sx={{ bgcolor: "background.white" }}>
