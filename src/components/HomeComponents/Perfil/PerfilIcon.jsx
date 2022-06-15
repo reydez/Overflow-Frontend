@@ -44,31 +44,20 @@ export default function PerfilIcon() {
       }}
     >
   
-  <Link to={"/reglas-comunidad"} style={{ textDecoration: "none" }}>
+  <Link  style={{ textDecoration: "none" }}>
             {location.pathname !== "/questions" &&
             location.pathname !== "/user-profile" &&
             location.pathname !== "/all-users" &&
             location.pathname !== "/donar" &&
             location.pathname !== "/favourites-user" ? null : (
               <Button
-                variant="primary"
-                size="large" /* disableRipple  */
+               
+                
                 sx={{
-                  width: "198px",
-                  height: "36px",
-                  // marginLeft: "30px",
-                  borderRadius: "25px",
-                  border: "none",
-                  color: "color.letters",
-                  "&:hover": { color: "color.filters" },
-                  cursor: "pointer",
-                  fontSize: "12px",
-                  padding: "5px 13px",
-
-                  bgcolor: "color.filters",
+               
                 }}
               >
-                Reglas de la comunidad
+                
               </Button>
             )}
           </Link>

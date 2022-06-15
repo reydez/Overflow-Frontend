@@ -53,15 +53,15 @@ const ButtonLogOut = () => {
       >
         <Button
           sx={{
-            color: "#7165A0;",
-            "&:hover": { color: "#F50057", background: "white" },
-            border: "1px solid grey",
+            color: (theme) =>
+                theme.palette.mode === "dark" ? "#A8A3B5" : "#7165A0",
+              "&:hover": { color: "#F50057" }, marginLeft: '5px',  
+              backgroundColor: "background.buttons",
+             border: "solid 2px ",
             borderRadius: "10px",
-            boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
-            display: "flex",
-            justifyContent: "center",
+            boxShadow: "rgba(1, 0, 0, 0.70) 0px 5px 15px",
             alignItems: "center",
-            marginTop: '20px'
+            
           }}
         >
           <FavoriteIcon sx={{ fontSize: "18px" }} />
@@ -76,6 +76,18 @@ const ButtonLogOut = () => {
           Cerrar Sesión
         </button>
       </ButtonLogOutDiv>
+      <Link to={"/reglas-comunidad"} style={{ textDecoration: "none" }}>
+      <Button sx={{ color: (theme) =>
+                theme.palette.mode === "dark" ? "#A8A3B5" : "#7165A0",
+              "&:hover": { color: "#F50057" }, marginLeft: '25px',  
+              backgroundColor: "background.buttons",
+              borderRadius: "10px",
+              fontSize: "12px",
+            
+              border: "solid 1px ",}}>
+        Reglas de la Comunidad
+      </Button>
+      </Link>
     </>
   );
 };
@@ -174,7 +186,7 @@ const drawer = (
               color: (theme) =>
                 theme.palette.mode === "dark" ? "#A8A3B5" : "#7165A0",
               "&:hover": { color: "#F50057" },
-              marginLeft: '22%'
+              marginLeft: '22%',
             }}>
             <HomeIcon sx={{ marginRight: "10px", fontSize: "18px" }} />
             Home
