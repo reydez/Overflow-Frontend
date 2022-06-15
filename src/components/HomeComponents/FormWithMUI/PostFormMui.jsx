@@ -120,7 +120,7 @@ const PostFormMui = () => {
               placeholder="Pregunta..."
               label="Pregunta"
               error="Tu pregunta debe llevar más de 10 caracteres."
-              //regularExpresion={/^[a-zA-ZÀ-ÿ\s?.,0-9]{4,100}$/}
+            //regularExpresion={/^[a-zA-ZÀ-ÿ\s?.,0-9]{4,100}$/}
             />
           </NameDiv>
           <InputFormArea
@@ -130,20 +130,20 @@ const PostFormMui = () => {
             placeholder="Describe tu pregunta..."
             label="Descripción y Código"
             error="Háblanos sobre tu problema"
-            //regularExpresion={/^[a-zA-ZÀ-ÿ:<|&*>\s?.,0-9]{20,800}$/}
+          //regularExpresion={/^[a-zA-ZÀ-ÿ:<|&*>\s?.,0-9]{20,800}$/}
           />
         </div>
 
         <div className={Classes.selectModules}>
           <label className={Classes.labelModule}>
-            Module selected{" "}
+            Modulo seleccionado{" "}
             <span className={Classes.slec}>{renderResult()} </span>
             <Seleccionador
               onChange={handleOnChange}
               value={moduleSelected}
               name="field"
             >
-              <option>MODULES</option>
+              <option>MODULOS</option>
               {allModules.map((module) => {
                 return <option>{module.name}</option>;
               })}
@@ -163,7 +163,7 @@ const PostFormMui = () => {
 
         {!user.isBanned ? (
           <Send type="submit" onClick={handleSubmit}>
-            Enviar
+            ENVIAR
           </Send>
         ) : null}
 
@@ -194,7 +194,7 @@ const Formulario = styled.form`
   text-align: center;
   margin: 10px;
   padding: 20px;
-  background-color: white;
+  background-color: #524C74;
   border-radius: 35px;
   border: solid 1px black;
 
@@ -214,8 +214,8 @@ const Seleccionador = styled.select`
   text-align: left;
   margin-top: 5px;
   padding: 10px;
-  border: 2px solid gray;
-  color: gray;
+  border: 1px solid black;
+  color: black;
   cursor: pointer;
   background: #fff;
   border-radius: 4px;
@@ -247,10 +247,9 @@ const Send = styled.button`
   margin-top: 40px;
   margin-bottom: 40px;
   text-align: left;
-
   padding: 10px;
   width: 80%;
-  border: 2px solid gray;
+  border: 1px solid black;
   color: white;
   cursor: pointer;
   background: #413a66;
@@ -260,7 +259,7 @@ const Send = styled.button`
 
   &:hover {
     box-shadow: 3px 0px 40px rgba(0, 0, 0, 0.2);
-    transform: scale(1.1, 1.1);
+    transform: scale(1.01, 1.02);
   }
   &:focus {
     border: 2px solid ${colores.inputPurple};
