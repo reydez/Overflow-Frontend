@@ -32,7 +32,7 @@ export default function ScrollAboutUs() {
 
   return (
     <div>
-      <Button onClick={handleClickOpen('paper')} sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }}>Quienes Somos</Button>
+      <Button onClick={handleClickOpen('paper')} sx={{ color: "#a8a3b5", "&:hover": { color: "#F50057" } }}>Nosotros</Button>
       
      
       <Dialog
@@ -42,7 +42,7 @@ export default function ScrollAboutUs() {
         aria-labelledby="scroll-dialog-title"
         aria-describedby="scroll-dialog-description"
       >
-        <DialogTitle id="scroll-dialog-title">Quienes Somos</DialogTitle>
+        <DialogTitle id="scroll-dialog-title">Nosotros</DialogTitle>
         <DialogContent dividers={scroll === 'paper'}>
           <DialogContentText
          
@@ -52,11 +52,13 @@ export default function ScrollAboutUs() {
           >
             {[Array(40)]
               .map(
-                () => `Al usar nuestros productos, usted acepta nuestros Términos de servicio.
-
-                Stack Overflow Network es un conjunto de sitios de Internet relacionados y otras aplicaciones para preguntas y respuestas (también denominadas en el presente como la "Red"), propiedad de Stack Exchange, Inc. ("Stack Overflow", "nosotros" o " nosotros”), una corporación de Delaware. Stack Overflow te da la bienvenida a Network, la comunidad de desarrolladores más grande del mundo, y te invita a participar en la comunidad compartiendo conocimientos con tus compañeros y colegas. Como todas las comunidades, le pedimos que participe de una manera que respete a los demás miembros de la comunidad. Con ese fin, le proporcionamos estos términos de servicio para informarle sobre las obligaciones legales que asume cuando se involucra con la comunidad de Stack Overflow o cuando accede o usa la Red pública o cualquier servicio provisto en la Red pública (colectivamente, "Servicios ”).
+                () => `A lo largo de la cursada en Henry, todos nosotros en algún momento nos hemos encontrado con la necesidad de despejar nuestras dudas acerca de los diferentes temas que a diario aprendemos en el bootcamp, o resolver errores de nuestro código que tanto nos costó diseñar y que nos supera cómo programadores (el momento donde simplemente… Crash!! SyntaxError, TypeError, NaN, Maximum call size y un largo etcétera). Es ahí donde simplemente deseamos una respuesta, un ejemplo de uso correcto o una explicación del tema que no nos deja dormir. Indagando por diversas plataformas del internet encontramos una marea de información: diversos lenguajes de programación, tecnologías que aún no sabemos ni el porqué de su existencia y por fin… nuestra respuesta!! hasta que nos damos cuenta que se trata de un método deprecado o de un lenguaje distinto al que utilizamos(seguimos nuestra búsqueda cómo barco a la deriva en el océano infinito del internet). Agregando a esto, ¿cuántas veces, cómo estudiantes Henry, encontramos lo que necesitábamos pero esta información estaba únicamente en Inglés? 
+                La información abunda, es libre, gratuita y enriquecedora, pero cómo estudiantes tenemos esa misma problemática: La información abunda, necesitamos puntualizar.
+                HenryOverflow es la plataforma en donde esta necesidad de puntualizar la información se resuelve. Un foro interactivo donde podemos postear dudas, comentarlas, guardarlas en favoritos, compartirlas, hablar con otros estudiantes, y avanzar en la carrera cómo Full Stack Developer siguiendo el mismo lineamiento de la enseñanza que provee Henry. Además, cada pregunta y respuesta será puntuada por los mismos integrantes de la comunidad, en donde existirá un sistema de rating.
+                HenryOverflow está apuntado tanto a estudiantes recién ingresados, estudiantes avanzados y hasta graduados Henrys que quieran aportar dentro de la comunidad de desarrolladores. 
                 
-                En la medida en que acceda o utilice nuestros otros productos en nombre de una Empresa o Equipo, lo que incluye, entre otros, el registro de una cuenta en nombre de una Empresa o Equipo, su uso de esos productos (como Stack Overflow para Teams o Stack Overflow Business) se rige por sus correspondientes Términos y Condiciones.`,
+                Y si no soy estudiante de la academia Henry? HenryOverflow está abierto a cualquier persona que desee tanto resolver sus dudas cómo compartir su conocimiento! Siguiendo la estructura dispuesta por la página, en donde se abarcaran tecnologías específicas y puntuales.
+                `,
               )
               .join('\n')}
           </DialogContentText>

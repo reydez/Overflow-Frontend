@@ -176,9 +176,9 @@ const drawer = (
       <Typography variant="h5"  component="div" gutterBottom><span>Henry</span><span>Flow</span></Typography>
     </Box> */}
    
-    {/* 
-      <img src={Letra} style={{ padding:'1px', width:'180px',  marginLeft:'10px', bgcolor: 'white', }} alt="letra" /> */}
-    <h3 style={{ display: 'flex', margin: '0 auto', letterSpacing: '1px' }}>Henry-Flow</h3>
+    
+      <img src={Letra} style={{ padding:'1px', width:'180px',  marginLeft:'10px', bgcolor: 'white', }} alt="letra" />
+   
     </Toolbar>
     <Divider />
     <List sx={{ bgcolor: "background.white" }}>
