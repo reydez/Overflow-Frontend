@@ -8,6 +8,7 @@ import { deleteTag } from '../../../redux/actions/adminTags';
 import Swal from 'sweetalert2';
 import { getModules } from '../../../redux/actions/module';
 import axios from 'axios';
+import { getTagColor } from '../../../Controllers/Helpers/colorsQuestion';
 
 export const AdminEditTags = () => {
 
@@ -39,7 +40,7 @@ const [tag, setTag] = useState({
   const handleDelete = (id) => {
     dispatch(deleteTag(id, user.id))
     Swal.fire({
-      title: 'Borrate el tag',
+      title: 'Tag borrado!',
       icon: 'warning',
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
@@ -100,7 +101,7 @@ const [tag, setTag] = useState({
           <h3>Agregar Tag: </h3>
           <div>
             <label>Módulo del nuevo tag:</label>
-            <select name="idModulo" onChange={(e)=>handleChange(e)}>
+            <select name="idModulo" style={{marginLeft:'10px'}} onChange={(e)=>handleChange(e)}>
               {allModules.map((everyModule) => {
                 return(
                   <option value={everyModule.id} >{everyModule.name} </option>
@@ -109,7 +110,7 @@ const [tag, setTag] = useState({
             </select>
           </div>
           <input type="text" name="name" value={tag.name} onChange={handleChange} />
-          <button type="submit">Agregar</button>
+          <button type="submit" style={{marginLeft:'10px'}}>Agregar</button>
         </form>
         <hr />
         <h3>Click para eliminar Tag</h3>
@@ -122,7 +123,7 @@ const [tag, setTag] = useState({
                   label={tag.name}
                   variant="outlined"
                   key={tag.id}
-                  sx={{ margin: '2px 2px', cursor:'pointer' }}
+                  sx={{ margin: '5px 5px', cursor:'pointer', borderColor: getTagColor(tag.name) }}
                   onClick={()=>handleDelete(idSelected)}
                   deleteIcon={<DeleteIcon />}
                 />
@@ -135,22 +136,24 @@ const [tag, setTag] = useState({
 }
 
 
-
-
 const AdminNavBarStyle = styled.div`
-     button {
-        border-radius: 15px;
-        background-color: #D81B60;
-        border: none;
-        color: #fff;
-        padding: 5px 15px;
-        margin-right: 10px;
-        margin-top: 6px;
-        cursor: pointer;
-    }
-    button:hover {
-        background-color: #D81B60;
-        color: #fff;
-        border: none;
-    } 
+  select {
+    border-radius: 15px;
+    padding: 5px 10px;
+  }
+  button {
+    padding: 5px 15px;
+    border-radius: 15px;
+    background-color: #D81B60;
+    border: none;
+    color: #fff;
+    margin-right: 10px; 
+    margin-top: 6px;
+    cursor: pointer;
+  }
+  button:hover {
+      background-color: #D81B60;
+      color: #fff;
+      border: none;
+  } 
 `
