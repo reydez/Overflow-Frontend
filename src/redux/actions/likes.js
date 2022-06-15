@@ -1,5 +1,6 @@
 import axios from "axios";
 import { like, URL } from "../action-types/index.js";
+import { getUserProfile } from "./user.js"
 
 export function getLikes(idOf) {
     return (dispatch) => {
@@ -21,6 +22,7 @@ export function setLikesByUser(idOf, idUser) {
                 type: like.SET_LIKES_BY_USER,
                 payload: response.data
             })})
+            .then(r => {dispatch(getUserProfile(idUser))})
             .catch(error => {
                 console.log(error)
             })

@@ -58,13 +58,13 @@ export default function InboxUser() {
   // console.log(inbox)
   const clearNotification = (e) => {
     dispatch(deleteNotification(user.id, e.target.value));
-    dispatch(userInbox(user.id));
+    // dispatch(userInbox(user.id));
     change ? setChange(false) : setChange(true);
   };
 
   const clearAll = () => {
     dispatch(cleanInbox(user.id));
-    dispatch(userInbox(user.id));
+    // dispatch(userInbox(user.id));
     change ? setChange(false) : setChange(true);
   };
 
@@ -73,14 +73,14 @@ export default function InboxUser() {
     dispatch(viewNotification(user.id, e.target.attributes[1].nodeValue));
   };
 
-  React.useEffect(() => {
-    const existUser = () => {
-      if(user.id) {
-        dispatch(userInbox(user.id));
-      }
-    };
-    existUser()
-  }, [change, dispatch, user]);
+  // React.useEffect(() => {
+  //   const existUser = () => {
+  //     if(user.id) {
+  //       dispatch(userInbox(user.id));
+  //     }
+  //   };
+  //   existUser()
+  // }, [change, dispatch, user]);
 
   // console.log("Este es mi buzon de entrada: ", inbox)
   // console.log(`Tienes ${inbox.length} mensajes en tu bandeja`)

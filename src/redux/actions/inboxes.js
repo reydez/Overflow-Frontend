@@ -22,6 +22,7 @@ export function viewNotification(idUser, idNotification) {
                 type: inbox.VIEW_NOTIFICATION,
                 payload: response.data
             })})
+            .then(e => dispatch(dispatch(userInbox(idUser))))
             .catch(error => {
                 console.log(error)
             })
@@ -35,6 +36,7 @@ export function deleteNotification(idUser, idNotification) {
                 type: inbox.DELETE_NOTIFICATION,
                 payload: response.data
             })})
+            .then(e => dispatch(dispatch(userInbox(idUser))))
             .catch(error => {
                 console.log(error)
             })
@@ -48,6 +50,7 @@ export function cleanInbox(idUser) {
                 type: inbox.CLEAN_INBOX,
                 payload: response.data
             })})
+            .then(e => dispatch(dispatch(userInbox(idUser))))
             .catch(error => {
                 console.log(error)
             })

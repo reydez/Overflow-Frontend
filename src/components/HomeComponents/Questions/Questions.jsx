@@ -54,7 +54,7 @@ export const Questions = () => {
   useEffect(() => {
     const createUserFromDispatch = () => {
       if (user.id !== undefined) {
-        dispatch(getUserProfile(user.id));
+        // dispatch(getUserProfile(user.id));
         dispatch(userInbox(user.id));
         dispatch(getQuestions());
       }
