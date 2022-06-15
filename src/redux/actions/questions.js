@@ -108,6 +108,12 @@ export function orderByMasComentadas() {
   };
 }
 
+export function orderByLikes() {
+  return {
+    type: "ORDER_BY_LIKES"
+  };
+}
+
 export function deleteQuestion(idPost, idUser) {
   return (dispatch) => {
     axios

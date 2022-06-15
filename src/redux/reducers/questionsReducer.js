@@ -86,12 +86,22 @@ const questionsReducer = (state = initialState, action) => {
         );
         newState.toggle = !newState.toggle;
       }
-
       return {
         ...state,
         toggle: newState.toggle,
         questions: copyTempQuestionsMasComentadas,
       };
+
+      case "ORDER_BY_LIKES":
+        const copyTempQuestionsLikes = state.tempQuestions.slice();   
+        copyTempQuestionsLikes.sort(
+          (a, b) => b.likes.length - a.likes.length
+        );
+        return {
+          ...state,
+          toggle: false,
+          questions: copyTempQuestionsLikes,
+        };
 
     case "DELETE_COMMENT":
       console.log("Comment en tempQuestions:", state.question.comments);

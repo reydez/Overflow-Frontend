@@ -10,6 +10,7 @@ import {
   orderByMasComentadas,
   orderByModule,
   orderByTag,
+  orderByLikes
 } from "../../../redux/actions/questions";
 import { getTags } from "../../../redux/actions/tags";
 import { Chip, Stack } from "@mui/material";
@@ -110,6 +111,14 @@ export const Questions = () => {
     setMinPageNumberLimit(0);
   };
 
+  const handleOrderByLikes = () => {
+    dispatch(orderByLikes());
+    setCurrentPage(1);
+    setPageNumberLimit(5);
+    setMaxPageNumberLimit(5);
+    setMinPageNumberLimit(0);
+  };
+
   return (
     <div>
       <MainContainer>
@@ -132,7 +141,22 @@ export const Questions = () => {
             >
               Todas las Preguntas
             </Button>
-
+            <Button
+              sx={{
+                bgcolor: (theme) =>
+                theme.palette.mode === "dark" ? "#392E57" : "#5a4e7c",
+                "&:hover": { color: "#F50057" },
+                color: (theme) =>
+                theme.palette.mode === "dark" ? "#9791AD" : "#EBEFFE",
+                // boxShadow: "rgba(0, 0, 0, 0.35) 0px 4px 8px",
+                borderRadius: "10px",
+                marginLeft: '20px',
+              }}
+              className="buttonFilter"
+              onClick={handleOrderByLikes}
+            >
+              Con mas Likes
+            </Button>
             <Button
               sx={{
                 bgcolor: (theme) =>
