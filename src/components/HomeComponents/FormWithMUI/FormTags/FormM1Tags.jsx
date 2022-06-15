@@ -52,7 +52,7 @@ const FormM1Tags = ({ setTag, tag, moduleSelected, checked, setChecked }) => {
         ))}
       </div>
       {tag.tags.length > 1 && (
-        <Success>Sólo puedes escoger dos tags :D</Success>
+        <Success>Sólo puedes escoger dos tags</Success>
       )}
     </React.Fragment>
   );
