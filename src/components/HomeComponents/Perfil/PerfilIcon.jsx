@@ -12,6 +12,8 @@ import { userInbox } from "../../../redux/actions/inboxes";
 import { useAuth0 } from "@auth0/auth0-react";
 import Box from "@mui/material/Box"
 import { Button } from "@mui/material";
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 export default function PerfilIcon() {
   const { mode, toggleMode } = useContext(ColorModeContext);
@@ -116,11 +118,12 @@ export default function PerfilIcon() {
       >
          <IconButton
           size="small"
-          sx={{ bgcolor: "background.default", borderRadius: "30%", }}
+          sx={{ color:"text.btnEdit", bgcolor: "background.default", borderRadius: "30%", }}
           onClick={toggleMode}
         >
-          <DarkModeIcon />
+          { mode === "light" ? <Brightness7Icon /> : <Brightness4Icon />}
         </IconButton>
+       
         {/* <IconButton
           size="small"
           sx={{ bgcolor: "background.default", borderRadius: "30%" }}
@@ -128,7 +131,6 @@ export default function PerfilIcon() {
           <PersonIcon size="small" sx={{ cursor: "pointer" }} />
         </IconButton> */}
       </Badge>
-     
     </div>
   );
 }
