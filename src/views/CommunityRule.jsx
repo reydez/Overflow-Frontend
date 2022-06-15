@@ -1,3 +1,4 @@
+import { GifBox } from "@mui/icons-material";
 import { List, ListItemText, Typography, Box, Button } from "@mui/material";
 import { Container } from "@mui/system";
 import React from "react";
@@ -69,35 +70,42 @@ export function Communityrule() {
         <br />
         <br />
         
-        <Typography>
+        <Typography variant='h7'>
           <List>
           <Link smooth to={'/reglas-comunidad#Respeto'} style={{ textDecoration: 'none' }} >
-            <Button sx={{ color: "text.btnEdit",
-                      backgroundColor: "background.buttons",
+            <Box sx={{ color: "text.btnEdit",
+                      textDecoration: 'underline',
                       marginLeft: "15px",
-                      border: "solid 1px ",}}>
+                      fontWeight: 900,
+                      fontSize: '20px'
+                      }}>
           1. Respeto a los Usuarios
 
-            </Button>
+            </Box>
             </Link>
             <Link smooth to={"/reglas-comunidad#Lenguaje"} style={{ textDecoration: 'none' }}>
               <ListItemText>
-            <Button sx={{ color: "text.btnEdit",
-                      backgroundColor: "background.buttons",
+            <Box sx={{ color: "text.btnEdit",
+                      color: "text.btnEdit",
+                      textDecoration: 'underline',
                       marginLeft: "15px",
-                      border: "solid 1px ",}}>
+                      fontWeight: 900,
+                      fontSize: '20px'}}>
               2. Lenguaje que incita al odio/Hate speech
-            </Button>
+            </Box>
             </ListItemText>
             </Link>
             <Link smooth to={"/reglas-comunidad#Acoso"} style={{ textDecoration: 'none' }}>
-              <Button sx={{ color: "text.btnEdit",
-                      backgroundColor: "background.buttons",
+            <ListItemText >
+              <Box  sx={{ 
+                      color: "text.btnEdit",
+                      textDecoration: 'underline',
                       marginLeft: "15px",
-                      border: "solid 1px ",}}>
-                
-               <ListItemText >3. Acoso/Bullying</ListItemText>
-                </Button>
+                      fontWeight: 900,
+                      fontSize: '20px'}}>
+               3. Acoso/Bullying
+                </Box>
+                </ListItemText>
             </Link>
           </List>
         </Typography>

@@ -50,7 +50,7 @@ export default function PerfilIcon() {
             location.pathname !== "/all-users" &&
             location.pathname !== "/donar" &&
             location.pathname !== "/favourites-user" ? null : (
-              <Button
+              <Box
                
                 
                 sx={{
@@ -58,7 +58,7 @@ export default function PerfilIcon() {
                 }}
               >
                 
-              </Button>
+              </Box>
             )}
           </Link>
       <Badge
