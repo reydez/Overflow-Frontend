@@ -362,7 +362,7 @@ export default function DetailsComponent({
                       ) : null}
 
                       {/* ----------------------- ELEGIR RESPUESTA CORRECTA ---------------------- */}
-                      {!question.closed ? (
+                      {!question.closed && comment.user.id === user.id || user.isAdmin ? (
                         <Button
                           onClick={() => isCorrect(comment.id, user.id)}
                           sx={{
