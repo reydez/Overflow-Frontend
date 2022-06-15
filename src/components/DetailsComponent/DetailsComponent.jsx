@@ -479,19 +479,18 @@ export default function DetailsComponent({
             p: 2,
             border: "1px solid black",
             marginLeft: "30px",
-            width: "50%",
+            width: "35%",
             background: "#ecf0f3",
             borderRadius: "10px",
-
             /* margin: "0 auto", */
           }}
         >
           <Typography
-            variant="h6"
+            // variant="h6"
             sx={{
-             
               // letterSpacing: 0.5,
               // width: "75%",
+              fontSize: '12px',
               color: "#413a66",
               marginTop: "30px",
               textAlign: "center",
@@ -499,25 +498,22 @@ export default function DetailsComponent({
           >
             CONSEJOS PARA RESPONDER SEGÚN LAS NORMAS
             {/* ---------------------------comienzan los consejos------------------ */}
+            <hr />
             <List>
               <ListItemButton onClick={handleClick}>
-                <ListItemIcon>{/* va un icono si quiero */}</ListItemIcon>
                 <ListItemText primary="Respeta las Normas" />
                 {open ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
               <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                   {/* ---------------primer boton colapse---------------------------------------- */}
-                  <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon>
-                      <StarBorder />
-                    </ListItemIcon>
+                  <ListItemButton>
                     <ListItemText>
-                      <Typography>
+                      <Typography sx={{ fontSize: '10px' }}>
                         Respetar las normas de convivencia de nuestro blog, como
                         a quienes formulan las preguntas siempre teniendo en
                         cuenta que los creadores de la pagina se reservan el
-                        derecho de admision para quienes inflinjan esas normas.
+                        derecho de admisión para quienes inflinjan esas normas.
                       </Typography>
                     </ListItemText>
                   </ListItemButton>
@@ -525,20 +521,16 @@ export default function DetailsComponent({
               </Collapse>
               {/* --------------segundo boton colapse----------------------- */}
               <ListItemButton onClick={handleDobleClick}>
-                <ListItemIcon>{/* va un icono si quiero */}</ListItemIcon>
-                <ListItemText primary="Se especifico con las respuestas" />
+                <ListItemText primary="Se específico con las respuestas" />
                 {open2 ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
               <Collapse in={open2} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                  <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon>
-                      <StarBorder />
-                    </ListItemIcon>
+                  <ListItemButton>
                     <ListItemText>
-                      <Typography>
+                      <Typography sx={{ fontSize: '10px' }}>
                         Las respuestas tienen que ser relacionadas a lo que se
-                        esta preguntando, no puedes responder con cosas
+                        está preguntando, no puedes responder con cosas
                         relacionadas a otras preguntas o con otras preguntas sin
                         responder antes la primera.
                       </Typography>
@@ -548,23 +540,19 @@ export default function DetailsComponent({
               </Collapse>
               {/* --------------------------tercero boton colapse-------------------------------------- */}
               <ListItemButton onClick={handleTripleClick}>
-                <ListItemIcon>{/* va un icono si quiero */}</ListItemIcon>
                 <ListItemText primary="Como insertar tu codigo" />
                 {open3 ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
               <Collapse in={open3} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                  <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon>
-                      <StarBorder />
-                    </ListItemIcon>
+                  <ListItemButton>
+                 
                     <ListItemText>
-                      <Typography>
-                        El codigo que se puede utilizar en este blog es a travez
-                        de una imagen puedes sacar un screen shot de tu Visual
-                        Studio Code, o si deceas existen extenciones diseñadas
-                        para ese tipo de cosas mas especificas en Visual Studio
-                        Code.
+                      <Typography sx={{ fontSize: '10px' }}>
+                        El código que se puede utilizar en este blog es a través
+                        de una imagen, puedes sacar un screenshot de tu Editor
+                        de código, o si deseas existen extensiones diseñadas
+                        para ese tipo de cosas mas específicas.
                       </Typography>
                     </ListItemText>
                   </ListItemButton>
@@ -572,21 +560,17 @@ export default function DetailsComponent({
               </Collapse>
               {/* ------------------------------cuarto boton colapse--------------------------------- */}
               <ListItemButton onClick={handleCuartoClick}>
-                <ListItemIcon>{/* va un icono si quiero */}</ListItemIcon>
                 <ListItemText primary="Expresate con cordialidad" />
                 {open4 ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
               <Collapse in={open4} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                  <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon>
-                      <StarBorder />
-                    </ListItemIcon>
+                  <ListItemButton>
                     <ListItemText>
-                      <Typography>
+                      <Typography sx={{ fontSize: '10px' }}>
                         Siempre se amable con las personas que preguntan, ya que
-                        nunca se sabe que nivel de programacion tienen y por lo
-                        tanto pueden estar aprendiendo desde lo basico recuerda
+                        no sabes que nivel de programación tienen y por lo
+                        tanto pueden estar aprendiendo desde lo básico, recuerda
                         de donde vienes tu y como llegaste a tu conoci- miento
                         actual, para responder con la mejor de las consideraciones.
                       </Typography>
@@ -677,18 +661,3 @@ const MainContainer = styled.div`
     }
   }
 `;
-{
-  /* <Button
-onClick={() => handleRemoveComment(comment.id, user.id)}
-sx={{
-   color: "#A8A3B5",
-   float: "right",
-   cursor: "pointer",
-   ":hover": {
-     color: "red"
-   } 
-   }}
->
- <DeleteForeverIcon />
-</Button> */
-}
