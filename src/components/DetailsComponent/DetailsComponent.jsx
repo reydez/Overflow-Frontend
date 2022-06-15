@@ -198,7 +198,7 @@ export default function DetailsComponent({
             p: 2,
             border: "1px solid black",
             width: "70%",
-            background: "#fafafa",
+            background: "#dfdfdf",
             borderRadius: "10px",
             position: "relative",
             color: "#413a66",
@@ -285,7 +285,7 @@ export default function DetailsComponent({
               padding: "0 10px",
               borderRadius: "10px",
               backgroundColor: "#413a66",
-              color: "#fafafa",
+              color: "#dfdfdf",
               width: "max-content",
             }}
           >
@@ -296,7 +296,7 @@ export default function DetailsComponent({
             style={{
               maxHeight: "500px",
               overflow: "auto",
-              backgroundColor: "#fafafa",
+              backgroundColor: "#dfdfdf",
               // marginTop: "0.9em",
               // borderRadius: "20px",
               borderTop: "1px solid black",
