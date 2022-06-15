@@ -36,7 +36,6 @@ const InputForm = ({
       <GrupoInput>
         <Input
           placeholder={placeholder}
-          // type={type}
           id={name}
           value={state.field}
           onChange={handleChange}
@@ -94,7 +93,7 @@ const Input = styled.textarea`
   line-height: 20px;
   padding: 12px 40px 0 10px;
   transition: 0.3s ease all;
-  border: 2px solid gray;
+  border: 2px solid black;
   &:hover {
     box-shadow: 3px 0px 40px rgba(0, 0, 0, 0.2);
   }
