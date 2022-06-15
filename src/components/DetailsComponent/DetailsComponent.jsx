@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
-// import Button from "@mui/material/Button";
-import Switch from "@mui/material/Switch";
 import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
 import {
   Collapse,
   List,
   ListItemButton,
-  ListItemIcon,
   ListItemText,
   Typography,
 } from "@mui/material";
@@ -26,7 +23,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { finishedPost } from "../../redux/actions/user";
 import { isCorrectAnswer } from "../../redux/actions/comments";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import { ExpandLess, ExpandMore, StarBorder } from "@mui/icons-material";
+import { ExpandLess, ExpandMore } from "@mui/icons-material";
 
 export default function DetailsComponent({
   question,
@@ -81,15 +78,6 @@ export default function DetailsComponent({
   const handleCuartoClick = () => {
     setOpen4(!open4);
   };
-
-  //! ----------- Resolve --------------
-  // const handleChange = (event) => {
-  //   // setChecked(event.target.checked);
-  //   console.log('hola soy el switch', checked)
-  //   dispatch(finishedPost(question.user.id, checked))
-  // };
-
-  //! ----------- Resolve --------------
 
   const onSubmitHandler = () => {
     axios
@@ -198,7 +186,7 @@ export default function DetailsComponent({
             p: 2,
             border: "1px solid black",
             width: "70%",
-            background: "#fafafa",
+            background: "#dfdfdf",
             borderRadius: "10px",
             position: "relative",
             color: "#413a66",
@@ -279,26 +267,22 @@ export default function DetailsComponent({
             : null}
           <p
             style={{
-              // margin: "0",
               marginBottom: "1em",
               marginTop: "2.8em",
               padding: "0 10px",
               borderRadius: "10px",
               backgroundColor: "#413a66",
-              color: "#fafafa",
+              color: "#dfdfdf",
               width: "max-content",
             }}
           >
             Comentarios:
           </p>
-          {/* <hr /> */}
           <div
             style={{
               maxHeight: "500px",
               overflow: "auto",
-              backgroundColor: "#fafafa",
-              // marginTop: "0.9em",
-              // borderRadius: "20px",
+              backgroundColor: "#dfdfdf",
               borderTop: "1px solid black",
               borderBottom: "1px solid black",
             }}
@@ -350,9 +334,6 @@ export default function DetailsComponent({
                         <Button
                           onClick={() => handleSendReport(comment.id)}
                           sx={{
-                            // top: 10,
-                            // left: 650,
-                            // paddingBottom: 10
                             borderRadius: "10px",
                             float: "right",
                           }}
@@ -366,9 +347,6 @@ export default function DetailsComponent({
                         <Button
                           onClick={() => isCorrect(comment.id, user.id)}
                           sx={{
-                            // top: 10,
-                            // left: 650,
-                            // paddingBottom: 10
                             borderRadius: "10px",
                             float: "right",
                           }}
@@ -389,11 +367,6 @@ export default function DetailsComponent({
                     </span>
 
                     <div ref={dummy}></div>
-                    {/* <hr 
-                    style={{
-                      marginTop: "20px"
-                    }}
-                  /> */}
                   </div>
                 ) : null
               )
@@ -483,14 +456,10 @@ export default function DetailsComponent({
             width: "35%",
             background: "#ecf0f3",
             borderRadius: "10px",
-            /* margin: "0 auto", */
           }}
         >
           <Typography
-            // variant="h6"
             sx={{
-              // letterSpacing: 0.5,
-              // width: "75%",
               fontSize: '12px',
               color: "#413a66",
               marginTop: "30px",
@@ -588,7 +557,6 @@ export default function DetailsComponent({
 }
 
 const ButtonsDetail = styled.div`
-  /* width: 10.5rem; */
   justify-content: space-between;
   border: none;
   padding-left: 20px;
