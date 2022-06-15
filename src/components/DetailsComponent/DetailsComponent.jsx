@@ -4,7 +4,14 @@ import Box from "@mui/material/Box";
 import Switch from "@mui/material/Switch";
 import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
-import { Typography } from "@mui/material";
+import {
+  Collapse,
+  List,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Typography,
+} from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -19,6 +26,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { finishedPost } from "../../redux/actions/user";
 import { isCorrectAnswer } from "../../redux/actions/comments";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { ExpandLess, ExpandMore, StarBorder } from "@mui/icons-material";
 
 export default function DetailsComponent({
   question,
@@ -51,6 +59,37 @@ export default function DetailsComponent({
     e.preventDefault();
     setComentarioText(e.target.value);
   };
+
+
+  const [open, setOpen] = React.useState(true);
+  const [open2, setOpen2] = React.useState(true);
+  const [open3, setOpen3] = React.useState(true);
+  const [open4, setOpen4] = React.useState(true);
+
+  const handleClick = () => {
+    setOpen(!open);
+  };
+
+  const handleDobleClick = () => {
+    setOpen2(!open2);
+  };
+
+  const handleTripleClick = () => {
+    setOpen3(!open3);
+  };
+
+  const handleCuartoClick = () => {
+    setOpen4(!open4);
+  };
+
+  //! ----------- Resolve --------------
+  // const handleChange = (event) => {
+  //   // setChecked(event.target.checked);
+  //   console.log('hola soy el switch', checked)
+  //   dispatch(finishedPost(question.user.id, checked))
+  // };
+
+  //! ----------- Resolve --------------
 
   const onSubmitHandler = () => {
     axios
@@ -127,6 +166,7 @@ export default function DetailsComponent({
 
     sendFormReport(dispatch, idComment, user.id, exist);
   };
+
 
   // ------------------------- IS CORRECT ANSWER -----------------------
 
@@ -433,12 +473,13 @@ export default function DetailsComponent({
             ) : null}
           </div>
         </Box>
+        {/* -----------------------------sector de consejo de preguntas---------------------> */}
         <Box
           sx={{
             p: 2,
             border: "1px solid black",
             marginLeft: "30px",
-            width: "20%",
+            width: "50%",
             background: "#ecf0f3",
             borderRadius: "10px",
 
@@ -446,10 +487,10 @@ export default function DetailsComponent({
           }}
         >
           <Typography
-            variant="body2"
+            variant="h6"
             sx={{
-              fontSize: "12px",
-              letterSpacing: 0.5,
+             
+              // letterSpacing: 0.5,
               // width: "75%",
               color: "#413a66",
               marginTop: "30px",
@@ -457,6 +498,103 @@ export default function DetailsComponent({
             }}
           >
             CONSEJOS PARA RESPONDER SEGÚN LAS NORMAS
+            {/* ---------------------------comienzan los consejos------------------ */}
+            <List>
+              <ListItemButton onClick={handleClick}>
+                <ListItemIcon>{/* va un icono si quiero */}</ListItemIcon>
+                <ListItemText primary="Respeta las Normas" />
+                {open ? <ExpandLess /> : <ExpandMore />}
+              </ListItemButton>
+              <Collapse in={open} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                  {/* ---------------primer boton colapse---------------------------------------- */}
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon>
+                      <StarBorder />
+                    </ListItemIcon>
+                    <ListItemText>
+                      <Typography>
+                        Respetar las normas de convivencia de nuestro blog, como
+                        a quienes formulan las preguntas siempre teniendo en
+                        cuenta que los creadores de la pagina se reservan el
+                        derecho de admision para quienes inflinjan esas normas.
+                      </Typography>
+                    </ListItemText>
+                  </ListItemButton>
+                </List>
+              </Collapse>
+              {/* --------------segundo boton colapse----------------------- */}
+              <ListItemButton onClick={handleDobleClick}>
+                <ListItemIcon>{/* va un icono si quiero */}</ListItemIcon>
+                <ListItemText primary="Se especifico con las respuestas" />
+                {open2 ? <ExpandLess /> : <ExpandMore />}
+              </ListItemButton>
+              <Collapse in={open2} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon>
+                      <StarBorder />
+                    </ListItemIcon>
+                    <ListItemText>
+                      <Typography>
+                        Las respuestas tienen que ser relacionadas a lo que se
+                        esta preguntando, no puedes responder con cosas
+                        relacionadas a otras preguntas o con otras preguntas sin
+                        responder antes la primera.
+                      </Typography>
+                    </ListItemText>
+                  </ListItemButton>
+                </List>
+              </Collapse>
+              {/* --------------------------tercero boton colapse-------------------------------------- */}
+              <ListItemButton onClick={handleTripleClick}>
+                <ListItemIcon>{/* va un icono si quiero */}</ListItemIcon>
+                <ListItemText primary="Como insertar tu codigo" />
+                {open3 ? <ExpandLess /> : <ExpandMore />}
+              </ListItemButton>
+              <Collapse in={open3} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon>
+                      <StarBorder />
+                    </ListItemIcon>
+                    <ListItemText>
+                      <Typography>
+                        El codigo que se puede utilizar en este blog es a travez
+                        de una imagen puedes sacar un screen shot de tu Visual
+                        Studio Code, o si deceas existen extenciones diseñadas
+                        para ese tipo de cosas mas especificas en Visual Studio
+                        Code.
+                      </Typography>
+                    </ListItemText>
+                  </ListItemButton>
+                </List>
+              </Collapse>
+              {/* ------------------------------cuarto boton colapse--------------------------------- */}
+              <ListItemButton onClick={handleCuartoClick}>
+                <ListItemIcon>{/* va un icono si quiero */}</ListItemIcon>
+                <ListItemText primary="Expresate con cordialidad" />
+                {open4 ? <ExpandLess /> : <ExpandMore />}
+              </ListItemButton>
+              <Collapse in={open4} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon>
+                      <StarBorder />
+                    </ListItemIcon>
+                    <ListItemText>
+                      <Typography>
+                        Siempre se amable con las personas que preguntan, ya que
+                        nunca se sabe que nivel de programacion tienen y por lo
+                        tanto pueden estar aprendiendo desde lo basico recuerda
+                        de donde vienes tu y como llegaste a tu conoci- miento
+                        actual, para responder con la mejor de las consideraciones.
+                      </Typography>
+                    </ListItemText>
+                  </ListItemButton>
+                </List>
+              </Collapse>
+            </List>
           </Typography>
         </Box>
       </MainContainer>
