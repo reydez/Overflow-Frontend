@@ -172,7 +172,7 @@ const PostFormMui = () => {
           </Success>
         )}
         {validate === false && (
-          <NoSuccess>Rellena bien los campos, crack</NoSuccess>
+          <NoSuccess>Rellena bien los campos!</NoSuccess>
         )}
       </Formulario>
     </div>

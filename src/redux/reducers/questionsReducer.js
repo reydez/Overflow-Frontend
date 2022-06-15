@@ -59,7 +59,7 @@ const questionsReducer = (state = initialState, action) => {
       };
 
     case "ORDER_BY_TAG":
-      const copyOfQuestion = state.questions.slice();
+      const copyOfQuestion = state.tempQuestions.slice();
 
       const filteredByTag = copyOfQuestion.filter(
         (question) => question.tags.indexOf(action.payload.toUpperCase()) >= 0

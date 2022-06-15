@@ -52,10 +52,10 @@ const ButtonLogOut = () => {
         <Button
           sx={{
             color: (theme) =>
-                theme.palette.mode === "dark" ? "#A8A3B5" : "#7165A0",
-              "&:hover": { color: "#F50057" }, marginLeft: '5px',  
-              backgroundColor: "background.buttons",
-             border: "solid 2px ",
+            theme.palette.mode === "dark" ? "#A8A3B5" : "#7165A0",
+            "&:hover": { color: "#F50057" }, marginLeft: '5px',  
+            backgroundColor: "background.buttons",
+            border: "solid 2px ",
             borderRadius: "10px",
             // boxShadow: "rgba(1, 0, 0, 0.70) 0px 5px 15px",
             alignItems: "center",
