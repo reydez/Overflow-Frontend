@@ -8,11 +8,12 @@ const colores = {
 
 const Label = styled.label`
     display: block;
-    font-weight: 500;
-    /* font-size: ; */
-    padding-top: 15px;
+    /* font-weight: 500; */
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    padding-top: 16px;
     min-height: 40px;
-    color: gray;
+    color: white;
     cursor: pointer;
     ${props => props.valid === 'false' && css`
         color: ${colores.error}
@@ -32,7 +33,7 @@ const Input = styled.input`
     line-height: 45px;
     padding: 0 40px 0 10px;
     transition: 0.3s ease all;
-    border: 2px solid gray;
+    border: 2px solid black;
     &:hover{
         box-shadow: 3px 0px 40px rgba(0,0,0,0.2);
     }
