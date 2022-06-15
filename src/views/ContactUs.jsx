@@ -16,7 +16,7 @@ import { blue } from '@mui/material/colors';
 import Link from '@mui/material/Link';
 
 const name = ['Damian Olmedo', 'Matias', 'Lissandro']
-const emails = ['https://www.linkedin.com/in/damian-olmedo-fullstackdeveloper/', 'https://www.linkedin.com/in/lisandro-mansilla', 'https://www.linkedin.com/in/rodrigo-reyes-hernandez/', 'https://www.linkedin.com/in/matias-r-romero/'];
+const emails = ['https://www.linkedin.com/in/damian-olmedo-fullstackdeveloper/', 'https://www.linkedin.com/in/lisandro-mansilla', 'https://www.linkedin.com/in/rodrigo-reyes-hernandez/', 'https://www.linkedin.com/in/matias-r-romero/', 'https://www.linkedin.com/in/alfredo-egremy-elias-28a35a220/', 'https://www.linkedin.com/in/srangelh/', 'https://www.linkedin.com/in/allan-n-43385612a/'];
 
 function SimpleDialog(props) {
   const { onClose, selectedValue, open } = props;

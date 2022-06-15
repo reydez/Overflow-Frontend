@@ -1,3 +1,4 @@
+import { GifBox } from "@mui/icons-material";
 import { List, ListItemText, Typography, Box, Button } from "@mui/material";
 import { Container } from "@mui/system";
 import React from "react";
@@ -10,36 +11,7 @@ export function Communityrule() {
         Reglas de la comunidad
       </Typography>
       <br />
-      <br />
-      <br />
-      <Typography
-        variant="h5"
-        component="div"
-        paragraph
-        sx={{ textDecoration: "underline" }}
-      >
-        Nuestra vision
-      </Typography>
-      <Typography variant="h6" component="div" paragraph>
-        <br />A lo largo de la cursada en Henry, todos nosotros en algún momento
-        nos hemos encontrado con la necesidad de despejar nuestras dudas acerca
-        de los diferentes temas que a diario aprendemos en el bootcamp, o
-        resolver errores de nuestro código que tanto nos costó diseñar y que nos
-        supera cómo programadores (el momento donde simplemente… Crash!!
-        SyntaxError, TypeError, NaN, Maximum call size y un largo etcétera). Es
-        ahí donde simplemente deseamos una respuesta, un ejemplo de uso correcto
-        o una explicación del tema que no nos deja dormir. Indagando por
-        diversas plataformas del internet encontramos una marea de información:
-        diversos lenguajes de programación, tecnologías que aún no sabemos ni el
-        porqué de su existencia y por fin… nuestra respuesta!! hasta que nos
-        damos cuenta que se trata de un método deprecado o de un lenguaje
-        distinto al que utilizamos(seguimos nuestra búsqueda cómo barco a la
-        deriva en el océano infinito del internet). Agregando a esto, ¿cuántas
-        veces, cómo estudiantes Henry, encontramos lo que necesitábamos pero
-        esta información estaba únicamente en Inglés? La información abunda, es
-        libre, gratuita y enriquecedora, pero cómo estudiantes tenemos esa misma
-        problemática: La información abunda, necesitamos puntualizar.
-      </Typography>
+      
       <Typography
         variant="h5"
         component="div"
@@ -69,35 +41,42 @@ export function Communityrule() {
         <br />
         <br />
         
-        <Typography>
+        <Typography variant='h7'>
           <List>
           <Link smooth to={'/reglas-comunidad#Respeto'} style={{ textDecoration: 'none' }} >
-            <Button sx={{ color: "text.btnEdit",
-                      backgroundColor: "background.buttons",
+            <Box sx={{ color: "text.btnEdit",
+                      textDecoration: 'underline',
                       marginLeft: "15px",
-                      border: "solid 1px ",}}>
+                      fontWeight: 900,
+                      fontSize: '20px'
+                      }}>
           1. Respeto a los Usuarios
 
-            </Button>
+            </Box>
             </Link>
             <Link smooth to={"/reglas-comunidad#Lenguaje"} style={{ textDecoration: 'none' }}>
               <ListItemText>
-            <Button sx={{ color: "text.btnEdit",
-                      backgroundColor: "background.buttons",
+            <Box sx={{ color: "text.btnEdit",
+                      color: "text.btnEdit",
+                      textDecoration: 'underline',
                       marginLeft: "15px",
-                      border: "solid 1px ",}}>
+                      fontWeight: 900,
+                      fontSize: '20px'}}>
               2. Lenguaje que incita al odio/Hate speech
-            </Button>
+            </Box>
             </ListItemText>
             </Link>
             <Link smooth to={"/reglas-comunidad#Acoso"} style={{ textDecoration: 'none' }}>
-              <Button sx={{ color: "text.btnEdit",
-                      backgroundColor: "background.buttons",
+            <ListItemText >
+              <Box  sx={{ 
+                      color: "text.btnEdit",
+                      textDecoration: 'underline',
                       marginLeft: "15px",
-                      border: "solid 1px ",}}>
-                
-               <ListItemText >3. Acoso/Bullying</ListItemText>
-                </Button>
+                      fontWeight: 900,
+                      fontSize: '20px'}}>
+               3. Acoso/Bullying
+                </Box>
+                </ListItemText>
             </Link>
           </List>
         </Typography>

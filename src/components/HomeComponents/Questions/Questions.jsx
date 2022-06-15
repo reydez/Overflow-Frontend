@@ -120,10 +120,10 @@ export const Questions = () => {
   };
 
   return (
-    <div>
+    <Box>
       <MainContainer>
         <CardQuestionContainer>
-          <div className="CardQuestionTitle">
+          <Box className="CardQuestionTitle">
             <Avatars orderByModule={handleOrderByModule} />
             <Button
               sx={{
@@ -173,7 +173,7 @@ export const Questions = () => {
             >
               Mas Comentadas ASC/DSC
             </Button>
-          </div>
+          </Box>
 
           <PaginationComponent
             questions={questions}
@@ -188,7 +188,7 @@ export const Questions = () => {
             setMinPageNumberLimit={setMinPageNumberLimit}
             currentItems={currentItems}
           />
-
+          <Box>
           <CardQuestion>
             {loading ? (
               <h4>Loading Questions...</h4>
@@ -203,10 +203,12 @@ export const Questions = () => {
             )}
           </CardQuestion>
 
-          <Box>
-            <Footer />
           </Box>
+
         </CardQuestionContainer>
+          <Box>
+            {/* <Footer /> */}
+          </Box>
         <SideBar>
           <CounterSideBar>
             <Box
@@ -268,7 +270,7 @@ export const Questions = () => {
           </Stack>
         </SideBar>
       </MainContainer>
-    </div>
+    </Box>
   );
 };
 
@@ -334,10 +336,10 @@ const SideBar = styled.div`
 `;
 
 const CardQuestionContainer = styled.div`
-  height: 60px;
-  width: 80%;
+
+  
   margin-left: 30px;
-  margin-bottom: 10px;
+ 
 
   .CardQuestionTitle {
     display: flex;

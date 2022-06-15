@@ -20,6 +20,7 @@ import { AdminBanUser } from "./components/HomeComponents/Admin/AdminBanUser";
 import { PaypalC } from "./components/Paypal/PaypalC";
 import InboxUser from "./views/InboxUser";
 import { AdminReports } from "./components/HomeComponents/Admin/AdminReports";
+import Footer from "./views/Footer";
 
 function App() {
   const { isLoading, isAuthenticated, user } = useAuth0();
@@ -40,6 +41,7 @@ function App() {
   }
 
   return (
+    <div>
     <Switch>
       <Route exact path="/">
         {isAuthenticated ? <Redirect to="/questions" /> : <LandingPage />}
@@ -155,6 +157,10 @@ function App() {
 
       <Route path="*" exact={true} component={Component404} />
     </Switch>
+      <Footer />
+   
+
+    </div>
   );
 }
 

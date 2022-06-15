@@ -7,28 +7,27 @@ import Link from "@mui/material/Link";
 import ScrollTerms from "./ScrollTerms";
 import ScrollAboutUs from "./ScrollAboutUs";
 import ContactUs from "./ContactUs";
+import { BorderAll } from "@mui/icons-material";
 
 export default function Footer() {
   return (
     <footer>
-      <Container sx={{
-                marginTop: 'auto',
-                
-                
-             
-                }}>
-        <Grid container spacing={1}>
+      <Box textAlign="center" >
+        <Grid container spacing={0}>
           <Grid item xs={6}>
             <ScrollTerms />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={1}>
             <ScrollAboutUs />
           </Grid>
-          <Grid item xs={2}>
+          <Grid item xs={3}>
             <ContactUs />
           </Grid>
         </Grid>
-      </Container>
+        <Box sx={{ marginLeft:13, color: 'text.btnEdit', fontWeight: 500}}>
+          HenryFlow-Developers  &reg; {new Date().getFullYear()}
+        </Box>
+      </Box>
     </footer>
   );
 }
