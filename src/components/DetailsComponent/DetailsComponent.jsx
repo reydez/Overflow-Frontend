@@ -94,7 +94,8 @@ export default function DetailsComponent({
   const onSubmitHandler = () => {
     axios
       .post(
-        `http://localhost:3001/comments/${question.id}/${user.id}`,
+        `http://localhost:3001/comments/${question.id}/${user.id}`, // DESACTIVAR PARA DEPLOY
+        // `https://henry-overflow-api.herokuapp.com/comments/${question.id}/${user.id}`, // ACTIVAR PARA DEPLOY
         {
           message: comentarioText.trim(),
         },
