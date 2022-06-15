@@ -71,8 +71,8 @@ const PostFormMui = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
-      title.validate === "true" &&
-      description.validate === "true" &&
+      title.field.trim() !== "" &&
+      description.field.trim() !== "" &&
       modulo.field &&
       tag.tags.length < 3
     ) {
@@ -120,7 +120,7 @@ const PostFormMui = () => {
               placeholder="Pregunta..."
               label="Pregunta"
               error="Tu pregunta debe llevar más de 10 caracteres."
-            // regularExpresion={/^[a-zA-ZÀ-ÿ\s?.,0-9]{4,100}$/}
+              //regularExpresion={/^[a-zA-ZÀ-ÿ\s?.,0-9]{4,100}$/}
             />
           </NameDiv>
           <InputFormArea
@@ -130,7 +130,7 @@ const PostFormMui = () => {
             placeholder="Describe tu pregunta..."
             label="Descripción y Código"
             error="Háblanos sobre tu problema"
-          // regularExpresion={/^[a-zA-ZÀ-ÿ:<|&*>\s?.,0-9]{20,800}$/}
+            //regularExpresion={/^[a-zA-ZÀ-ÿ:<|&*>\s?.,0-9]{20,800}$/}
           />
         </div>
 
@@ -172,9 +172,7 @@ const PostFormMui = () => {
             Pregunta correctamente posteada, redireccionando a home
           </Success>
         )}
-        {validate === false && (
-          <NoSuccess>Rellena bien los campos!</NoSuccess>
-        )}
+        {validate === false && <NoSuccess>Rellena bien los campos!</NoSuccess>}
       </Formulario>
     </div>
   );
