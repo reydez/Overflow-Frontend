@@ -46,7 +46,7 @@ const CardPreguntas = ({ p, user }) => {
                         height: "35px",
                         borderRadius: "75px",
                         marginLeft: "20px",
-                        marginRight: '20px',
+                        marginRight: '200px',
                         border: "2px solid",
                         marginTop: "-6px",
                         color: "text.btnEdit"
