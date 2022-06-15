@@ -14,41 +14,37 @@ export default function Avatars({ orderByModule }) {
           <Avatar
             onClick={orderByModule}
             size="small"
-            sx={{ bgcolor: "background.white", color: "#FBC02D" }}
+            sx={{ bgcolor: (theme) =>
+              theme.palette.mode === "dark" ? "#392E57" : "#5a4e7c", color: "#FBC02D" }}
           >
-            <b>
               M1
-            </b>
           </Avatar>
         </Button>
         <Button>
           <Avatar
             onClick={orderByModule}
-            sx={{ bgcolor: "background.white", color: "#43A047" }}
+            sx={{ bgcolor: (theme) =>
+              theme.palette.mode === "dark" ? "#392E57" : "#5a4e7c", color: "#43A047" }}
           >
-            <b>
               M2
-            </b>
           </Avatar>
         </Button>
         <Button>
           <Avatar
             onClick={orderByModule}
-            sx={{ bgcolor: "background.white", color: "#D81B60" }}
+            sx={{ bgcolor: (theme) =>
+              theme.palette.mode === "dark" ? "#392E57" : "#5a4e7c", color: "#D81B60" }}
           >
-            <b>
               M3
-            </b>
           </Avatar>
         </Button>
         <Button>
           <Avatar
             onClick={orderByModule}
-            sx={{ bgcolor: "background.white", color: "#42A5F5" }}
+            sx={{ bgcolor: (theme) =>
+              theme.palette.mode === "dark" ? "#392E57" : "#5a4e7c", color: "#42A5F5" }}
           >
-            <b>
               M4
-            </b>
           </Avatar>
         </Button>
       </ButtonGroup>

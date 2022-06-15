@@ -119,7 +119,7 @@ export const Questions = () => {
             <Button
               sx={{
                 bgcolor: (theme) =>
-                theme.palette.mode === "dark" ? "#392E57" : "#EBEFFE",
+                theme.palette.mode === "dark" ? "#392E57" : "#5a4e7c",
                 "&:hover": { color: "#F50057" },
                 color: (theme) =>
                 theme.palette.mode === "dark" ? "#9791AD" : "#EBEFFE",
@@ -136,7 +136,7 @@ export const Questions = () => {
             <Button
               sx={{
                 bgcolor: (theme) =>
-                theme.palette.mode === "dark" ? "#392E57" : "#EBEFFE",
+                theme.palette.mode === "dark" ? "#392E57" : "#5a4e7c",
                 "&:hover": { color: "#F50057" },
                 color: (theme) =>
                 theme.palette.mode === "dark" ? "#9791AD" : "#EBEFFE",
