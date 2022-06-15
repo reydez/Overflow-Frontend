@@ -96,7 +96,10 @@ const PostFormMui = () => {
             console.log("");
           });
       }
-      history.push("/questions");
+
+      setTimeout(() => {
+        history.push("/questions");
+      }, 2000);
     } else {
       setValidate(false);
     }
@@ -276,7 +279,7 @@ const Send = styled.button`
       border: 2px solid ${colores.error} !important;
     `}
 `;
-const Success = styled.img`
+const Success = styled.div`
   font-size: 20px;
   background: ${colores.succes};
   color: #141414;
