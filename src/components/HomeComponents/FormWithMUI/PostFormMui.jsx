@@ -120,7 +120,7 @@ const PostFormMui = () => {
               placeholder="Pregunta..."
               label="Pregunta"
               error="Tu pregunta debe llevar más de 10 caracteres."
-              regularExpresion={/^[a-zA-ZÀ-ÿ\s?.,0-9]{4,100}$/}
+            // regularExpresion={/^[a-zA-ZÀ-ÿ\s?.,0-9]{4,100}$/}
             />
           </NameDiv>
           <InputFormArea
@@ -130,7 +130,7 @@ const PostFormMui = () => {
             placeholder="Describe tu pregunta..."
             label="Descripción y Código"
             error="Háblanos sobre tu problema"
-            regularExpresion={/^[a-zA-ZÀ-ÿ:<|&*>\s?.,0-9]{20,800}$/}
+          // regularExpresion={/^[a-zA-ZÀ-ÿ:<|&*>\s?.,0-9]{20,800}$/}
           />
         </div>
 
