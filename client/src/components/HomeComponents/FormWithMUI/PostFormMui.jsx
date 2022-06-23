@@ -91,10 +91,10 @@ const PostFormMui = () => {
 
       for (let i = 0; i < tag.tags.length; i++) {
         axios
-          //.put(`http://localhost:3001/tags/mas-uno/${tag.tags[i].id}`) // DESACTIVAR PARA DEPLOY
-          .put(
-            `https://henry-overflow-api.herokuapp.com/tags/mas-uno/${tag.tags[i].id}`
-          ) // ACTIVAR PARA DEPLOY
+          .put(`http://localhost:3001/tags/mas-uno/${tag.tags[i].id}`) // DESACTIVAR PARA DEPLOY
+          // .put(
+          //   `https://henry-overflow-api.herokuapp.com/tags/mas-uno/${tag.tags[i].id}`
+          // ) // ACTIVAR PARA DEPLOY
           .then((res) => {
             console.log("");
           });

@@ -1,5 +1,5 @@
-//export const URL = "http://localhost:3001"; // DESACTIVAR PARA DEPLOY
-export const URL = "https://henry-overflow-api.herokuapp.com"; // ACTIVAR PARA DEPLOY
+export const URL = "http://localhost:3001"; // DESACTIVAR PARA DEPLOY
+// export const URL = "https://henry-overflow-api.herokuapp.com"; // ACTIVAR PARA DEPLOY
 
 export const admin = {
   GET_ALL_REPORTS: "GET_ALL_REPORTS",
